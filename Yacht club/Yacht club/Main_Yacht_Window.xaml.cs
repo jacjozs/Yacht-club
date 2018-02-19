@@ -18,9 +18,9 @@ namespace Yacht_club
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Main_Yacht_Window : Window
     {
-        public MainWindow()
+        public Main_Yacht_Window()
         {
             InitializeComponent();
         }
