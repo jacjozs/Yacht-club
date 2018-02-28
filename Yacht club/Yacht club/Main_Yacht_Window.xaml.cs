@@ -24,5 +24,10 @@ namespace Yacht_club
         {
             InitializeComponent();
         }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
