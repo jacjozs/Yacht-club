@@ -17,11 +17,19 @@
             <RowDefinition Height="332*"/>
         </Grid.RowDefinitions>
         <Menu x:Name="menu" Grid.Row="0" MinWidth="250" Grid.ColumnSpan="2" Background="#2D3446" FontFamily="Segoe UI Semibold" Foreground="#FFACB5B9" FontSize="14">
-            <MenuItem x:Name="miFoold" Header="Főoldal" Click="miFoold_Click"/>
-            <MenuItem x:Name="miFoold2" Header="Információk">
+            <MenuItem x:Name="miFoold" Header="Főmenü" Click="miFoold_Click"/>
+            <MenuItem x:Name="miFoold1" Header="Felhasználó" />
+            <MenuItem x:Name="miFoold2" Header="Yachtok">
+                <MenuItem x:Name="miAdd" Header="Hozzáadás"/>
+                <MenuItem x:Name="miRemove" Header="Törlés"/>
+            </MenuItem>
+            <MenuItem x:Name="miFoold3" Header="Email"/>
+            <MenuItem x:Name="miFoold6" Header="Információk">
                 <MenuItem x:Name="miAlaC2" Header="A'la carte"/>
                 <MenuItem x:Name="miMenu2" Header="Menük"/>
             </MenuItem>
+            <MenuItem x:Name="miFoold4" Header="Kijelentkezés"/>
+            <MenuItem x:Name="miFoold5" Header="Kilépés"/>
         </Menu>
         <StackPanel x:Name="stLogin" Height="125" Grid.Row="1" Grid.Column="0">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
