@@ -4,6 +4,65 @@
              xmlns:local="clr-namespace:Yacht_club"
              StartupUri="Main_Yacht_Window.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="DynamicBG" />
+
+        <Style x:Key="spSlideLeft" TargetType="StackPanel">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Green"/>
+                </Trigger>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="-315,0,0,0" To="-15,0,0,0" DecelerationRatio=".9" Duration="0:0:0.8"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+
+                    </EventTrigger.Actions>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="-15,0,0,0" To="-315,0,0,0" DecelerationRatio=".9" Duration="0:0:0.5"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style x:Key="MenuLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="15,0,0,0"/>
+            <Setter Property="Foreground" Value="#FFACB5B9"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Foreground" Value="#FFACB5B9"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style x:Key="MenuDecLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="15,0,0,0"/>
+            <Setter Property="Foreground" Value="#FFACB5B9"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+
+        </Style>
     </Application.Resources>
 </Application>

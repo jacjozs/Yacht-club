@@ -5,34 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yacht_club"
         mc:Ignorable="d"
-        Title="Yacht Club GAMF" Height="600" Width="1024" WindowStyle="None">
+        Title="Yacht Club GAMF" MinHeight="500" MinWidth="750" WindowStyle="ToolWindow">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="215"/>
+            <ColumnDefinition Width="544*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
-            <RowDefinition Height="143"/>
-            <RowDefinition Height="475"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="125"/>
+            <RowDefinition Height="332*"/>
         </Grid.RowDefinitions>
-        <Grid>
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="White" Offset="0.788"/>
-                    <GradientStop Color="#FF18E5F9"/>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="290"/>
-                <ColumnDefinition Width="744"/>
-            </Grid.ColumnDefinitions>
-            <TextBox x:Name="login_name" HorizontalAlignment="Left" Grid.Column="0" Width="150" ToolTip="Felhaszánló név" Margin="119,13,0,84"/>
-            <TextBox x:Name="login_passwd" HorizontalAlignment="Left" Grid.Column="0" Width="150" ToolTip="Jelszó" Margin="119,50,0,47"/>
-
-            <Button x:Name="login_button" Content="Bejelentkezés" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Top" Width="150" Cursor="Hand" Height="22" Margin="119,91,0,0"/>
-
-            <Label x:Name="login_nm" Content="Felhaszánló név" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Top" Width="100" Height="26" Margin="14,13,0,0" />
-            <Label x:Name="passwd" Content="Jelszó" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Top" Width="100" Height="26" Margin="14,50,0,0"/>
-
-        </Grid>
-        <Button x:Name="exit" Content="Kilépés" HorizontalAlignment="Left" Height="23" Margin="890,277,0,0" Grid.Row="2" VerticalAlignment="Top" Width="95" Click="exit_Click"/>
-
+        <Menu x:Name="menu" Grid.Row="0" MinWidth="250" Grid.ColumnSpan="2" Background="#2D3446" FontFamily="Segoe UI Semibold" Foreground="#FFACB5B9" FontSize="14">
+            <MenuItem x:Name="miFoold" Header="Főoldal" Click="miFoold_Click"/>
+            <MenuItem x:Name="miFoold2" Header="Információk">
+                <MenuItem x:Name="miAlaC2" Header="A'la carte"/>
+                <MenuItem x:Name="miMenu2" Header="Menük"/>
+            </MenuItem>
+        </Menu>
+        <StackPanel x:Name="stLogin" Height="125" Grid.Row="1" Grid.Column="0">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="215" Height="35">
+                    <Label  Content="Felhasználónév:" Width="85" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold"/>
+                    <TextBox x:Name="tbLoginName" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Panel.ZIndex="-2"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="215" Height="35">
+                    <Label Content="Jelszó:" Width="85" FontSize="10" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <PasswordBox x:Name="pbPasswd" Width="125" PasswordChar="*" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Width="215" Height="40" HorizontalAlignment="Center">
+                    <Button x:Name="btBelepes" Content="Bejelentkezés" Width="150" Height="23" FontSize="12" Margin="32,0"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <ContentControl x:Name="ccWindow_1" TabIndex="1" Content="{Binding}" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <ContentControl x:Name="ccWindow_2" TabIndex="2" Content="{Binding}" Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <ContentControl x:Name="ccWindow_3" TabIndex="3" Content="{Binding}" Grid.RowSpan="2" Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
     </Grid>
 </Window>
