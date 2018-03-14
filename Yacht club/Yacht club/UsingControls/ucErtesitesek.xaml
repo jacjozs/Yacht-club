@@ -5,19 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="125" d:DesignWidth="544" MinWidth="544">
-    <Grid>
+             d:DesignHeight="125" d:DesignWidth="885">
+    <Grid SnapsToDevicePixels="True" Background="#FF2D3446">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="100" Margin="10,0,0,0" VerticalAlignment="Top" Width="524" Grid.Row="1">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ListBox x:Name="listBox" Height="100" Grid.Row="1" Width="885" Margin="10,0,10,10"/>
+        <Menu x:Name="menu" Height="25" Grid.Row="0" Width="885" Margin="10,0"/>
+
 
     </Grid>
 </UserControl>

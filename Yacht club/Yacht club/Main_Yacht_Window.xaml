@@ -5,31 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yacht_club"
         mc:Ignorable="d"
-        Title="Yacht Club GAMF" MinHeight="500" MinWidth="750" WindowStyle="ToolWindow">
+        Title="Yacht Club GAMF" Height="700" Width="1100" ResizeMode="NoResize" WindowStyle="ToolWindow">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="215"/>
-            <ColumnDefinition Width="544*"/>
+            <ColumnDefinition Width="585*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="125"/>
             <RowDefinition Height="332*"/>
         </Grid.RowDefinitions>
-        <Menu x:Name="menu" Grid.Row="0" MinWidth="250" Grid.ColumnSpan="2" Background="#2D3446" FontFamily="Segoe UI Semibold" Foreground="#FFACB5B9" FontSize="14">
-            <MenuItem x:Name="miFoold" Header="Főmenü" Click="miFoold_Click"/>
-            <MenuItem x:Name="miFoold1" Header="Felhasználó" />
-            <MenuItem x:Name="miFoold2" Header="Yachtok">
-                <MenuItem x:Name="miAdd" Header="Hozzáadás"/>
-                <MenuItem x:Name="miRemove" Header="Törlés"/>
+        <Menu x:Name="menu" Grid.Row="0" Grid.ColumnSpan="2" Background="#2D3446" FontFamily="Segoe UI Semibold" Foreground="#FFACB5B9" FontSize="14">
+            <MenuItem x:Name="miFoold" Header="Főmenü" Style="{DynamicResource MenuItems}" Click="miFoold_Click"/>
+            <MenuItem x:Name="miFelhasznalo" Header="Felhasználó" Style="{DynamicResource MenuItems}"/>
+            <MenuItem x:Name="miYachts" Header="Yachtok" Style="{DynamicResource MenuItems}">
+                <MenuItem x:Name="miYachtAdd"  Header="Hozzáadás" Style="{DynamicResource MenuItems_2}"/>
+                <MenuItem x:Name="miYachtRemove" Header="Törlés" Style="{DynamicResource MenuItems_2}"/>
             </MenuItem>
-            <MenuItem x:Name="miFoold3" Header="Email"/>
-            <MenuItem x:Name="miFoold6" Header="Információk">
-                <MenuItem x:Name="miAlaC2" Header="A'la carte"/>
-                <MenuItem x:Name="miMenu2" Header="Menük"/>
+            <MenuItem x:Name="miErtesitesek" Header="Értesítések" Style="{DynamicResource MenuItems}"/>
+            <MenuItem x:Name="miInfo" Header="Információk" Style="{DynamicResource MenuItems}">
+                <MenuItem x:Name="miKeszito" Header="Készítők" Style="{DynamicResource MenuItems_2}"/>
+                <MenuItem x:Name="miValami" Header="Valami" Style="{DynamicResource MenuItems_2}"/>
             </MenuItem>
-            <MenuItem x:Name="miFoold4" Header="Kijelentkezés"/>
-            <MenuItem x:Name="miFoold5" Header="Kilépés"/>
+            <MenuItem x:Name="miKijelentkezes" Header="Kijelentkezés" Style="{DynamicResource MenuItems}"/>
+            <MenuItem x:Name="miKilepes" Header="Kilépés" Style="{DynamicResource MenuItems}"/>
         </Menu>
         <StackPanel x:Name="stLogin" Height="125" Grid.Row="1" Grid.Column="0">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">

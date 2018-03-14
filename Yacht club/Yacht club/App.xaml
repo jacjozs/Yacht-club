@@ -15,7 +15,7 @@
                     <EventTrigger.Actions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="-315,0,0,0" To="-15,0,0,0" DecelerationRatio=".9" Duration="0:0:0.8"/>
+                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="-170,0,170,10" To="0,0,0,10" DecelerationRatio=".9" Duration="0:0:0.8"/>
                             </Storyboard>
                         </BeginStoryboard>
 
@@ -26,7 +26,7 @@
                     <EventTrigger.Actions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="-15,0,0,0" To="-315,0,0,0" DecelerationRatio=".9" Duration="0:0:0.5"/>
+                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,10" To="-170,0,170,10" DecelerationRatio=".9" Duration="0:0:0.5"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
@@ -55,14 +55,46 @@
             </Style.Triggers>
         </Style>
 
-
         <Style x:Key="MenuDecLabel" TargetType="Label">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Padding" Value="15,0,0,0"/>
             <Setter Property="Foreground" Value="#FFACB5B9"/>
             <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
             <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+        </Style>
 
+        <Style x:Key="MenuItems" TargetType="MenuItem">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#FFACB5B9"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Foreground" Value="#FFACB5B9"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="MenuItems_2" TargetType="MenuItem">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#FF2D3446"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#959da0"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Foreground" Value="#FF2D3446"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Application.Resources>
 </Application>

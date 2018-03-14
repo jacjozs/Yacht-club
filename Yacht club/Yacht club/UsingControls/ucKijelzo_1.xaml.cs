@@ -12,26 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Yacht_club.UsingControls;
 
-namespace Yacht_club
+namespace Yacht_club.UsingControls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ucKijelzo_1.xaml
     /// </summary>
-    public partial class Main_Yacht_Window : Window
+    public partial class ucKijelzo_1 : UserControl
     {
-        public Main_Yacht_Window()
+        public ucKijelzo_1()
         {
             InitializeComponent();
-        }
-
-        private void miFoold_Click(object sender, RoutedEventArgs e)
-        {
-            stLogin.Visibility = Visibility.Hidden;
-            ccWindow_3.Content = new ucOldalSav_1();
-            ccWindow_2.Content = new ucKijelzo_1();
-            ccWindow_1.Content = new ucErtesitesek();
         }
     }
 }
