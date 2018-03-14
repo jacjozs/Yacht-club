@@ -96,5 +96,14 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="SettingLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Foreground" Value="#FFACB5B9"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+        </Style>
+
     </Application.Resources>
 </Application>

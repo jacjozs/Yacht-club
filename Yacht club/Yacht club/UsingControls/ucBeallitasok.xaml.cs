@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,19 +16,13 @@ using System.Windows.Shapes;
 namespace Yacht_club.UsingControls
 {
     /// <summary>
-    /// Interaction logic for ucOldalSav_1.xaml
+    /// Interaction logic for ucBeallitasok.xaml
     /// </summary>
-    public partial class ucOldalSav_1 : UserControl
+    public partial class ucBeallitasok : UserControl
     {
-        public ucOldalSav_1()
+        public ucBeallitasok()
         {
             InitializeComponent();
-        }
-
-        private void Label_MouseLeftButtonDown_Exit(object sender, MouseButtonEventArgs e)
-        {
-            Thread.Sleep(1000);
-            Environment.Exit(0);
         }
     }
 }

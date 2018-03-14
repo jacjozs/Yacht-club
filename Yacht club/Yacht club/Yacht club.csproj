@@ -55,14 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UsingControls\ucBeallitasok.xaml.cs">
+      <DependentUpon>ucBeallitasok.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsingControls\ucErtesitesek.xaml.cs">
       <DependentUpon>ucErtesitesek.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsingControls\ucKijelzo_1.xaml.cs">
       <DependentUpon>ucKijelzo_1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UsingControls\ucOldalSav_1.xaml.cs">
-      <DependentUpon>ucOldalSav_1.xaml</DependentUpon>
     </Compile>
     <Page Include="Main_Yacht_Window.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -76,15 +76,15 @@
       <DependentUpon>Main_Yacht_Window.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UsingControls\ucBeallitasok.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UsingControls\ucErtesitesek.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsingControls\ucKijelzo_1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UsingControls\ucOldalSav_1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,7 +117,37 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\" />
+    <Resource Include="images\analysis.png" />
+    <Resource Include="images\coming_document.png" />
+    <Resource Include="images\file.png" />
+    <Resource Include="images\file2.png" />
+    <Resource Include="images\pencil_over.png" />
+    <Resource Include="images\progress.png" />
+    <Resource Include="images\search.png" />
+    <Resource Include="images\settings.png" />
+    <Resource Include="images\statistics.png" />
+    <Resource Include="images\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\info_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\yachts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\user_logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\yachts.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Yacht_club.UsingControls;
+using System.Threading;
 
 namespace Yacht_club
 {
@@ -29,9 +30,18 @@ namespace Yacht_club
         private void miFoold_Click(object sender, RoutedEventArgs e)
         {
             stLogin.Visibility = Visibility.Hidden;
-            ccWindow_3.Content = new ucOldalSav_1();
+            stMenu_2.Visibility = Visibility.Visible;
             ccWindow_2.Content = new ucKijelzo_1();
             ccWindow_1.Content = new ucErtesitesek();
+        }
+        private void DockPanel_MouseLeftButtonDown_Exit(object sender, MouseButtonEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void DockPanel_MouseLeftButtonDown_Setting(object sender, MouseButtonEventArgs e)
+        {
+            ccWindow_2.Content = new ucBeallitasok();
         }
     }
 }

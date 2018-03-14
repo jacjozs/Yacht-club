@@ -5,15 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="125" d:DesignWidth="885">
+             d:DesignHeight="115" d:DesignWidth="885">
     <Grid SnapsToDevicePixels="True" Background="#FF2D3446">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="115"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="listBox" Height="100" Grid.Row="1" Width="885" Margin="10,0,10,10"/>
-        <Menu x:Name="menu" Height="25" Grid.Row="0" Width="885" Margin="10,0"/>
-
-
+        <ListBox x:Name="listBox" Height="115" Grid.Row="1" Width="885" Margin="10,0,10,10"/>
+        <Menu x:Name="menu"  Width="885" Grid.Row="0" Background="#2D3446" FontFamily="Segoe UI Semibold" Foreground="#FFACB5B9" FontSize="14" BorderThickness="10,0,0,0">
+            <MenuItem x:Name="miErtesit_torles" Header="Ablak Takarítása" Style="{DynamicResource MenuItems}"/>
+        </Menu>
     </Grid>
 </UserControl>
