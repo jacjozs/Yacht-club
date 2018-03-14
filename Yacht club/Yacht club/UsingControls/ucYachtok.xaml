@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Yacht_club.UsingControls.ucYachtok"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Yacht_club.UsingControls"
+             mc:Ignorable="d" 
+              d:DesignHeight="540" d:DesignWidth="885">
+    <Grid Background="#FF2D3446">
+        <ListView x:Name="listView" Height="540" Width="885" ItemsSource="{Binding Yachtok}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding id}" Header="Azonositó" Width="120"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding nev}" Header="Név" Width="148"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding berlo}" Header="Bérlő" Width="147"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ferohely}" Header="Férő hely" Width="147"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding foglalt}" Header="Foglalt" Width="147"/>
+                    <GridViewColumn Header="Adatok" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btYacht_adat" Content="Megtekintés" HorizontalAlignment="Center" Width="75" Click="btYacht_adat_Click"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

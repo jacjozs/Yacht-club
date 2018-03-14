@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Felhasznalo.cs" />
     <Compile Include="UsingControls\ucBeallitasok.xaml.cs">
       <DependentUpon>ucBeallitasok.xaml</DependentUpon>
     </Compile>
@@ -64,6 +65,19 @@
     <Compile Include="UsingControls\ucKijelzo_1.xaml.cs">
       <DependentUpon>ucKijelzo_1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UsingControls\ucYacht.xaml.cs">
+      <DependentUpon>ucYacht.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucYachtok.xaml.cs">
+      <DependentUpon>ucYachtok.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucYacht_add.xaml.cs">
+      <DependentUpon>ucYacht_add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucYacht_delete.xaml.cs">
+      <DependentUpon>ucYacht_delete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Yacht.cs" />
     <Page Include="Main_Yacht_Window.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -85,6 +99,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsingControls\ucKijelzo_1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucYacht.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucYachtok.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucYacht_add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucYacht_delete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
