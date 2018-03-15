@@ -19,9 +19,20 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="lbMenuk" Content="Menü Sávok" Style="{DynamicResource SettingLabel}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center"/>
-        <CheckBox x:Name="checkBox" Content="Oldalsó Menü Sáv" HorizontalAlignment="Left" Margin="27,75,0,0" Grid.Column="0" Grid.Row="0" FontWeight="Bold" Foreground="#FFACB5B9"/>
-        <CheckBox x:Name="checkBox1" Content="Felső Menü Sáv" HorizontalAlignment="Left" Margin="27,126,0,0" Grid.Column="0" Grid.Row="0" FontWeight="Bold" Foreground="#FFACB5B9" IsChecked="True"/>
+
+        <Label Content="Menü Sávok" Style="{DynamicResource SettingLabel}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center"/>
+        <CheckBox x:Name="cbOldalSav" Content="Oldalsó Menü Sáv" HorizontalAlignment="Left" Margin="21,47,0,28" Grid.Column="0" Grid.Row="0" Foreground="#FFACB5B9" FontSize="14"/>
+        <CheckBox x:Name="cbFelsoSav" Content="Felső Menü Sáv" HorizontalAlignment="Left" Margin="21,74,0,52" Grid.Column="0" Grid.Row="0" Foreground="#FFACB5B9" IsChecked="True" FontSize="14"/>
+
+        <Label Content="Jelszó Csere:" Style="{DynamicResource SettingLabel}" Margin="10,18,0,0" Grid.Row="0" Grid.Column="2" VerticalAlignment="Top"/>
+        <Label Content="Régi Jelszó:" Style="{DynamicResource MenuDecLabel}" Margin="10,10,10,0" Grid.Row="0" Grid.Column="3" VerticalAlignment="Top" Padding="0"/>
+        <TextBox x:Name="tbRegipasswd" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" Margin="10,34,10,0" Grid.Row="0" Grid.Column="3"/>
+        <Label Content="Új Jelszó:" Style="{DynamicResource MenuDecLabel}" Margin="10,10,12,0" Grid.Row="0" Grid.Column="4" VerticalAlignment="Top" Padding="0"/>
+        <TextBox x:Name="tbujpasswd" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" Margin="10,34,10,0" Grid.Row="0" Grid.Column="4"/>
+
+
+        <Button x:Name="btAlkalmaz" Content="Alkalmaz" Style="{DynamicResource Buttons}" HorizontalAlignment="Center" Background="#2D3446" VerticalAlignment="Center" Width="75" FontWeight="Bold" Foreground="#FFACB5B9" Grid.Column="4" Grid.Row="3"/>
+
 
     </Grid>
 </UserControl>

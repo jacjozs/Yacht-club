@@ -5,106 +5,109 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yacht_club"
         mc:Ignorable="d"
-        Title="Yacht Club GAMF" Height="700" Width="1100" ResizeMode="NoResize" WindowStyle="ToolWindow" Icon="images/yachts.ico">
+        Title="Yacht Club GAMF" Height="700" Width="1100" ResizeMode="NoResize" WindowStyle="None" Icon="images/yachts.ico" WindowStartupLocation="CenterScreen">
     <Grid Background="#2D3446">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="215"/>
             <ColumnDefinition Width="585*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="34"/>
             <RowDefinition Height="140"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu x:Name="menu" Grid.Row="0" Grid.ColumnSpan="2" Background="#2D3446" FontFamily="Segoe UI Semibold" Foreground="#FFACB5B9" FontSize="14">
-            <MenuItem x:Name="miFoold" Header="Főmenü" Style="{DynamicResource MenuItems}" Click="miFoold_Click"/>
-            <MenuItem x:Name="miFelhasznalo" Header="Felhasználó" Style="{DynamicResource MenuItems}"/>
-            <MenuItem x:Name="miYacht" Header="Yachtok" Style="{DynamicResource MenuItems}">
-                <MenuItem x:Name="miYachts" Header="Yachtok" Style="{DynamicResource MenuItems_2}" Click="miYachts_Click"/>
-                <MenuItem x:Name="miYachtAdd"  Header="Hozzáadás" Style="{DynamicResource MenuItems_2}" Click="miYachtAdd_Click"/>
-                <MenuItem x:Name="miYachtRemove" Header="Törlés" Style="{DynamicResource MenuItems_2}" Click="miYachtRemove_Click"/>
-            </MenuItem>
-            <MenuItem x:Name="miErtesitesek" Header="Értesítések" Style="{DynamicResource MenuItems}"/>
-            <MenuItem x:Name="miBeallitasok" Header="Beállitások" Style="{DynamicResource MenuItems}" Click="miBeallitasok_Click"/>
-            <MenuItem x:Name="miInfo" Header="Információk" Style="{DynamicResource MenuItems}">
-                <MenuItem x:Name="miKeszito" Header="Készítők" Style="{DynamicResource MenuItems_2}"/>
-                <MenuItem x:Name="miValami" Header="Valami" Style="{DynamicResource MenuItems_2}"/>
-            </MenuItem>
-            <MenuItem x:Name="miKijelentkezes" Header="Kijelentkezés" Style="{DynamicResource MenuItems}"/>
-            <MenuItem x:Name="miKilepes" Header="Kilépés" Style="{DynamicResource MenuItems}" Click="miKilepes_Click"/>
-        </Menu>
-        <!-- Login Ablak -->
-        <StackPanel x:Name="stLogin" Panel.ZIndex="1" Grid.Row="1" Grid.Column="0" Margin="5,0,5,39">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="215" Height="35">
-                    <Label  Content="Felhasználónév:" Width="85" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9"/>
-                    <TextBox x:Name="tbLoginName" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Panel.ZIndex="-2"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="215" Height="35">
-                    <Label Content="Jelszó:" Width="85" FontSize="10" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold"  Foreground="#FFACB5B9"/>
-                    <PasswordBox x:Name="pbPasswd" Width="125" PasswordChar="*" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Width="215" Height="40" HorizontalAlignment="Center">
-                    <Button x:Name="btBelepes" Content="Bejelentkezés" Width="150" Height="23" FontSize="12" Margin="32,0" FontWeight="Bold" Foreground="#FF2D3446"/>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>
+        <DockPanel x:Name="dpUdvezles" VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Grid.Row="0" Grid.Column="0" Margin="0,0,15,95">
+            <Label Style="{DynamicResource MenuDecLabel}" Content="Üdvözlünk Nickname" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro"/>
+            <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="images/user_name.png" />
+        </DockPanel>
         <!-- Oldal Sav -->
-        <StackPanel x:Name="stMenu_2" Panel.ZIndex="2" Style="{StaticResource spSlideLeft}" Background="#2D3446" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="-170,0,170,10" Visibility="Hidden">
-            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Height="50">
-                <Label Style="{DynamicResource MenuLabel}" Width="150" Content="Főmenü" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" Margin="0,16"/>
-                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="/Yacht club;component/images/home.png" />
+        <Canvas x:Name="cs_Menu_2" Height="400" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="-150,50,0,0">
+            <DockPanel Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Height="50" Cursor="Hand" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Foold">
+                <Label Width="150" Content="Főmenü" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="14" Foreground="White" FontWeight="Bold"/>
+                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="images/home.png" />
             </DockPanel>
-            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
-                <Label Style="{DynamicResource MenuLabel}" Content="Felhasználó" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro"/>
-                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="/Yacht club;component/images/user.png" />
+            <DockPanel Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Cursor="Hand" Width="200" Canvas.Top="45" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_User">
+                <Label Content="Felhasználó" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="White" FontWeight="Bold"/>
+                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="images/user.png" />
             </DockPanel>
-            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Yachts">
-                <Label Style="{DynamicResource MenuLabel}" Content="Yachtok" Width="134" VerticalAlignment="Center" FontFamily="Source Sans Pro"/>
-                <Image Width="30" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="26,10,10,10" Source="/Yacht club;component/images/yachts.png" />
-            </DockPanel>
-            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
-                <StackPanel>
-                    <Label Style="{DynamicResource MenuLabel}" Content="Értesítések" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro"/>
-                    <Label Style="{DynamicResource MenuDecLabel}" Content="Bérlési felkérések" FontSize="12" Width="140" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontStyle="Italic"/>
-                </StackPanel>
-                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="images/email.png" />
-            </DockPanel>
-            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Setting" >
-                <Label Style="{DynamicResource MenuLabel}" Content="Beállitások" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro"/>
-                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="/Yacht club;component/images/settings.png" />
-            </DockPanel>
-            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
-                <Label Style="{DynamicResource MenuLabel}" Content="Információk" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro"/>
-                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="/Yacht club;component/images/info_2.png" />
-            </DockPanel>
-            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
-                <Label Style="{DynamicResource MenuLabel}" Content="Kijelentlezés" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro"/>
+            <DockPanel Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Cursor="Hand" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Logout" Grid.Row="1" Canvas.Top="90" >
+                <Label Content="Kijelentlezés" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="White" FontWeight="Bold"/>
                 <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="images/user_logout.png" />
             </DockPanel>
-            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Cursor="Hand" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Exit">
-                <Label Style="{DynamicResource MenuLabel}" Content="Kilépés" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro"  />
-                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="/Yacht club;component/images/exit.png"/>
+            <DockPanel Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="210" Cursor="Hand" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Yachts" Grid.Row="1" Canvas.Top="133">
+                <Label Content="Yachtok" Width="134" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="White" FontWeight="Bold"/>
+                <Image Width="35" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,12,10,10" Source="images/yachts.png" />
             </DockPanel>
-        </StackPanel>
+            <DockPanel Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="210" Cursor="Hand" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Szallitok" Grid.Row="1" Canvas.Top="180">
+                <Label Content="Szállitó eszközök" Width="134" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="White" FontWeight="Bold"/>
+                <Image Width="35" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,12,10,10" Source="images/szallito.png" />
+            </DockPanel>
+            <DockPanel Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Cursor="Hand" Width="200" Grid.Row="1" Canvas.Top="225" >
+                <Label Content="Értesítések" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="White" FontWeight="Bold"/>
+                <Image Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="images/email.png" />
+            </DockPanel>
+            <DockPanel Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Cursor="Hand" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Setting" Grid.Row="1" Canvas.Top="270">
+                <Label Content="Beállitások" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="White" FontWeight="Bold"/>
+                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="images/settings.png" />
+            </DockPanel>
+            <DockPanel Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Cursor="Hand" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Info" Grid.Row="1" Canvas.Top="315" >
+                <Label Content="Információk" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="White" FontWeight="Bold"/>
+                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="images/info_2.png" />
+            </DockPanel>
+            <DockPanel Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Cursor="Hand" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Exit" Grid.Row="1" Canvas.Top="360">
+                <Label Content="Kilépés" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="White" FontWeight="Bold"/>
+                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="images/exit.png"/>
+            </DockPanel>
+        </Canvas>
         <!--Yacht Sav-->
-        <StackPanel x:Name="stMenu_2_yacht" Panel.ZIndex="2" Style="{StaticResource spSlideLeft}" Background="#2D3446" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="-170,0,170,10" Visibility="Hidden">
-            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
-                <StackPanel>
-                    <Label Style="{DynamicResource MenuLabel}" Content="Yachtok" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro" Margin="0,10,0,0" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Yachts"/>
-                    <Label Style="{DynamicResource MenuLabel}" Content="Hozzáadás" FontSize="12" Width="140" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontStyle="Italic" Margin="0,5,0,0" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Yacht_add"/>
-                    <Label Style="{DynamicResource MenuLabel}" Content="Törlés" FontSize="12" Width="140" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontStyle="Italic" Margin="0,5" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Yacht_delete"/>
+        <Canvas x:Name="stMenu_2_yacht"  VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="-150,50,0,0" Visibility="Hidden">
+            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="227" Height="112" Margin="140,0,0,0">
+                <StackPanel Width="170">
+                    <Label Style="{DynamicResource MenuLabel}" Content="Yachtok" VerticalAlignment="Center" FontFamily="Source Sans Pro" Margin="20,10,0,0" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Yachts"/>
+                    <Label Style="{DynamicResource MenuLabel}" Content="Hozzáadás" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontStyle="Italic" Margin="20,5,40,0" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Yacht_add"/>
+                    <Label Style="{DynamicResource MenuLabel}" Content="Törlés" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontStyle="Italic" Margin="20,5,40,0" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Yacht_delete"/>
                 </StackPanel>
-                <Image Width="30" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="images/yachts.png" />
+                <Image Width="35" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,30" Source="images/yachts.png" />
             </DockPanel>
-            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Cursor="Hand" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Back">
-                <Label Style="{DynamicResource MenuLabel}" Content="Vissza" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro"  />
-                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" Source="/Yacht club;component/images/exit.png"/>
+            <DockPanel Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="220" Cursor="Hand" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Back" Height="35" Canvas.Left="-9" Canvas.Top="77">
+                <Label Content="Vissza" Width="160" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="White" FontWeight="Bold" BorderThickness="30,0,0,0" Margin="0,4"/>
+                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="7,0,0,0" Source="images/back.png"/>
             </DockPanel>
-        </StackPanel>
+        </Canvas>
         <!--Yacht Sav!-->
+        <!--Szallito eszkoz Sav-->
+        <Canvas x:Name="stMenu_2_szallito" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="-150,50,0,0" Visibility="Hidden">
+            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="227" Height="112" Margin="140,0,0,0">
+                <StackPanel Width="170">
+                    <Label Style="{DynamicResource MenuLabel}" Content="Szállitó eszközök" VerticalAlignment="Center" FontFamily="Source Sans Pro" Margin="20,10,0,0" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Szallitok"/>
+                    <Label Style="{DynamicResource MenuLabel}" Content="Hozzáadás" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontStyle="Italic" Margin="20,5,40,0" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Szallito_add"/>
+                    <Label Style="{DynamicResource MenuLabel}" Content="Törlés" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontStyle="Italic" Margin="20,5,40,0" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Szallito_delete"/>
+                </StackPanel>
+                <Image Width="35" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,30" Source="images/szallito.png" />
+            </DockPanel>
+            <DockPanel Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="220" Cursor="Hand" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Back" Height="35" Canvas.Left="-9" Canvas.Top="77">
+                <Label Content="Vissza" Width="160" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="White" FontWeight="Bold" BorderThickness="30,0,0,0" Margin="0,4"/>
+                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="7,0,0,0" Source="images/back.png"/>
+            </DockPanel>
+        </Canvas>
+        <!--Szallito eszkoz Sav!-->
+        <!--Felhasznalo Sav-->
+        <Canvas x:Name="stMenu_2_user"  VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="-150,50,0,0" Visibility="Hidden">
+            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="227" Height="112" Margin="140,0,0,0">
+                <StackPanel Width="170">
+                    <Label Style="{DynamicResource MenuLabel}" Content="Yacht bérlés" VerticalAlignment="Center" FontFamily="Source Sans Pro" Margin="20,10,0,0" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Yachts"/>
+                    <Label Style="{DynamicResource MenuLabel}" Content="Bérbe adott yachtok" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontStyle="Italic" Margin="20,5,0,0" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Yacht_add"/>
+                    <Label Style="{DynamicResource MenuLabel}" Content="Kimutatások" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontStyle="Italic" Margin="20,5,40,0" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Yacht_delete"/>
+                </StackPanel>
+                <Image Width="35" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,30" Source="images/user.png" />
+            </DockPanel>
+            <DockPanel Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="220" Cursor="Hand" MouseLeftButtonDown="DockPanel_MouseLeftButtonDown_Back" Height="35" Canvas.Left="-9" Canvas.Top="77">
+                <Label Content="Vissza" Width="160" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="White" FontWeight="Bold" BorderThickness="30,0,0,0" Margin="0,4"/>
+                <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="7,0,0,0" Source="images/back.png"/>
+            </DockPanel>
+        </Canvas>
+        <!--Felhasznalo Sav!-->
         <!---Oldal Sav! -->
-        <ContentControl x:Name="ccWindow_1" TabIndex="1" Content="{Binding}" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-        <ContentControl x:Name="ccWindow_2" TabIndex="2" Content="{Binding}" Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,10,10" />
+        <ContentControl x:Name="ccWindow_1" TabIndex="1" Content="{Binding contentWindow}" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <ContentControl x:Name="ccWindow_2" TabIndex="2" Content="{Binding contentWindow}" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,10,10" />
     </Grid>
 </Window>

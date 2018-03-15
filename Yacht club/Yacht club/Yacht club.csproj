@@ -37,6 +37,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,8 +64,23 @@
     <Compile Include="UsingControls\ucErtesitesek.xaml.cs">
       <DependentUpon>ucErtesitesek.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UsingControls\ucInfok.xaml.cs">
+      <DependentUpon>ucInfok.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsingControls\ucKijelzo_1.xaml.cs">
       <DependentUpon>ucKijelzo_1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucSzallito.xaml.cs">
+      <DependentUpon>ucSzallito.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucSzallitok.xaml.cs">
+      <DependentUpon>ucSzallitok.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucSzallito_add.xaml.cs">
+      <DependentUpon>ucSzallito_add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucSzallito_delete.xaml.cs">
+      <DependentUpon>ucSzallito_delete.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsingControls\ucYacht.xaml.cs">
       <DependentUpon>ucYacht.xaml</DependentUpon>
@@ -76,6 +93,12 @@
     </Compile>
     <Compile Include="UsingControls\ucYacht_delete.xaml.cs">
       <DependentUpon>ucYacht_delete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wLogin.xaml.cs">
+      <DependentUpon>wLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wRegistration.xaml.cs">
+      <DependentUpon>wRegistration.xaml</DependentUpon>
     </Compile>
     <Compile Include="Yacht.cs" />
     <Page Include="Main_Yacht_Window.xaml">
@@ -98,7 +121,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UsingControls\ucInfok.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UsingControls\ucKijelzo_1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucSzallito.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucSzallitok.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucSzallito_add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucSzallito_delete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,6 +158,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsingControls\ucYacht_delete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="wLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="wRegistration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -178,6 +229,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\yachts.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\user_name.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\szallito.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

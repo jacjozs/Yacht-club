@@ -9,16 +9,16 @@ namespace Yacht_club
 {
     class Felhasznalo
     {
-        private string nev { get; set; }
-        private int id { get; set; }
-        private int iranyitoszm { get; set; }
-        private string varos { get; set; }
-        private string lakcim { get; set; }
-        private Image kep { get; set; }
-        private DateTime szuletesdt { get; set; }
+        public string nev { get; set; }
+        public int id { get; set; }
+        public int iranyitoszm { get; set; }
+        public string varos { get; set; }
+        public string lakcim { get; set; }
+        public Image kep { get; set; }
+        public DateTime szuletesdt { get; set; }
 
-        private DateTime utolsoLogin { get; set; }
+        public DateTime utolsoLogin { get; set; }
 
-        private int jogosultsag { get; set; }
+        public bool admin { get; set; }
     }
 }

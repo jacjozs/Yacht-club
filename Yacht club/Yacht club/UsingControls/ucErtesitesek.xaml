@@ -11,9 +11,7 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="115"/>
         </Grid.RowDefinitions>
+        <Label Content="Ablak Takarítása" FontSize="14" Cursor="Hand" Foreground="#FFACB5B9" Padding="0,2,0,0" BorderThickness="10,0,0,0" Grid.Row="0"/>
         <ListBox x:Name="listBox" Height="115" Grid.Row="1" Width="885" Margin="10,0,10,10"/>
-        <Menu x:Name="menu"  Width="885" Grid.Row="0" Background="#2D3446" FontFamily="Segoe UI Semibold" Foreground="#FFACB5B9" FontSize="14" BorderThickness="10,0,0,0">
-            <MenuItem x:Name="miErtesit_torles" Header="Ablak Takarítása" Style="{DynamicResource MenuItems}"/>
-        </Menu>
     </Grid>
 </UserControl>
