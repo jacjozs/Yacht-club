@@ -20,7 +20,6 @@
                         </BeginStoryboard>
                     </EventTrigger.Actions>
                 </EventTrigger>
-
                 <EventTrigger RoutedEvent="MouseLeave">
                     <EventTrigger.Actions>
                         <BeginStoryboard>
@@ -61,46 +60,37 @@
             <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
         </Style>
 
-        <Style x:Key="MenuItems" TargetType="MenuItem">
-            <Setter Property="FontSize" Value="14"/>
+        <Style x:Key="Buttons" TargetType="Button">
+            <Setter Property="Background" Value="#FF2D3446"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="Foreground" Value="#FFACB5B9"/>
-            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
-            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="Cursor" Value="Hand"/>
-                    <Setter Property="FontWeight" Value="Bold"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="Foreground" Value="#FFACB5B9"/>
-                </Trigger>
-            </Style.Triggers>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#FFACB5B9" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
-        <Style x:Key="MenuItems_2" TargetType="MenuItem">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="#FF2D3446"/>
-            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
-            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="#959da0"/>
-                    <Setter Property="Cursor" Value="Hand"/>
-                    <Setter Property="FontWeight" Value="Bold"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="Foreground" Value="#FF2D3446"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="SettingLabel" TargetType="Label">
-            <Setter Property="FontSize" Value="25"/>
-            <Setter Property="Foreground" Value="#FFACB5B9"/>
+        <Style x:Key="Buttons_X" TargetType="Button">
+            <Setter Property="Background" Value="#FF2D3446"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
-            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+            <Setter Property="Foreground" Value="#FFACB5B9"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#FF2D3446" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
     </Application.Resources>

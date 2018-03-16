@@ -58,11 +58,23 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Felhasznalo.cs" />
+    <Compile Include="UsingControls\Admin\ucRegistrations.xaml.cs">
+      <DependentUpon>ucRegistrations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\Admin\ucSzallitok_all.xaml.cs">
+      <DependentUpon>ucSzallitok_all.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\Admin\ucYachtok_all.xaml.cs">
+      <DependentUpon>ucYachtok_all.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsingControls\ucBeallitasok.xaml.cs">
       <DependentUpon>ucBeallitasok.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsingControls\ucErtesitesek.xaml.cs">
       <DependentUpon>ucErtesitesek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucFelhasznalo.xaml.cs">
+      <DependentUpon>ucFelhasznalo.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsingControls\ucInfok.xaml.cs">
       <DependentUpon>ucInfok.xaml</DependentUpon>
@@ -76,11 +88,17 @@
     <Compile Include="UsingControls\ucSzallitok.xaml.cs">
       <DependentUpon>ucSzallitok.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsingControls\ucSzallito_add.xaml.cs">
+    <Compile Include="UsingControls\Admin\ucSzallito_add.xaml.cs">
       <DependentUpon>ucSzallito_add.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsingControls\ucSzallito_delete.xaml.cs">
+    <Compile Include="UsingControls\Admin\ucSzallito_delete.xaml.cs">
       <DependentUpon>ucSzallito_delete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucSzallito_berles.xaml.cs">
+      <DependentUpon>ucSzallito_berles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucUzenetek.xaml.cs">
+      <DependentUpon>ucUzenetek.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsingControls\ucYacht.xaml.cs">
       <DependentUpon>ucYacht.xaml</DependentUpon>
@@ -88,11 +106,14 @@
     <Compile Include="UsingControls\ucYachtok.xaml.cs">
       <DependentUpon>ucYachtok.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsingControls\ucYacht_add.xaml.cs">
+    <Compile Include="UsingControls\Admin\ucYacht_add.xaml.cs">
       <DependentUpon>ucYacht_add.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsingControls\ucYacht_delete.xaml.cs">
+    <Compile Include="UsingControls\Admin\ucYacht_delete.xaml.cs">
       <DependentUpon>ucYacht_delete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucYacht_berles.xaml.cs">
+      <DependentUpon>ucYacht_berles.xaml</DependentUpon>
     </Compile>
     <Compile Include="wLogin.xaml.cs">
       <DependentUpon>wLogin.xaml</DependentUpon>
@@ -113,11 +134,27 @@
       <DependentUpon>Main_Yacht_Window.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UsingControls\Admin\ucRegistrations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\Admin\ucSzallitok_all.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\Admin\ucYachtok_all.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UsingControls\ucBeallitasok.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsingControls\ucErtesitesek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucFelhasznalo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,11 +174,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsingControls\ucSzallito_add.xaml">
+    <Page Include="UsingControls\Admin\ucSzallito_add.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsingControls\ucSzallito_delete.xaml">
+    <Page Include="UsingControls\Admin\ucSzallito_delete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucSzallito_berles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucUzenetek.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,11 +198,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsingControls\ucYacht_add.xaml">
+    <Page Include="UsingControls\Admin\ucYacht_add.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UsingControls\ucYacht_delete.xaml">
+    <Page Include="UsingControls\Admin\ucYacht_delete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucYacht_berles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -239,6 +288,7 @@
   <ItemGroup>
     <Resource Include="images\szallito.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

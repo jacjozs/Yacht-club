@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Yacht_club.UsingControls;
+using Yacht_club.UsingControls.Admin;
 using System.Threading;
 
 namespace Yacht_club
@@ -90,8 +91,11 @@ namespace Yacht_club
 
         private void DockPanel_MouseLeftButtonDown_Yachts(object sender, MouseButtonEventArgs e)
         {
-            stMenu_2_yacht.Visibility = Visibility.Visible;
-            cs_Menu_2.Visibility = Visibility.Hidden;
+            if (User.admin)
+            {
+                stMenu_2_yacht.Visibility = Visibility.Visible;
+                cs_Menu_2.Visibility = Visibility.Hidden;
+            }
             if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucYachtok))
             {
                 ccWindow_2.Content = new ucYachtok();
@@ -100,8 +104,11 @@ namespace Yacht_club
 
         private void DockPanel_MouseLeftButtonDown_Szallitok(object sender, MouseButtonEventArgs e)
         {
-            stMenu_2_szallito.Visibility = Visibility.Visible;
-            cs_Menu_2.Visibility = Visibility.Hidden;
+            if (User.admin)
+            {
+                stMenu_2_szallito.Visibility = Visibility.Visible;
+                cs_Menu_2.Visibility = Visibility.Hidden;
+            }
             if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucSzallitok))
             {
                 ccWindow_2.Content = new ucSzallitok();
@@ -167,10 +174,22 @@ namespace Yacht_club
             }
         }
 
+        private void DockPanel_MouseLeftButtonDown_Uzenetek(object sender, MouseButtonEventArgs e)
+        {
+            if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucUzenetek))
+            {
+                ccWindow_2.Content = new ucUzenetek();
+            }
+        }
+
         private void DockPanel_MouseLeftButtonDown_User(object sender, MouseButtonEventArgs e)
         {
             stMenu_2_user.Visibility = Visibility.Visible;
             cs_Menu_2.Visibility = Visibility.Hidden;
+            if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucFelhasznalo))
+            {
+                ccWindow_2.Content = new ucFelhasznalo();
+            }
         }
     }
 }

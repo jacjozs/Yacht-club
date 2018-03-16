@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Yacht_club.UsingControls.ucYacht"
+﻿<UserControl x:Class="Yacht_club.UsingControls.ucUzenetek"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,6 +11,7 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="325"/>
         </Grid.RowDefinitions>
-        <Label Style="{DynamicResource MenuDecLabel}" Content="Yacht:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+        <Label Style="{DynamicResource MenuDecLabel}" Content="Üzenetek:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+
     </Grid>
 </UserControl>

@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="115" d:DesignWidth="885">
+             d:DesignHeight="180" d:DesignWidth="585">
     <Grid SnapsToDevicePixels="True" Background="#FF2D3446">
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="115"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="155"/>
         </Grid.RowDefinitions>
-        <Label Content="Ablak Takarítása" FontSize="14" Cursor="Hand" Foreground="#FFACB5B9" Padding="0,2,0,0" BorderThickness="10,0,0,0" Grid.Row="0"/>
-        <ListBox x:Name="listBox" Height="115" Grid.Row="1" Width="885" Margin="10,0,10,10"/>
+        <Label Content="Ablak takarítása" FontSize="14" Cursor="Hand" Foreground="#FFACB5B9" HorizontalAlignment="Right" Padding="0,7,0,0" Grid.Row="0"/>
+        <ListBox x:Name="listBox" Height="155" Grid.Row="1" Width="585"/>
     </Grid>
 </UserControl>

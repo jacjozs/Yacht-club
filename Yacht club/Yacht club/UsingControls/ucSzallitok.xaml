@@ -1,28 +1,28 @@
-﻿<UserControl x:Class="Yacht_club.UsingControls.ucYachtok"
+﻿<UserControl x:Class="Yacht_club.UsingControls.ucSzallitok"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-              d:DesignHeight="350" d:DesignWidth="585">
+             d:DesignHeight="350" d:DesignWidth="585">
     <Grid Background="#FF1D212C">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="325"/>
         </Grid.RowDefinitions>
-        <Label Style="{DynamicResource MenuDecLabel}" Content="Yachtok:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+        <Label Style="{DynamicResource MenuDecLabel}" Content="Szállitóeszközök:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
         <ListView x:Name="listView" Height="325" Width="585" Grid.Row="1" Grid.Column="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Név" Width="117"/>
+                    <GridViewColumn  Header="Név" Width="117"/>
                     <GridViewColumn Header="Bérlő" Width="117"/>
-                    <GridViewColumn Header="Férő hely" Width="117"/>
-                    <GridViewColumn Header="Foglalt" Width="117"/>
+                    <GridViewColumn  Header="Méret" Width="117"/>
+                    <GridViewColumn  Header="Foglalt" Width="117"/>
                     <GridViewColumn Header="Adatok" Width="117">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="btYacht_adat" Content="Megtekintés" HorizontalAlignment="Center" Width="75"/>
+                                <Button x:Name="btSzallito_adat" Content="Megtekintés" HorizontalAlignment="Center" Width="75"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
