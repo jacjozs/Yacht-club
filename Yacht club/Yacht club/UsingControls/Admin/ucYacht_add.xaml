@@ -5,12 +5,62 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls.Admin"
              mc:Ignorable="d" 
-              d:DesignHeight="350" d:DesignWidth="585">
+             d:DesignHeight="334" d:DesignWidth="553">
     <Grid Background="#FF1D212C">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="276.5"/>
+            <ColumnDefinition Width="276.5"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="325"/>
+            <RowDefinition Height="309"/>
         </Grid.RowDefinitions>
-        <Label Style="{DynamicResource MenuDecLabel}" Content="Yacht hozzáadás:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+        <Label Style="{DynamicResource MenuDecLabel}" Content="Yacht hozzáadás:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Margin="0,3"/>
+        <Label Style="{DynamicResource MenuDecLabel}" Content="Hozzá adott yachtok:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="1" Grid.Row="0" Margin="0,3"/>
+        <StackPanel x:Name="stYacht_add" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,2,0,0" Grid.Row="1" Grid.Column="0" Width="267" Height="307">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
+                <Label  Content="Azonosító:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                <TextBox x:Name="tbYacht_id" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
+                <Label Content="Név:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold"  Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                <PasswordBox x:Name="tbYacht_nev" Width="125" Height="22" PasswordChar="*" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,6,0,7"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
+                <Label Content="Férőhely:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold"  Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                <PasswordBox x:Name="tbYacht_ferohely" Width="125" Height="22" PasswordChar="*" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,6,0,7"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
+                <Label  Content="Típus:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                <TextBox x:Name="tbYacht_tipus" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
+                <Label  Content="Tömeg:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                <TextBox x:Name="tbYacht_tomeg" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="90" Margin="10,0,10,0">
+                <Label  Content="Méretek:" Width="60" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,22"/>
+                <StackPanel Width="182">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Width="185" Height="30">
+                        <Label  Content="Szélesség(m):" Width="90" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5" Padding="5,0,0,0"/>
+                        <TextBox x:Name="tbYacht_szeles" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="185" Height="30">
+                        <Label  Content="Hosszúság(m):" Width="90" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,5,0,5" Padding="5,0,0,0"/>
+                        <TextBox x:Name="tbYacht_hossz" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="185" Height="30">
+                        <Label  Content="Magasság(m):" Width="90" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,5,0,5" Padding="5,0,0,0"/>
+                        <TextBox x:Name="tbYacht_magas" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
+                <Label  Content="Tulajdonos:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                <TextBox x:Name="tbYacht_tulaj" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+            </StackPanel>
+        </StackPanel>
+        <ListBox Grid.Column="1" HorizontalAlignment="Left" Height="225" Margin="10,8,10,0" Grid.Row="1" VerticalAlignment="Top" Width="255"/>
+        <Button Style="{DynamicResource Buttons}" Content="Hozzáadás" FontWeight="Bold" Grid.Column="1" Grid.Row="1" Height="40" Width="250" VerticalAlignment="Bottom" Margin="13,0,13,14"/>
     </Grid>
 </UserControl>

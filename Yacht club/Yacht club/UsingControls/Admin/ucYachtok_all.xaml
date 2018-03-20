@@ -5,12 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls.Admin"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="585">
+             d:DesignHeight="334" d:DesignWidth="553">
     <Grid Background="#FF1D212C">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="325"/>
+            <RowDefinition Height="309"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Yachtok:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+        <ListView x:Name="listView" Height="309" Width="553" Grid.Row="1" Grid.Column="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="92"/>
+                    <GridViewColumn Header="Tulajdonos" Width="92"/>
+                    <GridViewColumn Header="Bérlő" Width="92"/>
+                    <GridViewColumn Header="Helyzet" Width="92"/>
+                    <GridViewColumn Header="Foglalt?" Width="92"/>
+                    <GridViewColumn Header="Adatok" Width="92">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btYacht_adat" Content="Megtekintés" HorizontalAlignment="Center" Width="75"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

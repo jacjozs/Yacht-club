@@ -20,8 +20,7 @@ namespace Yacht_club
     public partial class wLogin : Window
     {
         private Main_Yacht_Window Main;
-
-        private wRegistration Registration;
+        private Database data;
         public wLogin()
         {
             InitializeComponent();
@@ -38,23 +37,23 @@ namespace Yacht_club
         /// <param name="e"></param>
         private void btBelepes_Click(object sender, RoutedEventArgs e)
         {
+            data = new Database();
+            data.MysqlConnect();
             Main = new Main_Yacht_Window();
             //A kikereset és ellenörzött adatok bevitele a main user változoba
             //Egyfajta átadás
-            Main.User.admin = true;
-            //...
-            //A login ablak eltünéséhez szükséges
-            Main.Owner = this;
-            this.Hide();
-            Main.ShowDialog();
-        }
-
-        private void btRegiszt_Click(object sender, RoutedEventArgs e)
-        {
-            Registration = new wRegistration();
-            Registration.Owner = this;
-            this.Hide();
-            Registration.ShowDialog();
+            Felhasznalo user1 = data.MysqlFelhasznalo(tbLoginName.Text, pbPasswd.Password);
+            if (user1 != null)
+            {
+                Main.user = user1;
+                Main.tbNickname.Text = user1.nickname + "!";
+                Main.user.login.utolsoLogin = DateTime.Now.Date;
+                if (Main.user.login.admin) { Main.dpRegist.Visibility = Visibility.Visible; }
+                //A login ablak eltünéséhez szükséges
+                Main.Owner = this;
+                this.Hide();
+                Main.ShowDialog();
+            } else { MessageBox.Show("Hibás felhasználónév vagy jelszó", "Hiba!", MessageBoxButton.OK); }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

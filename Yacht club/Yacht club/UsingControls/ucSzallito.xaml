@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="585">
+             d:DesignHeight="334" d:DesignWidth="553">
     <Grid Background="#FF1D212C">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="325"/>
+            <RowDefinition Height="309"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Szállitóeszköz:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
     </Grid>
