@@ -17,7 +17,7 @@ namespace Yacht_club
         {
             try
             {
-                string connectString = "datasource=87.229.71.159;port=3306;username=gamf;password=FQQ9txqAvTTB!;database=gamfYachtClub";
+                string connectString = "datasource=localhost;port=3306;username=root;password=;database=gamfYachtClub";
                 connect = new MySqlConnection(connectString);
             }
             catch (Exception ex)
