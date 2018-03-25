@@ -20,9 +20,26 @@ namespace Yacht_club.UsingControls
     /// </summary>
     public partial class ucErtesitesek : UserControl
     {
+        private Main_Yacht_Window log;
         public ucErtesitesek()
         {
             InitializeComponent();
+        }
+
+        public void Add()
+        {
+            if (Globals.log != "")
+            {
+                lbLog.Items.Insert(0, Globals.log);
+            }
+        }
+
+        private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            lbLog.Items.Clear();
+            Globals.log = "";
+            log = new Main_Yacht_Window();
+            log.logAdd(true);
         }
     }
 }

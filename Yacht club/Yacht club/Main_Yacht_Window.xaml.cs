@@ -29,15 +29,14 @@ namespace Yacht_club
         private wLogin Login;
         private wRegistration Register;
         internal Felhasznalo user { get; set; }
-        internal Felhasznalo user_Register { get; private set; }
 
         public Main_Yacht_Window()
         {
             InitializeComponent();
-            user = new Felhasznalo();
-            user_Register = new Felhasznalo();
+            user = Globals.User;
             Logining();
         }
+
         /// <summary>
         /// Ez azért kell hogy amikor a login ablak végéez akkor eltünjön
         /// </summary>
@@ -53,8 +52,15 @@ namespace Yacht_club
             dpUdvezles.Visibility = Visibility.Visible;
             if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucKijelzo_1))
             { ccWindow_2.Content = new ucKijelzo_1(); }
-            if (ccWindow_1.Content == null || !(ccWindow_1.Content is ucErtesitesek))
-            { ccWindow_1.Content = new ucErtesitesek(); }
+        }
+        
+        public void logAdd(bool IsLog)
+        {
+            if (IsLog)
+            {
+                Globals.log_windows.Add();
+            }
+            ccWindow_1.Content = Globals.log_windows;
         }
 
         private void dpMouse_Click(object sender, MouseButtonEventArgs e)
@@ -65,23 +71,24 @@ namespace Yacht_club
                 case "dpFomenu":
                     if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucKijelzo_1))
                     { ccWindow_2.Content = new ucKijelzo_1(); }
-                    if (ccWindow_1.Content == null || !(ccWindow_1.Content is ucErtesitesek))
-                    { ccWindow_1.Content = new ucErtesitesek(); }
                     break;
                 case "dpFelhasznalo":
                     stMenu_2_user.Visibility = Visibility.Visible;
                     cs_Menu_2.Visibility = Visibility.Hidden;
                     if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucFelhasznalo))
-                    { ccWindow_2.Content = new ucFelhasznalo(); }
+                    { ucFelhasznalo userFelhasznalo = new ucFelhasznalo();
+                        ccWindow_2.Content = userFelhasznalo;
+                        userFelhasznalo.ProfilImgLoad(); }
                     break;
                 case "dpKijelentkezes":
                     Login = new wLogin();
                     Login.Owner = this;
+                    Globals.User = null;
                     this.Hide();
                     Login.ShowDialog();
                     break;
                 case "dpYaktok":
-                    if (user.login.admin)
+                    if (Globals.User.login.admin)
                     { stMenu_2_yacht.Visibility = Visibility.Visible;
                         cs_Menu_2.Visibility = Visibility.Hidden; }
                     if (user.login.admin) {
@@ -93,7 +100,7 @@ namespace Yacht_club
                     }
                     break;
                 case "dpSzallitok":
-                    if (user.login.admin)
+                    if (Globals.User.login.admin)
                     { stMenu_2_szallito.Visibility = Visibility.Visible;
                         cs_Menu_2.Visibility = Visibility.Hidden; }
                     if (user.login.admin) {
@@ -110,7 +117,9 @@ namespace Yacht_club
                     break;
                 case "dpBeallitasok":
                     if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucBeallitasok))
-                    { ccWindow_2.Content = new ucBeallitasok(); }
+                    {   ucBeallitasok userSetting = new ucBeallitasok();
+                        ccWindow_2.Content = userSetting;
+                        userSetting.logining(); }
                     break;
                 case "dpInfo":
                     if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucInfok))
@@ -131,7 +140,6 @@ namespace Yacht_club
                     break;
                 case "dpRegist":
                     Register = new wRegistration();
-                    Register.user = user;
                     Register.Owner = this;
                     this.Hide();
                     Register.ShowDialog();
@@ -139,9 +147,7 @@ namespace Yacht_club
                 case "dpKilepes":
                     MessageBoxResult kilepes = MessageBox.Show("Biztos kiszeretne lépni?", "Kilépés", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (kilepes == MessageBoxResult.Yes)
-                    {
                         Application.Current.Shutdown();
-                    }
                     break;
                 default:
                     break;
@@ -163,7 +169,7 @@ namespace Yacht_club
                     }
                     break;
                 case "lbYachtok_add":
-                    if (ccWindow_2.Content == null || !(ccWindow_1.Content is ucYacht_add))
+                    if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucYacht_add))
                     { ccWindow_2.Content = new ucYacht_add(); }
                     break;
                 case "lbYachtok_delete":

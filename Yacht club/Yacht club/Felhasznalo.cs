@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.Drawing;
 
 namespace Yacht_club
 {
     class Felhasznalo
     {
+        public int member_id { get; set; }
         public string nickname { get; set; }
         public string veztek_nev { get; set; }
         public string kereszt_nev { get; set; }

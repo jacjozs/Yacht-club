@@ -17,9 +17,8 @@
         </Grid.RowDefinitions>
         <DockPanel x:Name="dpUdvezles" Panel.ZIndex="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="300" Grid.Row="0" Grid.Column="0" Margin="0,10,500,125" Grid.ColumnSpan="2">
             <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,10,10,10" Source="images/user_name.png" />
-            <Label Style="{DynamicResource MenuDecLabel}" Content="Üdvözöljük " Width="85" VerticalAlignment="Center" FontFamily="Source Sans Pro"/>
-            <TextBox x:Name="tbNickname" Height="23" TextWrapping="Wrap" Text="Nincs nickname!" Width="165" Padding="0,0,0,0" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" FontSize="14" Foreground="#FFACB5B9"/>
-
+            <Label Style="{DynamicResource MenuDecLabel}" Content="Üdvözöljük " Width="73" VerticalAlignment="Center" FontFamily="Source Sans Pro" Padding="0"/>
+            <Label x:Name="lbNickname" Height="23" Content="Nincs nickname!" Panel.ZIndex="2" Width="165" Padding="0,1,0,0" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" FontSize="14" Foreground="#FFACB5B9"/>
         </DockPanel>
         <!-- Oldal Sav -->
         <Canvas x:Name="cs_Menu_2" Height="480" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="-150,50,0,0" Visibility="Visible">
@@ -114,8 +113,10 @@
         </Canvas>
         <!--Felhasznalo Sav!-->
         <!---Oldal Sav! -->
-        <ContentControl x:Name="ccWindow_1" TabIndex="1" Content="{Binding contentWindow}" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="16,16,16,16"/>
+        <ContentControl x:Name="ccWindow_1" TabIndex="1" Content="{Binding contentWindow}" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16,16,16,16"/>
         <ContentControl x:Name="ccWindow_2" TabIndex="2" Content="{Binding contentWindow}" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16,0,16,16" />
+
+
 
     </Grid>
 </Window>

@@ -5,13 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="180" d:DesignWidth="585">
-    <Grid SnapsToDevicePixels="True" Background="#FF2D3446">
+             d:DesignHeight="148" d:DesignWidth="553">
+    <Grid Background="#FF2D3446">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="155"/>
+            <RowDefinition Height="118"/>
         </Grid.RowDefinitions>
-        <Label Content="Ablak takarítása" FontSize="14" Cursor="Hand" Foreground="#FFACB5B9" HorizontalAlignment="Right" Padding="0,7,0,0" Grid.Row="0"/>
-        <ListBox x:Name="listBox" Height="155" Grid.Row="1" Width="585"/>
+        <Label Content="Ablak takarítása" FontSize="14" Cursor="Hand" Foreground="#FFACB5B9" HorizontalAlignment="Right"  Padding="5" Grid.Row="0" MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
+        <Label Content="Visszajelzések:" FontSize="14" Cursor="Hand" Foreground="#FFACB5B9" HorizontalAlignment="Left"  Padding="5" Grid.Row="0"/>
+        <ListBox x:Name="lbLog" Grid.Row="1" Width="553" Foreground="#FFACB5B9" Padding="15" FontWeight="Bold" SelectionMode="Extended" IsHitTestVisible="True" Background="#FF1D212C" Height="118" IsTextSearchCaseSensitive="True" BorderThickness="0" BorderBrush="#FF1D212C"/>
+
     </Grid>
 </UserControl>

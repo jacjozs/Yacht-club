@@ -38,17 +38,17 @@ namespace Yacht_club
         private void btBelepes_Click(object sender, RoutedEventArgs e)
         {
             data = new Database();
-            data.MysqlConnect();
             Main = new Main_Yacht_Window();
             //A kikereset és ellenörzött adatok bevitele a main user változoba
             //Egyfajta átadás
-            Felhasznalo user1 = data.MysqlFelhasznalo(tbLoginName.Text, pbPasswd.Password);
-            if (user1 != null)
+            Felhasznalo user_login = data.MysqlFelhasznalo(tbLoginName.Text, pbPasswd.Password);
+            if (user_login != null)
             {
-                Main.user = user1;
-                Main.tbNickname.Text = user1.nickname + "!";
-                Main.user.login.utolsoLogin = DateTime.Now.Date;
-                if (Main.user.login.admin) { Main.dpRegist.Visibility = Visibility.Visible; }
+                Globals.User = user_login;
+                Main.lbNickname.Content = user_login.nickname + "!";
+                Globals.User.login.utolsoLogin = DateTime.Now.Date;
+                if (Globals.User.login.admin) { Main.dpRegist.Visibility = Visibility.Visible; }
+                Main.logAdd(false);
                 //A login ablak eltünéséhez szükséges
                 Main.Owner = this;
                 this.Hide();

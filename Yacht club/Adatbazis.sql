@@ -1,5 +1,18 @@
-﻿
+﻿-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
+--
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2018. Már 25. 15:24
+-- Kiszolgáló verziója: 10.1.26-MariaDB
+-- PHP verzió: 7.1.9
+
 SET FOREIGN_KEY_CHECKS=0;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 --
 -- Adatbázis: `yacht_club`
@@ -8,236 +21,328 @@ SET FOREIGN_KEY_CHECKS=0;
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `enDevice_rent`
+-- Tábla szerkezet ehhez a táblához `endevice`
 --
 
-DROP TABLE IF EXISTS `enDevice_rent`;
-CREATE TABLE IF NOT EXISTS `enDevice_rent` (
-  `rent_id` int(4) NOT NULL,
-  `start_date` datetime NOT NULL,
-  `end_date` datetime NOT NULL,
+DROP TABLE IF EXISTS `endevice`;
+CREATE TABLE `endevice` (
   `device_id` int(4) NOT NULL,
-  `render_id` int(4) NOT NULL,
-  PRIMARY KEY (`rent_id`),
-  KEY `render_id` (`render_id`),
-  KEY `device_id` (`device_id`)
+  `type` varchar(20) NOT NULL,
+  `hire` int(1) NOT NULL DEFAULT '1',
+  `busy` int(1) NOT NULL DEFAULT '0',
+  `max_width` int(4) NOT NULL,
+  `max_lenght` int(4) NOT NULL,
+  `max_height` int(4) NOT NULL,
+  `max_weight` int(4) NOT NULL,
+  `ower` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `loan_yacht`
+-- Tábla szerkezet ehhez a táblához `endevice_rent`
 --
 
-DROP TABLE IF EXISTS `enYacht_rent`;
-CREATE TABLE IF NOT EXISTS `enYacht_rent` (
+DROP TABLE IF EXISTS `endevice_rent`;
+CREATE TABLE `endevice_rent` (
+  `rent_id` int(4) NOT NULL,
+  `start_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
+  `device_id` int(4) NOT NULL,
+  `render_id` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `enlogin`
+--
+
+DROP TABLE IF EXISTS `enlogin`;
+CREATE TABLE `enlogin` (
+  `login_id` int(4) NOT NULL,
+  `login_name` varchar(25) NOT NULL,
+  `password` varchar(65) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `admin` int(1) NOT NULL,
+  `last_login` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- A tábla adatainak kiíratása `enlogin`
+--
+
+INSERT INTO `enlogin` (`login_id`, `login_name`, `password`, `email`, `admin`, `last_login`) VALUES
+(2, 'gamf', 'gamf', 'gamf@gamf.hu', 1, '2018-03-28 00:00:00'),
+(3, 'admin', 'admin', 'admin', 1, '2018-03-13 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `enmessage`
+--
+
+DROP TABLE IF EXISTS `enmessage`;
+CREATE TABLE `enmessage` (
+  `message_id` int(4) NOT NULL,
+  `date` datetime NOT NULL,
+  `sender` int(4) NOT NULL,
+  `addressee` int(4) NOT NULL,
+  `yacht_id` int(4) DEFAULT NULL,
+  `device_id` int(4) DEFAULT NULL,
+  `accept` int(1) NOT NULL,
+  `new` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `enport`
+--
+
+DROP TABLE IF EXISTS `enport`;
+CREATE TABLE `enport` (
+  `port_id` int(4) NOT NULL,
+  `name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `entravel`
+--
+
+DROP TABLE IF EXISTS `entravel`;
+CREATE TABLE `entravel` (
+  `travel_id` int(4) NOT NULL,
+  `date` datetime NOT NULL,
+  `yacht_rent_id` int(4) NOT NULL,
+  `port_id` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `enyacht`
+--
+
+DROP TABLE IF EXISTS `enyacht`;
+CREATE TABLE `enyacht` (
+  `yacht_id` int(4) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `type` varchar(30) NOT NULL,
+  `image` longblob,
+  `ower` int(6) NOT NULL,
+  `seats` int(4) DEFAULT NULL,
+  `hire` int(1) DEFAULT '1',
+  `busy` int(1) DEFAULT '0',
+  `daly_price` int(20) NOT NULL,
+  `width` int(4) NOT NULL,
+  `lenght` int(4) NOT NULL,
+  `height` int(4) NOT NULL,
+  `weight` int(4) NOT NULL,
+  `port_id` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `enyacht_club_tag`
+--
+
+DROP TABLE IF EXISTS `enyacht_club_tag`;
+CREATE TABLE `enyacht_club_tag` (
+  `member_id` int(4) NOT NULL,
+  `login_id` int(4) NOT NULL,
+  `nickname` varchar(25) NOT NULL,
+  `first_name` varchar(25) NOT NULL,
+  `last_name` varchar(25) NOT NULL,
+  `image` longblob,
+  `zip_code` int(4) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `country` varchar(50) NOT NULL,
+  `birthday` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- A tábla adatainak kiíratása `enyacht_club_tag`
+--
+
+INSERT INTO `enyacht_club_tag` (`member_id`, `login_id`, `nickname`, `first_name`, `last_name`, `image`, `zip_code`, `address`, `country`, `birthday`) VALUES
+(2, 2, 'Gamf', 'gamf', 'gamf', 0x89504e470d0a1a0a0000000d49484452000000430000003008060000004a7cc71c0000000467414d410000b18e7cfb5193000000206348524d0000870f00008c0f0000fd520000814000007d790000e98b00003ce5000019cc733c857700000a396943435050686f746f73686f70204943432070726f66696c65000048c79d96775454d71687cfbd777aa1cd30025286debbc000d27b935e456198196028030e3334b121a2021145449a224850c480d150245644b1101454b007240828311845542c6f46d68baeacbcf7f2f2fbe3ac6fedb3f7b9fbecbdcf5a170092a72f9797064b0190ca13f0833c9ce911915174ec0080011e608029004c5646ba5fb07b0810c9cbcd859e2172025f0401f07a58bc0270d3d033804e07ff9fa459e97c81e89800119bb339192c11178838254b902eb6cf8a981a972c66182566be284111cb893961910d3efb2cb2a398d9a93cb688c539a7b353d962ee15f1b64c2147c488af880b33b99c2c11df12b1468a30952be237e2d8540e33030014496c1770588922361131891f12e422e2e500e048095f71dc572ce0640bc49772494bcfe173131205741d962eddd4da9a41f7e464a5700402c300262b99c967d35dd252d399bc1c0016effc5932e2dad24545b634b5b6b434343332fdaa50ff75f36f4adcdb457a19f8b96710adff8bedaffcd21a0060cc896ab3f38b2dae0a80ce2d00c8ddfb62d3380080a4a86f1dd7bfba0f4d3c2f890241ba8db1715656961197c3321217f40ffd4f87bfa1afbe67243eee8ff2d05d39f14c618a802eae1b2b2d254dc8a767a433591cbae19f87f81f07fe751e06419c780e9fc313458489a68ccb4b10b59bc7e60ab8693c3a97f79f9af80fc3fea4c5b91689d2f81150638c80d4752a407eed07280a1120d1fbc55dffa36fbef830207e79e12a938b73ffef37fd67c1a5e225839bf039ce252884ce12f23317f7c4cf12a0010148022a9007ca401de800436006ac802d70046ec01bf8831010095603164804a9800fb2401ed8040a4131d809f6806a50071a41336805c741273805ce834be01ab8016e83fb60144c80676016bc060b10046121324481e421154813d287cc2006640fb941be50101409c54209100f124279d066a8182a83aaa17aa819fa1e3a099d87ae4083d05d680c9a867e87dec1084c82a9b012ac051bc30cd809f68143e0557002bc06ce850be01d7025dc001f853be0f3f035f8363c0a3f83e7108010111aa28a18220cc405f147a29078848fac478a900aa4016945ba913ee426328acc206f51181405454719a26c519ea850140bb506b51e5582aa461d4675a07a51375163a859d4473419ad88d647dba0bdd011e8047416ba105d816e42b7a32fa26fa327d0af31180c0da38db1c2786222314998b59812cc3e4c1be61c6610338e99c362b1f2587dac1dd61fcbc40ab085d82aec51ec59ec107602fb0647c4a9e0cc70eeb8281c0f978fabc01dc19dc10de126710b7829bc26de06ef8f67e373f0a5f8467c37fe3a7e02bf4090266813ec08218424c2264225a1957091f080f0924824aa11ad8981442e7123b192788c789938467c4b9221e9915c48d124216907e910e91ce92ee925994cd6223b92a3c802f20e7233f902f911f98d0445c248c24b822db141a246a2436248e2b9245e5253d24972b564ae6485e409c9eb92335278292d291729a6d47aa91aa99352235273d2146953697fe954e912e923d257a4a764b0325a326e326c99029983321764c62908459de242615136531a29172913540c559bea454da21653bfa30e506765656497c986c966cbd6c89e961da521342d9a172d85564a3b4e1ba6bd5ba2b4c4690967c9f625ad4b8696cccb2d957394e3c815c9b5c9dd967b274f9777934f96df25df29ff5001a5a0a710a890a5b05fe1a2c2cc52ea52dba5aca5454b8f2fbda7082bea290629ae553ca8d8af38a7a4ace4a194ae54a57441694699a6eca89ca45cae7c46795a85a262afc255295739abf2942e4b77a2a7d02be9bdf4595545554f55a16abdea80ea829ab65aa85abe5a9bda4375823a433d5ebd5cbd477d564345c34f234fa345e39e265e93a199a8b957b34f735e4b5b2b5c6bab56a7d694b69cb69776ae768bf6031db28e83ce1a9d069d5bba185d866eb2ee3edd1b7ab09e855ea25e8dde757d58df529fabbf4f7fd0006d606dc0336830183124193a19661ab6188e19d18c7c8df28d3a8d9e1b6b184719ef32ee33fe6862619262d26872df54c6d4db34dfb4dbf477333d3396598dd92d73b2b9bbf906f32ef317cbf4977196ed5f76c78262e167b1d5a2c7e283a59525dfb2d572da4ac32ad6aad66a84416504304a1897add1d6ced61bac4f59bfb5b1b411d81cb7f9cdd6d036d9f688edd472ede59ce58dcbc7edd4ec9876f576a3f674fb58fb03f6a30eaa0e4c870687c78eea8e6cc726c749275da724a7a34ecf9d4d9cf9ceedcef32e362eeb5cceb922ae1eae45ae036e326ea16ed56e8fdcd5dc13dc5bdc673d2c3cd67a9cf3447bfa78eef21cf152f26279357bcd7a5b79aff3eef521f904fb54fb3cf6d5f3e5fb76fbc17ede7ebbfd1eacd05cc15bd1e90ffcbdfc77fb3f0cd00e5813f06320263020b026f0499069505e505f30253826f848f0eb10e790d290fba13aa1c2d09e30c9b0e8b0e6b0f970d7f0b2f0d108e3887511d7221522b9915d51d8a8b0a8a6a8b9956e2bf7ac9c88b6882e8c1e5ea5bd2a7bd595d50aab53569f8e918c61c69c8845c786c71e897dcff4673630e7e2bce26ae366592eacbdac676c4776397b9a63c729e34cc6dbc597c54f25d825ec4e984e7448ac489ce1ba70abb92f923c93ea92e693fd930f257f4a094f694bc5a5c6a69ee4c9f09279bd69ca69d96983e9fae985e9a36b6cd6ec5933cbf7e137654019ab32ba0454d1cf54bf5047b8453896699f5993f9262b2ceb44b674362fbb3f472f677bce64ae7beeb76b516b596b7bf254f336e58dad735a57bf1e5a1fb7be6783fa86820d131b3d361ede44d894bce9a77c93fcb2fc579bc337771728156c2c18dfe2b1a5a550a2905f38b2d5766bdd36d436eeb681ede6dbabb67f2c62175d2d3629ae287e5fc22ab9fa8de93795df7cda11bf63a0d4b274ff4ecc4edecee15d0ebb0e974997e5968deff6dbdd514e2f2f2a7fb52766cf958a6515757b097b857b472b7d2bbbaa34aa7656bdaf4eacbe5de35cd356ab58bbbd767e1f7bdfd07ec7fdad754a75c575ef0e700fdca9f7a8ef68d06aa83888399879f049635863dfb78c6f9b9b149a8a9b3e1ce21d1a3d1c74b8b7d9aab9f988e291d216b845d8327d34fae88def5cbfeb6a356cad6fa3b5151f03c784c79e7e1ffbfdf0719fe33d2718275a7fd0fca1b69dd25ed40175e474cc7626768e7645760d9ef43ed9d36ddbddfea3d18f874ea99eaa392d7bbaf40ce14cc1994f6773cfce9d4b3f37733ee1fc784f4ccffd0b11176ef506f60e5cf4b978f992fba50b7d4e7d672fdb5d3e75c5e6cac9ab8cab9dd72caf75f45bf4b7ff64f153fb80e540c775abeb5d37ac6f740f2e1f3c33e43074fea6ebcd4bb7bc6e5dbbbde2f6e070e8f09d91e891d13bec3b537753eebeb897796fe1fec607e807450fa51e563c527cd4f0b3eecf6da396a3a7c75cc7fa1f073fbe3fce1a7ff64bc62fef270a9e909f544caa4c364f994d9d9a769fbef174e5d38967e9cf16660a7f95feb5f6b9cef31f7e73fcad7f366276e205ffc5a7df4b5ecabf3cf46ad9ab9eb980b947af535f2fcc17bd917f73f82de36ddfbbf077930b59efb1ef2b3fe87ee8fee8f3f1c1a7d44f9ffe050398f3fcbac4e8d3000000097048597300000ec300000ec301c76fa864000009bc494441546843edd977ac2d5515c7711e3c402c288a0a2a604150ac40506341041b6a28825dac08481023628f8242300125fea34663a206b0501243fcc7442514bba820f60e485514c486e5f1fb9c7b97ee19cf3977e6bec7f58fcb49be99726676f9edb5d65e7bcf46ebd6adbb9d45a6de5cad4cbdb95a997a73b5d2bdf8dfdfda70e770f770cf708f70b770d770a7e0bf16f7eed89c3bbaaefb758e2d9a7bed7fed7595e3d97abe3dc2ff9ebb4bd0ae2dc356419be17af3b049e8fcdabe4ffadfb9e8fe360e0ab95fd827bc201cb2c88bc3f3c3f382fb0785e78683178fae9da3fe2bea7efff9fa5f99d3ca6b71df732f0cead7166d7a5978457865787970ffc9e13e61b3d011a4edfba4ff9d8b85df9ab0692004e5b70f8785b3c2c5e1e7e1f27075b83efc21fc31dcb088eb3ae2c6e6dc7345dd6be9dfafeb2aafdeadba7e1fae09daf38bf0e3f0fdf08df085f0a140b0fb07d6a33ffa65a03b7d9ff4bf73b1f0a32097a026336372bb86f70615dd1cfe11fe1dbc348bfadf71d6793d3b8ffef375fc57f8e7e2b5e32de16fe14fe18af0a5f0f6f0b870df451e1c76085c6a4ddbf749ff3b170b3fca3d21bc36ec1eb65ee4d1e17de1d741c5433bb3521047bbae0b5f0def0e7b8507849dc2d3c2d1e119417f0689c194f60be7860f04cab21416f2c8704af86d18621d2b4509c16dbf124e087b870785878403c207c3678298b76d182c8600f5bdc0073f1c1e1bcc2404796820c855e1ff6d21ea6e8560118410f0770cda2a007f3ce8cf4541701d2cc61dc2fee167e1a6c02d3e1258484d553b879383e0a5216d03571242b0d0b288f70442708b5d8299e7f4a02f02ee25e155619b30386670935f0515094abf091f0d8f0f04319f134450258800d63672a52821580421b88620f9b0408833c22fc35f17f95120c660cb20c6b383885c6ef0f740908f0582709912e4a4706dd0b0b6a1b735ea33dae51a15230821bff874d0662278dea012839bdc2b0c76937d83116786fe6805e17f669b7219be79629077ac9420eaf95df85aa818c122b806213e1b6a303daffdce7f1a2463f70e83c490673c33b4625481e5320479522088395b4398e995e1b676199d22048b383e3c25a8ffe141364a08ed3078ed7bda2ffe11c3ecb871dbf749ff3b170b3f62988bf9a202fa05aa84ea9f0c04517009725cf09f67faefae2fca2334d76011849047b0cc470499e62c21ea7d62985ae51983c5786a9826466174a4c0a7050d52b8185282f8af4c7443c14aa5e45f0f2584fa08615d4288a5ea35502f0d832d430025868a6789e1be4a255f22b6c590a05441f59dc1286c480b6111df0cad6b48025b2196aa8fd558cc0db60c0154eaaaf2b6a069a89c2022b7060a4c25c83b424d6b4675b9a2089606e65be15d81f025c44bc299411cd39636c6f551bf449165980d075b86e83ccf325a58884aac6a59141334cb68b08592d5a4c0bb1c31744ee2f7edc0fdf60cca7d54e0fb846081045faa7c6599145e14068b5131c352b92d6c1e4685201ac7aa6478368158c85b030b192b88c65b817e3770bb2706798405a319c13a4362a85ccf2f55b6ff4dffdcca2c38d832243046a42d6c1e2a62212a3b3b3c3dc8f2ac652c94de1cec8368f83c532e3c63abe0d2c0dd247a0f0c2c82cf1382c07f096304b6a22586766dd2f67dd2ffcec5c24fcc2006cb185311f877b9ccb3823d845adcbd29487a6a2467410866ff83c0cd1e136cce9835b84609e199b1398d4cb92c636ddbf749ff3b170bbf568c21a3d8e2f90aaa0491c9b210318485bc3110c4884e7b9ff825c4db82fd14ef8b133af1a9c0c2bc3f5608654b17c40c0334488cd64dc68a01effc39e8d0a9815510d8b61b418e09d608e2416b7925c40f038be0121a2df6ec162c0a4dad0689058eb55a7013622873b01866138d6d0b1a02218c9806cb128f0cb6d99489d64288252e785ee7087859784b306d12c23b76c2094ac4f383545c3d63c5f08e77cb3206c50c9b3b720696b19c0a6d007f271c1bac2025634c5d0074ae2166199d132009577b0d84101b4ccf12a39aa61deda748b894bd9c81d2176e226d1f6c1925864eb5852d05216a2ad45142e884b58395a4956d3fa8be2118edf3026bf18ee0c69a6c2378afca811842106e362beecc83659418a3669331532b532784517b7de00a46565e602ab453ad039f0f368eecbc6b90ff0f0cf6289d13c2a709df443e17be1c588bf8a13c22b21c09582573d3da330d96e1d38295ed60315846cd266d61b3601184f34de5a820f26bb4d1f541c7370c6e203832d32f8612c4d730e93b571060b9931d2ae279d67b5c49e7db804a6ca9b9347c4c3025c6a8985196e1c5b6a06954b0b46e2084bd478ddd2e5803947f7b8e688ed27caec10dc4101fac64bdd635ace4c2503386770456d3b14d1c8155f9b60cd465d6b14053ee1041ca320cc0a098217acb20e72dd4545c1d33ddf9c6c2cc552226104240d4111deabf4720efd9442202588b3588fffaef880f36754daf3e68a98755b142f948ad58eb9d59e89398c13206075053ab60d316d4a243357dfaf45842f82e4b0853a40eb49deae37f2e20997a4df84998955596202ce4fd8120652102b4747fc812dee08db20c62586cf1d9b6a082f952d8b69b4e489515ce35744cd2a453d3de6d2194b23caba3cea73d57942032501fb7cc2c4658ac2188406be136cb42bc3fca4d7c74667edcc472b7afb25153a08f31af0e84303a5cc3de828f4e43ccb5cfbcd1ec43106b131f957ddcaa7d5882c86de6ad900de2283158863d50eb8bd6644b880b82059329b06600aec1ccc74c75cb4527d56326a96f39a6ddda8795afccda43d17e31c3ecb5a4183ed5b30c81cd1659f93c21f89b486f6aaa69d1be058b10dc966311eb83fac4894f84da76d4491622d7290b69dfb13691c30cb20c6250d86ab3c4806c54b0941112c08ce3284618850dbdf93b04a34e90da87950ec852b55feaffba50fbb0f53cd7afd964d3b6ef93fe772e92880423ce4daa2042489c6489cc911046814508662b6d112d25487fdb91fb0ae8a6fcda0d33a8fa5496b159dbf749ff3b170b628819b23d96c0ac08f19c404dab4895891163d3e1f5a5fcdf1165b56621ed20c8398120064d3fc4b3c383b68a17b264df7ab8d3e66ddf27fdef5c2cfc08a2c33ed0dad3642593f435b00a59a2e4881bc945c4128992941cceeb5ad2054bf5f608b38263fb5c9ff679e79ead55aece192c5b8d628718a15dbef6996564d206cf4c67e6b32ee23a2c46c6dbe9fba4ff9d8bfffec40e3bc80a9a44de60a6a9ec945087060997a37c0375ae72b886f3f6bef7eb1cf54c7b44d5d33ea74e1871c72302777074cf4cb747d056fd200ab7b64ad61f024d7e6ddf27fdef5c747f0a620d8e840051c414418a5fb6b8dfbf6ed1b8fe7fcaa9b2e69559470303cff27bb8968dca3758b073cf1a7ded47ad7f1cfff36bfb3ee97fffc66a66eacdd5cad49bab95a9375727eb36ba151dc2d3fdc6e93e7e0000000049454e44ae426082, 6000, 'gamf', 'gamf', '2018-03-21 00:00:00'),
+(3, 3, 'Admin', 'admin', 'admin', 0x89504e470d0a1a0a0000000d49484452000000430000003008060000004a7cc71c0000000467414d410000b18e7cfb5193000000206348524d0000870f00008c0f0000fd520000814000007d790000e98b00003ce5000019cc733c857700000a396943435050686f746f73686f70204943432070726f66696c65000048c79d96775454d71687cfbd777aa1cd30025286debbc000d27b935e456198196028030e3334b121a2021145449a224850c480d150245644b1101454b007240828311845542c6f46d68baeacbcf7f2f2fbe3ac6fedb3f7b9fbecbdcf5a170092a72f9797064b0190ca13f0833c9ce911915174ec0080011e608029004c5646ba5fb07b0810c9cbcd859e2172025f0401f07a58bc0270d3d033804e07ff9fa459e97c81e89800119bb339192c11178838254b902eb6cf8a981a972c66182566be284111cb893961910d3efb2cb2a398d9a93cb688c539a7b353d962ee15f1b64c2147c488af880b33b99c2c11df12b1468a30952be237e2d8540e33030014496c1770588922361131891f12e422e2e500e048095f71dc572ce0640bc49772494bcfe173131205741d962eddd4da9a41f7e464a5700402c300262b99c967d35dd252d399bc1c0016effc5932e2dad24545b634b5b6b434343332fdaa50ff75f36f4adcdb457a19f8b96710adff8bedaffcd21a0060cc896ab3f38b2dae0a80ce2d00c8ddfb62d3380080a4a86f1dd7bfba0f4d3c2f890241ba8db1715656961197c3321217f40ffd4f87bfa1afbe67243eee8ff2d05d39f14c618a802eae1b2b2d254dc8a767a433591cbae19f87f81f07fe751e06419c780e9fc313458489a68ccb4b10b59bc7e60ab8693c3a97f79f9af80fc3fea4c5b91689d2f81150638c80d4752a407eed07280a1120d1fbc55dffa36fbef830207e79e12a938b73ffef37fd67c1a5e225839bf039ce252884ce12f23317f7c4cf12a0010148022a9007ca401de800436006ac802d70046ec01bf8831010095603164804a9800fb2401ed8040a4131d809f6806a50071a41336805c741273805ce834be01ab8016e83fb60144c80676016bc060b10046121324481e421154813d287cc2006640fb941be50101409c54209100f124279d066a8182a83aaa17aa819fa1e3a099d87ae4083d05d680c9a867e87dec1084c82a9b012ac051bc30cd809f68143e0557002bc06ce850be01d7025dc001f853be0f3f035f8363c0a3f83e7108010111aa28a18220cc405f147a29078848fac478a900aa4016945ba913ee426328acc206f51181405454719a26c519ea850140bb506b51e5582aa461d4675a07a51375163a859d4473419ad88d647dba0bdd011e8047416ba105d816e42b7a32fa26fa327d0af31180c0da38db1c2786222314998b59812cc3e4c1be61c6610338e99c362b1f2587dac1dd61fcbc40ab085d82aec51ec59ec107602fb0647c4a9e0cc70eeb8281c0f978fabc01dc19dc10de126710b7829bc26de06ef8f67e373f0a5f8467c37fe3a7e02bf4090266813ec08218424c2264225a1957091f080f0924824aa11ad8981442e7123b192788c789938467c4b9221e9915c48d124216907e910e91ce92ee925994cd6223b92a3c802f20e7233f902f911f98d0445c248c24b822db141a246a2436248e2b9245e5253d24972b564ae6485e409c9eb92335278292d291729a6d47aa91aa99352235273d2146953697fe954e912e923d257a4a764b0325a326e326c99029983321764c62908459de242615136531a29172913540c559bea454da21653bfa30e506765656497c986c966cbd6c89e961da521342d9a172d85564a3b4e1ba6bd5ba2b4c4690967c9f625ad4b8696cccb2d957394e3c815c9b5c9dd967b274f9777934f96df25df29ff5001a5a0a710a890a5b05fe1a2c2cc52ea52dba5aca5454b8f2fbda7082bea290629ae553ca8d8af38a7a4ace4a194ae54a57441694699a6eca89ca45cae7c46795a85a262afc255295739abf2942e4b77a2a7d02be9bdf4595545554f55a16abdea80ea829ab65aa85abe5a9bda4375823a433d5ebd5cbd477d564345c34f234fa345e39e265e93a199a8b957b34f735e4b5b2b5c6bab56a7d694b69cb69776ae768bf6031db28e83ce1a9d069d5bba185d866eb2ee3edd1b7ab09e855ea25e8dde757d58df529fabbf4f7fd0006d606dc0336830183124193a19661ab6188e19d18c7c8df28d3a8d9e1b6b184719ef32ee33fe6862619262d26872df54c6d4db34dfb4dbf477333d3396598dd92d73b2b9bbf906f32ef317cbf4977196ed5f76c78262e167b1d5a2c7e283a59525dfb2d572da4ac32ad6aad66a84416504304a1897add1d6ced61bac4f59bfb5b1b411d81cb7f9cdd6d036d9f688edd472ede59ce58dcbc7edd4ec9876f576a3f674fb58fb03f6a30eaa0e4c870687c78eea8e6cc726c749275da724a7a34ecf9d4d9cf9ceedcef32e362eeb5cceb922ae1eae45ae036e326ea16ed56e8fdcd5dc13dc5bdc673d2c3cd67a9cf3447bfa78eef21cf152f26279357bcd7a5b79aff3eef521f904fb54fb3cf6d5f3e5fb76fbc17ede7ebbfd1eacd05cc15bd1e90ffcbdfc77fb3f0cd00e5813f06320263020b026f0499069505e505f30253826f848f0eb10e790d290fba13aa1c2d09e30c9b0e8b0e6b0f970d7f0b2f0d108e3887511d7221522b9915d51d8a8b0a8a6a8b9956e2bf7ac9c88b6882e8c1e5ea5bd2a7bd595d50aab53569f8e918c61c69c8845c786c71e897dcff4673630e7e2bce26ae366592eacbdac676c4776397b9a63c729e34cc6dbc597c54f25d825ec4e984e7448ac489ce1ba70abb92f923c93ea92e693fd930f257f4a094f694bc5a5c6a69ee4c9f09279bd69ca69d96983e9fae985e9a36b6cd6ec5933cbf7e137654019ab32ba0454d1cf54bf5047b8453896699f5993f9262b2ceb44b674362fbb3f472f677bce64ae7beeb76b516b596b7bf254f336e58dad735a57bf1e5a1fb7be6783fa86820d131b3d361ede44d894bce9a77c93fcb2fc579bc337771728156c2c18dfe2b1a5a550a2905f38b2d5766bdd36d436eeb681ede6dbabb67f2c62175d2d3629ae287e5fc22ab9fa8de93795df7cda11bf63a0d4b274ff4ecc4edecee15d0ebb0e974997e5968deff6dbdd514e2f2f2a7fb52766cf958a6515757b097b857b472b7d2bbbaa34aa7656bdaf4eacbe5de35cd356ab58bbbd767e1f7bdfd07ec7fdad754a75c575ef0e700fdca9f7a8ef68d06aa83888399879f049635863dfb78c6f9b9b149a8a9b3e1ce21d1a3d1c74b8b7d9aab9f988e291d216b845d8327d34fae88def5cbfeb6a356cad6fa3b5151f03c784c79e7e1ffbfdf0719fe33d2718275a7fd0fca1b69dd25ed40175e474cc7626768e7645760d9ef43ed9d36ddbddfea3d18f874ea99eaa392d7bbaf40ce14cc1994f6773cfce9d4b3f37733ee1fc784f4ccffd0b11176ef506f60e5cf4b978f992fba50b7d4e7d672fdb5d3e75c5e6cac9ab8cab9dd72caf75f45bf4b7ff64f153fb80e540c775abeb5d37ac6f740f2e1f3c33e43074fea6ebcd4bb7bc6e5dbbbde2f6e070e8f09d91e891d13bec3b537753eebeb897796fe1fec607e807450fa51e563c527cd4f0b3eecf6da396a3a7c75cc7fa1f073fbe3fce1a7ff64bc62fef270a9e909f544caa4c364f994d9d9a769fbef174e5d38967e9cf16660a7f95feb5f6b9cef31f7e73fcad7f366276e205ffc5a7df4b5ecabf3cf46ad9ab9eb980b947af535f2fcc17bd917f73f82de36ddfbbf077930b59efb1ef2b3fe87ee8fee8f3f1c1a7d44f9ffe050398f3fcbac4e8d3000000097048597300000ec300000ec301c76fa864000009bc494441546843edd977ac2d5515c7711e3c402c288a0a2a604150ac40506341041b6a28825dac08481023628f8242300125fea34663a206b0501243fcc7442514bba820f60e485514c486e5f1fb9c7b97ee19cf3977e6bec7f58fcb49be99726676f9edb5d65e7bcf46ebd6adbb9d45a6de5cad4cbdb95a997a73b5d2bdf8dfdfda70e770f770cf708f70b770d770a7e0bf16f7eed89c3bbaaefb758e2d9a7bed7fed7595e3d97abe3dc2ff9ebb4bd0ae2dc356419be17af3b049e8fcdabe4ffadfb9e8fe360e0ab95fd827bc201cb2c88bc3f3c3f382fb0785e78683178fae9da3fe2bea7efff9fa5f99d3ca6b71df732f0cead7166d7a5978457865787970ffc9e13e61b3d011a4edfba4ff9d8b85df9ab0692004e5b70f8785b3c2c5e1e7e1f27075b83efc21fc31dcb088eb3ae2c6e6dc7345dd6be9dfafeb2aafdeadba7e1fae09daf38bf0e3f0fdf08df085f0a140b0fb07d6a33ffa65a03b7d9ff4bf73b1f0a32097a026336372bb86f70615dd1cfe11fe1dbc348bfadf71d6793d3b8ffef375fc57f8e7e2b5e32de16fe14fe18af0a5f0f6f0b870df451e1c76085c6a4ddbf749ff3b170b3fca3d21bc36ec1eb65ee4d1e17de1d741c5433bb3521047bbae0b5f0def0e7b8507849dc2d3c2d1e119417f0689c194f60be7860f04cab21416f2c8704af86d18621d2b4509c16dbf124e087b870785878403c207c3678298b76d182c8600f5bdc0073f1c1e1bcc2404796820c855e1ff6d21ea6e8560118410f0770cda2a007f3ce8cf4541701d2cc61dc2fee167e1a6c02d3e1258484d553b879383e0a5216d03571242b0d0b288f70442708b5d8299e7f4a02f02ee25e155619b30386670935f0515094abf091f0d8f0f04319f134450258800d63672a52821580421b88620f9b0408833c22fc35f17f95120c660cb20c6b383885c6ef0f740908f0582709912e4a4706dd0b0b6a1b735ea33dae51a15230821bff874d0662278dea012839bdc2b0c76937d83116786fe6805e17f669b7219be79629077ac9420eaf95df85aa818c122b806213e1b6a303daffdce7f1a2463f70e83c490673c33b4625481e5320479522088395b4398e995e1b676199d22048b383e3c25a8ffe141364a08ed3078ed7bda2ffe11c3ecb871dbf749ff3b170b3f62988bf9a202fa05aa84ea9f0c04517009725cf09f67faefae2fca2334d76011849047b0cc470499e62c21ea7d62985ae51983c5786a9826466174a4c0a7050d52b8185282f8af4c7443c14aa5e45f0f2584fa08615d4288a5ea35502f0d832d430025868a6789e1be4a255f22b6c590a05441f59dc1286c480b6111df0cad6b48025b2196aa8fd558cc0db60c0154eaaaf2b6a069a89c2022b7060a4c25c83b424d6b4675b9a2089606e65be15d81f025c44bc299411cd39636c6f551bf449165980d075b86e83ccf325a58884aac6a59141334cb68b08592d5a4c0bb1c31744ee2f7edc0fdf60cca7d54e0fb846081045faa7c6599145e14068b5131c352b92d6c1e4685201ac7aa6478368158c85b030b192b88c65b817e3770bb2706798405a319c13a4362a85ccf2f55b6ff4dffdcca2c38d832243046a42d6c1e2a62212a3b3b3c3dc8f2ac652c94de1cec8368f83c532e3c63abe0d2c0dd247a0f0c2c82cf1382c07f096304b6a22586766dd2f67dd2ffcec5c24fcc2006cb185311f877b9ccb3823d845adcbd29487a6a2467410866ff83c0cd1e136cce9835b84609e199b1398d4cb92c636ddbf749ff3b170bbf568c21a3d8e2f90aaa0491c9b210318485bc3110c4884e7b9ff825c4db82fd14ef8b133af1a9c0c2bc3f5608654b17c40c0334488cd64dc68a01effc39e8d0a9815510d8b61b418e09d608e2416b7925c40f038be0121a2df6ec162c0a4dad0689058eb55a7013622873b01866138d6d0b1a02218c9806cb128f0cb6d99489d64288252e785ee7087859784b306d12c23b76c2094ac4f383545c3d63c5f08e77cb3206c50c9b3b720696b19c0a6d007f271c1bac2025634c5d0074ae2166199d132009577b0d84101b4ccf12a39aa61deda748b894bd9c81d2176e226d1f6c1925864eb5852d05216a2ad45142e884b58395a4956d3fa8be2118edf3026bf18ee0c69a6c2378afca811842106e362beecc83659418a3669331532b532784517b7de00a46565e602ab453ad039f0f368eecbc6b90ff0f0cf6289d13c2a709df443e17be1c588bf8a13c22b21c09582573d3da330d96e1d38295ed60315846cd266d61b3601184f34de5a820f26bb4d1f541c7370c6e203832d32f8612c4d730e93b571060b9931d2ae279d67b5c49e7db804a6ca9b9347c4c3025c6a8985196e1c5b6a06954b0b46e2084bd478ddd2e5803947f7b8e688ed27caec10dc4101fac64bdd635ace4c2503386770456d3b14d1c8155f9b60cd465d6b14053ee1041ca320cc0a098217acb20e72dd4545c1d33ddf9c6c2cc552226104240d4111deabf4720efd9442202588b3588fffaef880f36754daf3e68a98755b142f948ad58eb9d59e89398c13206075053ab60d316d4a243357dfaf45842f82e4b0853a40eb49deae37f2e20997a4df84998955596202ce4fd8120652102b4747fc812dee08db20c62586cf1d9b6a082f952d8b69b4e489515ce35744cd2a453d3de6d2194b23caba3cea73d57942032501fb7cc2c4658ac2188406be136cb42bc3fca4d7c74667edcc472b7afb25153a08f31af0e84303a5cc3de828f4e43ccb5cfbcd1ec43106b131f957ddcaa7d5882c86de6ad900de2283158863d50eb8bd6644b880b82059329b06600aec1ccc74c75cb4527d56326a96f39a6ddda8795afccda43d17e31c3ecb5a4183ed5b30c81cd1659f93c21f89b486f6aaa69d1be058b10dc966311eb83fac4894f84da76d4491622d7290b69dfb13691c30cb20c6250d86ab3c4806c54b0941112c08ce3284618850dbdf93b04a34e90da87950ec852b55feaffba50fbb0f53cd7afd964d3b6ef93fe772e92880423ce4daa2042489c6489cc911046814508662b6d112d25487fdb91fb0ae8a6fcda0d33a8fa5496b159dbf749ff3b170b628819b23d96c0ac08f19c404dab4895891163d3e1f5a5fcdf1165b56621ed20c8398120064d3fc4b3c383b68a17b264df7ab8d3e66ddf27fdef5c2cfc08a2c33ed0dad3642593f435b00a59a2e4881bc945c4128992941cceeb5ad2054bf5f608b38263fb5c9ff679e79ead55aece192c5b8d628718a15dbef6996564d206cf4c67e6b32ee23a2c46c6dbe9fba4ff9d8bfffec40e3bc80a9a44de60a6a9ec945087060997a37c0375ae72b886f3f6bef7eb1cf54c7b44d5d33ea74e1871c72302777074cf4cb747d056fd200ab7b64ad61f024d7e6ddf27fdef5c747f0a620d8e840051c414418a5fb6b8dfbf6ed1b8fe7fcaa9b2e69559470303cff27bb8968dca3758b073cf1a7ded47ad7f1cfff36bfb3ee97fffc66a66eacdd5cad49bab95a9375727eb36ba151dc2d3fdc6e93e7e0000000049454e44ae426082, 6000, 'admin', 'admin', '1990-01-02 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `enyacht_rent`
+--
+
+DROP TABLE IF EXISTS `enyacht_rent`;
+CREATE TABLE `enyacht_rent` (
   `rent_id` int(4) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `yacht_id` int(4) NOT NULL,
   `render_id` int(4) NOT NULL,
   `from` int(4) NOT NULL,
-  `to` int(4) NOT NULL,
-  PRIMARY KEY (`rent_id`),
-  KEY `render_id` (`render_id`),
-  KEY `yacht_id` (`yacht_id`),
-  KEY `from` (`from`),
-  KEY `to` (`to`)
+  `to` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `transport_device`
+-- Tábla szerkezet ehhez a táblához `enzipcode`
 --
 
-DROP TABLE IF EXISTS `enDevice`;
-CREATE TABLE IF NOT EXISTS `enDevice` (
-  `device_id` int(4) NOT NULL,
-  `type` varchar(20) NOT NULL,
-  `hire` int(1) NOT NULL default '1',
-  `busy` int(1) NOT NULL default '0',
-  `max_width` int(4) NOT NULL,
-  `max_lenght` int(4) NOT NULL,
-  `max_height` int(4) NOT NULL,
-  `max_weight` int(4) NOT NULL,
-  `ower` int(4) not null,
-  PRIMARY KEY (`device_id`),
-  KEY `ower` (`ower`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `travels`
---
-
-DROP TABLE IF EXISTS `enTravel`;
-CREATE TABLE IF NOT EXISTS `enTravel` (
-  `travel_id` int(4) NOT NULL,
-  `date` datetime NOT NULL,
-  `yacht_rent_id` int(4) NOT NULL,
-  `port_id` int(4) NOT NULL,
-  PRIMARY KEY (`travel_id`),
-  KEY `yacht_rent_id` (`yacht_rent_id`),
-  KEY `port_id` (`port_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `yachts`
---
-
-DROP TABLE IF EXISTS `enYacht`;
-CREATE TABLE IF NOT EXISTS `enYacht` (
-  `yacht_id` int(4) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `type` varchar(30) NOT NULL,
-  `image` int(2) DEFAULT NULL,
-  `ower` int(6) NOT NULL,
-  `seats` int(4) DEFAULT NULL,
-  `hire` int(1) DEFAULT '1',
-  `busy` int(1) DEFAULT '0',
-  `daly_price` int(20) not null,
-  `width` int(4) NOT NULL,
-  `lenght` int(4) NOT NULL,
-  `height` int(4) NOT NULL,
-  `weight` int(4) NOT NULL,
-  `port_id` int(4) NOT NULL,
-  PRIMARY KEY (`yacht_id`),
-  KEY `ower` (`ower`),
-  KEY `port_id` (`port_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `yacht_club_tags`
---
-
-DROP TABLE IF EXISTS `enYacht_Club_Tag`;
-CREATE TABLE IF NOT EXISTS `enYacht_Club_Tag` (
-  `member_id` int(4) NOT NULL,
-  `login_id` int(4) NOT NULL,
-  `nickname` varchar(25) NOT NULL,
-  `first_name` varchar(25) NOT NULL,
-  `last_name` varchar(25) NOT NULL,
-  `image` int(2) DEFAULT NULL,
+DROP TABLE IF EXISTS `enzipcode`;
+CREATE TABLE `enzipcode` (
   `zip_code` int(4) NOT NULL,
-  `adress` varchar(50) NOT NULL,
-  `country` varchar(50) NOT NULL,
-  `birthday` datetime NOT NULL,
-  PRIMARY KEY (`member_id`),
-  KEY `zip_code` (`zip_code`),
-  KEY `login_id` (`login_id`)
+  `city` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `yacht_login`
+-- A tábla adatainak kiíratása `enzipcode`
 --
 
-DROP TABLE IF EXISTS `enLogin`;
-CREATE TABLE IF NOT EXISTS `enLogin` (
-  `login_id` int(4) NOT NULL,
-  `login_name` varchar(25) NOT NULL,
-  `password` varchar(65) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `admin` int(1) NOT NULL,
-  `last_login` datetime NOT NULL,
-  PRIMARY KEY (`login_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `enMessage`;
-CREATE TABLE IF NOT EXISTS `enMessage` (
-  `message_id` int(4) NOT NULL,
-  `date` datetime NOT NULL,
-  `sender` int(4) NOT NULL,
-  `addressee` int(4) NOT NULL,
-  `yacht_id` int(4) Default null,
-  `device_id` int(4) Default null,
-  `accept` int(1) NOT NULL,
-  `new` int(1) NOT NULL,
-  PRIMARY KEY (`message_id`),
-  KEY `sender` (`sender`),
-  KEY `addressee` (`addressee`),
-  KEY `yacht_id` (`yacht_id`),
-  KEY `device_id` (`device_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+INSERT INTO `enzipcode` (`zip_code`, `city`) VALUES
+(6000, 'Kecskemét');
 
 --
--- Tábla szerkezet ehhez a táblához `zip_codes`
+-- Indexek a kiírt táblákhoz
 --
 
-DROP TABLE IF EXISTS `enZipcode`;
-CREATE TABLE IF NOT EXISTS `enZipcode` (
-  `zip_code` int(4) NOT NULL,
-  `city` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`zip_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- A tábla indexei `endevice`
+--
+ALTER TABLE `endevice`
+  ADD PRIMARY KEY (`device_id`),
+  ADD KEY `ower` (`ower`);
 
+--
+-- A tábla indexei `endevice_rent`
+--
+ALTER TABLE `endevice_rent`
+  ADD PRIMARY KEY (`rent_id`),
+  ADD KEY `render_id` (`render_id`),
+  ADD KEY `device_id` (`device_id`);
 
-DROP TABLE IF EXISTS `enPort`;
-CREATE TABLE IF NOT EXISTS `enPort` (
-  `port_id` int(4) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  PRIMARY KEY (`port_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--
+-- A tábla indexei `enlogin`
+--
+ALTER TABLE `enlogin`
+  ADD PRIMARY KEY (`login_id`);
+
+--
+-- A tábla indexei `enmessage`
+--
+ALTER TABLE `enmessage`
+  ADD PRIMARY KEY (`message_id`),
+  ADD KEY `sender` (`sender`),
+  ADD KEY `addressee` (`addressee`),
+  ADD KEY `yacht_id` (`yacht_id`),
+  ADD KEY `device_id` (`device_id`);
+
+--
+-- A tábla indexei `enport`
+--
+ALTER TABLE `enport`
+  ADD PRIMARY KEY (`port_id`);
+
+--
+-- A tábla indexei `entravel`
+--
+ALTER TABLE `entravel`
+  ADD PRIMARY KEY (`travel_id`),
+  ADD KEY `yacht_rent_id` (`yacht_rent_id`),
+  ADD KEY `port_id` (`port_id`);
+
+--
+-- A tábla indexei `enyacht`
+--
+ALTER TABLE `enyacht`
+  ADD PRIMARY KEY (`yacht_id`),
+  ADD KEY `ower` (`ower`),
+  ADD KEY `port_id` (`port_id`);
+
+--
+-- A tábla indexei `enyacht_club_tag`
+--
+ALTER TABLE `enyacht_club_tag`
+  ADD PRIMARY KEY (`member_id`),
+  ADD KEY `zip_code` (`zip_code`),
+  ADD KEY `login_id` (`login_id`);
+
+--
+-- A tábla indexei `enyacht_rent`
+--
+ALTER TABLE `enyacht_rent`
+  ADD PRIMARY KEY (`rent_id`),
+  ADD KEY `render_id` (`render_id`),
+  ADD KEY `yacht_id` (`yacht_id`),
+  ADD KEY `from` (`from`),
+  ADD KEY `to` (`to`);
+
+--
+-- A tábla indexei `enzipcode`
+--
+ALTER TABLE `enzipcode`
+  ADD PRIMARY KEY (`zip_code`);
 
 --
 -- Megkötések a kiírt táblákhoz
 --
 
 --
--- Megkötések a táblához `enDevice_rent`
+-- Megkötések a táblához `endevice`
 --
-ALTER TABLE `enDevice_rent`
-  ADD CONSTRAINT `enDevice_rent_ibfk_1` FOREIGN KEY (`render_id`) REFERENCES `enYacht_Club_Tag` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `enDevice_rent_ibfk_2` FOREIGN KEY (`device_id`) REFERENCES `enDevice` (`device_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `endevice`
+  ADD CONSTRAINT `enDevice_ibfk_1` FOREIGN KEY (`ower`) REFERENCES `enyacht_club_tag` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `loan_yacht`
+-- Megkötések a táblához `endevice_rent`
 --
-ALTER TABLE `enYacht_rent`
-  ADD CONSTRAINT `enYacht_rent_ibfk_1` FOREIGN KEY (`render_id`) REFERENCES `enYacht_Club_Tag` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `enYacht_rent_ibfk_2` FOREIGN KEY (`yacht_id`) REFERENCES `enYacht` (`yacht_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `enYacht_rent_ibfk_3` FOREIGN KEY (`from`) REFERENCES `enPort` (`port_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `enYacht_rent_ibfk_4` FOREIGN KEY (`to`) REFERENCES `enPort` (`port_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `endevice_rent`
+  ADD CONSTRAINT `enDevice_rent_ibfk_1` FOREIGN KEY (`render_id`) REFERENCES `enyacht_club_tag` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `enDevice_rent_ibfk_2` FOREIGN KEY (`device_id`) REFERENCES `endevice` (`device_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `enDevice`
+-- Megkötések a táblához `enmessage`
 --
-ALTER TABLE `enDevice`
-  ADD CONSTRAINT `enDevice_ibfk_1` FOREIGN KEY (`ower`) REFERENCES `enYacht_Club_Tag` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `enmessage`
+  ADD CONSTRAINT `enMessage_ibfk_1` FOREIGN KEY (`sender`) REFERENCES `enyacht_club_tag` (`member_id`),
+  ADD CONSTRAINT `enMessage_ibfk_2` FOREIGN KEY (`addressee`) REFERENCES `enyacht_club_tag` (`member_id`),
+  ADD CONSTRAINT `enMessage_ibfk_3` FOREIGN KEY (`yacht_id`) REFERENCES `enyacht` (`yacht_id`),
+  ADD CONSTRAINT `enMessage_ibfk_4` FOREIGN KEY (`device_id`) REFERENCES `endevice` (`device_id`);
 
 --
--- Megkötések a táblához `travels`
+-- Megkötések a táblához `entravel`
 --
-ALTER TABLE `enTravel`
-  ADD CONSTRAINT `enTravel_ibfk_1` FOREIGN KEY (`yacht_rent_id`) REFERENCES `enYacht_rent` (`rent_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `enTravel_ibfk_2` FOREIGN KEY (`port_id`) REFERENCES `enPort` (`port_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `entravel`
+  ADD CONSTRAINT `enTravel_ibfk_1` FOREIGN KEY (`yacht_rent_id`) REFERENCES `enyacht_rent` (`rent_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `enTravel_ibfk_2` FOREIGN KEY (`port_id`) REFERENCES `enport` (`port_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `yachts`
+-- Megkötések a táblához `enyacht`
 --
-ALTER TABLE `enYacht`
-  ADD CONSTRAINT `enYacht_ibfk_1` FOREIGN KEY (`ower`) REFERENCES `enYacht_Club_Tag` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `enYacht_ibfk_2` FOREIGN KEY (`port_id`) REFERENCES `enPort` (`port_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `enyacht`
+  ADD CONSTRAINT `enYacht_ibfk_1` FOREIGN KEY (`ower`) REFERENCES `enyacht_club_tag` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `enYacht_ibfk_2` FOREIGN KEY (`port_id`) REFERENCES `enport` (`port_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `enYacht_Club_Tag`
+-- Megkötések a táblához `enyacht_club_tag`
 --
-ALTER TABLE `enYacht_Club_Tag`
-  ADD CONSTRAINT `enYacht_Club_Tag_ibfk_1` FOREIGN KEY (`zip_code`) REFERENCES `enZipcode` (`zip_code`),
-  
-  
-  
-ALTER TABLE `enMessage`
-  ADD CONSTRAINT `enMessage_ibfk_1` FOREIGN KEY (`sender`) REFERENCES `enYacht_Club_Tag` (`member_id`),
-  ADD CONSTRAINT `enMessage_ibfk_2` FOREIGN KEY (`addressee`) REFERENCES `enYacht_Club_Tag` (`member_id`),
-  ADD CONSTRAINT `enMessage_ibfk_3` FOREIGN KEY (`yacht_id`) REFERENCES `enYacht` (`yacht_id`),
-  ADD CONSTRAINT `enMessage_ibfk_4` FOREIGN KEY (`device_id`) REFERENCES `enDevice` (`device_id`);
+ALTER TABLE `enyacht_club_tag`
+  ADD CONSTRAINT `enYacht_Club_Tag_ibfk_1` FOREIGN KEY (`zip_code`) REFERENCES `enzipcode` (`zip_code`);
+
+--
+-- Megkötések a táblához `enyacht_rent`
+--
+ALTER TABLE `enyacht_rent`
+  ADD CONSTRAINT `enYacht_rent_ibfk_1` FOREIGN KEY (`render_id`) REFERENCES `enyacht_club_tag` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `enYacht_rent_ibfk_2` FOREIGN KEY (`yacht_id`) REFERENCES `enyacht` (`yacht_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `enYacht_rent_ibfk_3` FOREIGN KEY (`from`) REFERENCES `enport` (`port_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `enYacht_rent_ibfk_4` FOREIGN KEY (`to`) REFERENCES `enport` (`port_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
+

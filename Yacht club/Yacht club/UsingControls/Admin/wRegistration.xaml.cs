@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,8 @@ namespace Yacht_club
     /// </summary>
     public partial class wRegistration : Window
     {
-        public Main_Yacht_Window register;
-        internal Felhasznalo user { get; set; }
+        public Main_Yacht_Window Main;
+        private Felhasznalo user;
         private Database data;
 
         public wRegistration()
@@ -36,57 +37,55 @@ namespace Yacht_club
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            register = new Main_Yacht_Window();
-            register.user = user;
-            register.tbNickname.Text = user.nickname + "!";
-            if (user.login.admin) register.dpRegist.Visibility = Visibility.Visible;
-            register.Owner = this;
+            Main = new Main_Yacht_Window();
+            Main.lbNickname.Content = Globals.User.nickname + "!";
+            if (Globals.User.login.admin) Main.dpRegist.Visibility = Visibility.Visible;
+            Main.logAdd(false);
+            Main.Owner = this;
             this.Hide();
-            register.ShowDialog();
+            Main.ShowDialog();
         }
 
         private void btRegiszt_Click(object sender, RoutedEventArgs e)
         {
-            if (ellenorzes())
+            data = new Database();
+            Login login = new Login();
+            Main = new Main_Yacht_Window();
+            user = new Felhasznalo();
+            try
             {
-                data = new Database();
-                data.MysqlConnect();
-                Login login = new Login();
-                register = new Main_Yacht_Window();
-                try
-                {
-                    register.user_Register.veztek_nev = tbFirstName.Text;
-                    register.user_Register.kereszt_nev = tbLastName.Text;
-                    if (dpSzuletes.SelectedDate.HasValue)
-                    {
-                        register.user_Register.szuletesdt = dpSzuletes.SelectedDate.Value;
-                    }
-                    register.user_Register.nickname = tbNickName.Text;
-                    login.felhasznalonev = tbLoginName.Text;
-                    login.jelszo = pbPasswd.Password;
-                    login.email = tbEmail.Text;
-                    register.user_Register.login = login;
-                    register.user_Register.varos = tbVaros.Text;
-                    register.user_Register.iranyitoszm = int.Parse(tbIranyitoszm.Text);
-                    register.user_Register.lakcim = tbLakcim.Text;
-                    register.user_Register.orszag = tbOrszg.Text;
-                    if (cbAdmin.IsChecked == true)
-                    {
-                        register.user_Register.login.admin = true;
-                    } else register.user_Register.login.admin = false;
-                    data.MysqlRegisztracioLogin(register.user_Register);
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
-                }
-            } else { MessageBox.Show("Hibás jelszó"); return; }
-            if (user.login.admin) { register.dpRegist.Visibility = Visibility.Visible; }
-            register.tbNickname.Text = user.nickname + "!";
-            register.user = user;
-            register.Owner = this;
+                user.veztek_nev = tbFirstName.Text;
+                user.kereszt_nev = tbLastName.Text;
+                if (dpSzuletes.SelectedDate.HasValue)
+                user.szuletesdt = dpSzuletes.SelectedDate.Value;
+                user.nickname = tbNickName.Text;
+                login.felhasznalonev = tbLoginName.Text;
+                login.jelszo = pbPasswd.Password;
+                login.email = tbEmail.Text;
+                user.login = login;
+                user.varos = tbVaros.Text;
+                user.iranyitoszm = int.Parse(tbIranyitoszm.Text);
+                user.lakcim = tbLakcim.Text;
+                user.orszag = tbOrszg.Text;
+                if (cbAdmin.IsChecked == true)
+                user.login.admin = true;
+                else user.login.admin = false;
+                data.MysqlRegisztracioLogin(user);
+            }
+            catch (MySqlException)
+            {
+                Globals.log = "Sikertelen Regisztráció!";
+            }
+            finally
+            {
+                Globals.log = "Sikeres Regisztráció!";
+            }
+            if (Globals.User.login.admin) { Main.dpRegist.Visibility = Visibility.Visible; }
+            Main.lbNickname.Content = user.nickname + "!";
+            Main.logAdd(true);
+            Main.Owner = this;
             this.Hide();
-            register.ShowDialog();
+            Main.ShowDialog();
         }
 
         private void dpSzuletes_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

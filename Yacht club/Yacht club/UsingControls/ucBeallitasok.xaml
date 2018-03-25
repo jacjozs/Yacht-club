@@ -8,16 +8,16 @@
     <Grid Background="#FF1D212C">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="109"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="59"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="276.5"/>
             <ColumnDefinition Width="276.5"/>
         </Grid.ColumnDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Beállitások:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-        <StackPanel x:Name="stRegist_1" Grid.Row="1" Grid.Column="0" Width="276.5" Grid.RowSpan="2">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="252" Height="170">
+        <StackPanel x:Name="stSetting" Grid.Row="1" Grid.Column="0" Width="276.5" Grid.RowSpan="2">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="252" Height="290">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <StackPanel Height="30" Margin="5,2,0,2" Width="92">
                         <Label Content="Nickname:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Height="16" Padding="0,0,0,0"/>
@@ -27,7 +27,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <Label  Content="Régi jelszó:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
-                    <TextBox x:Name="tbOldPasswd" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                    <PasswordBox x:Name="pbOldPasswd" Width="125" PasswordChar="*" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <Label Content="Jelszó:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold"  Foreground="#FFACB5B9" Margin="0,4,0,5"/>
@@ -41,10 +41,19 @@
                     <Label  Content="Email cím:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbEmail" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="250" Height="65" Margin="0,0,0,0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
+                        <StackPanel Height="30" Margin="0,0,0,0" Width="108" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Profilkép:" Width="100" VerticalContentAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="#FFACB5B9" Height="30" Padding="0,0,0,0" Margin="5,0"/>
+                        </StackPanel>
+                        <TextBox x:Name="tbKep" Width="125" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="22" Margin="0,6,0,7"/>
+                    </StackPanel>
+                    <Button x:Name="btkep" Style="{DynamicResource Buttons}" FontWeight="Bold" Content="Tallozás" HorizontalAlignment="Right" Click="btkep_Click" Width="75" Margin="0,0,18,0"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
         <StackPanel x:Name="stRegist_2" Grid.Row="1" Grid.Column="1" Width="276.5" Grid.RowSpan="2">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="255" Height="174">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="255" Height="225">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <Label  Content="Keresztnév:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbLastName" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
@@ -65,10 +74,14 @@
                     <Label  Content="Lakcím:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbLakcim" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
+                    <Label  Content="Ország:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                    <TextBox x:Name="tbOrszag" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
 
-        <Button Style="{DynamicResource Buttons}" x:Name="btAlkalmaz" Content="Alkalmaz" HorizontalAlignment="Right" Background="#2D3446" VerticalAlignment="Top" Width="76" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,30,30,0" Grid.Column="1" Grid.Row="2"/>
+        <Button Style="{DynamicResource Buttons}" x:Name="btAlkalmaz" Content="Alkalmaz" HorizontalAlignment="Right" VerticalAlignment="Top" Width="76" FontWeight="Bold" Margin="0,20,30,15" Grid.Column="1" Grid.Row="2" Click="btAlkalmaz_Click"/>
 
     </Grid>
 </UserControl>
