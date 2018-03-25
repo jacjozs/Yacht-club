@@ -11,7 +11,8 @@ namespace Yacht_club
     {
         public static String log = "";
         public static UsingControls.ucErtesitesek log_windows = new UsingControls.ucErtesitesek();
-        public static MySqlConnection connect = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=yacht_club");
+        public static MySqlConnection connect = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=gamfyachtclub");
+        public static Main_Yacht_Window Main;
         internal static Felhasznalo User { get; set; }
     }
 }

@@ -20,7 +20,6 @@ namespace Yacht_club.UsingControls
     public partial class ucBeallitasok : UserControl
     {
         private string filepath = "";
-        private Main_Yacht_Window log;
         private Felhasznalo user;
 
         private Database data;
@@ -54,7 +53,6 @@ namespace Yacht_club.UsingControls
         /// <param name="e"></param>
         private void btAlkalmaz_Click(object sender, RoutedEventArgs e)
         {
-            log = new Main_Yacht_Window();
             user = new Felhasznalo();
             try
             {
@@ -82,9 +80,9 @@ namespace Yacht_club.UsingControls
             {
                 Globals.User = user;
                 Globals.log = "Sikeres módosítás!";
-                log.lbNickname.Content = user.nickname;
+                Globals.Main.lbNickname.Content = user.nickname;
             }
-            log.logAdd(true);
+            Globals.Main.logAdd(true);
         }
 
         private bool passwdEllenorzes(string regi, string uj, string reUj)

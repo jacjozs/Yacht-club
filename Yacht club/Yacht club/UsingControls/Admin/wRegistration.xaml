@@ -30,9 +30,9 @@
                 <Label Content="*" Height="10" HorizontalAlignment="Left" x:Name="lbEmail_error" VerticalAlignment="Top" FontWeight="Bold" Foreground="Red" Padding="0,0,0,0" Width="34"/>
             </StackPanel>
         </Canvas>
-        <Canvas Panel.ZIndex="2" Background="Transparent" Height="40" Grid.Column="1" Width="95" Margin="255,165,0,95">
-            <StackPanel x:Name="spIranyitoszm_error" Orientation="Vertical" Canvas.Left="0" Width="95" Height="25" Canvas.Top="0" Visibility="Hidden">
-                <TextBox Height="15" Width="95" Style="{DynamicResource ErrorTextBox_Iranyitoszm}" Text="Hibás adat" x:Name="tbIranyitoszm_error" Background="Transparent" BorderBrush="Transparent"/>
+        <Canvas Panel.ZIndex="2" Background="Transparent" Grid.Column="1" Margin="279,166,10,101">
+            <StackPanel x:Name="spIranyitoszm_error" Orientation="Vertical" Canvas.Left="0" Width="64" Height="25" Canvas.Top="0" Visibility="Hidden">
+                <TextBox Height="15" Style="{DynamicResource ErrorTextBox_Iranyitoszm}" Text="Hibás adat" x:Name="tbIranyitoszm_error" Background="Transparent" BorderBrush="Transparent" Margin="0"/>
                 <Label Content="*" Height="10" HorizontalAlignment="Left" x:Name="lbIranyitoszm_error" VerticalAlignment="Top" FontWeight="Bold" Foreground="Red" Padding="0,0,0,0" Width="34"/>
             </StackPanel>
         </Canvas>
@@ -66,7 +66,7 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <StackPanel x:Name="stRegist_2" Panel.ZIndex="1" Grid.Row="0" Grid.Column="1" Margin="10">
+        <StackPanel x:Name="stRegist_2" Panel.ZIndex="1" Grid.Row="0" Grid.Column="1" Margin="35,10,10,10">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="252" Height="257">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <Label  Content="Keresztnév:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>

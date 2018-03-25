@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Yacht_club.UsingControls;
 using Yacht_club.UsingControls.Admin;
+using System.Windows.Media.Animation;
 
 namespace Yacht_club
 {
@@ -103,7 +104,7 @@ namespace Yacht_club
                     if (Globals.User.login.admin)
                     { stMenu_2_szallito.Visibility = Visibility.Visible;
                         cs_Menu_2.Visibility = Visibility.Hidden; }
-                    if (user.login.admin) {
+                    if (Globals.User.login.admin) {
                         if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucSzallitok_all))
                         { ccWindow_2.Content = new ucSzallitok_all(); }
                     } else {
@@ -140,8 +141,7 @@ namespace Yacht_club
                     break;
                 case "dpRegist":
                     Register = new wRegistration();
-                    Register.Owner = this;
-                    this.Hide();
+                    MainWindow.Opacity = 0.6;
                     Register.ShowDialog();
                     break;
                 case "dpKilepes":
@@ -160,7 +160,7 @@ namespace Yacht_club
             switch (gomb.Name.ToString())
             {
                 case "lbYachtok":
-                    if (user.login.admin) {
+                    if (Globals.User.login.admin) {
                         if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucYachtok_all))
                         { ccWindow_2.Content = new ucYachtok_all(); }
                     } else {
@@ -177,7 +177,7 @@ namespace Yacht_club
                     { ccWindow_2.Content = new ucYacht_delete(); }
                     break;
                 case "lbSzallitok":
-                    if (user.login.admin) {
+                    if (Globals.User.login.admin) {
                         if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucSzallitok_all))
                         { ccWindow_2.Content = new ucSzallitok_all(); }
                     } else {

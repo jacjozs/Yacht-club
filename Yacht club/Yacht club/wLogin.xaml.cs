@@ -19,7 +19,6 @@ namespace Yacht_club
     /// </summary>
     public partial class wLogin : Window
     {
-        private Main_Yacht_Window Main;
         private Database data;
         public wLogin()
         {
@@ -37,28 +36,40 @@ namespace Yacht_club
         /// <param name="e"></param>
         private void btBelepes_Click(object sender, RoutedEventArgs e)
         {
+            Login();
+        }
+
+        private void Login()
+        {
             data = new Database();
-            Main = new Main_Yacht_Window();
+            Globals.Main = new Main_Yacht_Window();
             //A kikereset és ellenörzött adatok bevitele a main user változoba
             //Egyfajta átadás
             Felhasznalo user_login = data.MysqlFelhasznalo(tbLoginName.Text, pbPasswd.Password);
             if (user_login != null)
             {
                 Globals.User = user_login;
-                Main.lbNickname.Content = user_login.nickname + "!";
+                Globals.Main.lbNickname.Content = user_login.nickname + "!";
                 Globals.User.login.utolsoLogin = DateTime.Now.Date;
-                if (Globals.User.login.admin) { Main.dpRegist.Visibility = Visibility.Visible; }
-                Main.logAdd(false);
+                if (Globals.User.login.admin) { Globals.Main.dpRegist.Visibility = Visibility.Visible; }
+                Globals.Main.logAdd(false);
                 //A login ablak eltünéséhez szükséges
-                Main.Owner = this;
+                Globals.Main.Owner = this;
                 this.Hide();
-                Main.ShowDialog();
-            } else { MessageBox.Show("Hibás felhasználónév vagy jelszó", "Hiba!", MessageBoxButton.OK); }
+                Globals.Main.ShowDialog();
+            }
+            else { MessageBox.Show("Hibás felhasználónév vagy jelszó", "Hiba!", MessageBoxButton.OK); }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void tbLoginName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                Login();
         }
     }
 }

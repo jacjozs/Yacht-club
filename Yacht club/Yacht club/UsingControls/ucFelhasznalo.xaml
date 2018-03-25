@@ -12,10 +12,7 @@
             <RowDefinition Height="309"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Felhasználói adatok:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-        <Image x:Name="imgProfil" HorizontalAlignment="Right" Height="100" Grid.Row="1" VerticalAlignment="Top" Width="100" Margin="0,0,20,0" UseLayoutRounding="False" Source="/Yacht club;component/images/user_profil.png">
-            <Image.BindingGroup>
-                <BindingGroup/>
-            </Image.BindingGroup>
-        </Image>
+        <Image x:Name="imgProfil" HorizontalAlignment="Right" Height="120" Grid.Row="1" VerticalAlignment="Top" Width="100" Margin="0,0,20,0" UseLayoutRounding="False" Source="/Yacht club;component/images/user_profil.png"/>
+        
     </Grid>
 </UserControl>

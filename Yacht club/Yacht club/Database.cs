@@ -205,9 +205,9 @@ namespace Yacht_club
                 }
 
             }
-            catch (MySqlException ex)
+            catch (Exception)
             {
-                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+                Globals.log = "Sikertelen módosítás!";
             }
             finally
             {

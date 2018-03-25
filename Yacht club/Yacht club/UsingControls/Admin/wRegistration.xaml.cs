@@ -21,7 +21,6 @@ namespace Yacht_club
     /// </summary>
     public partial class wRegistration : Window
     {
-        public Main_Yacht_Window Main;
         private Felhasznalo user;
         private Database data;
 
@@ -37,20 +36,15 @@ namespace Yacht_club
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Main = new Main_Yacht_Window();
-            Main.lbNickname.Content = Globals.User.nickname + "!";
-            if (Globals.User.login.admin) Main.dpRegist.Visibility = Visibility.Visible;
-            Main.logAdd(false);
-            Main.Owner = this;
+            Globals.Main.MainWindow.Opacity = 1;
+            Globals.Main.logAdd(false);
             this.Hide();
-            Main.ShowDialog();
         }
 
         private void btRegiszt_Click(object sender, RoutedEventArgs e)
         {
             data = new Database();
             Login login = new Login();
-            Main = new Main_Yacht_Window();
             user = new Felhasznalo();
             try
             {
@@ -80,12 +74,10 @@ namespace Yacht_club
             {
                 Globals.log = "Sikeres Regisztráció!";
             }
-            if (Globals.User.login.admin) { Main.dpRegist.Visibility = Visibility.Visible; }
-            Main.lbNickname.Content = user.nickname + "!";
-            Main.logAdd(true);
-            Main.Owner = this;
+            if (Globals.User.login.admin) { Globals.Main.dpRegist.Visibility = Visibility.Visible; }
+            Globals.Main.lbNickname.Content = user.nickname + "!";
+            Globals.Main.logAdd(true);
             this.Hide();
-            Main.ShowDialog();
         }
 
         private void dpSzuletes_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

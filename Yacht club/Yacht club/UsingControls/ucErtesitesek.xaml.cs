@@ -20,7 +20,6 @@ namespace Yacht_club.UsingControls
     /// </summary>
     public partial class ucErtesitesek : UserControl
     {
-        private Main_Yacht_Window log;
         public ucErtesitesek()
         {
             InitializeComponent();
@@ -38,8 +37,7 @@ namespace Yacht_club.UsingControls
         {
             lbLog.Items.Clear();
             Globals.log = "";
-            log = new Main_Yacht_Window();
-            log.logAdd(true);
+            Globals.Main.logAdd(true);
         }
     }
 }
