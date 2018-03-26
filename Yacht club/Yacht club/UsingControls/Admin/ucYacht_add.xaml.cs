@@ -25,7 +25,7 @@ namespace Yacht_club.UsingControls
         private Yacht newYacht;
         private string filepath = "";
         private Dictionary<string, int> list;
-        private Database data;
+        private Yacht_club.Database.MysqlYacht data;
         public ucYacht_add()
         {
             InitializeComponent();
@@ -78,7 +78,7 @@ namespace Yacht_club.UsingControls
 
         public void login_name()
         {
-            data = new Database();
+            data = new Yacht_club.Database.MysqlYacht();
             list = data.MysqlRegisztracionYachtLoginName();
             cbYacht_tulaj.ItemsSource = list.Keys;
         }

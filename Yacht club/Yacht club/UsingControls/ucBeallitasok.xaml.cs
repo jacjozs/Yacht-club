@@ -22,7 +22,7 @@ namespace Yacht_club.UsingControls
         private string filepath = "";
         private Felhasznalo user;
 
-        private Database data;
+        private Yacht_club.Database.MysqlSetting data;
         public ucBeallitasok()
         {
             InitializeComponent();
@@ -69,7 +69,7 @@ namespace Yacht_club.UsingControls
                 if (tbEmail.Text != "") user.login.email = tbEmail.Text;
                 if (filepath != "") user.kep = System.Drawing.Image.FromFile(filepath);
 
-                data = new Database();
+                data = new Yacht_club.Database.MysqlSetting();
                 if (user != null) data.MysqlUpdateUser(user);
             }
             catch (Exception)

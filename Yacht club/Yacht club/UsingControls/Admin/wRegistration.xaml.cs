@@ -22,7 +22,7 @@ namespace Yacht_club
     public partial class wRegistration : Window
     {
         private Felhasznalo user;
-        private Database data;
+        private Yacht_club.Database.MysqlRegistration data;
 
         public wRegistration()
         {

@@ -19,7 +19,7 @@ namespace Yacht_club
     /// </summary>
     public partial class wLogin : Window
     {
-        private Database data;
+        private Yacht_club.Database.MysqlLogin data;
         public wLogin()
         {
             InitializeComponent();
