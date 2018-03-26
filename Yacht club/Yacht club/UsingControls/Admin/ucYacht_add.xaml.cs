@@ -46,7 +46,7 @@ namespace Yacht_club.UsingControls
                 newYacht.hossz = int.Parse(tbYacht_hossz.Text);
                 newYacht.magas = int.Parse(tbYacht_magas.Text);
                 newYacht.kep = System.Drawing.Image.FromFile(filepath);
-                if (data.MysqlRegisztracionYacht(newYacht))
+                if (data.MysqlAddYacht(newYacht))
                     AddYachtLog(newYacht.nev + " Hozzáadva!");
                 else Globals.log = "Hozzáadás Sikertelen! <Yacht>";
             }
@@ -79,7 +79,7 @@ namespace Yacht_club.UsingControls
         public void login_name()
         {
             data = new Yacht_club.Database.MysqlYacht();
-            list = data.MysqlRegisztracionYachtLoginName();
+            list = data.MysqlYachtLoginName();
             cbYacht_tulaj.ItemsSource = list.Keys;
         }
 

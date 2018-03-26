@@ -41,7 +41,7 @@ namespace Yacht_club
 
         private void Login()
         {
-            data = new Database();
+            data = new Yacht_club.Database.MysqlLogin();
             Globals.Main = new Main_Yacht_Window();
             //A kikereset és ellenörzött adatok bevitele a main user változoba
             //Egyfajta átadás

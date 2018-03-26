@@ -43,7 +43,7 @@ namespace Yacht_club
 
         private void btRegiszt_Click(object sender, RoutedEventArgs e)
         {
-            data = new Database();
+            data = new Yacht_club.Database.MysqlRegistration();
             Login login = new Login();
             user = new Felhasznalo();
             try

@@ -3,13 +3,14 @@
 -- http://www.phpmyadmin.net
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2018. Már 26. 18:57
+-- Létrehozás ideje: 2018. Már 26. 20:01
 -- Kiszolgáló verziója: 10.1.19-MariaDB
 -- PHP verzió: 5.6.28
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
 
 --
 -- Adatbázis: `gamfyachtclub`
@@ -27,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `endevice` (
   `type` varchar(20) NOT NULL,
   `hire` int(1) NOT NULL DEFAULT '1',
   `busy` int(1) NOT NULL DEFAULT '0',
+  `daly_price` int(20) DEFAULT NULL,
   `max_width` int(4) NOT NULL,
   `max_lenght` int(4) NOT NULL,
   `max_height` int(4) NOT NULL,
@@ -35,6 +37,15 @@ CREATE TABLE IF NOT EXISTS `endevice` (
   PRIMARY KEY (`device_id`),
   KEY `ower` (`ower`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- A tábla adatainak kiíratása `endevice`
+--
+
+INSERT INTO `endevice` (`device_id`, `type`, `hire`, `busy`, `daly_price`, `max_width`, `max_lenght`, `max_height`, `max_weight`, `ower`) VALUES
+(1, 'vycvx', 1, 0, NULL, 10, 10, 10, 10, 1),
+(2, 'fdsad', 1, 0, NULL, 210, 21, 10, 10, 1),
+(3, 'sdasdf', 1, 0, NULL, 10, 10, 10, 100, 1);
 
 -- --------------------------------------------------------
 

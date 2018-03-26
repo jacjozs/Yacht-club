@@ -3,49 +3,45 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows;
-using System.IO;
 
 namespace Yacht_club.Database
 {
-    class MysqlYacht
+    class MysqlDevice
     {
-        public bool MysqlAddYacht(Yacht yacht)
+        public int MysqlAddDevice(Device device)
         {
+            int id = 0;
             try
             {
-                string query = "INSERT INTO enYacht(yacht_id, name, type, image, ower, seats, width, lenght, height, weight) VALUES (?yacht_id, ?name, ?type, ?image, ?ower, ?seats, ?width, ?lenght, ?height, ?weight);";
+                string query = "INSERT INTO enDevice(device_id, type, ower, max_width, max_lenght, max_height, max_weight) VALUES (?device_id, ?type, ?ower, ?max_width, ?max_lenght, ?max_height, ?max_weight);";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
-                    cmd.Parameters.Add("?yacht_id", MySqlDbType.Int16).Value = MysqlNextId("enYacht", "yacht_id");
-                    cmd.Parameters.Add("?name", MySqlDbType.VarChar).Value = yacht.nev;
-                    cmd.Parameters.Add("?type", MySqlDbType.VarChar).Value = yacht.tipus;
-                    cmd.Parameters.Add("?image", MySqlDbType.Blob).Value = ImageToByte(yacht.kep);
-                    cmd.Parameters.Add("?ower", MySqlDbType.Int16).Value = yacht.login_id;
-                    cmd.Parameters.Add("?seats", MySqlDbType.Int16).Value = yacht.ferohely;
-                    cmd.Parameters.Add("?width", MySqlDbType.Int16).Value = yacht.szeles;
-                    cmd.Parameters.Add("?lenght", MySqlDbType.Int16).Value = yacht.hossz;
-                    cmd.Parameters.Add("?height", MySqlDbType.Int16).Value = yacht.magas;
-                    cmd.Parameters.Add("?weight", MySqlDbType.Int16).Value = yacht.suly;
+                    id = MysqlNextId("enDevice", "device_id");
+                    cmd.Parameters.Add("?device_id", MySqlDbType.Int16).Value = id;
+                    cmd.Parameters.Add("?type", MySqlDbType.VarChar).Value = device.tipus;
+                    cmd.Parameters.Add("?ower", MySqlDbType.Int16).Value = device.login_id;
+                    cmd.Parameters.Add("?max_width", MySqlDbType.Int16).Value = device.max_szeles;
+                    cmd.Parameters.Add("?max_lenght", MySqlDbType.Int16).Value = device.max_hossz;
+                    cmd.Parameters.Add("?max_height", MySqlDbType.Int16).Value = device.max_magas;
+                    cmd.Parameters.Add("?max_weight", MySqlDbType.Int16).Value = device.max_suly;
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (MySqlException ex)
+            catch (MySqlException)
             {
-                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
-                return false;
+                return 0;
             }
             finally
             {
                 Globals.connect.Close();
             }
-            return true;
+            return id;
         }
 
-        public Dictionary<string, int> MysqlYachtLoginName()
+        public Dictionary<string, int> MysqlDeviceLoginName()
         {
             Dictionary<string, int> login = new Dictionary<string, int>();
             try
@@ -95,21 +91,6 @@ namespace Yacht_club.Database
                 MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
             }
             return szam;
-        }
-        /// <summary>
-        /// Az átvett Image-t byte tömbre alakitja
-        /// </summary>
-        /// <param name="Image"></param>
-        /// <returns></returns>
-        private byte[] ImageToByte(Image Image)
-        {
-            byte[] imageData = null;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                Image.Save(ms, Image.RawFormat);
-                imageData = ms.ToArray();
-            }
-            return imageData;
         }
     }
 }

@@ -19,40 +19,34 @@
         <Label Style="{DynamicResource MenuDecLabel}" Content="Hozzá adott szállitóeszközök:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="1" Grid.Row="0" Margin="0,3"/>
         <StackPanel x:Name="stSzallito_add" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,2,0,0" Grid.Row="1" Grid.Column="0" Width="267" Height="307">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                <Label  Content="Azonosító:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
-                <TextBox x:Name="tbSzallito_id" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                <Label  Content="Tulajdonos:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                <ComboBox x:Name="cbDevice_tulaj" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                 <Label  Content="Típus:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
                 <TextBox x:Name="tbSzallito_tipus" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                <Label  Content="Teherbírás:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
-                <TextBox x:Name="tbSzallito_teherb" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                <Label  Content="Max Teherbírás:" Width="100" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                <TextBox x:Name="tbSzallito_teherb" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="8,6,0,7"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="90" Margin="10,0,10,0">
-                <Label  Content="Méretek:" Width="60" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,22"/>
-                <StackPanel Width="182">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Width="185" Height="30">
-                        <Label  Content="Szélesség(m):" Width="90" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5" Padding="5,0,0,0"/>
-                        <TextBox x:Name="tbSzallito_szeles" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Width="185" Height="30">
-                        <Label  Content="Hosszúság(m):" Width="90" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5" Padding="5,0,0,0"/>
-                        <TextBox x:Name="tbSzallito_hossz" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="185" Height="30">
-                        <Label  Content="Magasság(m):" Width="90" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,5,0,5" Padding="5,0,0,0"/>
-                        <TextBox x:Name="tbSzallito_maga" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
-                    </StackPanel>
+            <StackPanel Width="252" Margin="8,0,7,0">
+                <Label  Content="Méretek:" Width="60" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0" Padding="5,0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Width="205" Height="30">
+                    <Label  Content="Max Szélesség(m):" Width="110" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,6,0,8" Padding="3,0,0,0"/>
+                    <TextBox x:Name="tbSzallito_szeles" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="15,4,0,4"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Width="205" Height="30">
+                    <Label  Content="Max Hosszúság(m):" Width="115" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,6,0,8" Padding="3,0,0,0"/>
+                    <TextBox x:Name="tbSzallito_hossz" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,4,0,4"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="205" Height="30">
+                    <Label  Content="Max Magasság(m):" Width="110" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,6,0,8" Padding="3,0,0,0"/>
+                    <TextBox x:Name="tbSzallito_magas" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="15,4,0,4"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                <Label  Content="Tulajdonos:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
-                <TextBox x:Name="tbSzallito_tulaj" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
-            </StackPanel>
         </StackPanel>
-        <ListBox Grid.Column="1" HorizontalAlignment="Left" Height="225" Margin="10,8,10,0" Grid.Row="1" VerticalAlignment="Top" Width="255"/>
-        <Button Style="{DynamicResource Buttons}" Content="Hozzáadás" FontWeight="Bold" Grid.Column="1" Grid.Row="1" Height="40" Width="255" VerticalAlignment="Bottom" Margin="0,0,0,14"/>
+        <ListBox x:Name="lbDeviceLog" Grid.Column="1" Width="255" Margin="10,8,10,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFACB5B9" Padding="15" FontWeight="Bold" SelectionMode="Extended" IsHitTestVisible="True" Background="#FF2D3446" Height="225" IsTextSearchCaseSensitive="True" BorderThickness="0" BorderBrush="#FF1D212C"/>
+        <Button Style="{DynamicResource Buttons}" Content="Hozzáadás" FontWeight="Bold" Grid.Column="1" Grid.Row="1" Height="40" Width="255" VerticalAlignment="Bottom" Margin="0,0,0,14" Click="bt_Hozza_add"/>
     </Grid>
 </UserControl>

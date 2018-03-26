@@ -67,7 +67,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Database.cs" />
+    <Compile Include="Database\MysqlDevice.cs" />
+    <Compile Include="Database\MysqlLogin.cs" />
+    <Compile Include="Database\MysqlRegistration.cs" />
+    <Compile Include="Database\MysqlSetting.cs" />
+    <Compile Include="Database\MysqlYacht.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Felhasznalo.cs" />
     <Compile Include="Globals.cs" />

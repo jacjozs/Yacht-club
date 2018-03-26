@@ -25,7 +25,6 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                 <Label  Content="Tulajdonos:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
                 <ComboBox x:Name="cbYacht_tulaj" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
-                <!--<TextBox x:Name="tbYacht_tulaj" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>-->
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                 <Label  Content="Típus:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
