@@ -3,33 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.Drawing;
 
 namespace Yacht_club
 {
     class Yacht
     {
-        public string nev { get; set; }
         public int id { get; set; }
-        public string tulaj { get; set; }
-        public string berlo { get; set; }
-        public int ferohely { get; set; }
-        public string foglalt { get; set; }
+        public string nev { get; set; }
+        public string tipus { get; set; }
         public Image kep { get; set; }
-
-        public Yacht(string nev, int id, string tulaj, string berlo, int ferohely, bool foglalt, Image kep)
-        {
-            this.nev = nev;
-            this.id = id;
-            this.tulaj = tulaj;
-            this.berlo = berlo;
-            this.ferohely = ferohely;
-            this.foglalt = foglalt ? "Foglalt" : "Szabad";
-            if (kep != null)
-            {
-                this.kep = kep;
-            }
-            else this.kep = null;
-        }
+        public int napi_ar { get; set; }
+        public int login_id { get; set; }
+        public int ferohely { get; set; }
+        public int szeles { get; set; }
+        public int hossz { get; set; }
+        public int magas { get; set; }
+        public int suly { get; set; }
+        public int kikoto_id { get; set; }
+        public bool foglalt { get; set; }
+        public bool berelheto { get; set; }
     }
 }

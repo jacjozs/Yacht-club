@@ -4,6 +4,7 @@ using System.Windows;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Yacht_club
 {
@@ -266,6 +267,66 @@ namespace Yacht_club
                 image = Image.FromStream(ms);
             }
             return image;
+        }
+
+        public bool MysqlRegisztracionYacht(Yacht yacht)
+        {
+            try
+            {
+                string query = "INSERT INTO enYacht(yacht_id, name, type, image, ower, seats, width, lenght, height, weight) VALUES (?yacht_id, ?name, ?type, ?image, ?ower, ?seats, ?width, ?lenght, ?height, ?weight);";
+                Globals.connect.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.Parameters.Add("?yacht_id", MySqlDbType.Int16).Value = MysqlNextId("enYacht", "yacht_id");
+                    cmd.Parameters.Add("?name", MySqlDbType.VarChar).Value = yacht.nev;
+                    cmd.Parameters.Add("?type", MySqlDbType.VarChar).Value = yacht.tipus;
+                    cmd.Parameters.Add("?image", MySqlDbType.Blob).Value = ImageToByte(yacht.kep);
+                    cmd.Parameters.Add("?ower", MySqlDbType.Int16).Value = yacht.login_id;
+                    cmd.Parameters.Add("?seats", MySqlDbType.Int16).Value = yacht.ferohely;
+                    cmd.Parameters.Add("?width", MySqlDbType.Int16).Value = yacht.szeles;
+                    cmd.Parameters.Add("?lenght", MySqlDbType.Int16).Value = yacht.hossz;
+                    cmd.Parameters.Add("?height", MySqlDbType.Int16).Value = yacht.magas;
+                    cmd.Parameters.Add("?weight", MySqlDbType.Int16).Value = yacht.suly;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+            return true;
+        }
+
+        public Dictionary<string, int> MysqlRegisztracionYachtLoginName()
+        {
+            Dictionary<string, int> login = new Dictionary<string, int>();
+            try
+            {
+                string query = "SELECT login_id, login_name FROM enlogin;";
+                Globals.connect.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    MySqlDataReader read = cmd.ExecuteReader();
+                    while (read.Read())
+                    {
+                        login.Add(read["login_name"].ToString(), int.Parse(read["login_id"].ToString()));
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+            return login;
         }
     }
 }

@@ -92,7 +92,7 @@ namespace Yacht_club
                     if (Globals.User.login.admin)
                     { stMenu_2_yacht.Visibility = Visibility.Visible;
                         cs_Menu_2.Visibility = Visibility.Hidden; }
-                    if (user.login.admin) {
+                    if (Globals.User.login.admin) {
                         if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucYachtok_all))
                         { ccWindow_2.Content = new ucYachtok_all(); }
                     } else {

@@ -74,12 +74,12 @@ namespace Yacht_club.UsingControls
             }
             catch (Exception)
             {
-                Globals.log = "Sikertelen módosítás!";
+                Globals.log = "Módosítás Sikertelen! <Beállitások>";
             }
             finally
             {
                 Globals.User = user;
-                Globals.log = "Sikeres módosítás!";
+                Globals.log = "Módosítás Sikeres! <Beállitások>";
                 Globals.Main.lbNickname.Content = user.nickname;
             }
             Globals.Main.logAdd(true);
