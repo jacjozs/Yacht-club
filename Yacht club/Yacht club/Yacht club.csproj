@@ -88,6 +88,9 @@
     <Compile Include="UsingControls\ucBerbeadott.xaml.cs">
       <DependentUpon>ucBerbeadott.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UsingControls\ucBerles.xaml.cs">
+      <DependentUpon>ucBerles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsingControls\ucErtesitesek.xaml.cs">
       <DependentUpon>ucErtesitesek.xaml</DependentUpon>
     </Compile>
@@ -99,6 +102,9 @@
     </Compile>
     <Compile Include="UsingControls\ucKijelzo_1.xaml.cs">
       <DependentUpon>ucKijelzo_1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucKimutatasok.xaml.cs">
+      <DependentUpon>ucKimutatasok.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsingControls\ucSzallito.xaml.cs">
       <DependentUpon>ucSzallito.xaml</DependentUpon>
@@ -168,6 +174,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UsingControls\ucBerles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UsingControls\ucErtesitesek.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -181,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsingControls\ucKijelzo_1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucKimutatasok.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -37,15 +37,15 @@ namespace Yacht_club.UsingControls
         private void lvDevicesDelete_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
-            Yacht selectYacht = (Yacht)(sender as ListView).SelectedItem;
-            if (selectYacht != null)
+            Device selectDevice = (Device)(sender as ListView).SelectedItem;
+            if (selectDevice != null)
             {
                 MessageBoxResult delete = MessageBox.Show("Biztos törölni szeretnéd?", "Szállitóeszköz törlés", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (delete == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        data.MysqlDeleteDevice(selectYacht.id);
+                        data.MysqlDeleteDevice(selectDevice.id);
                         Loading();
                         Globals.log = "Törlés Sikeres! <Szállitóeszköz>";
                     }

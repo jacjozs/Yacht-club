@@ -10,6 +10,11 @@ namespace Yacht_club.Database
 {
     class MysqlDevice
     {
+        /// <summary>
+        /// Új szállitóeszköz beírása az adatbázisba
+        /// </summary>
+        /// <param name="device"></param>
+        /// <returns></returns>
         public int MysqlAddDevice(Device device)
         {
             int id = 0;
@@ -40,20 +45,29 @@ namespace Yacht_club.Database
             }
             return id;
         }
-
+        /// <summary>
+        /// teljesnév és id kigyüjtése és egy "map"-ban való eltárolása 
+        /// teljesnév a kulcs!
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, int> MysqlDeviceLoginName()
         {
+            string full_name;
             Dictionary<string, int> login = new Dictionary<string, int>();
             try
             {
-                string query = "SELECT login_id, login_name FROM enlogin;";
+                string query = "SELECT first_name, last_name, member_id FROM enYacht_Club_Tag;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
+                    cmd.ExecuteNonQuery();
                     MySqlDataReader read = cmd.ExecuteReader();
                     while (read.Read())
                     {
-                        login.Add(read["login_name"].ToString(), int.Parse(read["login_id"].ToString()));
+                        full_name = "";
+                        full_name += read["first_name"].ToString();
+                        full_name += " " + read["last_name"].ToString();
+                        login.Add(full_name, (int)read["member_id"]);
                     }
                 }
             }
@@ -67,7 +81,11 @@ namespace Yacht_club.Database
             }
             return login;
         }
-
+        /// <summary>
+        /// Szállitóeszköz törlése
+        /// </summary>
+        /// <param name="id">a törölni kivánt szállitóeszköz id-e</param>
+        /// <returns></returns>
         public bool MysqlDeleteDevice(int id)
         {
             try
@@ -91,8 +109,10 @@ namespace Yacht_club.Database
             }
             return true;
         }
-
-
+        /// <summary>
+        /// Az összes szállitó eszköz kigyüjtése
+        /// </summary>
+        /// <returns></returns>
         public List<Device> MysqlDeviceAll()
         {
             string full_name;
@@ -153,15 +173,18 @@ namespace Yacht_club.Database
             }
             return Devices;
         }
-
-
+        /// <summary>
+        /// Szállitó eszközök kigyüjtése member_id alapján
+        /// </summary>
+        /// <param name="id">member_id vagy más néven felhasználó azonosító</param>
+        /// <returns></returns>
         public List<Device> MysqlDevices(int id)
         {
             string full_name;
             List<Device> Devices = new List<Device>();
             try
             {
-                string query = "SELECT enDevice.*, enYacht_Club_Tag.* FROM enYacht INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enDevice.ower WHERE ower = ?ower;";
+                string query = "SELECT enDevice.*, enYacht_Club_Tag.* FROM enDevice INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enDevice.ower WHERE ower = ?ower;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
@@ -216,7 +239,77 @@ namespace Yacht_club.Database
             }
             return Devices;
         }
-
+        /// <summary>
+        /// Bérelhető valamint szabad szállitó eszközök kigyüjtése
+        /// </summary>
+        /// <param name="id">bérelni kivánó szeméyl member_id-e</param>
+        /// <returns></returns>
+        public List<Device> MysqlDevicesBerles(int id)
+        {
+            string full_name;
+            List<Device> Devices = new List<Device>();
+            try
+            {
+                string query = "SELECT enDevice.*, enYacht_Club_Tag.* FROM enDevice INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enDevice.ower WHERE ower != ?ower AND busy = 0 AND hire = 1;";
+                Globals.connect.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.Parameters.Add("?ower", MySqlDbType.Int16).Value = id;
+                    MySqlDataReader read = cmd.ExecuteReader();
+                    while (read.Read())
+                    {
+                        Device device = new Device();
+                        device.berelheto = false;
+                        device.blfoglalt = false;
+                        device.strfoglalt = "Szabad";
+                        device.id = int.Parse(read["device_id"].ToString());
+                        device.tipus = read["type"].ToString();
+                        full_name = read["first_name"].ToString();
+                        full_name += " " + read["last_name"].ToString();
+                        device.full_name = full_name;
+                        if (read["renter"].ToString() == "")
+                        {
+                            device.berlo_full_name = "Nincs bérbe adva";
+                            device.berlo_id = 0;
+                        }
+                        else
+                        {
+                            device.berlo_id = (int)read["renter"];
+                            device.berlo_full_name = MysqlMemberFullname(device.berlo_id);
+                        }
+                        if ((int)read["hire"] == 1)
+                            device.berelheto = true;
+                        if ((int)read["busy"] == 1)
+                        {
+                            device.blfoglalt = true;
+                            device.strfoglalt = "Foglalt";
+                        }
+                        if (read["daly_price"].ToString() == "")
+                            device.napi_ar = 0;
+                        else device.napi_ar = (int)read["daly_price"];
+                        device.max_szeles = (int)read["max_width"];
+                        device.max_hossz = (int)read["max_lenght"];
+                        device.max_magas = (int)read["max_height"];
+                        device.max_suly = (int)read["max_weight"];
+                        Devices.Add(device);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+            return Devices;
+        }
+        /// <summary>
+        /// teljes név összeállitása member_id alapján
+        /// </summary>
+        /// <param name="id">member_id</param>
+        /// <returns></returns>
         private string MysqlMemberFullname(int id)
         {
             string full_name = "";

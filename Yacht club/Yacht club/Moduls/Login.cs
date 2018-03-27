@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Yacht_club
 {
+    /// <summary>
+    /// Login osztály a login adatok tárolására
+    /// </summary>
     class Login
     {
         public int id { get; set; }

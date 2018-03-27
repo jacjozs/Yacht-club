@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Yacht_club
 {
+    /// <summary>
+    /// Globális adatok a könnyeb adat elérésért
+    /// </summary>
     public static class Globals
     {
         public static string log = "";

@@ -20,9 +20,31 @@ namespace Yacht_club.UsingControls
     /// </summary>
     public partial class ucYacht_berles : UserControl
     {
+        Database.MysqlYacht data;
         public ucYacht_berles()
         {
             InitializeComponent();
+            Loading();
+        }
+
+        public void Loading()
+        {
+            data = new Database.MysqlYacht();
+            List<Yacht> Yachts = data.MysqlYachtsBerles(Globals.User.member_id);
+            lvYachts.ItemsSource = Yachts;
+        }
+
+        private void lvYachts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            Yacht selectYacht = (Yacht)(sender as ListView).SelectedItem;
+            if (selectYacht != null)
+            {
+                Globals.selectedYacht = selectYacht;
+                ucBerles yachtberles = new ucBerles();
+                //yachtberles.Loading();
+                Globals.Main.ccWindow_2.Content = yachtberles;
+            }
         }
     }
 }

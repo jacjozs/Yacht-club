@@ -24,17 +24,15 @@ namespace Yacht_club
     /// </summary>
     public partial class Main_Yacht_Window : Window
     {
-        ///Ne töröld ki mert ez a kettő nélkül nem megy
-        ///Ha tudsz rá jó megoldást alkalmazd (wLogin.xaml.cs-ben van a másik része!
-
+        /// <summary>
+        /// Ablakok meghívásához szukséges objektum példányok
+        /// </summary>
         private wLogin Login;
         private wRegistration Register;
-        internal Felhasznalo user { get; set; }
 
         public Main_Yacht_Window()
         {
             InitializeComponent();
-            user = Globals.User;
             Logining();
         }
 
@@ -47,6 +45,9 @@ namespace Yacht_club
             base.OnClosed(e);
             Application.Current.Shutdown();
         }
+        /// <summary>
+        /// belépési ablakok elhelyezése
+        /// </summary>
         private void Logining()
         {
             cs_Menu_2.Visibility = Visibility.Visible;
@@ -54,7 +55,10 @@ namespace Yacht_club
             if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucKijelzo_1))
             { ccWindow_2.Content = new ucKijelzo_1(); }
         }
-        
+        /// <summary>
+        /// Log bejegyzés hozzáadása az egyes usercontrolhoz
+        /// </summary>
+        /// <param name="IsLog"></param>
         public void logAdd(bool IsLog)
         {
             if (IsLog)
@@ -63,7 +67,11 @@ namespace Yacht_club
             }
             ccWindow_1.Content = Globals.log_windows;
         }
-
+        /// <summary>
+        /// Főmenük választása
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dpMouse_Click(object sender, MouseButtonEventArgs e)
         {
             DockPanel gomb = (DockPanel)sender;
@@ -154,7 +162,11 @@ namespace Yacht_club
                     break;
             }
         }
-
+        /// <summary>
+        /// Almenük választása
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lbMouse_Click(object sender, MouseButtonEventArgs e)
         {
             Label gomb = (Label)sender;
@@ -207,6 +219,8 @@ namespace Yacht_club
                     { ccWindow_2.Content = new ucBerbeadott(); }
                     break;
                 case "lbKimutatas":
+                    if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucKimutatasok))
+                    { ccWindow_2.Content = new ucKimutatasok(); }
                     break;
                 default:
                     break;

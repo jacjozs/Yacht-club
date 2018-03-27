@@ -21,15 +21,29 @@ namespace Yacht_club.UsingControls
     /// </summary>
     public partial class ucSzallito_add : UserControl
     {
+        /// <summary>
+        /// új szállitóeszköz adatainak eltárolása
+        /// </summary>
         private Device newDevice;
+        /// <summary>
+        /// "map" a felhasználók teljes nevével és member_id-jével
+        /// a teljesnév a kulcs!s
+        /// </summary>
         private Dictionary<string, int> list;
+        /// <summary>
+        /// Adatbázis béldány az adatbázis eléréséhez
+        /// </summary>
         private Database.MysqlDevice data;
         public ucSzallito_add()
         {
             InitializeComponent();
             login_name();
         }
-
+        /// <summary>
+        /// szállitoeszköz adatainak bejügytése egy objectumba és annak átadása az adatbázisnak
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bt_Hozza_add(object sender, RoutedEventArgs e)
         {
             try
@@ -43,6 +57,7 @@ namespace Yacht_club.UsingControls
                 newDevice.max_magas = int.Parse(tbSzallito_magas.Text);
                 newDevice.id = data.MysqlAddDevice(newDevice);
                 if (newDevice.id != 0)
+                    ///Visszajelzés ha sikeres volt a hozzáadás
                     AddYachtLog("ID: " + newDevice.id + "  Szállitóeszköz Hozzáadva!");
                 else Globals.log = "Hozzáadás Sikertelen! <Szállitóeszköz>";
             }
@@ -54,16 +69,22 @@ namespace Yacht_club.UsingControls
             {
                 Globals.log = "Hozzáadás Sikeres! <Szállitóeszköz>";
             }
+            ///Az egyes usercontrolhoz caló log hozzáadás
             Globals.Main.logAdd(true);
         }
-
+        /// <summary>
+        /// Teljes nevek és member_id kigyüjtése és hozzá adása a legördülő sávhoz
+        /// </summary>
         public void login_name()
         {
             data = new Database.MysqlDevice();
             list = data.MysqlDeviceLoginName();
             cbDevice_tulaj.ItemsSource = list.Keys;
         }
-
+        /// <summary>
+        /// sikeres yacht hozzáadás visszajelzése
+        /// </summary>
+        /// <param name="log">visszajelzés szövege</param>
         private void AddYachtLog(string log)
         {
             lbDeviceLog.Items.Insert(0, log);

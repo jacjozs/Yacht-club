@@ -20,9 +20,31 @@ namespace Yacht_club.UsingControls
     /// </summary>
     public partial class ucSzallito_berles : UserControl
     {
+        Database.MysqlDevice data;
         public ucSzallito_berles()
         {
             InitializeComponent();
+            Loading();
+        }
+
+        public void Loading()
+        {
+            data = new Database.MysqlDevice();
+            List<Device> Devices = data.MysqlDevicesBerles(Globals.User.member_id);
+            lvDevices.ItemsSource = Devices;
+        }
+
+        private void lvYachts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            Device selectDevice = (Device)(sender as ListView).SelectedItem;
+            if (selectDevice != null)
+            {
+                Globals.selectedDevice = selectDevice;
+                ucBerles deviceBerles = new ucBerles();
+                //yachtberles.Loading();
+                Globals.Main.ccWindow_2.Content = deviceBerles;
+            }
         }
     }
 }

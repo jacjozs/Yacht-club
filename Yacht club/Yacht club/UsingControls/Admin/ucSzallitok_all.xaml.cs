@@ -37,13 +37,13 @@ namespace Yacht_club.UsingControls.Admin
         private void lvYachts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
-            Yacht selectYacht = (Yacht)(sender as ListView).SelectedItem;
-            if (selectYacht != null)
+            Device selectDevice = (Device)(sender as ListView).SelectedItem;
+            if (selectDevice != null)
             {
-                Globals.selectedYacht = selectYacht;
-                ucYacht yacht = new ucYacht();
-                yacht.Loading();
-                Globals.Main.ccWindow_2.Content = yacht;
+                Globals.selectedDevice = selectDevice;
+                ucSzallito device = new ucSzallito();
+                //device.Loading();
+                Globals.Main.ccWindow_2.Content = device;
             }
         }
     }
