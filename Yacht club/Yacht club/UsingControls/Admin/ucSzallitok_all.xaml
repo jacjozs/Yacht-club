@@ -12,21 +12,13 @@
             <RowDefinition Height="309"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Szállitóeszközök:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-        <ListView x:Name="listView" Height="309" Width="553" Grid.Row="1" Grid.Column="0">
+        <ListView x:Name="lvDeviceAll" Height="309" Width="553" Grid.Row="1" Grid.Column="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" Width="92"/>
-                    <GridViewColumn Header="Tulajdonos" Width="92"/>
-                    <GridViewColumn Header="Bérlő" Width="92"/>
-                    <GridViewColumn Header="Teherbírás" Width="92"/>
-                    <GridViewColumn Header="Foglalt?" Width="92"/>
-                    <GridViewColumn Header="Adatok" Width="92">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button x:Name="btSzallito_adat" Content="Megtekintés" HorizontalAlignment="Center" Width="75"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding id}" Width="45"/>
+                    <GridViewColumn Header="Tulajdonos" DisplayMemberBinding="{Binding full_name}" Width="200"/>
+                    <GridViewColumn Header="Bérlő" DisplayMemberBinding="{Binding berlo_full_name}" Width="180"/>
+                    <GridViewColumn Header="Foglalt?" DisplayMemberBinding="{Binding strfoglalt}" Width="120"/>
                 </GridView>
             </ListView.View>
         </ListView>

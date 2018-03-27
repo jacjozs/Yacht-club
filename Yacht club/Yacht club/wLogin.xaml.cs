@@ -19,7 +19,7 @@ namespace Yacht_club
     /// </summary>
     public partial class wLogin : Window
     {
-        private Yacht_club.Database.MysqlLogin data;
+        private Database.MysqlLogin data;
         public wLogin()
         {
             InitializeComponent();
@@ -41,7 +41,7 @@ namespace Yacht_club
 
         private void Login()
         {
-            data = new Yacht_club.Database.MysqlLogin();
+            data = new Database.MysqlLogin();
             Globals.Main = new Main_Yacht_Window();
             //A kikereset és ellenörzött adatok bevitele a main user változoba
             //Egyfajta átadás

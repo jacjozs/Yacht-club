@@ -22,7 +22,7 @@ namespace Yacht_club.UsingControls
         private string filepath = "";
         private Felhasznalo user;
 
-        private Yacht_club.Database.MysqlSetting data;
+        private Database.MysqlSetting data;
         public ucBeallitasok()
         {
             InitializeComponent();
@@ -69,7 +69,7 @@ namespace Yacht_club.UsingControls
                 if (tbEmail.Text != "") user.login.email = tbEmail.Text;
                 if (filepath != "") user.kep = System.Drawing.Image.FromFile(filepath);
 
-                data = new Yacht_club.Database.MysqlSetting();
+                data = new Database.MysqlSetting();
                 if (user != null) data.MysqlUpdateUser(user);
             }
             catch (Exception)
@@ -78,10 +78,10 @@ namespace Yacht_club.UsingControls
             }
             finally
             {
-                Globals.User = user;
-                Globals.log = "Módosítás Sikeres! <Beállitások>";
-                Globals.Main.lbNickname.Content = user.nickname;
+                Globals.Main.lbNickname.Content = user.nickname + "!";
             }
+            Globals.User = user;
+            Globals.log = "Módosítás Sikeres! <Beállitások>";
             Globals.Main.logAdd(true);
         }
 

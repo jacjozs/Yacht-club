@@ -22,7 +22,7 @@ namespace Yacht_club
     public partial class wRegistration : Window
     {
         private Felhasznalo user;
-        private Yacht_club.Database.MysqlRegistration data;
+        private Database.MysqlRegistration data;
 
         public wRegistration()
         {
@@ -43,7 +43,7 @@ namespace Yacht_club
 
         private void btRegiszt_Click(object sender, RoutedEventArgs e)
         {
-            data = new Yacht_club.Database.MysqlRegistration();
+            data = new Database.MysqlRegistration();
             Login login = new Login();
             user = new Felhasznalo();
             try
@@ -75,7 +75,7 @@ namespace Yacht_club
                 Globals.log = "Sikeres Regisztráció!";
             }
             if (Globals.User.login.admin) { Globals.Main.dpRegist.Visibility = Visibility.Visible; }
-            Globals.Main.lbNickname.Content = user.nickname + "!";
+            Globals.Main.MainWindow.Opacity = 1;
             Globals.Main.logAdd(true);
             this.Hide();
         }

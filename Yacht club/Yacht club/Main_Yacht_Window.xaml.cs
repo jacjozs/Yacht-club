@@ -84,6 +84,7 @@ namespace Yacht_club
                 case "dpKijelentkezes":
                     Login = new wLogin();
                     Login.Owner = this;
+                    Globals.log_windows.delete();
                     Globals.User = null;
                     this.Hide();
                     Login.ShowDialog();

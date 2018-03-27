@@ -23,7 +23,7 @@ namespace Yacht_club.UsingControls
     {
         private Device newDevice;
         private Dictionary<string, int> list;
-        private Yacht_club.Database.MysqlDevice data;
+        private Database.MysqlDevice data;
         public ucSzallito_add()
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace Yacht_club.UsingControls
             {
                 newDevice = new Device();;
                 newDevice.tipus = tbSzallito_tipus.Text;
-                newDevice.login_id = int.Parse(list[cbDevice_tulaj.Text].ToString());
+                newDevice.member_id = int.Parse(list[cbDevice_tulaj.Text].ToString());
                 newDevice.max_suly = int.Parse(tbSzallito_teherb.Text);
                 newDevice.max_szeles = int.Parse(tbSzallito_szeles.Text);
                 newDevice.max_hossz = int.Parse(tbSzallito_hossz.Text);
@@ -59,7 +59,7 @@ namespace Yacht_club.UsingControls
 
         public void login_name()
         {
-            data = new Yacht_club.Database.MysqlDevice();
+            data = new Database.MysqlDevice();
             list = data.MysqlDeviceLoginName();
             cbDevice_tulaj.ItemsSource = list.Keys;
         }

@@ -23,9 +23,8 @@ namespace Yacht_club.UsingControls
     public partial class ucYacht_add : UserControl
     {
         private Yacht newYacht;
-        private string filepath = "";
         private Dictionary<string, int> list;
-        private Yacht_club.Database.MysqlYacht data;
+        private Database.MysqlYacht data;
         public ucYacht_add()
         {
             InitializeComponent();
@@ -39,13 +38,12 @@ namespace Yacht_club.UsingControls
                 newYacht = new Yacht();
                 newYacht.nev = tbYacht_nev.Text;
                 newYacht.tipus = tbYacht_tipus.Text;
-                newYacht.login_id = int.Parse(list[cbYacht_tulaj.Text].ToString());
+                newYacht.member_id = int.Parse(list[cbYacht_tulaj.Text].ToString());
                 newYacht.ferohely = int.Parse(tbYacht_ferohely.Text);
                 newYacht.suly = int.Parse(tbYacht_tomeg.Text);
                 newYacht.szeles = int.Parse(tbYacht_szeles.Text);
                 newYacht.hossz = int.Parse(tbYacht_hossz.Text);
                 newYacht.magas = int.Parse(tbYacht_magas.Text);
-                newYacht.kep = System.Drawing.Image.FromFile(filepath);
                 if (data.MysqlAddYacht(newYacht))
                     AddYachtLog(newYacht.nev + " Hozzáadva!");
                 else Globals.log = "Hozzáadás Sikertelen! <Yacht>";
@@ -57,28 +55,20 @@ namespace Yacht_club.UsingControls
             finally
             {
                 Globals.log = "Hozzáadás Sikeres! <Yacht>";
+                tbYacht_nev.Text = "";
+                tbYacht_tipus.Text = "";
+                tbYacht_ferohely.Text = "";
+                tbYacht_tomeg.Text = "";
+                tbYacht_szeles.Text = "";
+                tbYacht_hossz.Text = "";
+                tbYacht_magas.Text = "";
             }
             Globals.Main.logAdd(true);
         }
 
-        private void bt_Yacht_img_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog open = new OpenFileDialog();
-            open.InitialDirectory = "C:\\";
-            open.Filter = "Image Files(*.PNG;*.JPG;*.JPEG;*.BMP;*.GIF)|*.PNG;*.JPG;*.JPEG;*.BMP;*.GIF";
-            open.FilterIndex = 1;
-            Nullable<bool> dialogok = open.ShowDialog();
-
-            if (dialogok == true)
-            {
-                filepath = open.FileName;
-                tbYacht_image.Text = filepath;
-            }
-        }
-
         public void login_name()
         {
-            data = new Yacht_club.Database.MysqlYacht();
+            data = new Database.MysqlYacht();
             list = data.MysqlYachtLoginName();
             cbYacht_tulaj.ItemsSource = list.Keys;
         }

@@ -9,6 +9,7 @@ namespace Yacht_club
         public string nickname { get; set; }
         public string veztek_nev { get; set; }
         public string kereszt_nev { get; set; }
+        public string teljes_nev { get; set; }
         public int iranyitoszm { get; set; }
         public string varos { get; set; }
         public string lakcim { get; set; }

@@ -20,9 +20,31 @@ namespace Yacht_club.UsingControls.Admin
     /// </summary>
     public partial class ucSzallitok_all : UserControl
     {
+        Database.MysqlDevice data;
         public ucSzallitok_all()
         {
             InitializeComponent();
+            Loading();
+        }
+
+        public void Loading()
+        {
+            data = new Database.MysqlDevice();
+            List<Device> Devices = data.MysqlDeviceAll();
+            lvDeviceAll.ItemsSource = Devices;
+        }
+
+        private void lvYachts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            Yacht selectYacht = (Yacht)(sender as ListView).SelectedItem;
+            if (selectYacht != null)
+            {
+                Globals.selectedYacht = selectYacht;
+                ucYacht yacht = new ucYacht();
+                yacht.Loading();
+                Globals.Main.ccWindow_2.Content = yacht;
+            }
         }
     }
 }

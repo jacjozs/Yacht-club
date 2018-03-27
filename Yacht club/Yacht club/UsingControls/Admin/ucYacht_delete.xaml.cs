@@ -20,9 +20,41 @@ namespace Yacht_club.UsingControls
     /// </summary>
     public partial class ucYacht_delete : UserControl
     {
+        Database.MysqlYacht data;
         public ucYacht_delete()
         {
             InitializeComponent();
+            Loading();
+        }
+
+        public void Loading()
+        {
+            data = new Database.MysqlYacht();
+            List<Yacht> Yachts = data.MysqlYachtAll();
+            lvYachtAll.ItemsSource = Yachts;
+        }
+
+        private void lvYachtsDelete_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            Yacht selectYacht = (Yacht)(sender as ListView).SelectedItem;
+            if (selectYacht != null)
+            {
+                MessageBoxResult delete = MessageBox.Show("Biztos törölni szeretnéd?", "Yacht törlés", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (delete == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        data.MysqlDeleteYacht(selectYacht.id);
+                        Loading();
+                        Globals.log = "Törlés Sikeres! <Yach>";
+                    }
+                    catch (Exception)
+                    {
+                        Globals.log = "Törlés Sikertelen! <Yach>";
+                    }
+                }
+            }
         }
     }
 }

@@ -20,9 +20,41 @@ namespace Yacht_club.UsingControls
     /// </summary>
     public partial class ucSzallito_delete : UserControl
     {
+        Database.MysqlDevice data;
         public ucSzallito_delete()
         {
             InitializeComponent();
+            Loading();
+        }
+
+        public void Loading()
+        {
+            data = new Database.MysqlDevice();
+            List<Device> Devices = data.MysqlDeviceAll();
+            lvDeviceAll.ItemsSource = Devices;
+        }
+
+        private void lvDevicesDelete_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            Yacht selectYacht = (Yacht)(sender as ListView).SelectedItem;
+            if (selectYacht != null)
+            {
+                MessageBoxResult delete = MessageBox.Show("Biztos törölni szeretnéd?", "Szállitóeszköz törlés", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (delete == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        data.MysqlDeleteDevice(selectYacht.id);
+                        Loading();
+                        Globals.log = "Törlés Sikeres! <Szállitóeszköz>";
+                    }
+                    catch (Exception)
+                    {
+                        Globals.log = "Törlés Sikertelen! <Szállitóeszköz>";
+                    }
+                }
+            }
         }
     }
 }

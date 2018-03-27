@@ -72,10 +72,10 @@
     <Compile Include="Database\MysqlRegistration.cs" />
     <Compile Include="Database\MysqlSetting.cs" />
     <Compile Include="Database\MysqlYacht.cs" />
-    <Compile Include="Device.cs" />
-    <Compile Include="Felhasznalo.cs" />
-    <Compile Include="Globals.cs" />
-    <Compile Include="Login.cs" />
+    <Compile Include="Moduls\Device.cs" />
+    <Compile Include="Moduls\Felhasznalo.cs" />
+    <Compile Include="Moduls\Globals.cs" />
+    <Compile Include="Moduls\Login.cs" />
     <Compile Include="UsingControls\Admin\ucSzallitok_all.xaml.cs">
       <DependentUpon>ucSzallitok_all.xaml</DependentUpon>
     </Compile>
@@ -139,7 +139,7 @@
     <Compile Include="UsingControls\Admin\wRegistration.xaml.cs">
       <DependentUpon>wRegistration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Yacht.cs" />
+    <Compile Include="Moduls\Yacht.cs" />
     <Page Include="Main_Yacht_Window.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

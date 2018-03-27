@@ -35,6 +35,11 @@ namespace Yacht_club.UsingControls
 
         private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            delete();
+        }
+
+        public void delete()
+        {
             lbLog.Items.Clear();
             Globals.log = "";
             Globals.Main.logAdd(true);

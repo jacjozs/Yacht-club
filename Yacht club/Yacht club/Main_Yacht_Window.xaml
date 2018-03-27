@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yacht_club"
         mc:Ignorable="d"
-        Title="Yacht Club GAMF" Height="530" Width="800" Name="MainWindow" ResizeMode="NoResize" WindowStyle="None" Icon="images/yachts.ico" WindowStartupLocation="CenterScreen">
+        Title="Yacht Club GAMF" Height="530" Width="800" x:Name="MainWindow" ResizeMode="NoResize" WindowStyle="None" Icon="images/yachts.ico" WindowStartupLocation="CenterScreen">
     <Grid Background="#2D3446">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="215"/>

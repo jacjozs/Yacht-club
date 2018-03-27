@@ -12,5 +12,6 @@
             <RowDefinition Height="309"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Yacht:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+        <Label x:Name="lbYachtnev" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Grid.Row="1" Width="195"/>
     </Grid>
 </UserControl>
