@@ -54,15 +54,15 @@
                     <Label  Content="Témák:" Width="90" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}"/>
                     <StackPanel Width="150" Orientation="Horizontal" HorizontalAlignment="Center" Height="30">
                         <!-- 2D3446 -->
-                        <Image x:Name="image1" Style="{StaticResource ImageTheme}" Width="30" Height="30" Source="/Yacht club;component/images/white/color_1.png" MouseDown="Theme_Color"/>
+                        <RadioButton x:Name="rbCheckImage1" GroupName="Colors"  Style="{StaticResource CheckImage1}" Content="" Cursor="Hand"/>
                         <!-- 69C4EC -->
-                        <Image x:Name="image2" Style="{StaticResource ImageTheme}" Width="30" Height="30" Source="/Yacht club;component/images/white/color_2.png" MouseDown="Theme_Color"/>
+                        <RadioButton x:Name="rbCheckImage2" GroupName="Colors"  Style="{StaticResource CheckImage2}" Content="" Cursor="Hand"/>
                         <!-- 2F5FDB -->
-                        <Image x:Name="image3" Style="{StaticResource ImageTheme}" Width="30" Height="30" Source="/Yacht club;component/images/white/color_3.png" MouseDown="Theme_Color"/>
+                        <RadioButton x:Name="rbCheckImage3" GroupName="Colors"  Style="{StaticResource CheckImage3}" Content="" Cursor="Hand"/>
                         <!-- D123E6 -->
-                        <Image x:Name="image4" Style="{StaticResource ImageTheme}" Width="30" Height="30" Source="/Yacht club;component/images/white/color_4.png" MouseDown="Theme_Color"/>
+                        <RadioButton x:Name="rbCheckImage4" GroupName="Colors"  Style="{StaticResource CheckImage4}" Content="" Cursor="Hand"/>
                         <!-- 4FDC3C -->
-                        <Image x:Name="image5" Style="{StaticResource ImageTheme}" Width="30" Height="30" Source="/Yacht club;component/images/white/color_5.png" MouseDown="Theme_Color"/>
+                        <RadioButton x:Name="rbCheckImage5" GroupName="Colors"  Style="{StaticResource CheckImage5}" Content="" Cursor="Hand"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

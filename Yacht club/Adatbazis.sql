@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2018. Már 27. 20:29
+-- Létrehozás ideje: 2018. Már 28. 22:07
 -- Kiszolgáló verziója: 10.1.19-MariaDB
 -- PHP verzió: 5.6.28
 
@@ -47,7 +47,9 @@ INSERT INTO `endevice` (`device_id`, `type`, `hire`, `busy`, `daly_price`, `max_
 (1, 'vycvx', 1, 0, NULL, 10, 10, 10, 10, 1, NULL),
 (2, 'fdsad', 1, 0, NULL, 210, 21, 10, 10, 1, NULL),
 (3, 'sdasdf', 1, 0, NULL, 10, 10, 10, 100, 1, NULL),
-(4, 'fasd', 1, 0, NULL, 1010, 101, 100, 1000, 1, NULL);
+(4, 'fasd', 1, 0, NULL, 1010, 101, 100, 1000, 1, NULL),
+(5, 'fsadf', 1, 0, NULL, 10, 10, 10, 100, 2, NULL),
+(6, 'sdva', 1, 0, NULL, 10, 10, 10, 100, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -79,6 +81,7 @@ CREATE TABLE IF NOT EXISTS `enlogin` (
   `login_name` varchar(25) NOT NULL,
   `password` varchar(65) NOT NULL,
   `email` varchar(30) NOT NULL,
+  `theme` int(1) NOT NULL DEFAULT '1',
   `admin` int(1) NOT NULL,
   `last_login` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`login_id`)
@@ -88,9 +91,9 @@ CREATE TABLE IF NOT EXISTS `enlogin` (
 -- A tábla adatainak kiíratása `enlogin`
 --
 
-INSERT INTO `enlogin` (`login_id`, `login_name`, `password`, `email`, `admin`, `last_login`) VALUES
-(1, 'admin', 'admin', 'admin', 1, '2018-03-01 00:00:00'),
-(2, 'gamf', 'gamf', 'gamf@gamf', 0, '2018-03-16 00:00:00');
+INSERT INTO `enlogin` (`login_id`, `login_name`, `password`, `email`, `theme`, `admin`, `last_login`) VALUES
+(1, 'admin', 'admin', 'admin', 2, 1, '2018-03-01 00:00:00'),
+(2, 'gamf', 'gamf', 'gamf@gamf', 1, 0, '2018-03-16 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -101,7 +104,7 @@ INSERT INTO `enlogin` (`login_id`, `login_name`, `password`, `email`, `admin`, `
 DROP TABLE IF EXISTS `enmessage`;
 CREATE TABLE IF NOT EXISTS `enmessage` (
   `message_id` int(4) NOT NULL,
-  `date` datetime NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `sender` int(4) NOT NULL,
   `addressee` int(4) NOT NULL,
   `yacht_id` int(4) DEFAULT NULL,
@@ -110,8 +113,8 @@ CREATE TABLE IF NOT EXISTS `enmessage` (
   `end_date` datetime NOT NULL,
   `from_port` int(4) NOT NULL,
   `to_port` int(4) NOT NULL,
-  `accept` int(1) NOT NULL,
-  `new` int(1) NOT NULL,
+  `accept` int(1) DEFAULT NULL,
+  `new` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`message_id`),
   KEY `sender` (`sender`),
   KEY `addressee` (`addressee`),

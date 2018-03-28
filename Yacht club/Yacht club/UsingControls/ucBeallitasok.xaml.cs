@@ -22,7 +22,6 @@ namespace Yacht_club.UsingControls
     public partial class ucBeallitasok : UserControl
     {
         private string filepath = "";
-        private int theme;
         private Felhasznalo user;
         private Themes tema;
 
@@ -62,7 +61,6 @@ namespace Yacht_club.UsingControls
             {
                 user = Globals.User;
                 user.login = Globals.User.login;
-                user.login.theme = theme;
                 if (tbNickName.Text != "") user.nickname = tbNickName.Text;
                 if (tbFirstName.Text != "") user.veztek_nev = tbFirstName.Text;
                 if (tbLastName.Text != "") user.kereszt_nev = tbLastName.Text;
@@ -80,9 +78,11 @@ namespace Yacht_club.UsingControls
                     data.MysqlUpdateUser(user);
                     data.MysqlUpdateUserLogin(user.login);
                 }
-                if (Globals.OldThemeId != Globals.MainTheme.id)
+                Theme_Colors();
+                if (tema != null)
                 {
-                    Globals.OldThemeId = Globals.MainTheme.id;
+                    Globals.MainTheme = tema;
+                    user.login.theme = tema.id;
                     MainWindowRefersh();
                 }
             }
@@ -116,41 +116,23 @@ namespace Yacht_club.UsingControls
             tbOrszag.Text = Globals.User.orszag;
             tbEmail.Text = Globals.User.login.email;
         }
-
-        private void Theme_Color(object sender, MouseButtonEventArgs e)
+        /// <summary>
+        /// Radio gombok ellenörzése és tema elkészitése
+        /// </summary>
+        private void Theme_Colors()
         {
-            Image Themes = (Image)sender;
-            switch (Themes.Name.ToString())
-            {
-                case "image1":
-                    tema = new Themes(1);
-                    Globals.MainTheme = tema;
-                    theme = 1;
-                    break;
-                case "image2":
-                    tema = new Themes(2);
-                    Globals.MainTheme = tema;
-                    theme = 2;
-                    break;
-                case "image3":
-                    tema = new Themes(3);
-                    Globals.MainTheme = tema;
-                    theme = 3;
-                    break;
-                case "image4":
-                    tema = new Themes(4);
-                    Globals.MainTheme = tema;
-                    theme = 4;
-                    break;
-                case "image5":
-                    tema = new Themes(5);
-                    Globals.MainTheme = tema;
-                    theme = 5;
-                    break;
-                default:
-                    break;
-            }
+            if (rbCheckImage1.IsChecked == true && Globals.MainTheme.id != 1)
+                tema = new Themes(1);
+            else if (rbCheckImage2.IsChecked == true && Globals.MainTheme.id != 2)
+                tema = new Themes(2);
+            else if (rbCheckImage3.IsChecked == true && Globals.MainTheme.id != 3)
+                tema = new Themes(3);
+            else if (rbCheckImage4.IsChecked == true && Globals.MainTheme.id != 4)
+                tema = new Themes(4);
+            else if (rbCheckImage5.IsChecked == true && Globals.MainTheme.id != 5)
+                tema = new Themes(5);
         }
+
         /// <summary>
         /// A main ablak frissitése és a kinézetbeli változások alkalmazása
         /// </summary>

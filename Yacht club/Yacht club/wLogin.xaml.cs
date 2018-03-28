@@ -47,8 +47,7 @@ namespace Yacht_club
             Felhasznalo user_login = data.MysqlFelhasznalo(tbLoginName.Text, pbPasswd.Password);
             if (user_login != null)
             {
-                Globals.OldThemeId = user_login.login.theme;
-                Globals.MainTheme = new Moduls.Themes(Globals.OldThemeId);
+                Globals.MainTheme = new Moduls.Themes(user_login.login.theme);
                 Globals.Main = new Main_Yacht_Window();
                 Globals.User = user_login;
                 Globals.Main.lbNickname.Content = user_login.nickname + "!";
@@ -57,9 +56,8 @@ namespace Yacht_club
                     Globals.Main.dpRegist.Visibility = Visibility.Visible;
                 Globals.Main.logAdd(false);
                 //A login ablak eltüntetése
-                Globals.Main.Owner = this;
                 this.Hide();
-                Globals.Main.ShowDialog();
+                Globals.Main.Show();
             }
             else
                 MessageBox.Show("Hibás felhasználónév vagy jelszó", "Hiba!", MessageBoxButton.OK);

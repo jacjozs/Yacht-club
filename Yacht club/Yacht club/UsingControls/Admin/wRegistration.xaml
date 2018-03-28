@@ -79,7 +79,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="258" Height="35" Cursor="Hand" Margin="0,0,-6,0">
                     <Label  Content="Születési dátum:" Width="105" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                    <DatePicker x:Name="dpSzuletes" Width="135" FirstDayOfWeek="Monday" Cursor="Hand" DisplayDate="01/01/1990" Foreground="{Binding betu_szin}" Margin="0,5,0,5" Background="{Binding hatter}" BorderBrush="{Binding hatter}"/>
+                    <DatePicker x:Name="dpSzuletes" Width="135" FirstDayOfWeek="Monday" Cursor="Hand" DisplayDate="01/01/1990" Margin="0,5,0,5" Background="{Binding hatter}" BorderBrush="{Binding hatter}"/>
                     <Label x:Name="lbSzuletes_error" Content="*" Width="9" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" FontWeight="Bold" Foreground="Red" Height="16" Padding="0,0,0,0" Margin="0,5,0,14" Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
