@@ -24,6 +24,11 @@ namespace Yacht_club
         private Felhasznalo user;
         private Database.MysqlRegistration data;
 
+        private void Themes_Loading(object sender, RoutedEventArgs e)
+        {
+            DataContext = Globals.MainTheme;
+        }
+
         public wRegistration()
         {
             InitializeComponent();
@@ -78,16 +83,6 @@ namespace Yacht_club
             Globals.Main.MainWindow.Opacity = 1;
             Globals.Main.logAdd(true);
             this.Hide();
-        }
-
-        private void dpSzuletes_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var picker = sender as DatePicker;
-            DateTime? date = picker.SelectedDate;
-            if (date == null)
-                this.Title = "Nincs Dátum";
-            else
-                this.Title = date.Value.ToShortDateString();
         }
 
         private bool ellenorzes()

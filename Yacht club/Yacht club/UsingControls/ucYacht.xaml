@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="334" d:DesignWidth="553">
-    <Grid Background="#FF1D212C">
+             d:DesignHeight="334" d:DesignWidth="553" Background="{Binding uc_hatter}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="309"/>
         </Grid.RowDefinitions>
-        <Label Style="{DynamicResource MenuDecLabel}" Content="Yacht:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+        <Label Style="{DynamicResource MenuDecLabel}" Content="Yacht:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
         <Label x:Name="lbYachtnev" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Grid.Row="1" Width="195"/>
     </Grid>
 </UserControl>

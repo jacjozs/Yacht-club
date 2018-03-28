@@ -33,7 +33,7 @@ namespace Yacht_club.UsingControls
             }
         }
 
-        private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void btDelete_Click(object sender, RoutedEventArgs e)
         {
             delete();
         }

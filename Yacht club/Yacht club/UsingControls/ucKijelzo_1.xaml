@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="334" d:DesignWidth="553">
-    <Grid Background="#FF1D212C">
+             d:DesignHeight="334" d:DesignWidth="553" Background="{Binding uc_hatter}">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="276.5"/>
             <ColumnDefinition Width="276.5"/>

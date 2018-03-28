@@ -5,15 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="148" d:DesignWidth="553">
-    <Grid Background="#FF2D3446">
+             d:DesignHeight="148" d:DesignWidth="553" Background="{Binding hatter}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="118"/>
         </Grid.RowDefinitions>
-        <Label Content="Ablak takarítása" FontSize="14" Cursor="Hand" Foreground="#FFACB5B9" HorizontalAlignment="Right"  Padding="5" Grid.Row="0" MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
-        <Label Content="Visszajelzések:" FontSize="14" Cursor="Hand" Foreground="#FFACB5B9" HorizontalAlignment="Left"  Padding="5" Grid.Row="0"/>
-        <ListBox x:Name="lbLog" Grid.Row="1" Width="553" Foreground="#FFACB5B9" Padding="15" FontWeight="Bold" SelectionMode="Extended" IsHitTestVisible="True" Background="#FF1D212C" Height="118" IsTextSearchCaseSensitive="True" BorderThickness="0" BorderBrush="#FF1D212C"/>
-
+        <Button Style="{StaticResource Buttons}" x:Name="btAlkalmaz" Content="Ablak takarítása" Foreground="{Binding betu_szin}" Background="{Binding hatter}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,2.5,0,2.5" Width="120" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Click="btDelete_Click" Height="25"/>
+        <Label Style="{StaticResource MenuDecLabel}" Content="Visszajelzések:" FontWeight="Bold" FontSize="14" Cursor="Hand" Foreground="{Binding betu_szin}" HorizontalAlignment="Left"  Padding="5" Grid.Row="0"/>
+        <ListBox x:Name="lbLog" Grid.Row="1" Width="553" Foreground="{Binding betu_szin}" Padding="15" FontWeight="Bold" SelectionMode="Extended" IsHitTestVisible="True" Background="{Binding uc_hatter}" Height="118" IsTextSearchCaseSensitive="True" BorderThickness="0" BorderBrush="{Binding uc_hatter}"/>
     </Grid>
 </UserControl>

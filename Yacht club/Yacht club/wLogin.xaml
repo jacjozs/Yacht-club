@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yacht_club"
         mc:Ignorable="d"
-        Title="Login" Height="150" Width="300" WindowStyle="None" ResizeMode="NoResize" Background="#FF2D3446" Icon="images/yachts.ico" WindowStartupLocation="CenterScreen">
+        Title="Login" Height="150" Width="300" WindowStyle="None" ResizeMode="NoResize" Background="#FF2D3446" Icon="images/white/yachts.ico" WindowStartupLocation="CenterScreen">
     <Grid>
         <!-- Login Ablak -->
         <StackPanel x:Name="stLogin" Panel.ZIndex="1" Grid.Row="0" Grid.Column="0" Margin="10" Visibility="Visible">
@@ -19,11 +19,11 @@
                     <PasswordBox x:Name="pbPasswd" Width="140" Height="22" PasswordChar="*" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,6,0,7"  KeyDown="tbLoginName_KeyDown"/>
                 </StackPanel>
                 <StackPanel Width="200" Height="40" HorizontalAlignment="Center">
-                    <Button Style="{DynamicResource Buttons}" x:Name="btBelepes" Content="Bejelentkezés" Width="150" Height="23" FontSize="12" FontWeight="Bold" Background="#2D3446" Foreground="#FFACB5B9" Margin="0,8" Click="btBelepes_Click"/>
+                    <Button Style="{DynamicResource Buttons_log}" x:Name="btBelepes" Content="Bejelentkezés" Width="150" Height="23" FontSize="12" FontWeight="Bold" Background="#2D3446" Foreground="#FFACB5B9" Margin="0,8" Click="btBelepes_Click"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
         <!-- Login Ablak! -->
-        <Button Style="{DynamicResource Buttons_X}" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Margin="262,10,0,0" Click="Button_Click"/>
+        <Button Style="{DynamicResource Buttons_X_log}" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Margin="262,10,0,0" Click="Button_Click"/>
     </Grid>
 </Window>

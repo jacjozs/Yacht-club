@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="334" d:DesignWidth="553">
+             d:DesignHeight="334" d:DesignWidth="553" Background="{Binding uc_hatter}">
     <Grid Background="#FF1D212C">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="309"/>
         </Grid.RowDefinitions>
-        <Label Style="{DynamicResource MenuDecLabel}" Content="Szállitóeszköz bérlés:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+        <Label Style="{DynamicResource MenuDecLabel}" Content="Szállitóeszköz bérlés:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
         <ListView x:Name="lvDevices" Grid.Row="1" Grid.Column="0" MouseDoubleClick="lvYachts_MouseDoubleClick">
             <ListView.View>
                 <GridView>

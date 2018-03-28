@@ -46,6 +46,32 @@ namespace Yacht_club.Database
             }
         }
 
+        public void MysqlUpdateUserLogin(Login UpdateUserLogin)
+        {
+            try
+            {
+                string query = "UPDATE enLogin SET password = ?password, email = ?email, theme = ?theme WHERE login_id = ?login_id;";
+                Globals.connect.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.Parameters.Add("?password", MySqlDbType.VarChar).Value = UpdateUserLogin.jelszo;
+                    cmd.Parameters.Add("?email", MySqlDbType.VarChar).Value = UpdateUserLogin.email;
+                    cmd.Parameters.Add("?theme", MySqlDbType.Int16).Value = UpdateUserLogin.theme;
+                    cmd.Parameters.Add("?login_id", MySqlDbType.Int16).Value = UpdateUserLogin.id;
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception)
+            {
+                Globals.log = "Sikertelen módosítás!";
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+        }
+
         /// <summary>
         /// Az átvett Image-t byte tömbre alakitja
         /// </summary>

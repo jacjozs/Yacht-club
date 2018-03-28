@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using System.Windows.Media;
+using Yacht_club.Moduls;
 
 namespace Yacht_club.UsingControls
 {
@@ -20,7 +22,9 @@ namespace Yacht_club.UsingControls
     public partial class ucBeallitasok : UserControl
     {
         private string filepath = "";
+        private int theme;
         private Felhasznalo user;
+        private Themes tema;
 
         private Database.MysqlSetting data;
         public ucBeallitasok()
@@ -58,6 +62,7 @@ namespace Yacht_club.UsingControls
             {
                 user = Globals.User;
                 user.login = Globals.User.login;
+                user.login.theme = theme;
                 if (tbNickName.Text != "") user.nickname = tbNickName.Text;
                 if (tbFirstName.Text != "") user.veztek_nev = tbFirstName.Text;
                 if (tbLastName.Text != "") user.kereszt_nev = tbLastName.Text;
@@ -70,7 +75,16 @@ namespace Yacht_club.UsingControls
                 if (filepath != "") user.kep = System.Drawing.Image.FromFile(filepath);
 
                 data = new Database.MysqlSetting();
-                if (user != null) data.MysqlUpdateUser(user);
+                if (user != null)
+                {
+                    data.MysqlUpdateUser(user);
+                    data.MysqlUpdateUserLogin(user.login);
+                }
+                if (Globals.OldThemeId != Globals.MainTheme.id)
+                {
+                    Globals.OldThemeId = Globals.MainTheme.id;
+                    MainWindowRefersh();
+                }
             }
             catch (Exception)
             {
@@ -101,6 +115,59 @@ namespace Yacht_club.UsingControls
             tbLakcim.Text = Globals.User.lakcim;
             tbOrszag.Text = Globals.User.orszag;
             tbEmail.Text = Globals.User.login.email;
+        }
+
+        private void Theme_Color(object sender, MouseButtonEventArgs e)
+        {
+            Image Themes = (Image)sender;
+            switch (Themes.Name.ToString())
+            {
+                case "image1":
+                    tema = new Themes(1);
+                    Globals.MainTheme = tema;
+                    theme = 1;
+                    break;
+                case "image2":
+                    tema = new Themes(2);
+                    Globals.MainTheme = tema;
+                    theme = 2;
+                    break;
+                case "image3":
+                    tema = new Themes(3);
+                    Globals.MainTheme = tema;
+                    theme = 3;
+                    break;
+                case "image4":
+                    tema = new Themes(4);
+                    Globals.MainTheme = tema;
+                    theme = 4;
+                    break;
+                case "image5":
+                    tema = new Themes(5);
+                    Globals.MainTheme = tema;
+                    theme = 5;
+                    break;
+                default:
+                    break;
+            }
+        }
+        /// <summary>
+        /// A main ablak frissitése és a kinézetbeli változások alkalmazása
+        /// </summary>
+        private void MainWindowRefersh()
+        {
+            //Ha lehet kellene rá keresni egy takarékosabb megoldást
+            Application.Current.ShutdownMode = ShutdownMode.OnLastWindowClose;
+            //Új szinek beolvasása egy új main ablakba
+            Main_Yacht_Window newWin = new Main_Yacht_Window();
+            //az új ablaknak átadni az eddigi usercontorlokat
+            newWin.ccWindow_2.Content = Globals.Main.ccWindow_2.Content;
+            newWin.ccWindow_1.Content = Globals.Main.ccWindow_1.Content;
+            if (Globals.User.login.admin)
+                newWin.dpRegist.Visibility = Visibility.Visible;
+            Globals.Main.Hide();
+            Globals.Main = newWin;
+            Globals.Main.Show();
         }
     }
 }

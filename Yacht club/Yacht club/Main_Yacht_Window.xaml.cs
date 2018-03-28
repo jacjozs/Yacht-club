@@ -1,21 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Data;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Yacht_club.UsingControls;
 using Yacht_club.UsingControls.Admin;
-using System.Windows.Media.Animation;
 
 namespace Yacht_club
 {
@@ -30,12 +18,16 @@ namespace Yacht_club
         private wLogin Login;
         private wRegistration Register;
 
+        private void Themes_Loading(object sender, RoutedEventArgs e)
+        {
+            DataContext = Globals.MainTheme;
+        }
+
         public Main_Yacht_Window()
         {
             InitializeComponent();
             Logining();
         }
-
         /// <summary>
         /// Ez azért kell hogy amikor a login ablak végéez akkor eltünjön
         /// </summary>
@@ -52,8 +44,8 @@ namespace Yacht_club
         {
             cs_Menu_2.Visibility = Visibility.Visible;
             dpUdvezles.Visibility = Visibility.Visible;
-            if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucKijelzo_1))
-            { ccWindow_2.Content = new ucKijelzo_1(); }
+            if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucBerles))
+            { ccWindow_2.Content = new ucBerles(); }
         }
         /// <summary>
         /// Log bejegyzés hozzáadása az egyes usercontrolhoz

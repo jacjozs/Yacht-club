@@ -67,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Database\MysqlBerles.cs" />
     <Compile Include="Database\MysqlDevice.cs" />
     <Compile Include="Database\MysqlLogin.cs" />
     <Compile Include="Database\MysqlRegistration.cs" />
@@ -76,6 +77,8 @@
     <Compile Include="Moduls\Felhasznalo.cs" />
     <Compile Include="Moduls\Globals.cs" />
     <Compile Include="Moduls\Login.cs" />
+    <Compile Include="Moduls\Message.cs" />
+    <Compile Include="Moduls\Themes.cs" />
     <Compile Include="UsingControls\Admin\ucSzallitok_all.xaml.cs">
       <DependentUpon>ucSzallitok_all.xaml</DependentUpon>
     </Compile>
@@ -281,52 +284,77 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\analysis.png" />
-    <Resource Include="images\coming_document.png" />
-    <Resource Include="images\file.png" />
-    <Resource Include="images\file2.png" />
-    <Resource Include="images\pencil_over.png" />
-    <Resource Include="images\progress.png" />
-    <Resource Include="images\search.png" />
-    <Resource Include="images\settings.png" />
-    <Resource Include="images\statistics.png" />
-    <Resource Include="images\user.png" />
+    <Resource Include="images\white\analysis.png" />
+    <Resource Include="images\white\coming_document.png" />
+    <Resource Include="images\white\file.png" />
+    <Resource Include="images\white\file2.png" />
+    <Resource Include="images\white\pencil_over.png" />
+    <Resource Include="images\white\progress.png" />
+    <Resource Include="images\white\search.png" />
+    <Resource Include="images\white\settings.png" />
+    <Resource Include="images\white\statistics.png" />
+    <Resource Include="images\white\user.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\home.png" />
+    <Resource Include="images\white\home.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\exit.png" />
+    <Resource Include="images\white\exit.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\info_2.png" />
+    <Resource Include="images\white\info_2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\yachts.png" />
+    <Resource Include="images\white\yachts.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\email.png" />
+    <Resource Include="images\white\email.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\user_logout.png" />
+    <Resource Include="images\white\user_logout.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\yachts.ico" />
+    <Resource Include="images\white\yachts.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\user_name.png" />
+    <Resource Include="images\white\user_name.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\back.png" />
+    <Resource Include="images\white\back.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\szallito.png" />
+    <Resource Include="images\white\szallito.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\user_profil.png" />
+    <Resource Include="images\white\user_profil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\white\color_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\white\color_2.png" />
+    <Resource Include="images\white\color_3.png" />
+    <Resource Include="images\white\color_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\white\color_5.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images\black\back.png" />
+    <Resource Include="images\black\email.png" />
+    <Resource Include="images\black\exit.png" />
+    <Resource Include="images\black\home.png" />
+    <Resource Include="images\black\info_2.png" />
+    <Resource Include="images\black\settings.png" />
+    <Resource Include="images\black\szallito.png" />
+    <Resource Include="images\black\user.png" />
+    <Resource Include="images\black\user_logout.png" />
+    <Resource Include="images\black\user_name.png" />
+    <Resource Include="images\black\yachts.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

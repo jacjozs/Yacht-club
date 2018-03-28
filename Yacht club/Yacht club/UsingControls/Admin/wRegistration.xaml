@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yacht_club"
         mc:Ignorable="d"
-        Title="wRegistration" Height="300" Width="700" WindowStyle="None" ResizeMode="NoResize" Background="#FF2D3446" WindowStartupLocation="CenterScreen" Icon="/Yacht club;component/images/yachts.ico">
+        Loaded="Themes_Loading"
+        Title="wRegistration" Height="300" Width="700" WindowStyle="None" ResizeMode="NoResize" Background="{Binding hatter}" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="350*"/>
@@ -40,68 +41,68 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="252" Height="257">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <StackPanel Height="30" Margin="5,2,0,2" Width="92">
-                        <Label Content="Nickname:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Height="16" Padding="0,0,0,0"/>
-                        <Label Content="(Becenév)" Height="10" FontSize="9" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Padding="0,0,0,0"/>
+                        <Label Content="Nickname:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="16" Padding="0,0,0,0"/>
+                        <Label Content="(Becenév)" Height="10" FontSize="9" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Padding="0,0,0,0"/>
                     </StackPanel>
                     <TextBox x:Name="tbNickName" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <Label  Content="Felhasználónév:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                    <Label  Content="Felhasználónév:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbLoginName" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <Label Content="Jelszó:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold"  Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                    <Label Content="Jelszó:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <PasswordBox x:Name="pbPasswd" Width="125" Height="22" PasswordChar="*" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,6,0,7"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <Label Content="Jelszó újra:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold"  Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                    <Label Content="Jelszó újra:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <PasswordBox x:Name="pbRePasswd" Width="125" Height="22" PasswordChar="*" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,6,0,7"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <Label  Content="Email cím:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                    <Label  Content="Email cím:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbEmail" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <CheckBox x:Name="cbAdmin" Content="Admin?" FontWeight="Bold" Foreground="#FFACB5B9" Margin="5,10,0,0"/>
+                    <CheckBox x:Name="cbAdmin" Content="Admin?" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="5,10,0,0"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
         <StackPanel x:Name="stRegist_2" Panel.ZIndex="1" Grid.Row="0" Grid.Column="1" Margin="35,10,10,10">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="252" Height="257">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <Label  Content="Keresztnév:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                    <Label  Content="Keresztnév:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbLastName" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <Label  Content="Vezetéknév:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                    <Label  Content="Vezetéknév:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbFirstName" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="258" Height="35" Cursor="Hand" Margin="0,0,-6,0">
-                    <Label  Content="Születési dátum:" Width="105" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
-                    <DatePicker x:Name="dpSzuletes" Width="135" FirstDayOfWeek="Monday" Cursor="Hand" DisplayDate="01/01/1990" Foreground="#FF1D212C" Margin="0,5,0,5" Background="#FF2D3446" BorderBrush="#FF2D3446" SelectedDateChanged="dpSzuletes_SelectedDateChanged"/>
+                    <Label  Content="Születési dátum:" Width="105" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
+                    <DatePicker x:Name="dpSzuletes" Width="135" FirstDayOfWeek="Monday" Cursor="Hand" DisplayDate="01/01/1990" Foreground="{Binding betu_szin}" Margin="0,5,0,5" Background="{Binding hatter}" BorderBrush="{Binding hatter}"/>
                     <Label x:Name="lbSzuletes_error" Content="*" Width="9" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" FontWeight="Bold" Foreground="Red" Height="16" Padding="0,0,0,0" Margin="0,5,0,14" Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <Label  Content="Város:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                    <Label  Content="Város:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbVaros" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <Label  Content="Irányítószám:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                    <Label  Content="Irányítószám:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbIranyitoszm" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <Label  Content="Lakcím:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                    <Label  Content="Lakcím:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbLakcim" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <Label  Content="Ország:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
+                    <Label  Content="Ország:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbOrszg" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <Button Style="{DynamicResource Buttons}" x:Name="btVissza" Content="Vissza" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Width="75" Margin="25,0,0,30" Click="Button_Click" FontWeight="Bold"/>
-        <Button Style="{DynamicResource Buttons}" x:Name="btRegiszt" Content="Regisztráció" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="150" Height="23" FontSize="12" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Margin="169,0,31,30" Click="btRegiszt_Click"/>
-        <Button Style="{DynamicResource Buttons_X}" x:Name="btKilepes" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Width="20" Margin="0,10,10,0" Click="Button_Click"/>
+        <Button Style="{DynamicResource Buttons}" x:Name="btVissza" Content="Vissza" Background="{Binding hatter}" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Width="75" Margin="25,0,0,30" Click="Button_Click" FontWeight="Bold"/>
+        <Button Style="{DynamicResource Buttons}" x:Name="btRegiszt" Content="Regisztráció" Background="{Binding hatter}" Foreground="{Binding betu_szin}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="150" Height="23" FontSize="12" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Margin="169,0,31,30" Click="btRegiszt_Click"/>
+        <Button Style="{DynamicResource Buttons_X}" x:Name="btKilepes" Content="X" Background="{Binding hatter}"  Foreground="{Binding betu_szin}" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Width="20" Margin="0,10,10,0" Click="Button_Click"/>
 
         <!-- Regisztracios Ablak! -->
 

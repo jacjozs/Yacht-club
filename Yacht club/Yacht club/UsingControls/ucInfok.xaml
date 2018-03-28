@@ -5,16 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="334" d:DesignWidth="553">
-    <Grid Background="#FF1D212C">
+             d:DesignHeight="334" d:DesignWidth="553" Background="{Binding uc_hatter}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="309"/>
         </Grid.RowDefinitions>
-        <Label Style="{DynamicResource MenuDecLabel}" Content="Információk:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+        <Label Style="{DynamicResource MenuDecLabel}" Content="Információk:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
         <StackPanel HorizontalAlignment="Left" Height="309" VerticalAlignment="Top" Width="553" Grid.Row="1" Grid.Column="0">
-            <Label Style="{DynamicResource MenuDecLabel}" Content="Elerhetőség: "/>
-            <Label Style="{DynamicResource MenuDecLabel}" Content="Készítők: "/>
+            <Label Style="{DynamicResource MenuDecLabel}" Content="Elerhetőség: " Foreground="{Binding betu_szin}"/>
+            <Label Style="{DynamicResource MenuDecLabel}" Content="Készítők: " Foreground="{Binding betu_szin}"/>
         </StackPanel>
 
     </Grid>

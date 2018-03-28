@@ -36,6 +36,7 @@ namespace Yacht_club.Database
                         user.utolsoLogin = DateTime.Parse(read["last_login"].ToString());
                         user.felhasznalonev = login_name;
                         user.jelszo = password;
+                        user.theme = (int)read["theme"];
                         if ((int)read["admin"] == 1)
                             user.admin = true;
                         else user.admin = false;

@@ -42,23 +42,27 @@ namespace Yacht_club
         private void Login()
         {
             data = new Database.MysqlLogin();
-            Globals.Main = new Main_Yacht_Window();
             //A kikereset és ellenörzött adatok bevitele a main user változoba
             //Egyfajta átadás
             Felhasznalo user_login = data.MysqlFelhasznalo(tbLoginName.Text, pbPasswd.Password);
             if (user_login != null)
             {
+                Globals.OldThemeId = user_login.login.theme;
+                Globals.MainTheme = new Moduls.Themes(Globals.OldThemeId);
+                Globals.Main = new Main_Yacht_Window();
                 Globals.User = user_login;
                 Globals.Main.lbNickname.Content = user_login.nickname + "!";
                 Globals.User.login.utolsoLogin = DateTime.Now.Date;
-                if (Globals.User.login.admin) { Globals.Main.dpRegist.Visibility = Visibility.Visible; }
+                if (Globals.User.login.admin)
+                    Globals.Main.dpRegist.Visibility = Visibility.Visible;
                 Globals.Main.logAdd(false);
-                //A login ablak eltünéséhez szükséges
+                //A login ablak eltüntetése
                 Globals.Main.Owner = this;
                 this.Hide();
                 Globals.Main.ShowDialog();
             }
-            else { MessageBox.Show("Hibás felhasználónév vagy jelszó", "Hiba!", MessageBoxButton.OK); }
+            else
+                MessageBox.Show("Hibás felhasználónév vagy jelszó", "Hiba!", MessageBoxButton.OK);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
