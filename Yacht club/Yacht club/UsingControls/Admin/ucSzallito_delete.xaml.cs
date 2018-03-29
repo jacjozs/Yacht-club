@@ -20,6 +20,7 @@ namespace Yacht_club.UsingControls
     /// </summary>
     public partial class ucSzallito_delete : UserControl
     {
+        private wMessage Message;
         Database.MysqlDevice data;
         private List<Device> Devices;
         public ucSzallito_delete()
@@ -50,56 +51,64 @@ namespace Yacht_club.UsingControls
                 Label ID = new Label();
                 ID.Content = "ID: " + Devices[i].id;
                 ID.Style = MenuStackLabel;
+                ID.Width = 110;
 
                 Label Tipus = new Label();
                 Tipus.Content = "Típus: " + Devices[i].tipus;
                 Tipus.Style = MenuStackLabel;
+                Tipus.Width = 110;
 
                 panel2.Children.Add(ID);
                 panel2.Children.Add(Tipus);
 
                 StackPanel panel3 = new StackPanel();
-                panel3.Width = 150;
+                panel3.Width = 180;
                 panel3.Height = 40;
 
                 Label Napiar = new Label();
                 Napiar.Content = "Napi ár: " + Devices[i].napi_ar;
                 Napiar.Style = MenuStackLabel;
+                Napiar.Width = 180;
 
                 Label Tulaj = new Label();
                 Tulaj.Content = "Tulajdonos: " + Devices[i].full_name;
                 Tulaj.Style = MenuStackLabel;
+                Tulaj.Width = 180;
 
                 panel3.Children.Add(Napiar);
                 panel3.Children.Add(Tulaj);
 
                 StackPanel panel4 = new StackPanel();
-                panel4.Width = 150;
+                panel4.Width = 120;
                 panel4.Height = 40;
 
                 Label Teherbiras = new Label();
                 Teherbiras.Content = "Teherbirás: " + Devices[i].max_suly;
                 Teherbiras.Style = MenuStackLabel;
+                Teherbiras.Width = 120;
 
                 Label Magas = new Label();
                 Magas.Content = "Magas: " + Devices[i].max_magas;
                 Magas.Style = MenuStackLabel;
+                Magas.Width = 120;
 
                 panel4.Children.Add(Teherbiras);
                 panel4.Children.Add(Magas);
 
                 StackPanel panel5 = new StackPanel();
-                panel5.Width = 150;
+                panel5.Width = 100;
                 panel5.Height = 40;
                 panel5.HorizontalAlignment = HorizontalAlignment.Left;
 
                 Label Szeles = new Label();
                 Szeles.Content = "Széles: " + Devices[i].max_szeles;
                 Szeles.Style = MenuStackLabel;
+                Szeles.Width = 100;
 
                 Label Hosszu = new Label();
                 Hosszu.Content = "Hosszú: " + Devices[i].max_hossz;
                 Hosszu.Style = MenuStackLabel;
+                Hosszu.Width = 100;
 
                 panel5.Children.Add(Szeles);
                 panel5.Children.Add(Hosszu);
@@ -119,20 +128,9 @@ namespace Yacht_club.UsingControls
 
             StackPanel device = (StackPanel)sender;
             int id = int.Parse(device.Name.Substring(1));
-            MessageBoxResult delete = MessageBox.Show("Biztos törölni szeretnéd?", "Szállitóeszköz törlés", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (delete == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    data.MysqlDeleteDevice(id);
-                    Loading();
-                    Globals.log = "Törlés Sikeres! <Szállitóeszköz>";
-                }
-                catch (Exception)
-                {
-                    Globals.log = "Törlés Sikertelen! <Szállitóeszköz>";
-                }
-            }
+            Message = new wMessage(4, id);
+            Globals.Main.Opacity = 0.6;
+            Message.ShowDialog();
         }
     }
 }

@@ -41,7 +41,7 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="252" Height="257">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <StackPanel Height="30" Margin="5,2,0,2" Width="92">
-                        <Label Content="Nickname:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="16" Padding="0,0,0,0"/>
+                        <Label Content="Nickname:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="16" Padding="0"/>
                         <Label Content="(Becenév)" Height="10" FontSize="9" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Padding="0,0,0,0"/>
                     </StackPanel>
                     <TextBox x:Name="tbNickName" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>

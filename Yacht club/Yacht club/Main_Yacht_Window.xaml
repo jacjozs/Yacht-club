@@ -53,11 +53,11 @@
             </DockPanel>
             <DockPanel x:Name="dpInfo" Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Cursor="Hand" MouseLeftButtonDown="dpMouse_Click" Grid.Row="1" Canvas.Top="315" >
                 <Label Content="Információk" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="{Binding menu_betu_szin}" FontWeight="Bold"/>
-                <Image Width="25" Height="25" Style="{StaticResource IconsEmail}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10"/>
+                <Image Width="25" Height="25" Style="{StaticResource IconsInfo_2}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10"/>
             </DockPanel>
             <DockPanel x:Name="dpRegist" Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Cursor="Hand" MouseLeftButtonDown="dpMouse_Click" Grid.Row="1" Canvas.Top="360" Visibility="Hidden">
                 <Label Content="Regisztráció" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="{Binding menu_betu_szin}" FontWeight="Bold"/>
-                <Image Width="25" Height="25" Style="{StaticResource IconsInfo_2}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10"/>
+                <Image Width="25" Height="25" Style="{StaticResource IconsUser}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10"/>
             </DockPanel>
             <DockPanel x:Name="dpKilepes" Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Cursor="Hand" MouseLeftButtonDown="dpMouse_Click" Grid.Row="1" Canvas.Top="405">
                 <Label Content="Kilépés" Width="150" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontSize="14" Foreground="{Binding menu_betu_szin}" FontWeight="Bold"/>

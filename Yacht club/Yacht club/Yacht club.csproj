@@ -149,6 +149,9 @@
       <DependentUpon>wRegistration.xaml</DependentUpon>
     </Compile>
     <Compile Include="Moduls\Yacht.cs" />
+    <Compile Include="wMessage.xaml.cs">
+      <DependentUpon>wMessage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Main_Yacht_Window.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -278,6 +281,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsingControls\Admin\wRegistration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="wMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,8 +15,8 @@ namespace Yacht_club
         /// <summary>
         /// Ablakok meghívásához szukséges objektum példányok
         /// </summary>
-        private wLogin Login;
         private wRegistration Register;
+        private wMessage Message;
 
         private void Themes_Loading(object sender, RoutedEventArgs e)
         {
@@ -81,12 +81,9 @@ namespace Yacht_club
                         userFelhasznalo.ProfilImgLoad(); }
                     break;
                 case "dpKijelentkezes":
-                    Login = new wLogin();
-                    Login.Owner = this;
-                    Globals.log_windows.delete();
-                    Globals.User = null;
-                    this.Hide();
-                    Login.ShowDialog();
+                    Message = new wMessage(2, 0);
+                    Globals.Main.Opacity = 0.6;
+                    Message.ShowDialog();
                     break;
                 case "dpYaktok":
                     if (Globals.User.login.admin)
@@ -142,12 +139,12 @@ namespace Yacht_club
                 case "dpRegist":
                     Register = new wRegistration();
                     MainWindow.Opacity = 0.6;
-                    Register.Show();
+                    Register.ShowDialog();
                     break;
                 case "dpKilepes":
-                    MessageBoxResult kilepes = MessageBox.Show("Biztos kiszeretne lépni?", "Kilépés", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (kilepes == MessageBoxResult.Yes)
-                        Application.Current.Shutdown();
+                    Message = new wMessage(1, 0);
+                    Globals.Main.Opacity = 0.6;
+                    Message.ShowDialog();
                     break;
                 default:
                     break;

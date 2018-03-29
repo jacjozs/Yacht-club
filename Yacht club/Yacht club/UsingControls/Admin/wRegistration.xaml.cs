@@ -29,7 +29,6 @@ namespace Yacht_club
         {
             DataContext = Globals.MainTheme;
         }
-
         public wRegistration()
         {
             InitializeComponent();

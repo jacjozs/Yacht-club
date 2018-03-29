@@ -21,6 +21,7 @@ namespace Yacht_club.UsingControls
     public partial class ucYacht_delete : UserControl
     {
         List<Yacht> Yachts;
+        private wMessage Message;
         Database.MysqlYacht data;
         public ucYacht_delete()
         {
@@ -41,7 +42,7 @@ namespace Yacht_club.UsingControls
                 panel.Height = 45;
                 panel.Width = 533;
                 panel.MouseDown += new MouseButtonEventHandler(dpMouse_Click);
-                panel.Name = "Y" + i.ToString();
+                panel.Name = "Y" + Yachts[i].id;
 
                 StackPanel panel2 = new StackPanel();
                 panel2.Width = 110;
@@ -120,20 +121,9 @@ namespace Yacht_club.UsingControls
         {
             StackPanel device = (StackPanel)sender;
             int id = int.Parse(device.Name.Substring(1));
-            MessageBoxResult delete = MessageBox.Show("Biztos törölni szeretnéd?", "Yacht törlés", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (delete == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    data.MysqlDeleteYacht(id);
-                    Loading();
-                    Globals.log = "Törlés Sikeres! <Yach>";
-                }
-                catch (Exception)
-                {
-                    Globals.log = "Törlés Sikertelen! <Yach>";
-                }
-            }
+            Message = new wMessage(3, id);
+            Globals.Main.Opacity = 0.6;
+            Message.ShowDialog();
         }
     }
 }
