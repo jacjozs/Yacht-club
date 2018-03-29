@@ -1,0 +1,137 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Yacht_club.Moduls.Style">
+
+    <Style x:Key="IconsHome" TargetType="{x:Type Image}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <DataTrigger Value="True" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\black\home.png"/>
+            </DataTrigger>
+            <DataTrigger Value="False" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\white\home.png"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="IconsUser" TargetType="{x:Type Image}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <DataTrigger Value="True" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\black\user.png"/>
+            </DataTrigger>
+            <DataTrigger Value="False" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\white\user.png"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="IconsUserLogout" TargetType="{x:Type Image}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <DataTrigger Value="True" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\black\user_logout.png"/>
+            </DataTrigger>
+            <DataTrigger Value="False" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\white\user_logout.png"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="IconsYachts" TargetType="{x:Type Image}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <DataTrigger Value="True" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\black\yachts.png"/>
+            </DataTrigger>
+            <DataTrigger Value="False" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\white\yachts.png"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="IconsSzallito" TargetType="{x:Type Image}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <DataTrigger Value="True" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\black\szallito.png"/>
+            </DataTrigger>
+            <DataTrigger Value="False" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\white\szallito.png"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="IconsEmail" TargetType="{x:Type Image}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <DataTrigger Value="True" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\black\email.png"/>
+            </DataTrigger>
+            <DataTrigger Value="False" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\white\email.png"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="IconsSettings" TargetType="{x:Type Image}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <DataTrigger Value="True" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\black\settings.png"/>
+            </DataTrigger>
+            <DataTrigger Value="False" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\white\settings.png"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style x:Key="IconsInfo_2" TargetType="{x:Type Image}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <DataTrigger Value="True" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\black\info_2.png"/>
+            </DataTrigger>
+            <DataTrigger Value="False" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\white\info_2.png"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="IconsExit" TargetType="{x:Type Image}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <DataTrigger Value="True" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\black\exit.png"/>
+            </DataTrigger>
+            <DataTrigger Value="False" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\white\exit.png"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="IconsBack" TargetType="{x:Type Image}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <DataTrigger Value="True" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\black\back.png"/>
+            </DataTrigger>
+            <DataTrigger Value="False" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\white\back.png"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="IconsUserName" TargetType="{x:Type Image}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Triggers>
+            <DataTrigger Value="True" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\black\user_name.png"/>
+            </DataTrigger>
+            <DataTrigger Value="False" Binding="{Binding icon_black}">
+                <Setter Property="Source" Value="..\..\images\white\user_name.png"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

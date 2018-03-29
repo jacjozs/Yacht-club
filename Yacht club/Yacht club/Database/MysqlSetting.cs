@@ -45,7 +45,10 @@ namespace Yacht_club.Database
                 Globals.connect.Close();
             }
         }
-
+        /// <summary>
+        /// A login adatok frissitése
+        /// </summary>
+        /// <param name="UpdateUserLogin">Login adatok</param>
         public void MysqlUpdateUserLogin(Login UpdateUserLogin)
         {
             try

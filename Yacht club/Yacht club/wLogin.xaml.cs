@@ -47,10 +47,9 @@ namespace Yacht_club
             Felhasznalo user_login = data.MysqlFelhasznalo(tbLoginName.Text, pbPasswd.Password);
             if (user_login != null)
             {
+                Globals.User = user_login;
                 Globals.MainTheme = new Moduls.Themes(user_login.login.theme);
                 Globals.Main = new Main_Yacht_Window();
-                Globals.User = user_login;
-                Globals.Main.lbNickname.Content = user_login.nickname + "!";
                 Globals.User.login.utolsoLogin = DateTime.Now.Date;
                 if (Globals.User.login.admin)
                     Globals.Main.dpRegist.Visibility = Visibility.Visible;

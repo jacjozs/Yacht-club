@@ -44,8 +44,7 @@ namespace Yacht_club
         {
             cs_Menu_2.Visibility = Visibility.Visible;
             dpUdvezles.Visibility = Visibility.Visible;
-            if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucBerles))
-            { ccWindow_2.Content = new ucBerles(); }
+            ccWindow_2.Content = new ucKijelzo_1();
         }
         /// <summary>
         /// Log bejegyzés hozzáadása az egyes usercontrolhoz
@@ -143,7 +142,7 @@ namespace Yacht_club
                 case "dpRegist":
                     Register = new wRegistration();
                     MainWindow.Opacity = 0.6;
-                    Register.ShowDialog();
+                    Register.Show();
                     break;
                 case "dpKilepes":
                     MessageBoxResult kilepes = MessageBox.Show("Biztos kiszeretne lépni?", "Kilépés", MessageBoxButton.YesNo, MessageBoxImage.Question);

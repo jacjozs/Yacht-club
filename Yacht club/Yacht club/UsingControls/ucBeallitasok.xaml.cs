@@ -61,6 +61,7 @@ namespace Yacht_club.UsingControls
             {
                 user = Globals.User;
                 user.login = Globals.User.login;
+                Theme_Colors();
                 if (tbNickName.Text != "") user.nickname = tbNickName.Text;
                 if (tbFirstName.Text != "") user.veztek_nev = tbFirstName.Text;
                 if (tbLastName.Text != "") user.kereszt_nev = tbLastName.Text;
@@ -71,40 +72,41 @@ namespace Yacht_club.UsingControls
                 if (pbPasswd.Password != "" && passwdEllenorzes(pbOldPasswd.Password, pbPasswd.Password, pbRePasswd.Password)) user.login.jelszo = pbPasswd.Password;
                 if (tbEmail.Text != "") user.login.email = tbEmail.Text;
                 if (filepath != "") user.kep = System.Drawing.Image.FromFile(filepath);
-
+                ///Fontos a sorrend!
                 data = new Database.MysqlSetting();
-                if (user != null)
-                {
-                    data.MysqlUpdateUser(user);
-                    data.MysqlUpdateUserLogin(user.login);
-                }
-                Theme_Colors();
-                if (tema != null)
+                data.MysqlUpdateUser(user);
+                if (tema != null && tema.id != Globals.MainTheme.id)
                 {
                     Globals.MainTheme = tema;
                     user.login.theme = tema.id;
                     MainWindowRefersh();
                 }
+                data.MysqlUpdateUserLogin(user.login);
             }
             catch (Exception)
             {
                 Globals.log = "Módosítás Sikertelen! <Beállitások>";
             }
-            finally
-            {
-                Globals.Main.lbNickname.Content = user.nickname + "!";
-            }
             Globals.User = user;
             Globals.log = "Módosítás Sikeres! <Beállitások>";
             Globals.Main.logAdd(true);
         }
-
+        /// <summary>
+        /// Jelszo ellenörzése
+        /// Nem teljes
+        /// </summary>
+        /// <param name="regi"></param>
+        /// <param name="uj"></param>
+        /// <param name="reUj"></param>
+        /// <returns></returns>
         private bool passwdEllenorzes(string regi, string uj, string reUj)
         {
             if (regi == Globals.User.login.jelszo && uj == reUj) return true;
             return false;
         }
-
+        /// <summary>
+        /// Textboxokba a meglévő adatok beírása
+        /// </summary>
         public void logining()
         {
             tbNickName.Text = Globals.User.nickname;

@@ -6,22 +6,14 @@
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
              d:DesignHeight="334" d:DesignWidth="553" Background="{Binding uc_hatter}">
-    <Grid Background="#FF1D212C">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="309"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Szállitóeszköz bérlés:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-        <ListView x:Name="lvDevices" Grid.Row="1" Grid.Column="0" MouseDoubleClick="lvYachts_MouseDoubleClick">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding id}" Width="45"/>
-                    <GridViewColumn Header="Név" DisplayMemberBinding="{Binding nev}" Width="135"/>
-                    <GridViewColumn Header="Tulajdonos" DisplayMemberBinding="{Binding full_name}" Width="135"/>
-                    <GridViewColumn Header="Férőhely" DisplayMemberBinding="{Binding ferohely}" Width="90"/>
-                    <GridViewColumn Header="Helyzet" DisplayMemberBinding="{Binding kikoto}" Width="90"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ScrollViewer Name="Scrollwiewr" Margin="10" VerticalScrollBarVisibility="Auto" Width="533" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
+            <StackPanel Name="spList" Width="533"/>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -15,25 +15,25 @@
         <!-- Regisztracios Ablak -->
         <Canvas Panel.ZIndex="2" Background="Transparent" Height="200" Margin="255,20,0,80">
             <StackPanel x:Name="spFelhasznalonev_error" Orientation="Vertical" Canvas.Left="0" Width="95" Height="25" Canvas.Top="40" Visibility="Hidden">
-                <TextBox Height="15" Width="95" Style="{DynamicResource ErrorTextBox_Felhasznalonev}" Text="Foglalt" x:Name="tbFelhasznalonev_error" Background="Transparent" BorderBrush="Transparent"/>
+                <TextBox Height="15" Width="95" Style="{StaticResource ErrorTextBox_Felhasznalonev}" Text="Foglalt" x:Name="tbFelhasznalonev_error" Background="Transparent" BorderBrush="Transparent"/>
                 <Label Content="*" Height="10" HorizontalAlignment="Left" x:Name="lbFelhasznalonev_error" VerticalAlignment="Top" FontWeight="Bold" Foreground="Red" Padding="0,0,0,0" Width="34"/>
             </StackPanel>
             <StackPanel x:Name="spPasswd_error" Orientation="Vertical" Canvas.Left="0" Width="95" Height="25" Canvas.Top="75" Visibility="Hidden">
-                <TextBox Height="15" Width="95" Style="{DynamicResource ErrorTextBox_Jelszo}" Text="Nem egyezik" x:Name="tbPasswd_error" Background="Transparent" BorderBrush="Transparent"/>
+                <TextBox Height="15" Width="95" Style="{StaticResource ErrorTextBox_Jelszo}" Text="Nem egyezik" x:Name="tbPasswd_error" Background="Transparent" BorderBrush="Transparent"/>
                 <Label Content="*" Height="10" HorizontalAlignment="Left" x:Name="lbPasswd_error" VerticalAlignment="Top" FontWeight="Bold" Foreground="Red" Padding="0,0,0,0" Width="34"/>
             </StackPanel>
             <StackPanel x:Name="spRePasswd_error" Orientation="Vertical" Canvas.Left="0" Width="95" Height="25" Canvas.Top="110" Visibility="Hidden">
-                <TextBox Height="15" Width="95" Style="{DynamicResource ErrorTextBox_ReJelszo}" Text="Nem egyezik" x:Name="tbRePasswd_error" Background="Transparent" BorderBrush="Transparent"/>
+                <TextBox Height="15" Width="95" Style="{StaticResource ErrorTextBox_ReJelszo}" Text="Nem egyezik" x:Name="tbRePasswd_error" Background="Transparent" BorderBrush="Transparent"/>
                 <Label Content="*" Height="10" HorizontalAlignment="Left" x:Name="lbRePasswd_error" VerticalAlignment="Top" FontWeight="Bold" Foreground="Red" Padding="0,0,0,0" Width="34"/>
             </StackPanel>
             <StackPanel x:Name="spEmail_error" Orientation="Vertical" Canvas.Left="0" Width="95" Height="25" Canvas.Top="145" Visibility="Hidden">
-                <TextBox Height="15" Width="95" Style="{DynamicResource ErrorTextBox_Email}" Text="Már létezik" x:Name="tbmail_error" Background="Transparent" BorderBrush="Transparent"/>
+                <TextBox Height="15" Width="95" Style="{StaticResource ErrorTextBox_Email}" Text="Már létezik" x:Name="tbmail_error" Background="Transparent" BorderBrush="Transparent"/>
                 <Label Content="*" Height="10" HorizontalAlignment="Left" x:Name="lbEmail_error" VerticalAlignment="Top" FontWeight="Bold" Foreground="Red" Padding="0,0,0,0" Width="34"/>
             </StackPanel>
         </Canvas>
         <Canvas Panel.ZIndex="2" Background="Transparent" Grid.Column="1" Margin="279,166,10,101">
             <StackPanel x:Name="spIranyitoszm_error" Orientation="Vertical" Canvas.Left="0" Width="64" Height="25" Canvas.Top="0" Visibility="Hidden">
-                <TextBox Height="15" Style="{DynamicResource ErrorTextBox_Iranyitoszm}" Text="Hibás adat" x:Name="tbIranyitoszm_error" Background="Transparent" BorderBrush="Transparent" Margin="0"/>
+                <TextBox Height="15" Style="{StaticResource ErrorTextBox_Iranyitoszm}" Text="Hibás adat" x:Name="tbIranyitoszm_error" Background="Transparent" BorderBrush="Transparent" Margin="0"/>
                 <Label Content="*" Height="10" HorizontalAlignment="Left" x:Name="lbIranyitoszm_error" VerticalAlignment="Top" FontWeight="Bold" Foreground="Red" Padding="0,0,0,0" Width="34"/>
             </StackPanel>
         </Canvas>
@@ -100,12 +100,9 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <Button Style="{DynamicResource Buttons}" x:Name="btVissza" Content="Vissza" Background="{Binding hatter}" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Width="75" Margin="25,0,0,30" Click="Button_Click" FontWeight="Bold"/>
-        <Button Style="{DynamicResource Buttons}" x:Name="btRegiszt" Content="Regisztráció" Background="{Binding hatter}" Foreground="{Binding betu_szin}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="150" Height="23" FontSize="12" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Margin="169,0,31,30" Click="btRegiszt_Click"/>
-        <Button Style="{DynamicResource Buttons_X}" x:Name="btKilepes" Content="X" Background="{Binding hatter}"  Foreground="{Binding betu_szin}" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Width="20" Margin="0,10,10,0" Click="Button_Click"/>
-
+        <Button Style="{StaticResource Buttons}" x:Name="btVissza" Content="Vissza" Background="{Binding hatter}" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Width="75" Margin="25,0,0,30" Click="Button_Click" FontWeight="Bold"/>
+        <Button Style="{StaticResource Buttons}" x:Name="btRegiszt" Content="Regisztráció" Background="{Binding hatter}" Foreground="{Binding betu_szin}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="150" Height="23" FontSize="12" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Margin="169,0,31,30" Click="btRegiszt_Click"/>
+        <Button Style="{StaticResource Buttons_X}" x:Name="btKilepes" Content="X" Background="{Binding hatter}"  Foreground="{Binding betu_szin}" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Width="20" Margin="0,10,10,0" Click="Button_Click"/>
         <!-- Regisztracios Ablak! -->
-
-
     </Grid>
 </Window>

@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -79,7 +80,6 @@ namespace Yacht_club
             {
                 Globals.log = "Sikeres Regisztráció!";
             }
-            if (Globals.User.login.admin) { Globals.Main.dpRegist.Visibility = Visibility.Visible; }
             Globals.Main.MainWindow.Opacity = 1;
             Globals.Main.logAdd(true);
             this.Hide();

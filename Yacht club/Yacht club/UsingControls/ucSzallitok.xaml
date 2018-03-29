@@ -6,28 +6,14 @@
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
              d:DesignHeight="334" d:DesignWidth="553" Background="{Binding uc_hatter}">
-    <Grid Background="#FF1D212C">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="309"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Szállitóeszközök:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-        <ListView x:Name="listView" Height="309" Width="553" Grid.Row="1" Grid.Column="0">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" Width="110.5"/>
-                    <GridViewColumn Header="Bérlő" Width="110.5"/>
-                    <GridViewColumn Header="Méret" Width="110.5"/>
-                    <GridViewColumn Header="Foglalt?" Width="110.5"/>
-                    <GridViewColumn Header="Adatok" Width="110.5">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button x:Name="btSzallito_adat" Content="Megtekintés" HorizontalAlignment="Center" Width="75"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ScrollViewer Name="Scrollwiewr" Margin="10" VerticalScrollBarVisibility="Auto" Width="533" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
+            <StackPanel Name="spList" Width="533"/>
+        </ScrollViewer>
     </Grid>
 </UserControl>

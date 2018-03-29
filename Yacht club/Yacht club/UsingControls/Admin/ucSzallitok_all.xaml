@@ -12,15 +12,8 @@
             <RowDefinition Height="309"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Szállitóeszközök:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-        <ListView x:Name="lvDeviceAll" Height="309" Width="553" Grid.Row="1" Grid.Column="0">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding id}" Width="45"/>
-                    <GridViewColumn Header="Tulajdonos" DisplayMemberBinding="{Binding full_name}" Width="200"/>
-                    <GridViewColumn Header="Bérlő" DisplayMemberBinding="{Binding berlo_full_name}" Width="180"/>
-                    <GridViewColumn Header="Foglalt?" DisplayMemberBinding="{Binding strfoglalt}" Width="120"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ScrollViewer Name="Scrollwiewr" Margin="10" VerticalScrollBarVisibility="Auto" Width="533" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
+            <StackPanel Name="spList" Width="533"/>
+        </ScrollViewer>
     </Grid>
 </UserControl>

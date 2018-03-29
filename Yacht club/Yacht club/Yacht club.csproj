@@ -161,6 +161,34 @@
       <DependentUpon>Main_Yacht_Window.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Moduls\Style\Control.Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Moduls\Style\Control.Dockpanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Moduls\Style\Control.Error.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Moduls\Style\Control.Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Moduls\Style\Control.Labels.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Moduls\Style\Control.List.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Moduls\Style\Control.Radiobutton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UsingControls\Admin\ucSzallitok_all.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

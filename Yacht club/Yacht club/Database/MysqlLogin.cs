@@ -20,7 +20,7 @@ namespace Yacht_club.Database
         /// <returns></returns>
         private Login Mysql_Login(string login_name, string password)
         {
-            Login user = new Login();
+            Login user = null;
             try
             {
                 string query = "SELECT * FROM enLogin WHERE login_name = ?login_name AND password = ?password;";
@@ -32,6 +32,7 @@ namespace Yacht_club.Database
                     MySqlDataReader read = cmd.ExecuteReader();
                     while (read.Read())
                     {
+                        user = new Login();
                         user.email = read["email"].ToString();
                         user.utolsoLogin = DateTime.Parse(read["last_login"].ToString());
                         user.felhasznalonev = login_name;
@@ -63,7 +64,7 @@ namespace Yacht_club.Database
             user.login = Mysql_Login(login_name, password);
             try
             {
-                if (user.login.id != 0)
+                if (user.login != null)
                 {
                     string query = "SELECT * FROM enYacht_Club_Tag INNER JOIN enzipcode USING(zip_code) WHERE member_id = ?member_id;";
                     using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
@@ -88,6 +89,7 @@ namespace Yacht_club.Database
                         }
                     }
                 }
+                else return null;
             }
             catch (MySqlException ex)
             {
