@@ -2,7 +2,6 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Yacht_club"
-             xmlns:local1="clr-namespace:Yacht_club.Moduls"
              StartupUri="wLogin.xaml">
     <Application.Resources>
         <ResourceDictionary>
