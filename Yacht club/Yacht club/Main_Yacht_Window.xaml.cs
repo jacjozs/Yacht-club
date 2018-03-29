@@ -17,12 +17,22 @@ namespace Yacht_club
         /// </summary>
         private wRegistration Register;
         private wMessage Message;
-
+        /// <summary>
+        /// Téma betöltése
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Themes_Loading(object sender, RoutedEventArgs e)
+        {
+            UpdateTheme();
+        }
+        /// <summary>
+        /// Téma újratöltése a DataContext-be
+        /// </summary>
+        public void UpdateTheme()
         {
             DataContext = Globals.MainTheme;
         }
-
         public Main_Yacht_Window()
         {
             InitializeComponent();

@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
-using System.Windows.Media;
 using Yacht_club.Moduls;
 
 namespace Yacht_club.UsingControls
@@ -79,7 +69,7 @@ namespace Yacht_club.UsingControls
                 {
                     Globals.MainTheme = tema;
                     user.login.theme = tema.id;
-                    MainWindowRefersh();
+                    Globals.Main.UpdateTheme();
                 }
                 data.MysqlUpdateUserLogin(user.login);
             }
@@ -133,25 +123,6 @@ namespace Yacht_club.UsingControls
                 tema = new Themes(4);
             else if (rbCheckImage5.IsChecked == true && Globals.MainTheme.id != 5)
                 tema = new Themes(5);
-        }
-
-        /// <summary>
-        /// A main ablak frissitése és a kinézetbeli változások alkalmazása
-        /// </summary>
-        private void MainWindowRefersh()
-        {
-            //Ha lehet kellene rá keresni egy takarékosabb megoldást
-            Application.Current.ShutdownMode = ShutdownMode.OnLastWindowClose;
-            //Új szinek beolvasása egy új main ablakba
-            Main_Yacht_Window newWin = new Main_Yacht_Window();
-            //az új ablaknak átadni az eddigi usercontorlokat
-            newWin.ccWindow_2.Content = Globals.Main.ccWindow_2.Content;
-            newWin.ccWindow_1.Content = Globals.Main.ccWindow_1.Content;
-            if (Globals.User.login.admin)
-                newWin.dpRegist.Visibility = Visibility.Visible;
-            Globals.Main.Hide();
-            Globals.Main = newWin;
-            Globals.Main.Show();
         }
     }
 }
