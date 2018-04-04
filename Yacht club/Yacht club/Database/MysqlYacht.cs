@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows;
 using System.IO;
+using System;
+using System.Windows.Media.Imaging;
+
 
 namespace Yacht_club.Database
 {
@@ -80,6 +83,35 @@ namespace Yacht_club.Database
             }
             return login;
         }
+
+        public Dictionary<string, int> MysqlYachtPortName()
+        {
+            Dictionary<string, int> ports = new Dictionary<string, int>();
+            try
+            {
+                string query = "SELECT name, port_id FROM enPort;";
+                Globals.connect.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.ExecuteNonQuery();
+                    MySqlDataReader read = cmd.ExecuteReader();
+                    while (read.Read())
+                    {
+                        ports.Add(read["name"].ToString(), (int)read["port_id"]);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+            return ports;
+        }
+
         /// <summary>
         /// Yacht törlés yacht_id alapján
         /// </summary>
@@ -135,6 +167,7 @@ namespace Yacht_club.Database
                         full_name = read["first_name"].ToString();
                         full_name += " " + read["last_name"].ToString();
                         yacht.full_name = full_name;
+                        yacht.member_id = (int)read["ower"];
                         if (read["renter"].ToString() == "")
                         {
                             yacht.berlo_full_name = "Nincs bérbe adva";
@@ -196,6 +229,7 @@ namespace Yacht_club.Database
                     while (read.Read())
                     {
                         Yacht yacht = new Yacht();
+                        yacht.member_id = id;
                         yacht.berelheto = false;
                         yacht.blfoglalt = false;
                         yacht.strfoglalt = "Szabad";
@@ -346,6 +380,68 @@ namespace Yacht_club.Database
             return full_name;
         }
 
+        public BitmapImage MysqlYachtImage(int id)
+        {
+            BitmapImage image = null;
+            try
+            {
+                string query = "SELECT Image FROM enYacht WHERE yacht_id = ?yacht_id;";
+                Globals.connect.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.Parameters.Add("?yacht_id", MySqlDbType.Int16).Value = id;
+                    try
+                    { image = ByteToImage((byte[])cmd.ExecuteScalar()); }
+                    catch (Exception)
+                    { image = null; }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+            return image;
+        }
+
+        public void MysqlUpdateYacht(Yacht UpdateYacht)
+        {
+            try
+            {
+                string query = "UPDATE enYacht SET name = ?name, type = ?type, image = ?image, seats = ?seats, hire = ?hire, busy = ?busy, daly_price = ?daly_price, width = ?width, lenght = ?lenght, height = ?height, weight = ?weight, port_id = ?port_id WHERE yacht_id = ?yacht_id;";
+                Globals.connect.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.Parameters.Add("?yacht_id", MySqlDbType.Int16).Value = UpdateYacht.id;
+                    cmd.Parameters.Add("?name", MySqlDbType.VarChar).Value = UpdateYacht.nev;
+                    cmd.Parameters.Add("?type", MySqlDbType.VarChar).Value = UpdateYacht.tipus;
+                    cmd.Parameters.Add("?image", MySqlDbType.Blob).Value = ImageToByte(UpdateYacht.kep);
+                    cmd.Parameters.Add("?seats", MySqlDbType.Int16).Value = UpdateYacht.ferohely;
+                    cmd.Parameters.Add("?hire", MySqlDbType.Bit).Value = UpdateYacht.berelheto;
+                    cmd.Parameters.Add("?busy", MySqlDbType.Bit).Value = UpdateYacht.blfoglalt;
+                    cmd.Parameters.Add("?daly_price", MySqlDbType.Int16).Value = UpdateYacht.napi_ar;
+                    cmd.Parameters.Add("?width", MySqlDbType.Int16).Value = UpdateYacht.szeles;
+                    cmd.Parameters.Add("?lenght", MySqlDbType.Int16).Value = UpdateYacht.hossz;
+                    cmd.Parameters.Add("?height", MySqlDbType.Int16).Value = UpdateYacht.magas;
+                    cmd.Parameters.Add("?weight", MySqlDbType.Int16).Value = UpdateYacht.suly;
+                    cmd.Parameters.Add("?port_id", MySqlDbType.Int16).Value = UpdateYacht.kikoto_id;
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception)
+            {
+                Globals.log = "Sikertelen módosítás!";
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+        }
+
         /// <summary>
         /// Megkeresi a legnagyobb értéket a megatod mezöben és táblában és megnöveli egyel
         /// </summary>
@@ -361,7 +457,7 @@ namespace Yacht_club.Database
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
                     cmd.Parameters.Add("?tabla", MySqlDbType.VarChar).Value = tabla;
-                    szam += int.Parse(cmd.ExecuteScalar().ToString());
+                    szam += (int)cmd.ExecuteScalar();
                 }
             }
             catch (MySqlException ex)
@@ -375,15 +471,14 @@ namespace Yacht_club.Database
         /// </summary>
         /// <param name="Image"></param>
         /// <returns></returns>
-        private byte[] ImageToByte(Image Image)
+        private byte[] ImageToByte(BitmapImage Image)
         {
-            byte[] imageData = null;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                Image.Save(ms, Image.RawFormat);
-                imageData = ms.ToArray();
-            }
-            return imageData;
+            var ms = new MemoryStream();
+            var pngEncoder = new PngBitmapEncoder();
+            pngEncoder.Frames.Add(BitmapFrame.Create(Image));
+            pngEncoder.Save(ms);
+
+            return ms.GetBuffer();
         }
 
         /// <summary>
@@ -391,13 +486,13 @@ namespace Yacht_club.Database
         /// </summary>
         /// <param name="imageByte"></param>
         /// <returns></returns>
-        private Image ByteToImage(byte[] imageByte)
+        private BitmapImage ByteToImage(byte[] imageByte)
         {
-            Image image = null;
-            using (MemoryStream ms = new MemoryStream(imageByte))
-            {
-                image = Image.FromStream(ms);
-            }
+            MemoryStream stream = new MemoryStream(imageByte);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = stream;
+            image.EndInit();
             return image;
         }
     }

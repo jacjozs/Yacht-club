@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace Yacht_club
 {
@@ -10,7 +11,7 @@ namespace Yacht_club
         public int id { get; set; }
         public string nev { get; set; }
         public string tipus { get; set; }
-        public Image kep { get; set; }
+        public BitmapImage kep { get; set; }
         public int napi_ar { get; set; }
         /// <summary>
         /// tulajdonos member_id

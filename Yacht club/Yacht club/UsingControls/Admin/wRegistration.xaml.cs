@@ -43,7 +43,7 @@ namespace Yacht_club
                 user.veztek_nev = tbFirstName.Text;
                 user.kereszt_nev = tbLastName.Text;
                 if (dpSzuletes.SelectedDate.HasValue)
-                user.szuletesdt = dpSzuletes.SelectedDate.Value;
+                    user.szuletesdt = dpSzuletes.SelectedDate.Value;
                 user.nickname = tbNickName.Text;
                 login.felhasznalonev = tbLoginName.Text;
                 login.jelszo = pbPasswd.Password;
@@ -54,7 +54,7 @@ namespace Yacht_club
                 user.lakcim = tbLakcim.Text;
                 user.orszag = tbOrszg.Text;
                 if (cbAdmin.IsChecked == true)
-                user.login.admin = true;
+                    user.login.admin = true;
                 else user.login.admin = false;
                 data.MysqlRegisztracioLogin(user);
             }

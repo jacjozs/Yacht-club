@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
 using Yacht_club.Moduls;
+using System.Windows.Media.Imaging;
 
 namespace Yacht_club.UsingControls
 {
@@ -52,7 +53,11 @@ namespace Yacht_club.UsingControls
                 user = Globals.User;
                 user.login = Globals.User.login;
                 Theme_Colors();
-                if (tbNickName.Text != "") user.nickname = tbNickName.Text;
+                if (tbNickName.Text != "")
+                {
+                    user.nickname = tbNickName.Text;
+                    Globals.Main.lbNickname.Content = user.nickname + "!";
+                }
                 if (tbFirstName.Text != "") user.veztek_nev = tbFirstName.Text;
                 if (tbLastName.Text != "") user.kereszt_nev = tbLastName.Text;
                 if (tbVaros.Text != "") user.varos = tbVaros.Text;
@@ -61,7 +66,7 @@ namespace Yacht_club.UsingControls
                 if (tbOrszag.Text != "") user.orszag = tbOrszag.Text;
                 if (pbPasswd.Password != "" && passwdEllenorzes(pbOldPasswd.Password, pbPasswd.Password, pbRePasswd.Password)) user.login.jelszo = pbPasswd.Password;
                 if (tbEmail.Text != "") user.login.email = tbEmail.Text;
-                if (filepath != "") user.kep = System.Drawing.Image.FromFile(filepath);
+                if (filepath != "") user.kep = new BitmapImage(new Uri(filepath));
                 ///Fontos a sorrend!
                 data = new Database.MysqlSetting();
                 data.MysqlUpdateUser(user);

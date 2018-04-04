@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using System.Drawing;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Yacht_club.Database
 {
@@ -103,13 +104,13 @@ namespace Yacht_club.Database
         /// </summary>
         /// <param name="imageByte"></param>
         /// <returns></returns>
-        private Image ByteToImage(byte[] imageByte)
+        private BitmapImage ByteToImage(byte[] imageByte)
         {
-            Image image = null;
-            using (MemoryStream ms = new MemoryStream(imageByte))
-            {
-                image = Image.FromStream(ms);
-            }
+            MemoryStream stream = new MemoryStream(imageByte);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = stream;
+            image.EndInit();
             return image;
         }
     }

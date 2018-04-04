@@ -5,24 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yacht_club"
         mc:Ignorable="d"
-        Loaded="Themes_Loading"
-        Title="Yacht Club GAMF" Height="530" Width="800" x:Name="MainWindow" ResizeMode="NoResize" Background="{Binding hatter}" WindowStyle="None" Icon="images/white/yachts.ico" WindowStartupLocation="CenterScreen">
+        Loaded="Themes_Loading" Height="600" Width="1080" x:Name="MainWindow" ResizeMode="NoResize" Background="{Binding hatter}" WindowStyle="None" Icon="images/white/yachts.ico" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="215"/>
-            <ColumnDefinition Width="585"/>
+            <ColumnDefinition Width="865"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="180"/>
-            <RowDefinition Height="350"/>
+            <RowDefinition Height="420"/>
         </Grid.RowDefinitions>
-        <DockPanel x:Name="dpUdvezles" Panel.ZIndex="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="300" Grid.Row="0" Grid.Column="0" Margin="0,10,500,125" Grid.ColumnSpan="2">
+        <DockPanel x:Name="dpUdvezles" Panel.ZIndex="2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" Grid.Row="0" Grid.Column="0" Margin="0,10,0,0" Grid.ColumnSpan="2">
             <Image x:Name="imguser_name" Width="25" Height="25" Style="{StaticResource IconsUserName}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,10,10,10"/>
             <Label Content="Üdvözöljük " Width="73" VerticalAlignment="Center" FontFamily="Source Sans Pro" Padding="0" FontWeight="Bold" FontSize="14" Foreground="{Binding betu_szin}"/>
-            <Label x:Name="lbNickname" Height="23" Content="{Binding nickname}" Panel.ZIndex="2" Width="165" Padding="0,1,0,0" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" FontSize="14" Foreground="{Binding betu_szin}"/>
+            <Label x:Name="lbNickname" Height="23" Panel.ZIndex="2" Width="165" Padding="0,1,0,0" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" FontSize="14" Foreground="{Binding betu_szin}"/>
         </DockPanel>
         <!-- Oldal Sav -->
-        <Canvas x:Name="cs_Menu_2" Height="480" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="-150,50,0,0" Visibility="Visible">
+        <Canvas x:Name="cs_Menu_2" Height="550" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="-150,50,0,0" Visibility="Visible">
             <DockPanel x:Name="dpFomenu" Style="{StaticResource spSlideLeft}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" Height="50" Cursor="Hand" MouseLeftButtonDown="dpMouse_Click">
                 <Label Width="150" Content="Főmenü" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="14" Foreground="{Binding menu_betu_szin}" FontWeight="Bold"/>
                 <Image Width="25" Height="25" Style="{StaticResource IconsHome}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10"/>

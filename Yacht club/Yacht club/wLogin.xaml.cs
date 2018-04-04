@@ -40,6 +40,7 @@ namespace Yacht_club
                 Globals.User = user_login;
                 Globals.MainTheme = new Moduls.Themes(user_login.login.theme);
                 Globals.Main = new Main_Yacht_Window();
+                Globals.Main.lbNickname.Content = user_login.nickname + "!";
                 Globals.User.login.utolsoLogin = DateTime.Now.Date;
                 if (Globals.User.login.admin)
                     Globals.Main.dpRegist.Visibility = Visibility.Visible;

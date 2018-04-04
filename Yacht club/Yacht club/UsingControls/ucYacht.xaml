@@ -5,13 +5,75 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="334" d:DesignWidth="553" Background="{Binding uc_hatter}">
+             d:DesignHeight="404" d:DesignWidth="833" Background="{Binding uc_hatter}">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="309"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Yacht:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-        <Label x:Name="lbYachtnev" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Grid.Row="1" Width="195"/>
+
+        <Label Content="Név:"             Grid.Row="1"  Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
+        <Label Content="Típus:"           Grid.Row="2"  Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
+        <Label Content="Ülések száma:"    Grid.Row="3"  Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
+        <Label Content="Szélesség(m):"       Grid.Row="4"  Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
+        <Label Content="Hosszúság(m):"       Grid.Row="5"  Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
+        <Label Content="Magasság(m):"        Grid.Row="6"  Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
+        <Label Content="Súly(t):"            Grid.Row="7"  Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
+        <Label Content="Bérelhető:"       Grid.Row="8"  Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
+        <Label Content="Foglalt:"         Grid.Row="9" Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
+        <Label Content="Jelenlegi helye:" Grid.Row="10" Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
+        <Label Content="Napi ár:"         Grid.Row="11" Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
+
+        <Label x:Name="lbNev"       Grid.Column="1" Grid.Row="1"  Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
+        <Label x:Name="lbTipus"     Grid.Column="1" Grid.Row="2"  Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
+        <Label x:Name="lbUlesek"    Grid.Column="1" Grid.Row="3"  Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
+        <Label x:Name="lbSzel"      Grid.Column="1" Grid.Row="4"  Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
+        <Label x:Name="lbHossz"     Grid.Column="1" Grid.Row="5"  Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
+        <Label x:Name="lbMag"       Grid.Column="1" Grid.Row="6"  Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
+        <Label x:Name="lbSuly"      Grid.Column="1" Grid.Row="7"  Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
+        <Label x:Name="lbBerelheto" Grid.Column="1" Grid.Row="8"  Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
+        <Label x:Name="lbFoglalt"   Grid.Column="1" Grid.Row="9" Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
+        <Label x:Name="lbHely"      Grid.Column="1" Grid.Row="10" Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
+        <Label x:Name="lbAr"        Grid.Column="1" Grid.Row="11" Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
+
+        <TextBox x:Name="tbNev"    Grid.Row="1"  Grid.Column="1" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
+        <TextBox x:Name="tbTipus"  Grid.Row="2"  Grid.Column="1" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
+        <TextBox x:Name="tbÜlesek" Grid.Row="3"  Grid.Column="1" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
+        <TextBox x:Name="tbSzel"   Grid.Row="4"  Grid.Column="1" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
+        <TextBox x:Name="tbHossz"  Grid.Row="5"  Grid.Column="1" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
+        <TextBox x:Name="tbMag"    Grid.Row="6"  Grid.Column="1" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
+        <TextBox x:Name="tbSuly"   Grid.Row="7"  Grid.Column="1" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
+        <TextBox x:Name="tbAr"     Grid.Row="11" Grid.Column="1" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
+        <TextBox x:Name="tbJHely"  Grid.Row="10" Grid.Column="1" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
+        <ComboBox x:Name="cbJHely" Grid.Row="10" Grid.Column="1" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
+
+        <Image    x:Name="imgYacht"    Grid.Column="3" Grid.Row="1" Grid.RowSpan="8"/>
+        <CheckBox x:Name="cbBerelheto" Grid.Row="8"    Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden"/>
+
+        <Button x:Name="btBerles"   Content="Foglalás"  Grid.Column="3" Grid.Row="11" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" Width="140" Click="clkFoglal" Margin="5,0,0,0"/>
+        <Button x:Name="btAlkalmaz" Content="Alkalmaz"  Grid.Column="3" Grid.Row="11" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" Width="140" Click="clkAlkalmaz" Visibility="Hidden" Margin="150,0,5,0"/>
+        <Button x:Name="btModosit"  Content="Módosítás" Grid.Column="3" Grid.Row="11" Visibility="Hidden" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" Width="140" Click="clkModosit" Margin="5,0,0,0"/>
+        <Button x:Name="btMegse"    Content="Mégse"     Grid.Column="3" Grid.Row="11" Visibility="Hidden" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" Width="140" Click="clkMegse" Margin="5,0,0,0"/>
+
+        <TextBox x:Name="tbjImage"  Grid.Row="10" Width="250" Grid.Column="3" VerticalAlignment="Center" Foreground="{Binding betu_szin}" BorderThickness="0" HorizontalAlignment="Right" Visibility="Hidden" Margin="0,0,180,0"/>
+        <Button x:Name="btImage"    Content="Tallozás"     Grid.Column="3" Grid.Row="10" Visibility="Hidden" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Right" Width="140" Click="clkImage" Margin="0,0,30,0"/>
     </Grid>
 </UserControl>

@@ -5,15 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="334" d:DesignWidth="553" Background="{Binding uc_hatter}">
+             d:DesignHeight="404" d:DesignWidth="833" Background="{Binding uc_hatter}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="309"/>
+            <RowDefinition Height="379"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Yachtok:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-        <ScrollViewer Name="Scrollwiewr" Margin="10" VerticalScrollBarVisibility="Auto" Width="533" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
-            <StackPanel Name="spList" Width="533"/>
+        <ScrollViewer Name="Scrollwiewr" Margin="10" VerticalScrollBarVisibility="Auto" Width="813" Grid.Column="0" Grid.Row="1">
+            <StackPanel Name="spList" Width="813"/>
         </ScrollViewer>
     </Grid>
 </UserControl>

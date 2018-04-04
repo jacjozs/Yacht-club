@@ -86,9 +86,11 @@ namespace Yacht_club
                     stMenu_2_user.Visibility = Visibility.Visible;
                     cs_Menu_2.Visibility = Visibility.Hidden;
                     if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucFelhasznalo))
-                    { ucFelhasznalo userFelhasznalo = new ucFelhasznalo();
+                    {
+                        ucFelhasznalo userFelhasznalo = new ucFelhasznalo();
                         ccWindow_2.Content = userFelhasznalo;
-                        userFelhasznalo.ProfilImgLoad(); }
+                        userFelhasznalo.ProfilImgLoad();
+                    }
                     break;
                 case "dpKijelentkezes":
                     Message = new wMessage(2, 0);
@@ -97,24 +99,34 @@ namespace Yacht_club
                     break;
                 case "dpYaktok":
                     if (Globals.User.login.admin)
-                    { stMenu_2_yacht.Visibility = Visibility.Visible;
-                        cs_Menu_2.Visibility = Visibility.Hidden; }
-                    if (Globals.User.login.admin) {
+                    {
+                        stMenu_2_yacht.Visibility = Visibility.Visible;
+                        cs_Menu_2.Visibility = Visibility.Hidden;
+                    }
+                    if (Globals.User.login.admin)
+                    {
                         if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucYachtok_all))
                         { ccWindow_2.Content = new ucYachtok_all(); }
-                    } else {
+                    }
+                    else
+                    {
                         if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucYachtok))
                         { ccWindow_2.Content = new ucYachtok(); }
                     }
                     break;
                 case "dpSzallitok":
                     if (Globals.User.login.admin)
-                    { stMenu_2_szallito.Visibility = Visibility.Visible;
-                        cs_Menu_2.Visibility = Visibility.Hidden; }
-                    if (Globals.User.login.admin) {
+                    {
+                        stMenu_2_szallito.Visibility = Visibility.Visible;
+                        cs_Menu_2.Visibility = Visibility.Hidden;
+                    }
+                    if (Globals.User.login.admin)
+                    {
                         if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucSzallitok_all))
                         { ccWindow_2.Content = new ucSzallitok_all(); }
-                    } else {
+                    }
+                    else
+                    {
                         if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucSzallitok))
                         { ccWindow_2.Content = new ucSzallitok(); }
                     }
@@ -125,9 +137,11 @@ namespace Yacht_club
                     break;
                 case "dpBeallitasok":
                     if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucBeallitasok))
-                    {   ucBeallitasok userSetting = new ucBeallitasok();
+                    {
+                        ucBeallitasok userSetting = new ucBeallitasok();
                         ccWindow_2.Content = userSetting;
-                        userSetting.logining(); }
+                        userSetting.logining();
+                    }
                     break;
                 case "dpInfo":
                     if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucInfok))
@@ -171,10 +185,13 @@ namespace Yacht_club
             switch (gomb.Name.ToString())
             {
                 case "lbYachtok":
-                    if (Globals.User.login.admin) {
+                    if (Globals.User.login.admin)
+                    {
                         if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucYachtok_all))
                         { ccWindow_2.Content = new ucYachtok_all(); }
-                    } else {
+                    }
+                    else
+                    {
                         if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucYachtok))
                         { ccWindow_2.Content = new ucYachtok(); }
                     }
@@ -188,10 +205,13 @@ namespace Yacht_club
                     { ccWindow_2.Content = new ucYacht_delete(); }
                     break;
                 case "lbSzallitok":
-                    if (Globals.User.login.admin) {
+                    if (Globals.User.login.admin)
+                    {
                         if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucSzallitok_all))
                         { ccWindow_2.Content = new ucSzallitok_all(); }
-                    } else {
+                    }
+                    else
+                    {
                         if (ccWindow_2.Content == null || !(ccWindow_2.Content is ucSzallitok))
                         { ccWindow_2.Content = new ucSzallitok(); }
                     }

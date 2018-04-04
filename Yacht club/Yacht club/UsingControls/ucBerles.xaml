@@ -6,19 +6,19 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="334" d:DesignWidth="553" Background="{Binding uc_hatter}">
+             d:DesignHeight="404" d:DesignWidth="833" Background="{Binding uc_hatter}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="276.5"/>
-            <ColumnDefinition Width="276.5"/>
+            <ColumnDefinition Width="416.5"/>
+            <ColumnDefinition Width="416.5"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="309"/>
+            <RowDefinition Height="379"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Bérlés:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Margin="0,3"/>
-        <StackPanel x:Name="stBerles" Grid.Row="1" Grid.Column="0" Width="276.5" HorizontalAlignment="Left" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="252" Height="290">
+        <StackPanel x:Name="stBerles" Grid.Row="1" Grid.Column="0" Width="416.5" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="406.5" Height="290">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <Label  Content="Mettöl:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <DatePicker x:Name="dpStartDate" Width="135" FirstDayOfWeek="Monday" Cursor="Hand" SelectedDate="{x:Static sys:DateTime.Now}" Foreground="#FF1D212C" Margin="5,5,0,5" Background="{Binding uc_hatter}" BorderBrush="{Binding uc_hatter}"/>

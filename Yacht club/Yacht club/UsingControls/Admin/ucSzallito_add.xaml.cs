@@ -37,7 +37,7 @@ namespace Yacht_club.UsingControls
         {
             try
             {
-                newDevice = new Device();;
+                newDevice = new Device(); ;
                 newDevice.tipus = tbSzallito_tipus.Text;
                 newDevice.member_id = int.Parse(list[cbDevice_tulaj.Text].ToString());
                 newDevice.max_suly = int.Parse(tbSzallito_teherb.Text);

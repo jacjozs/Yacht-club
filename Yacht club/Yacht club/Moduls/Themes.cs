@@ -5,7 +5,6 @@ namespace Yacht_club.Moduls
     class Themes
     {
         public int id { get; set; }
-        public string nickname { get; set; }
         public Brush hatter { get; set; }
         public Brush betu_szin { get; set; }
         public Brush menu_betu_szin { get; set; }
@@ -16,7 +15,6 @@ namespace Yacht_club.Moduls
 
         public Themes(int num)
         {
-            nickname = Globals.User.nickname + "!";
             switch (num)
             {
                 case 1:

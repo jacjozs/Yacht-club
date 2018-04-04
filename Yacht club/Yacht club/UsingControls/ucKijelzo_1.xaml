@@ -5,23 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="334" d:DesignWidth="553" Background="{Binding uc_hatter}">
+             d:DesignHeight="404" d:DesignWidth="833" Background="{Binding uc_hatter}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="276.5"/>
-            <ColumnDefinition Width="276.5"/>
+            <ColumnDefinition Width="416.5"/>
+            <ColumnDefinition Width="416.5"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="167"/>
-            <RowDefinition Height="167"/>
+            <RowDefinition Height="202"/>
+            <RowDefinition Height="202"/>
         </Grid.RowDefinitions>
-        <DockPanel Height="167" LastChildFill="False" Width="276.5" Grid.Row="0" Grid.Column="0">
+        <DockPanel Height="202" LastChildFill="False" Width="416.5" Grid.Row="0" Grid.Column="0">
         </DockPanel>
-        <DockPanel Height="167" LastChildFill="False" Width="276.5" Grid.Row="0" Grid.Column="1">
+        <DockPanel Height="202" LastChildFill="False" Width="416.5" Grid.Row="0" Grid.Column="1">
         </DockPanel>
-        <DockPanel Height="167" LastChildFill="False" Width="276.5" Grid.Row="1" Grid.Column="0">
+        <DockPanel Height="202" LastChildFill="False" Width="416.5" Grid.Row="1" Grid.Column="0">
         </DockPanel>
-        <DockPanel Height="167" LastChildFill="False" Width="276.5" Grid.Row="1" Grid.Column="1">
+        <DockPanel Height="202" LastChildFill="False" Width="416.5" Grid.Row="1" Grid.Column="1">
         </DockPanel>
     </Grid>
 </UserControl>

@@ -28,14 +28,14 @@ namespace Yacht_club.UsingControls
             {
                 StackPanel panel = new StackPanel();
                 panel.Orientation = Orientation.Horizontal;
-                panel.Height = 45;
-                panel.Width = 533;
+                panel.Height = 55;
+                panel.Width = 793;
                 panel.MouseDown += new MouseButtonEventHandler(dpMouse_Click);
-                panel.Name = "Y" + i.ToString();
+                panel.Uid = i.ToString();
 
                 StackPanel panel2 = new StackPanel();
-                panel2.Width = 110;
-                panel2.Height = 40;
+                panel2.Width = 175;
+                panel2.Height = 55;
 
                 Label ID = new Label();
                 ID.Content = "ID: " + Yachts[i].id;
@@ -49,8 +49,8 @@ namespace Yacht_club.UsingControls
                 panel2.Children.Add(nev);
 
                 StackPanel panel3 = new StackPanel();
-                panel3.Width = 150;
-                panel3.Height = 40;
+                panel3.Width = 240;
+                panel3.Height = 55;
 
                 Label tipus = new Label();
                 tipus.Content = "Típus: " + Yachts[i].tipus;
@@ -64,8 +64,8 @@ namespace Yacht_club.UsingControls
                 panel3.Children.Add(Tulaj);
 
                 StackPanel panel4 = new StackPanel();
-                panel4.Width = 150;
-                panel4.Height = 40;
+                panel4.Width = 160;
+                panel4.Height = 55;
 
                 Label ferohely = new Label();
                 ferohely.Content = "Férőhely: " + Yachts[i].ferohely;
@@ -79,20 +79,15 @@ namespace Yacht_club.UsingControls
                 panel4.Children.Add(ferohely);
 
                 StackPanel panel5 = new StackPanel();
-                panel5.Width = 150;
-                panel5.Height = 40;
+                panel5.Width = 218;
+                panel5.Height = 55;
                 panel5.HorizontalAlignment = HorizontalAlignment.Left;
 
                 Label kikoto = new Label();
                 kikoto.Content = "Kikötő: " + Yachts[i].kikoto;
                 kikoto.Style = MenuStackLabel;
 
-                Label Hosszu = new Label();
-                Hosszu.Content = "";
-                Hosszu.Style = MenuStackLabel;
-
                 panel5.Children.Add(kikoto);
-                panel5.Children.Add(Hosszu);
 
                 panel.Children.Add(panel2);
                 panel.Children.Add(panel3);
@@ -107,8 +102,7 @@ namespace Yacht_club.UsingControls
 
         private void dpMouse_Click(object sender, MouseButtonEventArgs e)
         {
-            StackPanel yacht = (StackPanel)sender;
-            Globals.selectedYacht = Yachts[int.Parse(yacht.Name.Substring(1))];
+            Globals.selectedYacht = Yachts[int.Parse(((StackPanel)sender).Uid)];
             Globals.Main.ccWindow_2.Content = new ucYacht();
         }
     }

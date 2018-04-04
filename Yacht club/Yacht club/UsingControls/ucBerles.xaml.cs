@@ -13,7 +13,7 @@ namespace Yacht_club.UsingControls
         public ucBerles()
         {
             InitializeComponent();
-            Loading(); 
+            Loading();
         }
         private void Loading()
         {

@@ -5,15 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yacht_club"
         mc:Ignorable="d"
-        Loaded="Themes_Loading"
-        Title="wRegistration" Height="300" Width="700" WindowStyle="None" ResizeMode="NoResize" Background="{Binding hatter}" WindowStartupLocation="CenterScreen">
+        Loaded="Themes_Loading" Height="370" Width="800" WindowStyle="None" ResizeMode="NoResize" Background="{Binding hatter}" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="350*"/>
             <ColumnDefinition Width="350*"/>
         </Grid.ColumnDefinitions>
         <!-- Regisztracios Ablak -->
-        <Canvas Panel.ZIndex="2" Background="Transparent" Height="200" Margin="255,20,0,80">
+        <Canvas Panel.ZIndex="2" Background="Transparent" Height="200" Margin="273,55,0,115">
             <StackPanel x:Name="spFelhasznalonev_error" Orientation="Vertical" Canvas.Left="0" Width="95" Height="25" Canvas.Top="40" Visibility="Hidden">
                 <TextBox Height="15" Width="95" Style="{StaticResource ErrorTextBox_Felhasznalonev}" Text="Foglalt" x:Name="tbFelhasznalonev_error" Background="Transparent" BorderBrush="Transparent"/>
                 <Label Content="*" Height="10" HorizontalAlignment="Left" x:Name="lbFelhasznalonev_error" VerticalAlignment="Top" FontWeight="Bold" Foreground="Red" Padding="0,0,0,0" Width="34"/>
@@ -31,14 +30,8 @@
                 <Label Content="*" Height="10" HorizontalAlignment="Left" x:Name="lbEmail_error" VerticalAlignment="Top" FontWeight="Bold" Foreground="Red" Padding="0,0,0,0" Width="34"/>
             </StackPanel>
         </Canvas>
-        <Canvas Panel.ZIndex="2" Background="Transparent" Grid.Column="1" Margin="279,166,10,101">
-            <StackPanel x:Name="spIranyitoszm_error" Orientation="Vertical" Canvas.Left="0" Width="64" Height="25" Canvas.Top="0" Visibility="Hidden">
-                <TextBox Height="15" Style="{StaticResource ErrorTextBox_Iranyitoszm}" Text="Hibás adat" x:Name="tbIranyitoszm_error" Background="Transparent" BorderBrush="Transparent" Margin="0"/>
-                <Label Content="*" Height="10" HorizontalAlignment="Left" x:Name="lbIranyitoszm_error" VerticalAlignment="Top" FontWeight="Bold" Foreground="Red" Padding="0,0,0,0" Width="34"/>
-            </StackPanel>
-        </Canvas>
         <StackPanel x:Name="stRegist_1" Panel.ZIndex="1" Grid.Row="0" Grid.Column="0" Margin="10">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="252" Height="257">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,20,0,0" Width="252" Height="257">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <StackPanel Height="30" Margin="5,2,0,2" Width="92">
                         <Label Content="Nickname:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="16" Padding="0"/>
@@ -101,7 +94,7 @@
             </StackPanel>
         </StackPanel>
         <Button Style="{StaticResource Buttons}" x:Name="btVissza" Content="Vissza" Background="{Binding hatter}" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Width="75" Margin="25,0,0,30" Click="Button_Click" FontWeight="Bold"/>
-        <Button Style="{StaticResource Buttons}" x:Name="btRegiszt" Content="Regisztráció" Background="{Binding hatter}" Foreground="{Binding betu_szin}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="150" Height="23" FontSize="12" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Margin="169,0,31,30" Click="btRegiszt_Click"/>
+        <Button Style="{StaticResource Buttons}" x:Name="btRegiszt" Content="Regisztráció" Background="{Binding hatter}" Foreground="{Binding betu_szin}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="150" Height="23" FontSize="12" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Margin="169,0,31,30" Click="btRegiszt_Click"/>
         <Button Style="{StaticResource Buttons_X}" x:Name="btKilepes" Content="X" Background="{Binding hatter}"  Foreground="{Binding betu_szin}" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Width="20" Margin="0,10,10,0" Click="Button_Click"/>
         <!-- Regisztracios Ablak! -->
     </Grid>

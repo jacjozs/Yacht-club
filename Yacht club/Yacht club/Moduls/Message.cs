@@ -13,11 +13,11 @@ namespace Yacht_club.Moduls
         public string felado_nev { get; set; }
         public int cimzett_id { get; set; }
         public string cimzett_nev { get; set; }
-        public int yacht_id { get; set; }
+        public int yacht_id = 0;
         public string yacht_nev { get; set; }
-        public int device_id { get; set; }
-        DateTime kezdete { get; set; }
-        DateTime vege { get; set; }
+        public int device_id = 0;
+        public DateTime kezdete { get; set; }
+        public DateTime vege { get; set; }
         public int honnan_id { get; set; }
         public int hova_id { get; set; }
         public bool elfogadvabl { get; set; }

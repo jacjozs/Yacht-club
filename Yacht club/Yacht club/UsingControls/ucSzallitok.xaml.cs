@@ -28,76 +28,68 @@ namespace Yacht_club.UsingControls
             {
                 StackPanel panel = new StackPanel();
                 panel.Orientation = Orientation.Horizontal;
-                panel.Height = 45;
-                panel.Width = 533;
+                panel.Height = 55;
+                panel.Width = 793;
+                panel.Uid = i.ToString();
                 panel.MouseDown += new MouseButtonEventHandler(dpMouse_Click);
-                panel.Name = "D" + Devices[i].id;
 
                 StackPanel panel2 = new StackPanel();
-                panel2.Width = 110;
-                panel2.Height = 40;
+                panel2.Width = 165;
+                panel2.Height = 55;
 
                 Label ID = new Label();
                 ID.Content = "ID: " + Devices[i].id;
                 ID.Style = MenuStackLabel;
-                ID.Width = 110;
 
                 Label Tipus = new Label();
                 Tipus.Content = "Típus: " + Devices[i].tipus;
                 Tipus.Style = MenuStackLabel;
-                Tipus.Width = 110;
 
                 panel2.Children.Add(ID);
                 panel2.Children.Add(Tipus);
 
                 StackPanel panel3 = new StackPanel();
-                panel3.Width = 180;
-                panel3.Height = 40;
+                panel3.Width = 240;
+                panel3.Height = 55;
 
                 Label Napiar = new Label();
                 Napiar.Content = "Napi ár: " + Devices[i].napi_ar;
                 Napiar.Style = MenuStackLabel;
-                Napiar.Width = 180;
 
                 Label Tulaj = new Label();
                 Tulaj.Content = "Tulajdonos: " + Devices[i].full_name;
                 Tulaj.Style = MenuStackLabel;
-                Tulaj.Width = 180;
 
                 panel3.Children.Add(Napiar);
                 panel3.Children.Add(Tulaj);
 
                 StackPanel panel4 = new StackPanel();
-                panel4.Width = 120;
-                panel4.Height = 40;
+                panel4.Width = 194;
+                panel4.Height = 55;
 
                 Label Teherbiras = new Label();
-                Teherbiras.Content = "Teherbirás: " + Devices[i].max_suly;
+                Teherbiras.Content = "Max teherbirás(t): " + Devices[i].max_suly;
                 Teherbiras.Style = MenuStackLabel;
-                Teherbiras.Width = 120;
 
                 Label Magas = new Label();
-                Magas.Content = "Magas: " + Devices[i].max_magas;
+                Magas.Content = "Max magasság(m): " + Devices[i].max_magas;
                 Magas.Style = MenuStackLabel;
-                Magas.Width = 120;
 
                 panel4.Children.Add(Teherbiras);
                 panel4.Children.Add(Magas);
 
                 StackPanel panel5 = new StackPanel();
-                panel5.Width = 100;
-                panel5.Height = 40;
+                panel5.Width = 194;
+                panel5.Height = 55;
                 panel5.HorizontalAlignment = HorizontalAlignment.Left;
 
                 Label Szeles = new Label();
-                Szeles.Content = "Széles: " + Devices[i].max_szeles;
+                Szeles.Content = "Max szélesség(m): " + Devices[i].max_szeles;
                 Szeles.Style = MenuStackLabel;
-                Szeles.Width = 100;
 
                 Label Hosszu = new Label();
-                Hosszu.Content = "Hosszú: " + Devices[i].max_hossz;
+                Hosszu.Content = "Max hosszúság(m): " + Devices[i].max_hossz;
                 Hosszu.Style = MenuStackLabel;
-                Hosszu.Width = 100;
 
                 panel5.Children.Add(Szeles);
                 panel5.Children.Add(Hosszu);
@@ -114,8 +106,7 @@ namespace Yacht_club.UsingControls
         }
         private void dpMouse_Click(object sender, MouseButtonEventArgs e)
         {
-            StackPanel device = (StackPanel)sender;
-            Globals.selectedDevice = Devices[int.Parse(device.Name.Substring(1))];
+            Globals.selectedDevice = Devices[int.Parse(((StackPanel)sender).Uid)];
             Globals.Main.ccWindow_2.Content = new ucSzallito();
         }
     }

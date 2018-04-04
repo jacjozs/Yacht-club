@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Yacht_club.Database
 {
@@ -76,15 +77,14 @@ namespace Yacht_club.Database
         /// </summary>
         /// <param name="Image"></param>
         /// <returns></returns>
-        private byte[] ImageToByte(Image Image)
+        private byte[] ImageToByte(BitmapImage Image)
         {
-            byte[] imageData = null;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                Image.Save(ms, Image.RawFormat);
-                imageData = ms.ToArray();
-            }
-            return imageData;
+            var ms = new MemoryStream();
+            var pngEncoder = new PngBitmapEncoder();
+            pngEncoder.Frames.Add(BitmapFrame.Create(Image));
+            pngEncoder.Save(ms);
+
+            return ms.GetBuffer();
         }
     }
 }

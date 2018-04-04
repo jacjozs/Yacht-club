@@ -5,12 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="334" d:DesignWidth="553"  Background="{Binding uc_hatter}">
+             d:DesignHeight="404" d:DesignWidth="833"  Background="{Binding uc_hatter}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="309"/>
+            <RowDefinition Height="379"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Kimutatások:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+
+        <Grid Height="379" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10 0">
+                <Button Uid="0" Width="162.6" Content="Heti bevétel" Style="{DynamicResource Buttons2}" Height="50" Background="{x:Null}" Click="Button_Click"/>
+                <Button Uid="1" Width="162.6" Content="Heti bérlések" Style="{DynamicResource Buttons2}" Height="50" Background="{x:Null}" Click="Button_Click"/>
+                <Button Uid="2" Width="162.6" Content="Havi bevétel" Style="{DynamicResource Buttons2}" Height="50" Background="{x:Null}" Click="Button_Click"/>
+                <Button Uid="3" Width="162.6" Content="Havi bérlések" Style="{DynamicResource Buttons2}" Height="50" Background="{x:Null}" Click="Button_Click"/>
+                <Button Uid="4" Width="162.6" Content="Egyedi" Style="{DynamicResource Buttons2}" Height="50" Background="{x:Null}" Click="Button_Click"/>
+            </StackPanel>
+            <Grid x:Name="GridCursor" Width="162.6" Height="5" Background="{Binding hatter}" HorizontalAlignment="Left" Margin="10,45,0,329"/>
+        </Grid>
     </Grid>
 </UserControl>

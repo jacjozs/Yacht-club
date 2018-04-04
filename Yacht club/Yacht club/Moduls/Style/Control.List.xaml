@@ -26,15 +26,6 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="MenuStackLabel" TargetType="Label">
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Padding" Value="10,0,0,0"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Height" Value="20"/>
-        <Setter Property="Foreground" Value="{Binding betu_szin}"/>
-    </Style>
-
     <SolidColorBrush x:Key="HoverBorderBrush" Color="#DDD" />
     <SolidColorBrush x:Key="NormalBrush" Color="#888" />
     <SolidColorBrush x:Key="NormalBorderBrush" Color="#888" />

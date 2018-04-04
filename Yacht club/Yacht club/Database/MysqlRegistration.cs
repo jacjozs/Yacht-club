@@ -81,7 +81,7 @@ namespace Yacht_club.Database
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
                     cmd.Parameters.Add("?tabla", MySqlDbType.VarChar).Value = tabla;
-                    szam += int.Parse(cmd.ExecuteScalar().ToString());
+                    szam += (int)cmd.ExecuteScalar();
                 }
             }
             catch (MySqlException ex)

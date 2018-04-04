@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -131,6 +132,7 @@ namespace Yacht_club.Database
                         full_name = read["first_name"].ToString();
                         full_name += " " + read["last_name"].ToString();
                         device.full_name = full_name;
+                        device.member_id = (int)read["ower"];
                         if (read["renter"].ToString() == "")
                         {
                             device.berlo_full_name = "Nincs bérbe adva";
@@ -189,6 +191,7 @@ namespace Yacht_club.Database
                     while (read.Read())
                     {
                         Device device = new Device();
+                        device.member_id = id;
                         device.berelheto = false;
                         device.blfoglalt = false;
                         device.strfoglalt = "Szabad";
@@ -301,6 +304,35 @@ namespace Yacht_club.Database
             }
             return Devices;
         }
+
+        public void MysqlUpdateDevicet(Device UpdateDevice)
+        {
+            try
+            {
+                string query = "UPDATE enDevice SET daly_price = ?daly_price, max_width = ?max_width, max_lenght=?max_lenght, max_height=?max_height, max_weight=?max_weight, hire=?hire WHERE device_id=?device_id;";
+                Globals.connect.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.Parameters.Add("?daly_price", MySqlDbType.Int16).Value = UpdateDevice.napi_ar;
+                    cmd.Parameters.Add("?max_width", MySqlDbType.Int16).Value = UpdateDevice.max_szeles;
+                    cmd.Parameters.Add("?max_lenght", MySqlDbType.Int16).Value = UpdateDevice.max_hossz;
+                    cmd.Parameters.Add("?max_height", MySqlDbType.Int16).Value = UpdateDevice.max_magas;
+                    cmd.Parameters.Add("?max_weight", MySqlDbType.Int16).Value = UpdateDevice.max_suly;
+                    cmd.Parameters.Add("?hire", MySqlDbType.Bit).Value = UpdateDevice.blfoglalt;
+                    cmd.Parameters.Add("?device_id", MySqlDbType.Int16).Value = Globals.selectedDevice.id;
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+        }
+
         /// <summary>
         /// teljes név összeállitása member_id alapján
         /// </summary>

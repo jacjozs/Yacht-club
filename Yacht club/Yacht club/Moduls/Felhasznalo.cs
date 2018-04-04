@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace Yacht_club
 {
@@ -17,7 +17,7 @@ namespace Yacht_club
         public string varos { get; set; }
         public string lakcim { get; set; }
         public string orszag { get; set; }
-        public Image kep { get; set; }
+        public BitmapImage kep { get; set; }
         public DateTime szuletesdt { get; set; }
         /// <summary>
         /// Login osztály a login adatokhoz

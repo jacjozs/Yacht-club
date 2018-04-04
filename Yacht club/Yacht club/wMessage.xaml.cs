@@ -13,6 +13,7 @@ namespace Yacht_club
         private wLogin Login;
         Database.MysqlYacht dataYacht;
         Database.MysqlDevice dataDevice;
+        Database.MysqlMessage dataMessage;
         private void Themes_Loading(object sender, RoutedEventArgs e)
         {
             DataContext = Globals.MainTheme;
@@ -44,9 +45,14 @@ namespace Yacht_club
                     lbTitle.Content = "Yacht törlés";
                     lbText.Content = "Biztos törölni szeretné?";
                     break;
-                ///Szállitoó törlés
+                ///Szállitó törlés
                 case 4:
                     lbTitle.Content = "Szállitóeszköz törlés";
+                    lbText.Content = "Biztos törölni szeretnéd?";
+                    break;
+                ///Üzenet törlés
+                case 5:
+                    lbTitle.Content = "Üzenet törlés";
                     lbText.Content = "Biztos törölni szeretnéd?";
                     break;
             }
@@ -85,11 +91,11 @@ namespace Yacht_club
                     finally
                     {
                         Globals.Main.MainWindow.Opacity = 1;
-                        Globals.Main.logAdd(false);
+                        Globals.Main.logAdd(true);
                         this.Hide();
                     }
                     break;
-                ///Szállitoó törlés
+                ///Szállitó törlés
                 case 4:
                     try
                     {
@@ -105,7 +111,27 @@ namespace Yacht_club
                     finally
                     {
                         Globals.Main.MainWindow.Opacity = 1;
-                        Globals.Main.logAdd(false);
+                        Globals.Main.logAdd(true);
+                        this.Hide();
+                    }
+                    break;
+                ///Üzenet törlés
+                case 5:
+                    try
+                    {
+                        dataMessage = new Database.MysqlMessage();
+                        dataMessage.MysqlMessageDelete(id);
+                        Globals.Main.ccWindow_2.Content = new ucUzenetek();
+                        Globals.log = "Törlés Sikeres! <Üzenet>";
+                    }
+                    catch (Exception)
+                    {
+                        Globals.log = "Törlés Sikertelen! <Üzenet>";
+                    }
+                    finally
+                    {
+                        Globals.Main.MainWindow.Opacity = 1;
+                        Globals.Main.logAdd(true);
                         this.Hide();
                     }
                     break;
