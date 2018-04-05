@@ -58,7 +58,7 @@ namespace Yacht_club
             Application.Current.Shutdown();
         }
 
-        private void tbLoginName_KeyDown(object sender, KeyEventArgs e)
+        private void Login_Window_Enter_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
                 Login();

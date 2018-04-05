@@ -18,8 +18,6 @@ namespace Yacht_club.UsingControls
             int index = int.Parse(((Button)e.Source).Uid);
 
             GridCursor.Margin = new Thickness(10 + (162.6 * index), 45, 0, 329);
-
-
         }
     }
 }

@@ -92,6 +92,9 @@
     <Compile Include="UsingControls\ucBerbeadott.xaml.cs">
       <DependentUpon>ucBerbeadott.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UsingControls\ucBereltEszkoz.xaml.cs">
+      <DependentUpon>ucBereltEszkoz.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsingControls\ucBerles.xaml.cs">
       <DependentUpon>ucBerles.xaml</DependentUpon>
     </Compile>
@@ -124,6 +127,9 @@
     </Compile>
     <Compile Include="UsingControls\ucSzallito_berles.xaml.cs">
       <DependentUpon>ucSzallito_berles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingControls\ucUzenet.xaml.cs">
+      <DependentUpon>ucUzenet.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsingControls\ucUzenetek.xaml.cs">
       <DependentUpon>ucUzenetek.xaml</DependentUpon>
@@ -209,6 +215,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UsingControls\ucBereltEszkoz.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UsingControls\ucBerles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -250,6 +260,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UsingControls\ucSzallito_berles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsingControls\ucUzenet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

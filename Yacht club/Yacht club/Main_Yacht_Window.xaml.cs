@@ -244,5 +244,15 @@ namespace Yacht_club
                     break;
             }
         }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Back:
+                    ccWindow_2.Content = Globals.History;
+                    break;
+            }
+        }
     }
 }

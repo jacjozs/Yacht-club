@@ -113,8 +113,7 @@ namespace Yacht_club.UsingControls
                     Globals.selectedYacht.kikoto = cbJHely.Text;
                 }
                 if (tbjImage.Text != "") Globals.selectedYacht.kep = new BitmapImage(new Uri(tbjImage.Text));
-                if (cbBerelheto.IsChecked == true) Globals.selectedYacht.berelheto = true;
-                else Globals.selectedYacht.berelheto = false;
+                Globals.selectedYacht.berelheto = cbBerelheto.IsChecked.Value;
                 data.MysqlUpdateYacht(Globals.selectedYacht);
             }
             catch (Exception)
@@ -149,6 +148,7 @@ namespace Yacht_club.UsingControls
             btImage.Visibility = Visibility.Hidden;
             tbjImage.Visibility = Visibility.Hidden;
             cbJHely.Visibility = Visibility.Hidden;
+            lbBerelheto.Visibility = Visibility.Visible;
             KikapcsolTB();
             LabelFeltolt();
         }

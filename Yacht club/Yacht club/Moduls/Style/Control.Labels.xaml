@@ -28,7 +28,7 @@
 
     <Style x:Key="MessageStackLabel" TargetType="Label">
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Padding" Value="10,15,0,15"/>
+        <Setter Property="Padding" Value="10,16,0,14"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Height" Value="50"/>
         <Setter Property="Foreground" Value="{Binding betu_szin}"/>

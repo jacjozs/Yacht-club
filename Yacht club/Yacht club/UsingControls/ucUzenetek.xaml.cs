@@ -11,7 +11,7 @@ namespace Yacht_club.UsingControls
     /// </summary>
     public partial class ucUzenetek : UserControl
     {
-        private wMessage Message;
+        private wMessage MessageDialog;
         Database.MysqlMessage data;
         private List<Message> Messages;
         public ucUzenetek()
@@ -35,8 +35,8 @@ namespace Yacht_club.UsingControls
                 panel.Orientation = Orientation.Horizontal;
                 panel.Height = 50;
                 panel.Width = 793;
-                //panel.MouseDown += new MouseButtonEventHandler(dpMouse_Click);
-                panel.Uid = Messages[i].uzenet_id.ToString(); ;
+                panel.MouseDown += new MouseButtonEventHandler(dpMouse_Click);
+                panel.Uid = i.ToString(); ;
 
                 Label IsNew = new Label();
                 if (Messages[i].NEWbl)
@@ -57,10 +57,10 @@ namespace Yacht_club.UsingControls
                 else if (Messages[i].yacht_id != 0)
                     Targy.Content = "Tárgy: Yacht bérlés";
                 Targy.Style = MessageStackLabel;
-                Targy.Width = 195;
+                Targy.Width = 180;
 
                 Label Kelte = new Label();
-                Kelte.Content = "Kelt.: " + Messages[i].keletkezett.ToShortDateString();
+                Kelte.Content = "Kelt.: " + Messages[i].keletkezett.ToString();
                 Kelte.Style = MessageStackLabel;
                 Kelte.Width = 200;
 
@@ -100,12 +100,18 @@ namespace Yacht_club.UsingControls
             }
         }
 
+        private void dpMouse_Click(object sender, MouseButtonEventArgs e)
+        {
+            Globals.selectedMessage = Messages[int.Parse(((StackPanel)sender).Uid)];
+            Globals.Main.ccWindow_2.Content = new ucUzenet();
+        }
+
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             int id = int.Parse(((Button)sender).Uid);
-            Message = new wMessage(5, id);
+            MessageDialog = new wMessage(5, id);
             Globals.Main.Opacity = 0.6;
-            Message.ShowDialog();
+            MessageDialog.ShowDialog();
         }
     }
 }

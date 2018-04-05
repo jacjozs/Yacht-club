@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Yacht_club.UsingControls.ucBereltEszkoz"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Yacht_club.UsingControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="404" d:DesignWidth="833" Background="{Binding uc_hatter}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="416.5"/>
+            <ColumnDefinition Width="416.5"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="379"/>
+        </Grid.RowDefinitions>
+        <Label Style="{DynamicResource MenuDecLabel}" Content="Üzenet:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Margin="0,3"/>
+
+    </Grid>
+</UserControl>

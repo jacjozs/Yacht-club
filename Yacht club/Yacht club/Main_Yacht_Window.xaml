@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yacht_club"
         mc:Ignorable="d"
-        Loaded="Themes_Loading" Height="600" Width="1080" x:Name="MainWindow" ResizeMode="NoResize" Background="{Binding hatter}" WindowStyle="None" Icon="images/white/yachts.ico" WindowStartupLocation="CenterScreen">
+        Loaded="Themes_Loading" Height="600" Width="1080" x:Name="MainWindow" ResizeMode="NoResize" Background="{Binding hatter}" WindowStyle="None" Icon="images/white/yachts.ico" WindowStartupLocation="CenterScreen" KeyDown="MainWindow_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="215"/>
