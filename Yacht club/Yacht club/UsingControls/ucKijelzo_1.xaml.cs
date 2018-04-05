@@ -10,6 +10,7 @@ namespace Yacht_club.UsingControls
         public ucKijelzo_1()
         {
             InitializeComponent();
+            Globals.UpdateHistory();
         }
     }
 }

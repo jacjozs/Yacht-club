@@ -27,6 +27,7 @@ namespace Yacht_club.UsingControls
         {
             InitializeComponent();
             login_name();
+            Globals.UpdateHistory();
         }
         /// <summary>
         /// A beírt adatok eltárolása és átadása az adatbázisnak

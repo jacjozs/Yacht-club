@@ -41,11 +41,12 @@ namespace Yacht_club.UsingControls
                 btModosit.Visibility = Visibility.Visible;
                 btBerles.Visibility = Visibility.Hidden;
             }
+            Globals.UpdateHistory();
         }
 
         private void clkFoglal(object sender, RoutedEventArgs e)
         {
-            Globals.Main.ccWindow_2.Content = new ucBerles(); // nem tudom így kell e ide
+            Globals.Main.ccWindow_Main.Content = new ucBerles(); // nem tudom így kell e ide
         }
 
         private void clkModosit(object sender, RoutedEventArgs e)

@@ -18,6 +18,7 @@ namespace Yacht_club.UsingControls
         {
             InitializeComponent();
             Loading();
+            Globals.UpdateHistory();
         }
         private void Loading()
         {
@@ -103,7 +104,7 @@ namespace Yacht_club.UsingControls
         private void dpMouse_Click(object sender, MouseButtonEventArgs e)
         {
             Globals.selectedMessage = Messages[int.Parse(((StackPanel)sender).Uid)];
-            Globals.Main.ccWindow_2.Content = new ucUzenet();
+            Globals.Main.ccWindow_Main.Content = new ucUzenet();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)

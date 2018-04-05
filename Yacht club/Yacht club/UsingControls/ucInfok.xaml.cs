@@ -10,6 +10,7 @@ namespace Yacht_club.UsingControls
         public ucInfok()
         {
             InitializeComponent();
+            Globals.UpdateHistory();
         }
     }
 }

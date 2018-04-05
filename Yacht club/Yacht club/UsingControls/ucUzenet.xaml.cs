@@ -24,6 +24,7 @@ namespace Yacht_club.UsingControls
         {
             InitializeComponent();
             labelid.Content = Globals.selectedMessage.uzenet_id;
+            Globals.UpdateHistory();
         }
     }
 }

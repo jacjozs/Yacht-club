@@ -81,7 +81,7 @@ namespace Yacht_club
                     {
                         dataYacht = new Database.MysqlYacht();
                         dataYacht.MysqlDeleteYacht(id);
-                        Globals.Main.ccWindow_2.Content = new ucYacht_delete();
+                        Globals.Main.ccWindow_Main.Content = new ucYacht_delete();
                         Globals.log = "Törlés Sikeres! <Yach>";
                     }
                     catch (Exception)
@@ -101,7 +101,7 @@ namespace Yacht_club
                     {
                         dataDevice = new Database.MysqlDevice();
                         dataDevice.MysqlDeleteDevice(id);
-                        Globals.Main.ccWindow_2.Content = new ucSzallito_delete();
+                        Globals.Main.ccWindow_Main.Content = new ucSzallito_delete();
                         Globals.log = "Törlés Sikeres! <Szállitóeszköz>";
                     }
                     catch (Exception)
@@ -121,7 +121,7 @@ namespace Yacht_club
                     {
                         dataMessage = new Database.MysqlMessage();
                         dataMessage.MysqlMessageDelete(id);
-                        Globals.Main.ccWindow_2.Content = new ucUzenetek();
+                        Globals.Main.ccWindow_Main.Content = new ucUzenetek();
                         Globals.log = "Törlés Sikeres! <Üzenet>";
                     }
                     catch (Exception)

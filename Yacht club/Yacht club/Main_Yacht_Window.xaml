@@ -113,7 +113,7 @@
         </Canvas>
         <!--Felhasznalo Sav!-->
         <!---Oldal Sav! -->
-        <ContentControl x:Name="ccWindow_1" TabIndex="1" Content="{Binding contentWindow}" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16,16,16,16"/>
-        <ContentControl x:Name="ccWindow_2" TabIndex="2" Content="{Binding contentWindow}" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16,0,16,16" />
+        <ContentControl x:Name="ccWindow_Log" TabIndex="1" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16,16,16,16"/>
+        <ContentControl x:Name="ccWindow_Main" TabIndex="2" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="16,0,16,16" />
     </Grid>
 </Window>

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
-             mc:Ignorable="d" d:DesignHeight="404" d:DesignWidth="833" Background="{Binding uc_hatter}">
+             mc:Ignorable="d" d:DesignHeight="404" d:DesignWidth="833" Uid="0" Background="{Binding uc_hatter}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>

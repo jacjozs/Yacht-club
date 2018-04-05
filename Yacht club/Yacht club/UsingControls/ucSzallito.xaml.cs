@@ -16,6 +16,7 @@ namespace Yacht_club.UsingControls
         {
             InitializeComponent();
             Loading();
+            Globals.UpdateHistory();
         }
 
         public void Loading()
@@ -114,7 +115,7 @@ namespace Yacht_club.UsingControls
 
         private void btRendel_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Globals.Main.ccWindow_2.Content = new ucBerles();
+            Globals.Main.ccWindow_Main.Content = new ucBerles();
         }
 
         private void btMegse_Click(object sender, RoutedEventArgs e)

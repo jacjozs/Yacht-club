@@ -16,6 +16,7 @@ namespace Yacht_club.UsingControls.Admin
         {
             InitializeComponent();
             Loading();
+            Globals.UpdateHistory();
         }
 
         private void Loading()
@@ -107,7 +108,7 @@ namespace Yacht_club.UsingControls.Admin
         private void dpMouse_Click(object sender, MouseButtonEventArgs e)
         {
             Globals.selectedDevice = Devices[int.Parse(((StackPanel)sender).Uid)];
-            Globals.Main.ccWindow_2.Content = new ucSzallito();
+            Globals.Main.ccWindow_Main.Content = new ucSzallito();
         }
     }
 }

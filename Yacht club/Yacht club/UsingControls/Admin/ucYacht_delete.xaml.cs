@@ -17,6 +17,7 @@ namespace Yacht_club.UsingControls
         {
             InitializeComponent();
             Loading();
+            Globals.UpdateHistory();
         }
 
         public void Loading()

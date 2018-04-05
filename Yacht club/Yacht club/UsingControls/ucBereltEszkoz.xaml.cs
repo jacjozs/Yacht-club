@@ -23,6 +23,7 @@ namespace Yacht_club.UsingControls
         public ucBereltEszkoz()
         {
             InitializeComponent();
+            Globals.UpdateHistory();
         }
     }
 }

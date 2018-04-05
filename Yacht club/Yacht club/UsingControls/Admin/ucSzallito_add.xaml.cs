@@ -27,6 +27,7 @@ namespace Yacht_club.UsingControls
         {
             InitializeComponent();
             login_name();
+            Globals.UpdateHistory();
         }
         /// <summary>
         /// szállitoeszköz adatainak bejügytése egy objectumba és annak átadása az adatbázisnak

@@ -20,7 +20,8 @@ namespace Yacht_club.UsingControls
         public ucBeallitasok()
         {
             InitializeComponent();
-            Globals.History = (UserControl)Globals.Main.ccWindow_2.Content;
+            logining();
+            Globals.UpdateHistory();
         }
         /// <summary>
         /// Kép tallozás és az elérésiút mentése valamint kiírása a textbox-ba
