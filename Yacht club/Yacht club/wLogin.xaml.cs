@@ -13,6 +13,7 @@ namespace Yacht_club
         public wLogin()
         {
             InitializeComponent();
+            tbLoginName.Focus();
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -61,7 +62,17 @@ namespace Yacht_club
         private void Login_Window_Enter_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-                Login();
+            {
+                if (tbLoginName.IsFocused)
+                    pbPasswd.Focus();
+                else
+                    Login();
+            }
+        }
+
+        private void Moveing_Click(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

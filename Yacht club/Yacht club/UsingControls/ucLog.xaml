@@ -11,10 +11,10 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="130"/>
         </Grid.RowDefinitions>
-        <Canvas HorizontalAlignment="Left" Height="30" Grid.Row="0" VerticalAlignment="Top" Width="833" Background="{Binding hatter}">
-            <Label Style="{StaticResource MenuDecLabel}" Content="Visszajelzések:" FontWeight="Bold" FontSize="14" Cursor="Hand" Foreground="{Binding betu_szin}" HorizontalAlignment="Left"  Padding="5" Grid.Row="0" Width="432"/>
-            <Button Style="{StaticResource Buttons}" Content="Ablak takarítása" Foreground="{Binding betu_szin}" Background="{Binding hatter}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="126" FontWeight="Bold" Click="btDelete_Click" Height="26" Canvas.Left="707" Canvas.Top="2"/>
-        </Canvas>
+        <StackPanel Orientation="Horizontal" Width="833" Background="{Binding hatter}" Grid.Row="0" Height="30">
+            <Label Style="{StaticResource MenuDecLabel}" Content="Visszajelzések:" FontWeight="Bold" FontSize="14" Foreground="{Binding betu_szin}" HorizontalAlignment="Left"  Padding="5" Grid.Row="0" Width="707"/>
+            <Button Style="{StaticResource Buttons}" Content="Ablak takarítása" Foreground="{Binding betu_szin}" Background="{Binding hatter}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="126" FontWeight="Bold" Click="btDelete_Click" Height="26"/>
+        </StackPanel>
         <ScrollViewer Name="Scrollwiewr" VerticalScrollBarVisibility="Auto" Width="813" Margin="10" Padding="12 0 0 12" Grid.Column="0" Grid.Row="1" Height="110">
             <StackPanel Name="spList" Width="813"/>
         </ScrollViewer>

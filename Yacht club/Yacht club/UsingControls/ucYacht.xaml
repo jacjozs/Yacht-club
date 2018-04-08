@@ -65,7 +65,7 @@
         <TextBox x:Name="tbJHely"  Grid.Row="10" Grid.Column="1" Height="25" Padding="0 4 0 0" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
         <ComboBox x:Name="cbJHely" Grid.Row="10" Grid.Column="1" Height="25" Padding="0 4 0 0" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
 
-        <Image    x:Name="imgYacht"    Grid.Column="3" Grid.Row="1" Grid.RowSpan="8"/>
+        <Image    x:Name="imgYacht"    Grid.Column="3" Grid.Row="1" Grid.RowSpan="8" Margin="15 0 15 0"/>
         <CheckBox x:Name="cbBerelheto" Grid.Row="8"    Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden"/>
 
         <Button x:Name="btBerles"   Content="Foglalás"  Grid.Column="3" Grid.Row="11" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" Width="140" Click="clkFoglal" Margin="5,0,0,0"/>
@@ -73,7 +73,7 @@
         <Button x:Name="btModosit"  Content="Módosítás" Grid.Column="3" Grid.Row="11" Visibility="Hidden" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" Width="140" Click="clkModosit" Margin="5,0,0,0"/>
         <Button x:Name="btMegse"    Content="Mégse"     Grid.Column="3" Grid.Row="11" Visibility="Hidden" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" Width="140" Click="clkMegse" Margin="5,0,0,0"/>
 
-        <TextBox x:Name="tbjImage"  Grid.Row="10" Width="250" Height="25" Padding="0 4 0 0" Grid.Column="3" VerticalAlignment="Center" BorderThickness="0" HorizontalAlignment="Right" Visibility="Hidden" Margin="0,0,180,0"/>
-        <Button x:Name="btImage"    Content="Tallozás"     Grid.Column="3" Grid.Row="10" Visibility="Hidden" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Right" Width="140" Click="clkImage" Margin="0,0,30,0"/>
+        <TextBox x:Name="tbjImage"  Grid.Row="9" Width="250" Height="30" Padding="0 4 0 0" Grid.RowSpan="2" Grid.Column="2" VerticalAlignment="Center" BorderThickness="0" HorizontalAlignment="Right" Visibility="Hidden" Margin="0,0,180,0"/>
+        <Button x:Name="btImage"    Content="Tallozás"  Height="30"   Grid.Column="3" Grid.Row="9" Grid.RowSpan="2" Visibility="Hidden" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Right" Width="140" Click="clkImage" Margin="0,0,30,0"/>
     </Grid>
 </UserControl>

@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yacht_club"
         mc:Ignorable="d"
-        Title="Login" Height="150" Width="300" WindowStyle="None" ResizeMode="NoResize" Background="#FF2D3446" Icon="images/white/yachts.ico" WindowStartupLocation="CenterScreen" KeyDown="Login_Window_Enter_KeyDown">
+        Title="Login" Height="150" Width="300" WindowStyle="None" ResizeMode="NoResize" Background="#FF2D3446"
+        Icon="images/white/yachts.ico" WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Moveing_Click" KeyDown="Login_Window_Enter_KeyDown">
     <Grid>
         <!-- Login Ablak -->
         <StackPanel x:Name="stLogin" Panel.ZIndex="1" Grid.Row="0" Grid.Column="0" Margin="10" Visibility="Visible">

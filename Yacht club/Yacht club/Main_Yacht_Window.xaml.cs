@@ -63,9 +63,7 @@ namespace Yacht_club
         public void logAdd(bool IsLog)
         {
             if (IsLog)
-            {
                 Globals.log_windows.Add();
-            }
             ccWindow_Log.Content = Globals.log_windows;
         }
         /// <summary>
@@ -227,8 +225,6 @@ namespace Yacht_club
                     Globals.Main.Opacity = 0.6;
                     Message.ShowDialog();
                     break;
-                default:
-                    break;
             }
         }
         /// <summary>
@@ -383,8 +379,6 @@ namespace Yacht_club
                         else ccWindow_Main.Uid += "1";*/
                     }
                     break;
-                default:
-                    break;
             }
         }
         /// <summary>
@@ -395,59 +389,73 @@ namespace Yacht_club
         /// <param name="e"></param>
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Back)
+            switch (e.Key)
             {
-                ccWindow_Main.Content = Globals.History;
-                /* Teszt project 
-                 * Nem fontos!
-                int index;
-                try
-                {
-                    index = int.Parse(ccWindow_Main.Uid.Substring(0,1));
-                }
-                catch (Exception)
-                {
-                    index = 0;
-                }
-                switch (index)
-                {
-                    ///Felhasználói, Yachtok vagy Szállitó ablak
-                    case 1:
-                        if (cs_Menu_2.IsVisible)
-                        {
-                            cs_Menu_2.Visibility = Visibility.Hidden;
-                            if (Globals.User.login.admin)
+                case Key.Back:
+                    ccWindow_Main.Content = Globals.History;
+                    /* Teszt project 
+                     * Nem fontos!
+                    int index;
+                    try
+                    {
+                        index = int.Parse(ccWindow_Main.Uid.Substring(0,1));
+                    }
+                    catch (Exception)
+                    {
+                        index = 0;
+                    }
+                    switch (index)
+                    {
+                        ///Felhasználói, Yachtok vagy Szállitó ablak
+                        case 1:
+                            if (cs_Menu_2.IsVisible)
                             {
-                                if (!stMenu_2_yacht.IsVisible && (Globals.History is ucYachtok_all
-                                    || Globals.History is ucYacht_add || Globals.History is ucYacht_delete || (Globals.User.login.admin && Globals.History is ucYacht)))
-                                { stMenu_2_yacht.Visibility = Visibility.Visible; }
-                                if (!stMenu_2_szallito.IsVisible && (Globals.History is ucSzallitok_all
-                                    || Globals.History is ucSzallito_add || Globals.History is ucSzallito_delete || (Globals.User.login.admin && Globals.History is ucSzallito)))
-                                { stMenu_2_szallito.Visibility = Visibility.Visible; }
+                                cs_Menu_2.Visibility = Visibility.Hidden;
+                                if (Globals.User.login.admin)
+                                {
+                                    if (!stMenu_2_yacht.IsVisible && (Globals.History is ucYachtok_all
+                                        || Globals.History is ucYacht_add || Globals.History is ucYacht_delete || (Globals.User.login.admin && Globals.History is ucYacht)))
+                                    { stMenu_2_yacht.Visibility = Visibility.Visible; }
+                                    if (!stMenu_2_szallito.IsVisible && (Globals.History is ucSzallitok_all
+                                        || Globals.History is ucSzallito_add || Globals.History is ucSzallito_delete || (Globals.User.login.admin && Globals.History is ucSzallito)))
+                                    { stMenu_2_szallito.Visibility = Visibility.Visible; }
+                                }
+                                if (!stMenu_2_user.IsVisible && (Globals.History is ucFelhasznalo || Globals.History is ucBerbeadott || 
+                                    Globals.History is ucKimutatasok || Globals.History is ucYacht_berles || Globals.History is ucSzallito_berles ||
+                                    (!Globals.User.login.admin && (Globals.History is ucSzallito || Globals.History is ucYacht))))
+                                { stMenu_2_user.Visibility = Visibility.Visible; }
                             }
-                            if (!stMenu_2_user.IsVisible && (Globals.History is ucFelhasznalo || Globals.History is ucBerbeadott || 
-                                Globals.History is ucKimutatasok || Globals.History is ucYacht_berles || Globals.History is ucSzallito_berles ||
-                                (!Globals.User.login.admin && (Globals.History is ucSzallito || Globals.History is ucYacht))))
-                            { stMenu_2_user.Visibility = Visibility.Visible; }
-                        }
-                        ccWindow_Main.Content = Globals.History;
-                        break;
-                    default:
-                        if (!cs_Menu_2.IsVisible)
-                        {
-                            cs_Menu_2.Visibility = Visibility.Visible;
-                            if (stMenu_2_user.IsVisible)
-                            { stMenu_2_user.Visibility = Visibility.Hidden; }
-                            if (stMenu_2_yacht.IsVisible)
-                            { stMenu_2_yacht.Visibility = Visibility.Hidden; }
-                            if (stMenu_2_szallito.IsVisible)
-                            { stMenu_2_szallito.Visibility = Visibility.Hidden; }
-                        }
-                        ccWindow_Main.Content = Globals.History;
-                        break;
-                }
-                */
+                            ccWindow_Main.Content = Globals.History;
+                            break;
+                        default:
+                            if (!cs_Menu_2.IsVisible)
+                            {
+                                cs_Menu_2.Visibility = Visibility.Visible;
+                                if (stMenu_2_user.IsVisible)
+                                { stMenu_2_user.Visibility = Visibility.Hidden; }
+                                if (stMenu_2_yacht.IsVisible)
+                                { stMenu_2_yacht.Visibility = Visibility.Hidden; }
+                                if (stMenu_2_szallito.IsVisible)
+                                { stMenu_2_szallito.Visibility = Visibility.Hidden; }
+                            }
+                            ccWindow_Main.Content = Globals.History;
+                            break;
+                    }
+                    */
+                    break;
+                case Key.Escape:
+                    Message = new wMessage(1, 0);
+                    Globals.Main.Opacity = 0.6;
+                    Message.ShowDialog();
+                    break;
             }
+        }
+        private void Moveing_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (!Globals.action)
+                DragMove();
+            else
+                Globals.action = true; 
         }
     }
 }

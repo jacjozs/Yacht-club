@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Yacht_club
 {
@@ -28,12 +29,18 @@ namespace Yacht_club
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Globals.action = true;
             Globals.Main.MainWindow.Opacity = 1;
             Globals.Main.logAdd(false);
             this.Hide();
         }
 
         private void btRegiszt_Click(object sender, RoutedEventArgs e)
+        {
+            Registral();
+        }
+
+        private void Registral()
         {
             data = new Database.MysqlRegistration();
             Login login = new Login();
@@ -66,6 +73,7 @@ namespace Yacht_club
             {
                 Globals.log = "Sikeres Regisztráció!";
             }
+            Globals.action = true;
             Globals.Main.MainWindow.Opacity = 1;
             Globals.Main.logAdd(true);
             this.Hide();
@@ -76,6 +84,28 @@ namespace Yacht_club
             if (pbPasswd.Password != pbRePasswd.Password)
                 return false;
             return true;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Enter:
+                    Registral();
+                    break;
+                case Key.Escape:
+                case Key.Back:
+                    Globals.action = true;
+                    Globals.Main.MainWindow.Opacity = 1;
+                    Globals.Main.logAdd(false);
+                    this.Hide();
+                    break;
+            }
+        }
+
+        private void Moveing_Click(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

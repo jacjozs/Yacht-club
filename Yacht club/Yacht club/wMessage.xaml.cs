@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 using Yacht_club.UsingControls;
 
 namespace Yacht_club
@@ -58,7 +59,7 @@ namespace Yacht_club
             }
         }
 
-        private void btOK_Click(object sender, RoutedEventArgs e)
+        private void ClickAction()
         {
             switch (action)
             {
@@ -138,11 +139,36 @@ namespace Yacht_club
             }
         }
 
+        private void btOK_Click(object sender, RoutedEventArgs e)
+        {
+            ClickAction();
+        }
+
         private void btCancel_Click(object sender, RoutedEventArgs e)
         {
             Globals.Main.MainWindow.Opacity = 1;
             Globals.Main.logAdd(false);
             this.Hide();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Enter:
+                    ClickAction();
+                    break;
+                case Key.Escape:
+                    Globals.Main.MainWindow.Opacity = 1;
+                    Globals.Main.logAdd(false);
+                    this.Hide();
+                    break;
+            }
+        }
+
+        private void Moveing_Click(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }
