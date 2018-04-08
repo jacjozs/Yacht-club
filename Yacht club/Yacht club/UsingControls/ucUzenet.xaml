@@ -16,6 +16,5 @@
             <RowDefinition Height="379"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Üzenet:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Margin="0,3"/>
-        <Label x:Name="labelid" Margin="70,0,0,0" />
     </Grid>
 </UserControl>
