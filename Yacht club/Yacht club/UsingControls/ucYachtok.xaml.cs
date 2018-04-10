@@ -29,7 +29,8 @@ namespace Yacht_club.UsingControls
             {
                 StackPanel panel = new StackPanel();
                 panel.Orientation = Orientation.Horizontal;
-                panel.Height = 55;
+                panel.Margin = new Thickness(0, 0, 0, 2);
+                panel.Height = 53;
                 panel.Width = 793;
                 panel.MouseDown += new MouseButtonEventHandler(dpMouse_Click);
                 panel.Uid = i.ToString();

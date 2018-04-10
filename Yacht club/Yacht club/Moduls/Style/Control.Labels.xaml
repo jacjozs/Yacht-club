@@ -7,6 +7,7 @@
         <Setter Property="Padding" Value="15,0,0,0"/>
         <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
         <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+        <Setter Property="Foreground" Value="{Binding betu_szin}"/>
     </Style>
 
 
@@ -28,7 +29,15 @@
 
     <Style x:Key="MessageStackLabel" TargetType="Label">
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Padding" Value="10,16,0,14"/>
+        <Setter Property="Padding" Value="15,16.5,0,14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Foreground" Value="{Binding betu_szin}"/>
+    </Style>
+
+    <Style x:Key="MessageStackMiniLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="Padding" Value="5,8,0,14"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Height" Value="50"/>
         <Setter Property="Foreground" Value="{Binding betu_szin}"/>
@@ -49,5 +58,13 @@
                 <Setter Property="Foreground" Value="{Binding menu_betu_szin}"/>
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MenuMiniLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="Padding" Value="2,5,0,0"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Foreground" Value="{Binding betu_szin}"/>
     </Style>
 </ResourceDictionary>

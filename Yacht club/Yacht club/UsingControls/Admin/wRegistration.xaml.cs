@@ -29,7 +29,6 @@ namespace Yacht_club
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Globals.action = true;
             Globals.Main.MainWindow.Opacity = 1;
             Globals.Main.logAdd(false);
             this.Hide();
@@ -71,12 +70,12 @@ namespace Yacht_club
             }
             finally
             {
+                data = null;
                 Globals.log = "Sikeres Regisztráció!";
+                Globals.Main.MainWindow.Opacity = 1;
+                Globals.Main.logAdd(true);
+                this.Hide();
             }
-            Globals.action = true;
-            Globals.Main.MainWindow.Opacity = 1;
-            Globals.Main.logAdd(true);
-            this.Hide();
         }
 
         private bool ellenorzes()
@@ -95,7 +94,6 @@ namespace Yacht_club
                     break;
                 case Key.Escape:
                 case Key.Back:
-                    Globals.action = true;
                     Globals.Main.MainWindow.Opacity = 1;
                     Globals.Main.logAdd(false);
                     this.Hide();

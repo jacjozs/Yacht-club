@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Yacht_club.UsingControls.Minis.ucUzenetek_2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Yacht_club.UsingControls.Minis"
+             mc:Ignorable="d" 
+             d:DesignHeight="202" d:DesignWidth="416.5" Background="{Binding uc_hatter}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="182"/>
+        </Grid.RowDefinitions>
+        <Label Style="{DynamicResource MenuDecLabel}" Content="Új Üzenetek:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" Padding="15 2 0 0" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+        <ScrollViewer Name="Scrollwiewr" Margin="10,10,0,10" VerticalScrollBarVisibility="Auto" Width="396.5" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
+            <StackPanel Name="spList" Width="396.5"/>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

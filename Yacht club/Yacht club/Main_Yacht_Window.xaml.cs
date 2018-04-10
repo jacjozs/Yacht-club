@@ -452,10 +452,13 @@ namespace Yacht_club
         }
         private void Moveing_Click(object sender, MouseButtonEventArgs e)
         {
-            if (!Globals.action)
+            Moveing(e);
+        }
+
+        private void Moveing(MouseButtonEventArgs e)
+        {
+            if (Globals.Main.IsMouseOver)
                 DragMove();
-            else
-                Globals.action = true; 
         }
     }
 }

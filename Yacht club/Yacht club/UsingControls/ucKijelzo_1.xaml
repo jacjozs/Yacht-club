@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
              mc:Ignorable="d" 
-             d:DesignHeight="404" d:DesignWidth="833" Background="{Binding uc_hatter}">
+             d:DesignHeight="404" d:DesignWidth="833" Background="{Binding hatter}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="416.5"/>
@@ -15,13 +15,9 @@
             <RowDefinition Height="202"/>
             <RowDefinition Height="202"/>
         </Grid.RowDefinitions>
-        <DockPanel Height="202" LastChildFill="False" Width="416.5" Grid.Row="0" Grid.Column="0">
-        </DockPanel>
-        <DockPanel Height="202" LastChildFill="False" Width="416.5" Grid.Row="0" Grid.Column="1">
-        </DockPanel>
-        <DockPanel Height="202" LastChildFill="False" Width="416.5" Grid.Row="1" Grid.Column="0">
-        </DockPanel>
-        <DockPanel Height="202" LastChildFill="False" Width="416.5" Grid.Row="1" Grid.Column="1">
-        </DockPanel>
+        <ContentControl x:Name="ccWindow_Uzenet" TabIndex="2" Grid.Row="0" Grid.Column="0" Margin="0 0 5 5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <ContentControl x:Name="ccWindow_Yacht" TabIndex="2" Grid.Row="0" Grid.Column="1" Margin="5 0 0 5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <ContentControl x:Name="ccWindow_Szallito" TabIndex="2" Grid.Row="1" Grid.Column="0" Margin="0 5 5 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <ContentControl x:Name="ccWindow_Kimutat" TabIndex="2" Grid.Row="1" Grid.Column="1" Margin="5 5 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>
 </UserControl>

@@ -34,10 +34,11 @@ namespace Yacht_club.UsingControls
             {
                 StackPanel panel = new StackPanel();
                 panel.Orientation = Orientation.Horizontal;
-                panel.Height = 50;
+                panel.Margin = new Thickness(0, 0, 0, 2);
+                panel.Height = 48;
                 panel.Width = 793;
                 panel.MouseDown += new MouseButtonEventHandler(dpMouse_Click);
-                panel.Uid = i.ToString(); ;
+                panel.Uid = i.ToString();
 
                 Label IsNew = new Label();
                 if (Messages[i].NEWbl)

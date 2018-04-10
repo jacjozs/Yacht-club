@@ -15,7 +15,6 @@ namespace Yacht_club
         public static MySqlConnection connect = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=gamfyachtclub");
         public static Main_Yacht_Window Main;
         public static UserControl History;
-        public static bool action = false;
         internal static Themes MainTheme;
         internal static Felhasznalo User;
         internal static Yacht selectedYacht;

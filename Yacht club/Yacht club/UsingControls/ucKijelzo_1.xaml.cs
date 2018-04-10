@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using Yacht_club.UsingControls.Minis;
 
 namespace Yacht_club.UsingControls
 {
@@ -11,6 +12,10 @@ namespace Yacht_club.UsingControls
         {
             InitializeComponent();
             Globals.UpdateHistory();
+            ccWindow_Uzenet.Content = new ucUzenetek_2();
+            ccWindow_Kimutat.Content = new ucKimutatasok_2();
+            ccWindow_Szallito.Content = new ucSzallitok_2();
+            ccWindow_Yacht.Content = new ucYachtok_2();
         }
     }
 }

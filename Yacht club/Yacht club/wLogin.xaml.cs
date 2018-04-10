@@ -36,6 +36,7 @@ namespace Yacht_club
             //A kikereset és ellenörzött adatok bevitele a main user változoba
             //Egyfajta átadás
             Felhasznalo user_login = data.MysqlFelhasznalo(tbLoginName.Text, pbPasswd.Password);
+            data = null;
             if (user_login != null)
             {
                 Globals.User = user_login;

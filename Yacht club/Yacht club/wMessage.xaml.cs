@@ -91,6 +91,7 @@ namespace Yacht_club
                     }
                     finally
                     {
+                        dataYacht = null;
                         Globals.Main.MainWindow.Opacity = 1;
                         Globals.Main.logAdd(true);
                         this.Hide();
@@ -111,6 +112,7 @@ namespace Yacht_club
                     }
                     finally
                     {
+                        dataDevice = null;
                         Globals.Main.MainWindow.Opacity = 1;
                         Globals.Main.logAdd(true);
                         this.Hide();
@@ -131,6 +133,7 @@ namespace Yacht_club
                     }
                     finally
                     {
+                        dataMessage = null;
                         Globals.Main.MainWindow.Opacity = 1;
                         Globals.Main.logAdd(true);
                         this.Hide();
