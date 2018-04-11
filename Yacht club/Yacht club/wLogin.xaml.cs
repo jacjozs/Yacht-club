@@ -51,8 +51,15 @@ namespace Yacht_club
                 this.Hide();
                 Globals.Main.Show();
             }
-            else
-                MessageBox.Show("Hibás felhasználónév vagy jelszó", "Hiba!", MessageBoxButton.OK);
+            switch (Globals.Login_Hiba_Code)
+            {
+                case 1:
+                        MessageBox.Show("Hibás felhasználónév", "Hiba!", MessageBoxButton.OK);
+                        break;
+                case 2:
+                        MessageBox.Show("Hibás jelszó", "Hiba!", MessageBoxButton.OK);
+                        break;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

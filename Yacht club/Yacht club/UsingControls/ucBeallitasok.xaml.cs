@@ -98,7 +98,7 @@ namespace Yacht_club.UsingControls
         /// <returns></returns>
         private bool passwdEllenorzes(string regi, string uj, string reUj)
         {
-            if (regi == Globals.User.login.jelszo && uj == reUj) return true;
+            if (Globals.Decryption(regi) == Globals.User.login.jelszo && uj == reUj) return true;
             return false;
         }
         /// <summary>

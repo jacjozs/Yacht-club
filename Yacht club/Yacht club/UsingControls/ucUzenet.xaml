@@ -8,13 +8,52 @@
              d:DesignHeight="404" d:DesignWidth="833" Background="{Binding uc_hatter}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="416.5"/>
-            <ColumnDefinition Width="416.5"/>
+            <ColumnDefinition Width="178"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="416"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="379"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        <Label Style="{DynamicResource MenuDecLabel}" Content="Üzenet:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Margin="0,3"/>
+        <Label Style="{DynamicResource MenuDecLabel}" Content="Üzenet:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Margin="0,3" Height="19" Width="65"/>
+        <Label Style="{DynamicResource MenuStackLabel}" Content="Üzenet Adatai" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="10,0,0,0" Width="90"/>
+        <Label Content="Feladó: " Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3" Margin="20,0,0,0" Height="25" Width="51"/>
+        <Label Content="Dátum: " Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="20,0,0,0" Height="25" Width="52"/>
+        <Label Style="{DynamicResource MenuStackLabel}" Content="Bérlés részletei" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="5" Margin="10,0,0,0" Width="94"/>
+        <Label x:Name="lbYachtName" Content="Yacht neve: " Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="6" Margin="20,0,0,0" Height="25" Width="72" Visibility="Hidden"/>
+        <Label x:Name="lbSzallitoName" Content="Szállítóeszköz neve: " Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="6" Margin="20,0,0,0" Height="25" Width="117" Visibility="Hidden"/>
+        <Label Content="Mettől: " Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="7" Margin="20,0,0,0" Height="25" Width="51"/>
+        <Label Content="Meddig: " Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="8" Margin="20,0,0,0" Height="25" Width="57"/>
+        <Label Content="Indulási kikötő: " Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="9" Margin="20,0,0,0" Height="25" Width="158"/>
+        <Label Content="Érkezési kikötő: " Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="10" Margin="20,0,0,0" Height="25" Width="158"/>
+        <Label Style="{DynamicResource MenuStackLabel}" Content="Elfogadás/Elutasítás:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="12" Margin="10,0,0,0" Width="158"/>
+
+        <Label x:Name="lbFelado" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
+        <Label x:Name="lbDatum"  Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4"/>
+        <Label x:Name="lbYNev"   Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="6"/>
+        <Label x:Name="lbSzNev"  Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="6"/>
+        <Label x:Name="lbMettol" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="7"/>
+        <Label x:Name="lbMeddig" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="8"/>
+        <Label x:Name="lbIndul"  Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="9"/>
+        <Label x:Name="lbErkez"  Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="10"/>
+
+        <Button x:Name="btElfofad"  Content="Elfogadás" Grid.Column="0" Grid.Row="14" Height="30" Style="{StaticResource Buttons}" Background="{Binding uc_hatter}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Grid.RowSpan="2" Margin="20,0,0,0" />
+        <Button x:Name="btElutasit" Content="Elutasítás" Grid.Column="1" Grid.Row="14" Height="30" Style="{StaticResource Buttons}" Background="{Binding uc_hatter}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Grid.RowSpan="2" />
+
     </Grid>
 </UserControl>

@@ -452,11 +452,6 @@ namespace Yacht_club
         }
         private void Moveing_Click(object sender, MouseButtonEventArgs e)
         {
-            Moveing(e);
-        }
-
-        private void Moveing(MouseButtonEventArgs e)
-        {
             if (Globals.Main.IsMouseOver)
                 DragMove();
         }

@@ -20,7 +20,7 @@ namespace Yacht_club.Database
                 {
                     cmd.Parameters.Add("?login_id", MySqlDbType.Int16).Value = id;
                     cmd.Parameters.Add("?login_name", MySqlDbType.VarChar).Value = regisztration.login.felhasznalonev;
-                    cmd.Parameters.Add("?password", MySqlDbType.VarChar).Value = regisztration.login.jelszo;
+                    cmd.Parameters.Add("?password", MySqlDbType.VarChar).Value = Globals.Encryption(regisztration.login.jelszo);
                     cmd.Parameters.Add("?email", MySqlDbType.VarChar).Value = regisztration.login.email;
                     cmd.Parameters.Add("?admin", MySqlDbType.Bit).Value = regisztration.login.admin ? 1 : 0;
                     cmd.ExecuteNonQuery();

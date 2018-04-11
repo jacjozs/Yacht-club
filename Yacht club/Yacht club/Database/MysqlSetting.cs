@@ -54,7 +54,7 @@ namespace Yacht_club.Database
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
-                    cmd.Parameters.Add("?password", MySqlDbType.VarChar).Value = UpdateUserLogin.jelszo;
+                    cmd.Parameters.Add("?password", MySqlDbType.VarChar).Value = Globals.Encryption(UpdateUserLogin.jelszo);
                     cmd.Parameters.Add("?email", MySqlDbType.VarChar).Value = UpdateUserLogin.email;
                     cmd.Parameters.Add("?theme", MySqlDbType.Int16).Value = UpdateUserLogin.theme;
                     cmd.Parameters.Add("?login_id", MySqlDbType.Int16).Value = UpdateUserLogin.id;

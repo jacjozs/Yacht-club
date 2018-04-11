@@ -17,36 +17,45 @@ namespace Yacht_club.Database
         /// <returns></returns>
         private Login Mysql_Login(string login_name, string password)
         {
-            Login user = null;
             try
             {
-                string query = "SELECT * FROM enLogin WHERE login_name = ?login_name AND password = ?password;";
+                string query = "SELECT * FROM enLogin WHERE login_name = ?login_name;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
                     cmd.Parameters.Add("?login_name", MySqlDbType.VarChar).Value = login_name;
-                    cmd.Parameters.Add("?password", MySqlDbType.VarChar).Value = password;
                     MySqlDataReader read = cmd.ExecuteReader();
                     while (read.Read())
                     {
-                        user = new Login();
-                        user.email = read["email"].ToString();
-                        user.utolsoLogin = DateTime.Parse(read["last_login"].ToString());
-                        user.felhasznalonev = login_name;
-                        user.jelszo = password;
-                        user.theme = (int)read["theme"];
-                        if ((int)read["admin"] == 1)
-                            user.admin = true;
-                        else user.admin = false;
-                        user.id = (int)read["login_id"];
+                        Login user = new Login();
+                        user.felhasznalonev = read["login_name"].ToString();
+                        if (password == Globals.Decryption(read["password"].ToString()))
+                        {
+                            user.email = read["email"].ToString();
+                            user.utolsoLogin = DateTime.Parse(read["last_login"].ToString());
+                            user.felhasznalonev = login_name;
+                            user.jelszo = password;
+                            user.theme = (int)read["theme"];
+                            if ((int)read["admin"] == 1)
+                                user.admin = true;
+                            else user.admin = false;
+                            user.id = (int)read["login_id"];
+                            return user;
+                        }
+                        else
+                        {
+                            Globals.Login_Hiba_Code = 2;
+                            return null;
+                        }
                     }
+                    Globals.Login_Hiba_Code = 1;
                 }
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
             }
-            return user;
+            return null;
         }
 
         /// <summary>
