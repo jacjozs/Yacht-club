@@ -40,16 +40,19 @@ namespace Yacht_club.UsingControls
             {
                 newYacht = new Yacht();
                 newYacht.nev = tbYacht_nev.Text;
-                newYacht.tipus = tbYacht_tipus.Text;
+                newYacht.gyarto = tbYacht_gyarto.Text;
                 newYacht.member_id = int.Parse(list[cbYacht_tulaj.Text].ToString());
                 newYacht.ferohely = int.Parse(tbYacht_ferohely.Text);
-                newYacht.suly = int.Parse(tbYacht_tomeg.Text);
-                newYacht.szeles = int.Parse(tbYacht_szeles.Text);
-                newYacht.hossz = int.Parse(tbYacht_hossz.Text);
-                newYacht.magas = int.Parse(tbYacht_magas.Text);
+                newYacht.sebesseg = int.Parse(tbYacht_sebesseg.Text);
+                newYacht.szeles = (float)Convert.ToDouble(tbYacht_szeles.Text);
+                newYacht.hossz = (float)Convert.ToDouble(tbYacht_hossz.Text);
+                newYacht.merules = (float)Convert.ToDouble(tbYacht_merules.Text);
                 ///Sikeres adatbeirás után visszajelzés az egyes usercontrolban valamint a hozzáadások táblában
                 if (data.MysqlAddYacht(newYacht))
+                {
                     AddYachtLog(newYacht.nev + " Hozzáadva!");
+                    Globals.log = "Hozzáadás Sikeres! <Yacht>";
+                }
                 else Globals.log = "Hozzáadás Sikertelen! <Yacht>";
             }
             catch (Exception)
@@ -59,14 +62,13 @@ namespace Yacht_club.UsingControls
             finally
             {
                 ///textboxok leüritése
-                Globals.log = "Hozzáadás Sikeres! <Yacht>";
                 tbYacht_nev.Text = "";
-                tbYacht_tipus.Text = "";
+                tbYacht_gyarto.Text = "";
                 tbYacht_ferohely.Text = "";
-                tbYacht_tomeg.Text = "";
+                tbYacht_sebesseg.Text = "";
                 tbYacht_szeles.Text = "";
                 tbYacht_hossz.Text = "";
-                tbYacht_magas.Text = "";
+                tbYacht_merules.Text = "";
             }
             Globals.Main.logAdd(true);
         }

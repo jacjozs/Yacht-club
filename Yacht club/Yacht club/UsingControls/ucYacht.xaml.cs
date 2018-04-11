@@ -28,7 +28,7 @@ namespace Yacht_club.UsingControls
             data = new Database.MysqlYacht();
             lbAdatok = new Label[]
             {
-                lbNev,lbMag,lbHossz,lbFoglalt,lbAr,lbBerelheto,lbSuly,lbUlesek,lbHely,lbSzel,lbTipus
+                lbNev,lbMerul,lbHossz,lbFoglalt,lbAr,lbBerelheto,lbSeb,lbUlesek,lbHely,lbSzel,lbGyarto
             };
             Port_name();
             YachtImgLoad();
@@ -62,7 +62,7 @@ namespace Yacht_club.UsingControls
 
             tbAdatok = new TextBox[]
             {
-                 tbAr,tbHossz,tbMag,tbNev,tbSuly,tbSzel,tbTipus,tbÜlesek
+                 tbAr,tbHossz,tbMerul,tbNev,tbSeb,tbSzel,tbGyarto,tbÜlesek
             };
 
             lbBerelheto.Visibility = Visibility.Hidden;
@@ -70,8 +70,8 @@ namespace Yacht_club.UsingControls
             tbAr.IsEnabled = true;
             tbNev.IsEnabled = true;
             cbBerelheto.IsEnabled = true;
-            tbSuly.IsEnabled = true;
-            tbMag.IsEnabled = true;
+            tbSeb.IsEnabled = true;
+            tbMerul.IsEnabled = true;
             tbSzel.IsEnabled = true;
             tbHossz.IsEnabled = true;
             tbÜlesek.IsEnabled = true;
@@ -79,18 +79,18 @@ namespace Yacht_club.UsingControls
             tbAr.Visibility = Visibility.Visible;
             tbNev.Visibility = Visibility.Visible;
             cbBerelheto.Visibility = Visibility.Visible;
-            tbSuly.Visibility = Visibility.Visible;
-            tbMag.Visibility = Visibility.Visible;
+            tbSeb.Visibility = Visibility.Visible;
+            tbMerul.Visibility = Visibility.Visible;
             tbSzel.Visibility = Visibility.Visible;
             tbHossz.Visibility = Visibility.Visible;
             tbÜlesek.Visibility = Visibility.Visible;
             tbjImage.Visibility = Visibility.Visible;
 
             tbNev.Text = Globals.selectedYacht.nev;
-            tbTipus.Text = Globals.selectedYacht.tipus;
+            tbGyarto.Text = Globals.selectedYacht.gyarto;
             tbÜlesek.Text = Globals.selectedYacht.ferohely.ToString();
-            tbSuly.Text = Globals.selectedYacht.suly.ToString();
-            tbMag.Text = Globals.selectedYacht.magas.ToString();
+            tbSeb.Text = Globals.selectedYacht.sebesseg.ToString();
+            tbMerul.Text = Globals.selectedYacht.merules.ToString();
             tbHossz.Text = Globals.selectedYacht.hossz.ToString();
             tbSzel.Text = Globals.selectedYacht.szeles.ToString();
             tbAr.Text = Globals.selectedYacht.napi_ar.ToString();
@@ -103,10 +103,10 @@ namespace Yacht_club.UsingControls
             {
                 if (tbNev.Text != "") Globals.selectedYacht.nev = tbNev.Text;
                 if (tbÜlesek.Text != "") Globals.selectedYacht.ferohely = int.Parse(tbÜlesek.Text);
-                if (tbSzel.Text != "") Globals.selectedYacht.szeles = int.Parse(tbSzel.Text);
-                if (tbHossz.Text != "") Globals.selectedYacht.hossz = int.Parse(tbHossz.Text);
-                if (tbMag.Text != "") Globals.selectedYacht.magas = int.Parse(tbMag.Text);
-                if (tbSuly.Text != "") Globals.selectedYacht.suly = int.Parse(tbSuly.Text);
+                if (tbSzel.Text != "") Globals.selectedYacht.szeles = (float)Convert.ToDouble(tbSzel.Text);
+                if (tbHossz.Text != "") Globals.selectedYacht.hossz = (float)Convert.ToDouble(tbHossz.Text);
+                if (tbMerul.Text != "") Globals.selectedYacht.merules = (float)Convert.ToDouble(tbMerul.Text);
+                if (tbSeb.Text != "") Globals.selectedYacht.sebesseg = int.Parse(tbSeb.Text);
                 if (tbAr.Text != "") Globals.selectedYacht.napi_ar = int.Parse(tbAr.Text);
                 if (cbJHely.Text != "")
                 {
@@ -116,6 +116,7 @@ namespace Yacht_club.UsingControls
                 if (tbjImage.Text != "") Globals.selectedYacht.kep = new BitmapImage(new Uri(tbjImage.Text));
                 Globals.selectedYacht.berelheto = cbBerelheto.IsChecked.Value;
                 data.MysqlUpdateYacht(Globals.selectedYacht);
+                Globals.log = "Módosítás Sikeres! <Yacht>";
             }
             catch (Exception)
             {
@@ -134,8 +135,6 @@ namespace Yacht_club.UsingControls
                 btMegse.Visibility = Visibility.Hidden;
                 cbJHely.Visibility = Visibility.Hidden;
                 lbBerelheto.Visibility = Visibility.Visible;
-
-                Globals.log = "Módosítás Sikeres! <Yacht>";
             }
             Globals.Main.logAdd(true);
         }
@@ -156,10 +155,10 @@ namespace Yacht_club.UsingControls
         private void LabelFeltolt()
         { // Labelek feltöltése adatokkal
             lbNev.Content = Globals.selectedYacht.nev;
-            lbTipus.Content = Globals.selectedYacht.tipus;
+            lbGyarto.Content = Globals.selectedYacht.gyarto;
             lbUlesek.Content = Globals.selectedYacht.ferohely;
-            lbSuly.Content = Globals.selectedYacht.suly;
-            lbMag.Content = Globals.selectedYacht.magas;
+            lbSeb.Content = Globals.selectedYacht.sebesseg;
+            lbMerul.Content = Globals.selectedYacht.merules;
             lbHossz.Content = Globals.selectedYacht.hossz;
             lbSzel.Content = Globals.selectedYacht.szeles;
             if (Globals.selectedYacht.blfoglalt) lbFoglalt.Content = "Foglalt"; else lbFoglalt.Content = "Szabad";
@@ -173,22 +172,22 @@ namespace Yacht_club.UsingControls
             tbAr.IsEnabled = false;
             tbNev.IsEnabled = false;
             cbBerelheto.IsEnabled = false;
-            tbSuly.IsEnabled = false;
-            tbMag.IsEnabled = false;
+            tbSeb.IsEnabled = false;
+            tbMerul.IsEnabled = false;
             tbSzel.IsEnabled = false;
             tbHossz.IsEnabled = false;
-            tbTipus.IsEnabled = false;
+            tbGyarto.IsEnabled = false;
             tbÜlesek.IsEnabled = false;
             tbJHely.IsEnabled = false;
 
             tbAr.Visibility = Visibility.Hidden;
             tbNev.Visibility = Visibility.Hidden;
             cbBerelheto.Visibility = Visibility.Hidden;
-            tbSuly.Visibility = Visibility.Hidden;
-            tbMag.Visibility = Visibility.Hidden;
+            tbSeb.Visibility = Visibility.Hidden;
+            tbMerul.Visibility = Visibility.Hidden;
             tbSzel.Visibility = Visibility.Hidden;
             tbHossz.Visibility = Visibility.Hidden;
-            tbTipus.Visibility = Visibility.Hidden;
+            tbGyarto.Visibility = Visibility.Hidden;
             tbÜlesek.Visibility = Visibility.Hidden;
             tbJHely.Visibility = Visibility.Hidden;
         }

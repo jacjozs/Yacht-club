@@ -56,7 +56,7 @@ namespace Yacht_club.UsingControls
                 panel3.Height = 55;
 
                 Label tipus = new Label();
-                tipus.Content = "Típus: " + Yachts[i].tipus;
+                tipus.Content = "Gyártó: " + Yachts[i].gyarto;
                 tipus.Style = MenuStackLabel;
 
                 Label Tulaj = new Label();

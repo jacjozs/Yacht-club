@@ -10,7 +10,7 @@ namespace Yacht_club
     {
         public int id { get; set; }
         public string nev { get; set; }
-        public string tipus { get; set; }
+        public string gyarto { get; set; }
         public BitmapImage kep { get; set; }
         public int napi_ar { get; set; }
         /// <summary>
@@ -30,10 +30,10 @@ namespace Yacht_club
         /// </summary>
         public string berlo_full_name { get; set; }
         public int ferohely { get; set; }
-        public int szeles { get; set; }
-        public int hossz { get; set; }
-        public int magas { get; set; }
-        public int suly { get; set; }
+        public float szeles { get; set; }
+        public float hossz { get; set; }
+        public float merules { get; set; }
+        public int sebesseg { get; set; }
         public int kikoto_id { get; set; }
         public string kikoto { get; set; }
         /// <summary>

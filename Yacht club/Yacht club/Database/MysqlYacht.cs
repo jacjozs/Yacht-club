@@ -20,19 +20,19 @@ namespace Yacht_club.Database
         {
             try
             {
-                string query = "INSERT INTO enYacht(yacht_id, name, type, ower, seats, width, lenght, height, weight) VALUES (?yacht_id, ?name, ?type, ?ower, ?seats, ?width, ?lenght, ?height, ?weight);";
+                string query = "INSERT INTO enYacht(yacht_id, name, producer, ower, seats, width, lenght, dive, speed) VALUES (?yacht_id, ?name, ?producer, ?ower, ?seats, ?width, ?lenght, ?dive, ?speed);";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
                     cmd.Parameters.Add("?yacht_id", MySqlDbType.Int16).Value = MysqlNextId("enYacht", "yacht_id");
                     cmd.Parameters.Add("?name", MySqlDbType.VarChar).Value = yacht.nev;
-                    cmd.Parameters.Add("?type", MySqlDbType.VarChar).Value = yacht.tipus;
+                    cmd.Parameters.Add("?producer", MySqlDbType.VarChar).Value = yacht.gyarto;
                     cmd.Parameters.Add("?ower", MySqlDbType.Int16).Value = yacht.member_id;
                     cmd.Parameters.Add("?seats", MySqlDbType.Int16).Value = yacht.ferohely;
-                    cmd.Parameters.Add("?width", MySqlDbType.Int16).Value = yacht.szeles;
-                    cmd.Parameters.Add("?lenght", MySqlDbType.Int16).Value = yacht.hossz;
-                    cmd.Parameters.Add("?height", MySqlDbType.Int16).Value = yacht.magas;
-                    cmd.Parameters.Add("?weight", MySqlDbType.Int16).Value = yacht.suly;
+                    cmd.Parameters.Add("?width", MySqlDbType.Float).Value = yacht.szeles;
+                    cmd.Parameters.Add("?lenght", MySqlDbType.Float).Value = yacht.hossz;
+                    cmd.Parameters.Add("?dive", MySqlDbType.Float).Value = yacht.merules;
+                    cmd.Parameters.Add("?speed", MySqlDbType.Int16).Value = yacht.sebesseg;
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -163,7 +163,7 @@ namespace Yacht_club.Database
                         yacht.strfoglalt = "Szabad";
                         yacht.id = (int)read["yacht_id"];
                         yacht.nev = read["name"].ToString();
-                        yacht.tipus = read["type"].ToString();
+                        yacht.gyarto = read["producer"].ToString();
                         full_name = read["first_name"].ToString();
                         full_name += " " + read["last_name"].ToString();
                         yacht.full_name = full_name;
@@ -189,10 +189,10 @@ namespace Yacht_club.Database
                         if (read["daly_price"].ToString() == "")
                             yacht.napi_ar = 0;
                         else yacht.napi_ar = (int)read["daly_price"];
-                        yacht.szeles = (int)read["width"];
-                        yacht.hossz = (int)read["lenght"];
-                        yacht.magas = (int)read["height"];
-                        yacht.suly = (int)read["weight"];
+                        yacht.szeles = (float)read["width"];
+                        yacht.hossz = (float)read["lenght"];
+                        yacht.merules = (float)read["dive"];
+                        yacht.sebesseg = (int)read["speed"];
                         yacht.kikoto = read["port_name"].ToString();
                         yacht.kikoto_id = (int)read["port_id"];
                         Yachts.Add(yacht);
@@ -235,7 +235,7 @@ namespace Yacht_club.Database
                         yacht.strfoglalt = "Szabad";
                         yacht.id = (int)read["yacht_id"];
                         yacht.nev = read["name"].ToString();
-                        yacht.tipus = read["type"].ToString();
+                        yacht.gyarto = read["producer"].ToString();
                         full_name = read["first_name"].ToString();
                         full_name += " " + read["last_name"].ToString();
                         yacht.full_name = full_name;
@@ -260,10 +260,10 @@ namespace Yacht_club.Database
                         if (read["daly_price"].ToString() == "")
                             yacht.napi_ar = 0;
                         else yacht.napi_ar = (int)read["daly_price"];
-                        yacht.szeles = (int)read["width"];
-                        yacht.hossz = (int)read["lenght"];
-                        yacht.magas = (int)read["height"];
-                        yacht.suly = (int)read["weight"];
+                        yacht.szeles = (float)read["width"];
+                        yacht.hossz = (float)read["lenght"];
+                        yacht.merules = (float)read["dive"];
+                        yacht.sebesseg = (int)read["speed"];
                         yacht.kikoto = read["port_name"].ToString();
                         yacht.kikoto_id = (int)read["port_id"];
                         Yachts.Add(yacht);
@@ -305,7 +305,7 @@ namespace Yacht_club.Database
                         yacht.strfoglalt = "Szabad";
                         yacht.id = (int)read["yacht_id"];
                         yacht.nev = read["name"].ToString();
-                        yacht.tipus = read["type"].ToString();
+                        yacht.gyarto = read["producer"].ToString();
                         full_name = read["first_name"].ToString();
                         full_name += " " + read["last_name"].ToString();
                         yacht.full_name = full_name;
@@ -330,10 +330,10 @@ namespace Yacht_club.Database
                         if (read["daly_price"].ToString() == "")
                             yacht.napi_ar = 0;
                         else yacht.napi_ar = (int)read["daly_price"];
-                        yacht.szeles = (int)read["width"];
-                        yacht.hossz = (int)read["lenght"];
-                        yacht.magas = (int)read["height"];
-                        yacht.suly = (int)read["weight"];
+                        yacht.szeles = (float)read["width"];
+                        yacht.hossz = (float)read["lenght"];
+                        yacht.merules = (float)read["dive"];
+                        yacht.sebesseg = (int)read["speed"];
                         yacht.kikoto = read["port_name"].ToString();
                         yacht.kikoto_id = (int)read["port_id"];
                         Yachts.Add(yacht);
@@ -411,30 +411,35 @@ namespace Yacht_club.Database
         {
             try
             {
-                string query = "UPDATE enYacht SET name = ?name, type = ?type, image = ?image, seats = ?seats, hire = ?hire, busy = ?busy, daly_price = ?daly_price, width = ?width, lenght = ?lenght, height = ?height, weight = ?weight, port_id = ?port_id WHERE yacht_id = ?yacht_id;";
+                string query = "UPDATE enYacht SET name = ?name, producer = ?producer, image = ?image, seats = ?seats, hire = ?hire, busy = ?busy, daly_price = ?daly_price, width = ?width, lenght = ?lenght, dive = ?dive, speed = ?speed, port_id = ?port_id WHERE yacht_id = ?yacht_id;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
                     cmd.Parameters.Add("?yacht_id", MySqlDbType.Int16).Value = UpdateYacht.id;
                     cmd.Parameters.Add("?name", MySqlDbType.VarChar).Value = UpdateYacht.nev;
-                    cmd.Parameters.Add("?type", MySqlDbType.VarChar).Value = UpdateYacht.tipus;
-                    cmd.Parameters.Add("?image", MySqlDbType.Blob).Value = ImageToByte(UpdateYacht.kep);
+                    cmd.Parameters.Add("?producer", MySqlDbType.VarChar).Value = UpdateYacht.gyarto;
+                    if (UpdateYacht.kep != null)
+                    {
+                        cmd.Parameters.Add("?image", MySqlDbType.Blob).Value = ImageToByte(UpdateYacht.kep);
+                    }
+                    else cmd.Parameters.Add("?image", MySqlDbType.Blob).Value = byte.MinValue;
                     cmd.Parameters.Add("?seats", MySqlDbType.Int16).Value = UpdateYacht.ferohely;
                     cmd.Parameters.Add("?hire", MySqlDbType.Bit).Value = UpdateYacht.berelheto;
                     cmd.Parameters.Add("?busy", MySqlDbType.Bit).Value = UpdateYacht.blfoglalt;
                     cmd.Parameters.Add("?daly_price", MySqlDbType.Int16).Value = UpdateYacht.napi_ar;
-                    cmd.Parameters.Add("?width", MySqlDbType.Int16).Value = UpdateYacht.szeles;
-                    cmd.Parameters.Add("?lenght", MySqlDbType.Int16).Value = UpdateYacht.hossz;
-                    cmd.Parameters.Add("?height", MySqlDbType.Int16).Value = UpdateYacht.magas;
-                    cmd.Parameters.Add("?weight", MySqlDbType.Int16).Value = UpdateYacht.suly;
+                    cmd.Parameters.Add("?width", MySqlDbType.Float).Value = UpdateYacht.szeles;
+                    cmd.Parameters.Add("?lenght", MySqlDbType.Float).Value = UpdateYacht.hossz;
+                    cmd.Parameters.Add("?dive", MySqlDbType.Float).Value = UpdateYacht.merules;
+                    cmd.Parameters.Add("?speed", MySqlDbType.Int16).Value = UpdateYacht.sebesseg;
                     cmd.Parameters.Add("?port_id", MySqlDbType.Int16).Value = UpdateYacht.kikoto_id;
                     cmd.ExecuteNonQuery();
                 }
 
             }
-            catch (Exception)
+            catch (MySqlException e)
             {
                 Globals.log = "Sikertelen módosítás!";
+                MessageBox.Show(e.ToString(), e.ToString(), MessageBoxButton.OK);
             }
             finally
             {
