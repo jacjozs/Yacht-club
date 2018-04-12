@@ -61,7 +61,11 @@ namespace Yacht_club
                         break;
             }
         }
-
+        /// <summary>
+        /// Kilépés a programból
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();

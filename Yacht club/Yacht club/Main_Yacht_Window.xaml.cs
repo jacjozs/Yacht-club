@@ -450,6 +450,11 @@ namespace Yacht_club
                     break;
             }
         }
+        /// <summary>
+        /// Ablak mozgatás
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Moveing_Click(object sender, MouseButtonEventArgs e)
         {
             if (Globals.Main.IsMouseOver)

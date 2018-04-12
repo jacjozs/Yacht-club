@@ -34,9 +34,9 @@ namespace Yacht_club.UsingControls
             open.InitialDirectory = "C:\\";
             open.Filter = "Image Files(*.PNG;*.JPG;*.JPEG;*.BMP;*.GIF)|*.PNG;*.JPG;*.JPEG;*.BMP;*.GIF";
             open.FilterIndex = 1;
-            Nullable<bool> dialogok = open.ShowDialog();
+            bool dialogok = open.ShowDialog().Value;
 
-            if (dialogok == true)
+            if (dialogok)
             {
                 filepath = open.FileName;
                 tbKep.Text = filepath;

@@ -31,7 +31,7 @@ namespace Yacht_club.UsingControls
                 lbNev,lbMerul,lbHossz,lbFoglalt,lbAr,lbBerelheto,lbSeb,lbUlesek,lbHely,lbSzel,lbGyarto
             };
             Port_name();
-            YachtImgLoad();
+            YachtImgLoad(false);
             LabelFeltolt();
 
             //Felhasználó id és yacht id összehasonlítása
@@ -44,15 +44,23 @@ namespace Yacht_club.UsingControls
             Globals.UpdateHistory();
         }
 
+        /// <summary>
+        /// Yacht foglalási ablak betöltése
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clkFoglal(object sender, RoutedEventArgs e)
         {
-            Globals.Main.ccWindow_Main.Content = new ucBerles(); // nem tudom így kell e ide
+            Globals.Main.ccWindow_Main.Content = new ucBerles();
         }
 
+        /// <summary>
+        /// textboxok,checkbox létrehozása, aktiválása és megjelenítése
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clkModosit(object sender, RoutedEventArgs e)
         {
-            //textboxok,checkbox létrehozása, aktiválása és megjelenítése
-
             btBerles.Visibility = Visibility.Hidden;
             btAlkalmaz.Visibility = Visibility.Visible;
             btModosit.Visibility = Visibility.Hidden;
@@ -94,11 +102,14 @@ namespace Yacht_club.UsingControls
             tbHossz.Text = Globals.selectedYacht.hossz.ToString();
             tbSzel.Text = Globals.selectedYacht.szeles.ToString();
             tbAr.Text = Globals.selectedYacht.napi_ar.ToString();
-            //if (Globals.selectedDevice.berelheto==false) cbBerelheto.IsChecked = false; else cbBerelheto.IsChecked = true; //nem működik
         }
-
+        /// <summary>
+        /// A módosítások alkalmázása és az adatbázisbavaló betöltés
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clkAlkalmaz(object sender, RoutedEventArgs e)
-        {// adatbázis módosításainak az elmentése
+        {
             try
             {
                 if (tbNev.Text != "") Globals.selectedYacht.nev = tbNev.Text;
@@ -126,7 +137,7 @@ namespace Yacht_club.UsingControls
             {
                 KikapcsolTB();
                 LabelFeltolt();
-                YachtImgReLoad();
+                YachtImgLoad(true);
 
                 btModosit.Visibility = Visibility.Visible;
                 btAlkalmaz.Visibility = Visibility.Hidden;
@@ -138,10 +149,13 @@ namespace Yacht_club.UsingControls
             }
             Globals.Main.logAdd(true);
         }
-
+        /// <summary>
+        /// textbox-ok kikapcsolása, elrejtése, labelek megjelenítése
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clkMegse(object sender, RoutedEventArgs e)
         {
-            // textbox-ok kikapcsolása, elrejtése, labelek megjelenítése
             btMegse.Visibility = Visibility.Hidden;
             btModosit.Visibility = Visibility.Visible;
             btAlkalmaz.Visibility = Visibility.Hidden;
@@ -152,6 +166,9 @@ namespace Yacht_club.UsingControls
             KikapcsolTB();
             LabelFeltolt();
         }
+        /// <summary>
+        /// Labelek feltöltése a yacht adatokal
+        /// </summary>
         private void LabelFeltolt()
         { // Labelek feltöltése adatokkal
             lbNev.Content = Globals.selectedYacht.nev;
@@ -166,7 +183,9 @@ namespace Yacht_club.UsingControls
             lbAr.Content = Globals.selectedYacht.napi_ar;
             lbHely.Content = Globals.selectedYacht.kikoto;
         }
-
+        /// <summary>
+        /// Textboxok elrejtése
+        /// </summary>
         private void KikapcsolTB()
         { //Textboxok kikapcsolása és elrejtése
             tbAr.IsEnabled = false;
@@ -191,13 +210,19 @@ namespace Yacht_club.UsingControls
             tbÜlesek.Visibility = Visibility.Hidden;
             tbJHely.Visibility = Visibility.Hidden;
         }
-
+        /// <summary>
+        /// Kikötő nevek kigyüjtése és betöltése
+        /// </summary>
         public void Port_name()
         {
             ports = data.MysqlYachtPortName();
             cbJHely.ItemsSource = ports.Keys;
         }
-
+        /// <summary>
+        /// Kép tallózási ablak megnyitása és kiírása az elérésiútnak
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clkImage(object sender, RoutedEventArgs e)
         {
             string filepath;
@@ -205,26 +230,22 @@ namespace Yacht_club.UsingControls
             open.InitialDirectory = "C:\\";
             open.Filter = "Image Files(*.PNG;*.JPG;*.JPEG;*.BMP;*.GIF)|*.PNG;*.JPG;*.JPEG;*.BMP;*.GIF";
             open.FilterIndex = 1;
-            Nullable<bool> dialogok = open.ShowDialog();
+            bool dialogok = open.ShowDialog().Value;
 
-            if (dialogok == true)
+            if (dialogok)
             {
                 filepath = open.FileName;
                 tbjImage.Text = filepath;
             }
         }
-
-        public void YachtImgLoad()
+        /// <summary>
+        /// Yacht kép betöltése valamint frissitése
+        /// </summary>
+        /// <param name="reload">betölti a képet vagy frissiti</param>
+        public void YachtImgLoad(bool reload)
         {
-            Globals.selectedYacht.kep = data.MysqlYachtImage(Globals.selectedYacht.id);
-            if (Globals.selectedYacht.kep != null)
-            {
-                imgYacht.Source = Globals.selectedYacht.kep;
-            }
-        }
-
-        public void YachtImgReLoad()
-        {
+            if (!reload)
+                Globals.selectedYacht.kep = data.MysqlYachtImage(Globals.selectedYacht.id);
             if (Globals.selectedYacht.kep != null)
             {
                 imgYacht.Source = Globals.selectedYacht.kep;

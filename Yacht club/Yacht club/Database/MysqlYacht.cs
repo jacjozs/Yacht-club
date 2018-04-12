@@ -419,10 +419,8 @@ namespace Yacht_club.Database
                     cmd.Parameters.Add("?name", MySqlDbType.VarChar).Value = UpdateYacht.nev;
                     cmd.Parameters.Add("?producer", MySqlDbType.VarChar).Value = UpdateYacht.gyarto;
                     if (UpdateYacht.kep != null)
-                    {
-                        cmd.Parameters.Add("?image", MySqlDbType.Blob).Value = ImageToByte(UpdateYacht.kep);
-                    }
-                    else cmd.Parameters.Add("?image", MySqlDbType.Blob).Value = byte.MinValue;
+                        cmd.Parameters.Add("?image", MySqlDbType.LongBlob).Value = ImageToByte(UpdateYacht.kep);
+                    else cmd.Parameters.Add("?image", MySqlDbType.LongBlob).Value = DBNull.Value;
                     cmd.Parameters.Add("?seats", MySqlDbType.Int16).Value = UpdateYacht.ferohely;
                     cmd.Parameters.Add("?hire", MySqlDbType.Bit).Value = UpdateYacht.berelheto;
                     cmd.Parameters.Add("?busy", MySqlDbType.Bit).Value = UpdateYacht.blfoglalt;

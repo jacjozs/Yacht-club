@@ -18,7 +18,7 @@
             <RowDefinition Height="90"/>
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
-        <Label x:Name="lbTitle" Content="Kilépés" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" FontSize="12" Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}"/>
+        <Label x:Name="lbTitle" Content="" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" FontSize="12" Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}"/>
         <StackPanel HorizontalAlignment="Left" Height="70" Background="{Binding uc_hatter}" VerticalAlignment="Center" Width="230" Margin="10,10,0,10" Grid.ColumnSpan="2" Grid.Row="1">
             <Label Name="lbText" Content="" FontSize="12" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}"/>
         </StackPanel>

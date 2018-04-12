@@ -27,7 +27,9 @@ namespace Yacht_club.Database
                     cmd.Parameters.Add("?zip_code", MySqlDbType.Int16).Value = UpdateUser.iranyitoszm;
                     cmd.Parameters.Add("?address", MySqlDbType.VarChar).Value = UpdateUser.lakcim;
                     cmd.Parameters.Add("?country", MySqlDbType.VarChar).Value = UpdateUser.orszag;
-                    cmd.Parameters.Add("?image", MySqlDbType.Blob).Value = ImageToByte(UpdateUser.kep);
+                    if (ImageToByte(UpdateUser.kep) != null)
+                        cmd.Parameters.Add("?image", MySqlDbType.LongBlob).Value = ImageToByte(UpdateUser.kep);
+                    else cmd.Parameters.Add("?image", MySqlDbType.LongBlob).Value = DBNull.Value;
                     cmd.Parameters.Add("?member_id", MySqlDbType.Int16).Value = UpdateUser.member_id;
                     cmd.ExecuteNonQuery();
                 }

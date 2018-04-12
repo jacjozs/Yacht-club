@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Yacht_club.UsingControls;
 
@@ -15,10 +16,16 @@ namespace Yacht_club
         Database.MysqlYacht dataYacht;
         Database.MysqlDevice dataDevice;
         Database.MysqlMessage dataMessage;
+        /// <summary>
+        /// Téma betöltése
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Themes_Loading(object sender, RoutedEventArgs e)
         {
             DataContext = Globals.MainTheme;
         }
+
         public wMessage(int action, int id)
         {
             InitializeComponent();
@@ -56,9 +63,18 @@ namespace Yacht_club
                     lbTitle.Content = "Üzenet törlés";
                     lbText.Content = "Biztos törölni szeretnéd?";
                     break;
+                ///Hiba üzenet
+                case 6:
+                    lbTitle.Content = "Hiba!";
+                    lbText.Content = "Hibatörtént!";
+                    Grid.SetColumn(btOK, 1);
+                    btCancel.Visibility = Visibility.Hidden;
+                    break;
             }
         }
-
+        /// <summary>
+        /// Funkciók
+        /// </summary>
         private void ClickAction()
         {
             switch (action)
@@ -141,19 +157,31 @@ namespace Yacht_club
                     break;
             }
         }
-
+        /// <summary>
+        /// Akció végrahajtása
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btOK_Click(object sender, RoutedEventArgs e)
         {
             ClickAction();
         }
-
+        /// <summary>
+        /// Kilépés a az elöző ablakba (main)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btCancel_Click(object sender, RoutedEventArgs e)
         {
             Globals.Main.MainWindow.Opacity = 1;
             Globals.Main.logAdd(false);
             this.Hide();
         }
-
+        /// <summary>
+        /// enter és esc gombokhoz funkció rendelés
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -168,7 +196,11 @@ namespace Yacht_club
                     break;
             }
         }
-
+        /// <summary>
+        /// Ablakmozgatás
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Moveing_Click(object sender, MouseButtonEventArgs e)
         {
             DragMove();

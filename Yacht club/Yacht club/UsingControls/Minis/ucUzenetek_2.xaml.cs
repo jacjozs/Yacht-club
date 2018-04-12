@@ -66,19 +66,9 @@ namespace Yacht_club.UsingControls.Minis
 
                 spList.Children.Add(panel);
             }
-            
-            if (Messages.Count == 0)
-            {
-                Label Nincs = new Label();
-                Nincs.Width = 396.5;
-                Nincs.Height = 30;
-                Nincs.Margin = new Thickness(0, 71, 0, 0);
-                Nincs.Padding = new Thickness(163, 2.5, 0, 0);
-                Nincs.Content = "Nincs új üzenet!";
-                Nincs.Style = MessageStackMiniLabel;
 
-                spList.Children.Add(Nincs);
-            }
+            if (Messages.Count == 0)
+                lbNincs.Visibility = Visibility.Visible;
         }
         private void dpMouse_Click(object sender, MouseButtonEventArgs e)
         {

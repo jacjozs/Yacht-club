@@ -13,7 +13,9 @@
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Új Üzenetek:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" Padding="15 2 0 0" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
         <ScrollViewer Name="Scrollwiewr" Margin="10,10,0,10" VerticalScrollBarVisibility="Auto" Width="396.5" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
-            <StackPanel Name="spList" Width="396.5"/>
+            <StackPanel Name="spList" Width="396.5">
+                <Label Name="lbNincs" Content="Nincs új üzenet!" Width="100" Height="20" Padding="0" HorizontalContentAlignment="Center" Margin="143 66 153 0" VerticalContentAlignment="Center" Style="{StaticResource MessageStackMiniLabel}" Visibility="Hidden"/>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </UserControl>
