@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace Yacht_club.Database
@@ -64,6 +65,34 @@ namespace Yacht_club.Database
             {
                 MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
             }
+        }
+
+        public Dictionary<int, string> MysqlZipCodeName()
+        {
+            Dictionary<int, string> ZipCode = new Dictionary<int, string>();
+            try
+            {
+                string query = "SELECT zip_code, city FROM enZipcode;";
+                Globals.connect.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.ExecuteNonQuery();
+                    MySqlDataReader read = cmd.ExecuteReader();
+                    while (read.Read())
+                    {
+                        ZipCode.Add((int)read["zip_code"], read["city"].ToString());
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+            return ZipCode;
         }
 
         /// <summary>

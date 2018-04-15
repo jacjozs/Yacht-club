@@ -213,11 +213,11 @@ namespace Yacht_club.UsingControls
                         break;
                 }
                 data.MysqlNewBerles(uzenet);
-                Globals.log = "Sikeres Bérlés! <Bérlések>";
+                Globals.log = "Sikeres bérlési kérelem! <Bérlések>";
             }
             catch (System.Exception)
             {
-                Globals.log = "Sikertelen Bérlés! <Bérlések>";
+                Globals.log = "Sikertelen bérlési kérelem! <Bérlések>";
             }
             Globals.Main.logAdd(true);
         }

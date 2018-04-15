@@ -69,13 +69,29 @@ namespace Yacht_club.UsingControls
         private void btElfofad_Click(object sender, RoutedEventArgs e)
         {
             data = new Database.MysqlMessage();
-            data.MysqlMessageAcceptUpdate(Globals.selectedMessage.uzenet_id, 1);
+            data.MysqlMessageAcceptUpdate(1);
+            Globals.selectedMessage.BlVissza = true;
+            Globals.selectedMessage.elfogadvabl = true;
+            Globals.selectedMessage.elfogadvastr = "Elfogadva!";
+            Loading();
+            if (Globals.selectedMessage.yacht_nev != "")
+                Globals.log = "Elfogadta a \"" + Globals.selectedMessage.yacht_nev + "\" nevü Yacht bérlését!<Üzenetek>";
+            else Globals.log = "Elfogadta a " + Globals.selectedMessage.device_id + " id-vel rendelkező Szállitóeszköz bérlését! <Üzenetek>";
+            Globals.Main.logAdd(true);
         }
 
         private void btElutasit_Click(object sender, RoutedEventArgs e)
         {
             data = new Database.MysqlMessage();
-            data.MysqlMessageAcceptUpdate(Globals.selectedMessage.uzenet_id, 0);
+            data.MysqlMessageAcceptUpdate(0);
+            Globals.selectedMessage.BlVissza = true;
+            Globals.selectedMessage.elfogadvabl = false;
+            Globals.selectedMessage.elfogadvastr = "Elutasítva!";
+            Loading();
+            if (Globals.selectedMessage.yacht_nev != "")
+                Globals.log = "Elutasítota a \"" + Globals.selectedMessage.yacht_nev + "\" nevü Yacht bérlését!<Üzenetek>";
+            else Globals.log = "Elutasítota a " + Globals.selectedMessage.device_id + " id-vel rendelkező Szállitóeszköz bérlését! <Üzenetek>";
+            Globals.Main.logAdd(true);
         }
     }
 }

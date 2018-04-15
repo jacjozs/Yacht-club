@@ -239,6 +239,7 @@ namespace Yacht_club.Database
                         yacht.id = (int)read["yacht_id"];
                         yacht.nev = read["name"].ToString();
                         yacht.gyarto = read["producer"].ToString();
+                        yacht.member_id = id;
                         full_name = read["first_name"].ToString();
                         full_name += " " + read["last_name"].ToString();
                         yacht.full_name = full_name;
@@ -309,6 +310,7 @@ namespace Yacht_club.Database
                         yacht.id = (int)read["yacht_id"];
                         yacht.nev = read["name"].ToString();
                         yacht.gyarto = read["producer"].ToString();
+                        yacht.member_id = (int)read["ower"];
                         full_name = read["first_name"].ToString();
                         full_name += " " + read["last_name"].ToString();
                         yacht.full_name = full_name;

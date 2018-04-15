@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 
@@ -11,6 +12,7 @@ namespace Yacht_club
     public partial class wRegistration : Window
     {
         private Felhasznalo user;
+        private Dictionary<int, string> zipCodes;
         private Database.MysqlRegistration data;
 
         private void Themes_Loading(object sender, RoutedEventArgs e)
@@ -20,6 +22,8 @@ namespace Yacht_club
         public wRegistration()
         {
             InitializeComponent();
+            data = new Database.MysqlRegistration();
+            zipCodes = data.MysqlZipCodeName();
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -104,6 +108,18 @@ namespace Yacht_club
         private void Moveing_Click(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+        }
+
+        private void tbIranyitoszm_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (zipCodes.ContainsKey(int.Parse(tbIranyitoszm.Text)))
+            {
+                tbVaros.Text = zipCodes[int.Parse(tbIranyitoszm.Text)];
+            }
+            else
+            {
+                imgerror.Visibility = Visibility.Visible;
+            }
         }
     }
 }

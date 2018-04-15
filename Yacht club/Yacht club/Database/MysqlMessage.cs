@@ -221,7 +221,7 @@ namespace Yacht_club.Database
             }
         }
 
-        public void MysqlMessageAcceptUpdate(int id, int accept)
+        public void MysqlMessageAcceptUpdate(int accept)
         {
             try
             {
@@ -229,9 +229,20 @@ namespace Yacht_club.Database
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
-                    cmd.Parameters.Add("?message_id", MySqlDbType.Int16).Value = id;
+                    cmd.Parameters.Add("?message_id", MySqlDbType.Int16).Value = Globals.selectedMessage.uzenet_id;
                     cmd.Parameters.Add("?accept", MySqlDbType.Int16).Value = accept;
                     cmd.ExecuteNonQuery();
+                }
+                if (accept == 1)
+                {
+                    if (Globals.selectedMessage.yacht_id != 0)
+                    {
+                        MysqlFoglalt(Globals.selectedMessage.yacht_id, 1);
+                    }
+                    else if (Globals.selectedMessage.device_id != 0)
+                    {
+                        MysqlFoglalt(Globals.selectedMessage.device_id, 2);
+                    }
                 }
             }
             catch (MySqlException ex)
@@ -241,6 +252,32 @@ namespace Yacht_club.Database
             finally
             {
                 Globals.connect.Close();
+            }
+        }
+
+        private void MysqlFoglalt(int id, int YacDev)
+        {
+            string query = "";
+            try
+            {
+                switch (YacDev)
+                {
+                    case 1:
+                        query = "UPDATE enYacht SET busy = 1 WHERE yacht_id = ?ID;";
+                        break;
+                    case 2:
+                        query = "UPDATE enDevice SET busy = 1 WHERE device_id = ?ID;";
+                        break;
+                }
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.Parameters.Add("?ID", MySqlDbType.Int16).Value = id;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in deleting mysql row. Error: " + ex.Message);
             }
         }
 

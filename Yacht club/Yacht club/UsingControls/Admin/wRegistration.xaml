@@ -79,6 +79,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <Label  Content="Irányítószám:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbIranyitoszm" Width="125" Style="{StaticResource TextBoxRegStyle}" Height="22" Margin="10,6,0,7"/>
+                    <Image Name="imgerror" Width="20" Height="20" VerticalAlignment="Center" Margin="10 0 0 0" Source="/Yacht club;component/images/white/error.png" Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <Label  Content="Város:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
