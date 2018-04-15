@@ -30,7 +30,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                    <Border Name="Border" CornerRadius="2" Padding="0 2 0 0" Background="White" BorderBrush="{Binding betu_szin}" BorderThickness="2" >
+                    <Border Name="Border" CornerRadius="2" Padding="0" Background="White" BorderBrush="{Binding betu_szin}" BorderThickness="2" >
                         <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
                     </Border>
                 </ControlTemplate>
@@ -46,7 +46,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                    <Border Name="Border" CornerRadius="2" Padding="0 1 0 0" Background="White" BorderBrush="{Binding betu_szin}" BorderThickness="2" >
+                    <Border Name="Border" CornerRadius="2" Padding="0" Background="White" BorderBrush="{Binding betu_szin}" BorderThickness="2" >
                         <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
                     </Border>
                 </ControlTemplate>
@@ -61,7 +61,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type PasswordBox}">
-                    <Border Name="Border" CornerRadius="2" Padding="0 0 0 0" Background="White" BorderBrush="{Binding betu_szin}" BorderThickness="2" >
+                    <Border Name="Border" CornerRadius="2" Padding="0" Background="White" BorderBrush="{Binding betu_szin}" BorderThickness="2" >
                         <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
                     </Border>
                 </ControlTemplate>
@@ -75,7 +75,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type PasswordBox}">
-                    <Border Name="Border" CornerRadius="2" Padding="0 0 0 0" Background="White" BorderBrush="{Binding betu_szin}" BorderThickness="2" >
+                    <Border Name="Border" CornerRadius="2" Padding="0" Background="White" BorderBrush="{Binding betu_szin}" BorderThickness="2" >
                         <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
                     </Border>
                 </ControlTemplate>
@@ -90,7 +90,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                    <Border Name="Border" CornerRadius="2" Padding="0 1 0 0" Background="White" BorderBrush="#FFACB5B9" BorderThickness="2" >
+                    <Border Name="Border" CornerRadius="2" Padding="0" Background="White" BorderBrush="#FFACB5B9" BorderThickness="2" >
                         <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
                     </Border>
                 </ControlTemplate>
@@ -105,7 +105,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type PasswordBox}">
-                    <Border Name="Border" CornerRadius="2" Padding="0 1 0 0" Background="White" BorderBrush="#FFACB5B9" BorderThickness="2" >
+                    <Border Name="Border" CornerRadius="2" Padding="0" Background="White" BorderBrush="#FFACB5B9" BorderThickness="2" >
                         <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
                     </Border>
                 </ControlTemplate>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using Yacht_club.Database;
 using Yacht_club.Moduls;
 
 namespace Yacht_club.UsingControls
@@ -23,7 +24,7 @@ namespace Yacht_club.UsingControls
         /// <summary>
         /// Adatbázis példány az adatbázis használatához
         /// </summary>
-        private Database.MysqlYacht data;
+        private MysqlYacht data;
         public ucYacht_add()
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace Yacht_club.UsingControls
         {
             try
             {
+                data = new MysqlYacht();
                 newYacht = new Yacht();
                 newYacht.nev = tbYacht_nev.Text;
                 newYacht.gyarto = tbYacht_gyarto.Text;
@@ -78,8 +80,7 @@ namespace Yacht_club.UsingControls
         /// </summary>
         public void login_name()
         {
-            data = new Database.MysqlYacht();
-            list = data.MysqlYachtLoginName();
+            list = MysqlGeneral.MysqlLoginName();
             foreach (var entry in list)
             {
                 TbYacht_tulaj.AddItem(new AutoCompleteEntry(entry.Key, entry.Value, Globals.cut(entry.Value)));

@@ -21,11 +21,11 @@ namespace Yacht_club.Database
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
-                    id = MysqlNextId("enDevice", "device_id");
+                    id = MysqlGeneral.MysqlNextId("enDevice", "device_id");
                     cmd.Parameters.Add("?device_id", MySqlDbType.Int16).Value = id;
                     cmd.Parameters.Add("?type", MySqlDbType.VarChar).Value = device.tipus;
                     cmd.Parameters.Add("?ower", MySqlDbType.Int16).Value = device.member_id;
-                    cmd.Parameters.Add("?max_lenght", MySqlDbType.Int16).Value = device.max_hossz;
+                    cmd.Parameters.Add("?max_lenght", MySqlDbType.VarChar).Value = device.max_hossz;
                     cmd.Parameters.Add("?max_weight", MySqlDbType.Int16).Value = device.max_suly;
                     cmd.ExecuteNonQuery();
                 }
@@ -39,42 +39,6 @@ namespace Yacht_club.Database
                 Globals.connect.Close();
             }
             return id;
-        }
-        /// <summary>
-        /// teljesnév és id kigyüjtése és egy "map"-ban való eltárolása 
-        /// teljesnév a kulcs!
-        /// </summary>
-        /// <returns></returns>
-        public Dictionary<int, string> MysqlDeviceLoginName()
-        {
-            string full_name;
-            Dictionary<int, string> login = new Dictionary<int, string>();
-            try
-            {
-                string query = "SELECT first_name, last_name, member_id FROM enYacht_Club_Tag;";
-                Globals.connect.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
-                {
-                    cmd.ExecuteNonQuery();
-                    MySqlDataReader read = cmd.ExecuteReader();
-                    while (read.Read())
-                    {
-                        full_name = "";
-                        full_name += read["first_name"].ToString();
-                        full_name += " " + read["last_name"].ToString();
-                        login.Add((int)read["member_id"], full_name);
-                    }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
-            }
-            finally
-            {
-                Globals.connect.Close();
-            }
-            return login;
         }
         /// <summary>
         /// Szállitóeszköz törlése
@@ -260,6 +224,7 @@ namespace Yacht_club.Database
                         full_name = read["first_name"].ToString();
                         full_name += " " + read["last_name"].ToString();
                         device.full_name = full_name;
+                        device.member_id = (int)read["ower"];
                         if (read["renter"].ToString() == "")
                         {
                             device.berlo_full_name = "Nincs bérbe adva";
@@ -379,6 +344,7 @@ namespace Yacht_club.Database
                         full_name = read["first_name"].ToString();
                         full_name += " " + read["last_name"].ToString();
                         device.full_name = full_name;
+                        device.member_id = (int)read["ower"];
                         if (read["renter"].ToString() == "")
                         {
                             device.berlo_full_name = "Nincs bérbe adva";
@@ -413,31 +379,6 @@ namespace Yacht_club.Database
                 Globals.connect.Close();
             }
             return device;
-        }
-
-        /// <summary>
-        /// Megkeresi a legnagyobb értéket a megatod mezöben és táblában és megnöveli egyel
-        /// </summary>
-        /// <param name="tabla">A tábla neve</param>
-        /// <param name="mezo">A mező neve</param>
-        /// <returns>A megnövelt szám</returns>
-        private int MysqlNextId(string tabla, string mezo)
-        {
-            int szam = 1;
-            try
-            {
-                string query = "SELECT MAX(" + mezo + ") FROM " + tabla + ";";
-                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
-                {
-                    cmd.Parameters.Add("?tabla", MySqlDbType.VarChar).Value = tabla;
-                    szam += int.Parse(cmd.ExecuteScalar().ToString());
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
-            }
-            return szam;
         }
     }
 }

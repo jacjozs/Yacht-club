@@ -29,8 +29,8 @@ namespace Yacht_club.Database
                     cmd.Parameters.Add("?zip_code", MySqlDbType.Int16).Value = UpdateUser.iranyitoszm;
                     cmd.Parameters.Add("?address", MySqlDbType.VarChar).Value = UpdateUser.lakcim;
                     cmd.Parameters.Add("?country", MySqlDbType.VarChar).Value = UpdateUser.orszag;
-                    if (ImageToByte(UpdateUser.kep) != null)
-                        cmd.Parameters.Add("?image", MySqlDbType.LongBlob).Value = ImageToByte(UpdateUser.kep);
+                    if (MysqlGeneral.ImageToByte(UpdateUser.kep) != null)
+                        cmd.Parameters.Add("?image", MySqlDbType.LongBlob).Value = MysqlGeneral.ImageToByte(UpdateUser.kep);
                     else cmd.Parameters.Add("?image", MySqlDbType.LongBlob).Value = DBNull.Value;
                     cmd.Parameters.Add("?member_id", MySqlDbType.Int16).Value = UpdateUser.member_id;
                     cmd.ExecuteNonQuery();
@@ -74,49 +74,6 @@ namespace Yacht_club.Database
             {
                 Globals.connect.Close();
             }
-        }
-
-        public Dictionary<int, string> MysqlZipCodeName()
-        {
-            Dictionary<int, string> ZipCode = new Dictionary<int, string>();
-            try
-            {
-                string query = "SELECT zip_code, city FROM enZipcode;";
-                Globals.connect.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
-                {
-                    cmd.ExecuteNonQuery();
-                    MySqlDataReader read = cmd.ExecuteReader();
-                    while (read.Read())
-                    {
-                        ZipCode.Add((int)read["zip_code"], read["city"].ToString());
-                    }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
-            }
-            finally
-            {
-                Globals.connect.Close();
-            }
-            return ZipCode;
-        }
-
-        /// <summary>
-        /// Az átvett Image-t byte tömbre alakitja
-        /// </summary>
-        /// <param name="Image"></param>
-        /// <returns></returns>
-        private byte[] ImageToByte(BitmapImage Image)
-        {
-            var ms = new MemoryStream();
-            var pngEncoder = new PngBitmapEncoder();
-            pngEncoder.Frames.Add(BitmapFrame.Create(Image));
-            pngEncoder.Save(ms);
-
-            return ms.GetBuffer();
         }
     }
 }

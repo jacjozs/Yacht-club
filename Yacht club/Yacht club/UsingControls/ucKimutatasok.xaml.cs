@@ -10,12 +10,10 @@ namespace Yacht_club.UsingControls
     /// </summary>
     public partial class ucKimutatasok : UserControl
     {
-        private Point[] points;
         public ucKimutatasok()
         {
             InitializeComponent();
             Globals.UpdateHistory();
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

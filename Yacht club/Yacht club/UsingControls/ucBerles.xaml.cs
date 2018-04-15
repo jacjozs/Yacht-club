@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using Yacht_club.Database;
 using Yacht_club.Moduls;
 
 namespace Yacht_club.UsingControls
@@ -10,7 +11,7 @@ namespace Yacht_club.UsingControls
     /// </summary>
     public partial class ucBerles : UserControl
     {
-        private Database.MysqlBerles data;
+        private MysqlMessage data;
         private Message uzenet;
         private int DevYacht;
         private Dictionary<int, string> list;
@@ -25,12 +26,12 @@ namespace Yacht_club.UsingControls
 
         private void Loading(int DevYacht)
         {
-            data = new Database.MysqlBerles();
+            data = new MysqlMessage();
             switch (DevYacht)
             {
                 case 1:
                     YachtData();
-                    list = data.MysqlBerlesPortName();
+                    list = MysqlGeneral.MysqlPortName();
                     foreach (var entry in list)
                     {
                         TbBerlesFrom.AddItem(new AutoCompleteEntry(entry.Key, entry.Value, Globals.cut(entry.Value)));
@@ -166,9 +167,16 @@ namespace Yacht_club.UsingControls
             max_hossz.Style = BerlesStackLabel;
             max_hossz2.Style = BerlesStackLabel;
 
+            Label max_suly = new Label();
+            Label max_suly2 = new Label();
+            max_suly.Content = "Max. Teherbírás:";
+            max_suly2.Content = Globals.selectedDevice.max_suly;
+            max_suly.Style = BerlesStackLabel;
+            max_suly2.Style = BerlesStackLabel;
+
             Label napi_ar = new Label();
             Label napi_ar2 = new Label();
-            napi_ar.Content = "Merülés(m):";
+            napi_ar.Content = "Napi ár(EUR):";
             napi_ar2.Content = Globals.selectedDevice.napi_ar;
             napi_ar.Style = BerlesStackLabel;
             napi_ar2.Style = BerlesStackLabel;
@@ -177,6 +185,8 @@ namespace Yacht_club.UsingControls
             panel2.Children.Add(tipus2);
             panel.Children.Add(full_name);
             panel2.Children.Add(full_name2);
+            panel.Children.Add(max_suly);
+            panel2.Children.Add(max_suly2);
             panel.Children.Add(max_hossz);
             panel2.Children.Add(max_hossz2);
             panel.Children.Add(napi_ar);
@@ -212,7 +222,7 @@ namespace Yacht_club.UsingControls
                         uzenet.hova_id = -1;
                         break;
                 }
-                data.MysqlNewBerles(uzenet);
+                data.MysqlNewMessage(uzenet);
                 Globals.log = "Sikeres bérlési kérelem! <Bérlések>";
             }
             catch (System.Exception)

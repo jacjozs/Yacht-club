@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
+using Yacht_club.Database;
 
 namespace Yacht_club.UsingControls
 {
@@ -8,7 +9,7 @@ namespace Yacht_club.UsingControls
     /// </summary>
     public partial class ucUzenet : UserControl
     {
-        private Database.MysqlMessage data;
+        private MysqlMessage data;
         public ucUzenet()
         {
             InitializeComponent();
@@ -49,6 +50,13 @@ namespace Yacht_club.UsingControls
                 lbFogadUtasit.Visibility = Visibility.Visible;
                 lbFogadUtasit.Content = Globals.selectedMessage.elfogadvastr;
             }
+            if (!Globals.selectedMessage.BlVissza && Globals.selectedMessage.felado_id == Globals.User.member_id)
+            {
+                btElfofad.Visibility = Visibility.Hidden;
+                btElutasit.Visibility = Visibility.Hidden;
+                lbFogadUtasit.Visibility = Visibility.Visible;
+                lbFogadUtasit.Content = "Még nem érkezet válasz!";
+            }
         }
 
         private void lbFelado_click(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -74,7 +82,7 @@ namespace Yacht_club.UsingControls
             Globals.selectedMessage.elfogadvabl = true;
             Globals.selectedMessage.elfogadvastr = "Elfogadva!";
             Loading();
-            if (Globals.selectedMessage.yacht_nev != "")
+            if (Globals.selectedMessage.yacht_nev != null)
                 Globals.log = "Elfogadta a \"" + Globals.selectedMessage.yacht_nev + "\" nevü Yacht bérlését!<Üzenetek>";
             else Globals.log = "Elfogadta a " + Globals.selectedMessage.device_id + " id-vel rendelkező Szállitóeszköz bérlését! <Üzenetek>";
             Globals.Main.logAdd(true);
@@ -88,7 +96,7 @@ namespace Yacht_club.UsingControls
             Globals.selectedMessage.elfogadvabl = false;
             Globals.selectedMessage.elfogadvastr = "Elutasítva!";
             Loading();
-            if (Globals.selectedMessage.yacht_nev != "")
+            if (Globals.selectedMessage.yacht_nev != null)
                 Globals.log = "Elutasítota a \"" + Globals.selectedMessage.yacht_nev + "\" nevü Yacht bérlését!<Üzenetek>";
             else Globals.log = "Elutasítota a " + Globals.selectedMessage.device_id + " id-vel rendelkező Szállitóeszköz bérlését! <Üzenetek>";
             Globals.Main.logAdd(true);

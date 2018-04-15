@@ -25,21 +25,24 @@
                     </StackPanel>
                     <TextBox x:Name="tbNickName" Width="185" Style="{StaticResource TextBoxStyle}" Height="22" Margin="10,6,0,7"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" Height="35">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="348" Height="35" Margin="58,0,10,0">
                     <Label  Content="Régi jelszó:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                    <PasswordBox x:Name="pbOldPasswd" Width="185" PasswordChar="*" Style="{StaticResource PassBoxStyle}" Height="22" Margin="10,6,0,7"/>
+                    <PasswordBox x:Name="pbOldPasswd" Width="185" PasswordChar="*" Style="{StaticResource PassBoxStyle}" Height="22" Margin="10,6,0,7" LostFocus="pbOldPasswd_LostFocus"/>
+                    <Image Name="imgOldsPassError" Width="20" Height="20" VerticalAlignment="Center" Margin="10 0 0 0" Source="/Yacht club;component/images/white/error.png" Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" Height="35">
                     <Label Content="Jelszó:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <PasswordBox x:Name="pbPasswd" Width="185" Height="22" PasswordChar="*" Style="{StaticResource PassBoxStyle}" Margin="10,6,0,7"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" Height="35">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="348" Height="35" Margin="58,0,10,0">
                     <Label Content="Jelszó újra:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                    <PasswordBox x:Name="pbRePasswd" Width="185" Height="22" PasswordChar="*" Style="{StaticResource PassBoxStyle}" Margin="10,6,0,7"/>
+                    <PasswordBox x:Name="pbRePasswd" Width="185" Height="22" PasswordChar="*" Style="{StaticResource PassBoxStyle}" Margin="10,6,0,7" LostFocus="pbRePasswd_LostFocus"/>
+                    <Image Name="imgPassError" Width="20" Height="20" VerticalAlignment="Center" Margin="10 0 0 0" Source="/Yacht club;component/images/white/error.png" Visibility="Hidden"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" Height="35">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="348" Height="35" Margin="58,0,10,0">
                     <Label  Content="Email cím:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                    <TextBox x:Name="tbEmail" Width="185" Style="{StaticResource TextBoxStyle}" Height="22" Margin="10,6,0,7"/>
+                    <TextBox x:Name="tbEmail" Width="185" Style="{StaticResource TextBoxStyle}" Height="22" Margin="10,6,0,7" LostFocus="tbEmail_LostFocus"/>
+                    <Image Name="imgEmailError" Width="20" Height="20" VerticalAlignment="Center" Margin="10 0 0 0" Source="/Yacht club;component/images/white/error.png" Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="300" Height="65" Margin="0,0,0,0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" Height="35">
@@ -80,7 +83,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" Height="35">
                     <Label  Content="Irányítószám:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <TextBox x:Name="tbIranyitoszm" Width="75" Style="{StaticResource TextBoxStyle}" Height="22" Margin="10,6,0,7" LostFocus="tbIranyitoszm_LostFocus"/>
-                    <Image Name="imgerror" Width="20" Height="20" VerticalAlignment="Center" Margin="10 0 0 0" Source="/Yacht club;component/images/white/error.png" Visibility="Hidden"/>
+                    <Image Name="imgZipError" Width="20" Height="20" VerticalAlignment="Center" Margin="10 0 0 0" Source="/Yacht club;component/images/white/error.png" Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" Height="35">
                     <Label  Content="Város:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>

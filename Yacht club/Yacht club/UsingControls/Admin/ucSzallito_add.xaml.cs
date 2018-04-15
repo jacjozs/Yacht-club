@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Yacht_club.Database;
 using Yacht_club.Moduls;
 
 namespace Yacht_club.UsingControls
@@ -24,7 +25,7 @@ namespace Yacht_club.UsingControls
         /// <summary>
         /// Adatbázis béldány az adatbázis eléréséhez
         /// </summary>
-        private Database.MysqlDevice data;
+        private MysqlDevice data;
         public ucSzallito_add()
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace Yacht_club.UsingControls
         {
             try
             {
+                data = new MysqlDevice();
                 newDevice = new Device(); ;
                 newDevice.tipus = tbSzallito_tipus.Text;
                 newDevice.member_id = TbDevice_tulaj.ID;
@@ -54,8 +56,9 @@ namespace Yacht_club.UsingControls
                 }
                 else Globals.log = "Hozzáadás Sikertelen! <Szállitóeszköz>";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString(), "valami", MessageBoxButton.OK);
                 Globals.log = "Hozzáadás Sikertelen! <Szállitóeszköz>";
             }
             finally
@@ -69,8 +72,7 @@ namespace Yacht_club.UsingControls
         /// </summary>
         public void login_name()
         {
-            data = new Database.MysqlDevice();
-            list = data.MysqlDeviceLoginName();
+            list = MysqlGeneral.MysqlLoginName();
             foreach (var entry in list)
             {
                 TbDevice_tulaj.AddItem(new AutoCompleteEntry(entry.Key, entry.Value, Globals.cut(entry.Value)));

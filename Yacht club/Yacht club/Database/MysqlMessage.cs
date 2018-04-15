@@ -13,12 +13,60 @@ namespace Yacht_club.Database
 {
     class MysqlMessage
     {
+
+        public void MysqlNewMessage(Message uzenet)
+        {
+            try
+            {
+                string query = "INSERT INTO enMessage(message_id, sender, addressee, yacht_id, device_id, start_date, end_date, from_port, to_port) VALUES (?message_id, ?sender, ?addressee, ?yacht_id, ?device_id, ?start_date, ?end_date, ?from_port, ?to_port);";
+                Globals.connect.Open();
+                int id = MysqlGeneral.MysqlNextId("enMessage", "message_id");
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.Parameters.Add("?message_id", MySqlDbType.Int16).Value = id;
+                    cmd.Parameters.Add("?sender", MySqlDbType.Int16).Value = Globals.User.member_id;
+                    cmd.Parameters.Add("?addressee", MySqlDbType.Int16).Value = uzenet.cimzett_id;
+                    if (uzenet.yacht_id != -1)
+                    {
+                        cmd.Parameters.Add("?yacht_id", MySqlDbType.Int16).Value = uzenet.yacht_id;
+                        cmd.Parameters.Add("?device_id", MySqlDbType.Int16).Value = DBNull.Value;
+                    }
+                    else if (uzenet.device_id != -1)
+                    {
+                        cmd.Parameters.Add("?yacht_id", MySqlDbType.Int16).Value = DBNull.Value;
+                        cmd.Parameters.Add("?device_id", MySqlDbType.Int16).Value = uzenet.device_id;
+                    }
+                    if (uzenet.honnan_id != -1 && uzenet.hova_id != -1)
+                    {
+                        cmd.Parameters.Add("?from_port", MySqlDbType.Int16).Value = uzenet.honnan_id;
+                        cmd.Parameters.Add("?to_port", MySqlDbType.Int16).Value = uzenet.hova_id;
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add("?from_port", MySqlDbType.Int16).Value = DBNull.Value;
+                        cmd.Parameters.Add("?to_port", MySqlDbType.Int16).Value = DBNull.Value;
+                    }
+                    cmd.Parameters.Add("?start_date", MySqlDbType.DateTime).Value = uzenet.kezdete;
+                    cmd.Parameters.Add("?end_date", MySqlDbType.DateTime).Value = uzenet.vege;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+        }
+
         /// <summary>
         /// Üzenetek kilistázása
         /// </summary>
         /// <param name="id">Felhasználó id</param>
         /// <returns></returns>
-        public List<Message> MysqlUserMessages(int id)
+        public List<Message> MysqlUserMessages()
         {
             List<Message> uzenetek = new List<Message>();
             try
@@ -27,14 +75,14 @@ namespace Yacht_club.Database
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
-                    cmd.Parameters.Add("?addressee", MySqlDbType.Int16).Value = id;
+                    cmd.Parameters.Add("?addressee", MySqlDbType.Int16).Value = Globals.User.member_id;
                     cmd.Parameters.Add("?sender", MySqlDbType.Int16).Value = Globals.User.member_id;
                     MySqlDataReader read = cmd.ExecuteReader();
                     while (read.Read())
                     {
                         Message uzenet = new Message();
                         uzenet.uzenet_id = (int)read["message_id"];
-                        uzenet.cimzett_id = id;
+                        uzenet.cimzett_id = Globals.User.member_id;
                         uzenet.cimzett_nev = Globals.User.teljes_nev;
                         uzenet.felado_id = (int)read["sender"];
                         uzenet.felado_nev = read["first_name"].ToString() + " " + read["last_name"].ToString();
@@ -91,12 +139,13 @@ namespace Yacht_club.Database
             }
             return uzenetek;
         }
+
         /// <summary>
         /// Új üzenetek kilistázása
         /// </summary>
         /// <param name="id">felhasználó id</param>
         /// <returns></returns>
-        public List<Message> MysqlUserNewMessages(int id)
+        public List<Message> MysqlUserNewMessages()
         {
             List<Message> uzenetek = new List<Message>();
             try
@@ -105,14 +154,14 @@ namespace Yacht_club.Database
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
-                    cmd.Parameters.Add("?addressee", MySqlDbType.Int16).Value = id;
+                    cmd.Parameters.Add("?addressee", MySqlDbType.Int16).Value = Globals.User.member_id;
                     cmd.Parameters.Add("?sender", MySqlDbType.Int16).Value = Globals.User.member_id;
                     MySqlDataReader read = cmd.ExecuteReader();
                     while (read.Read())
                     {
                         Message uzenet = new Message();
                         uzenet.uzenet_id = (int)read["message_id"];
-                        uzenet.cimzett_id = id;
+                        uzenet.cimzett_id = Globals.User.member_id;
                         uzenet.cimzett_nev = Globals.User.teljes_nev;
                         uzenet.felado_id = (int)read["sender"];
                         uzenet.felado_nev = read["first_name"].ToString() + " " + read["last_name"].ToString();
@@ -263,15 +312,16 @@ namespace Yacht_club.Database
                 switch (YacDev)
                 {
                     case 1:
-                        query = "UPDATE enYacht SET busy = 1 WHERE yacht_id = ?ID;";
+                        query = "UPDATE enYacht SET busy = 1, renter = ?renter WHERE yacht_id = ?ID;";
                         break;
                     case 2:
-                        query = "UPDATE enDevice SET busy = 1 WHERE device_id = ?ID;";
+                        query = "UPDATE enDevice SET busy = 1, renter = ?renter WHERE device_id = ?ID;";
                         break;
                 }
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
                     cmd.Parameters.Add("?ID", MySqlDbType.Int16).Value = id;
+                    cmd.Parameters.Add("?renter", MySqlDbType.Int16).Value = Globals.selectedMessage.felado_id;
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -334,7 +384,7 @@ namespace Yacht_club.Database
                         user.varos = read["city"].ToString();
                         user.szuletesdt = DateTime.Parse(read["birthday"].ToString());
                         try
-                        { user.kep = ByteToImage((byte[])read["image"]); }
+                        { user.kep = MysqlGeneral.ByteToImage((byte[])read["image"]); }
                         catch (Exception)
                         { user.kep = null; }
                     }
@@ -349,21 +399,6 @@ namespace Yacht_club.Database
                 Globals.connect.Close();
             }
             return user;
-        }
-
-        /// <summary>
-        /// Az átvett byte tömböt képé alakitja
-        /// </summary>
-        /// <param name="imageByte"></param>
-        /// <returns></returns>
-        private BitmapImage ByteToImage(byte[] imageByte)
-        {
-            MemoryStream stream = new MemoryStream(imageByte);
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.StreamSource = stream;
-            image.EndInit();
-            return image;
         }
     }
 }

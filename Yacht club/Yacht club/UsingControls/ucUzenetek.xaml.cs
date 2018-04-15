@@ -23,7 +23,7 @@ namespace Yacht_club.UsingControls
         private void Loading()
         {
             data = new Database.MysqlMessage();
-            Messages = data.MysqlUserMessages(Globals.User.member_id);
+            Messages = data.MysqlUserMessages();
             Style MessageStackLabel = Application.Current.FindResource("MessageStackLabel") as Style;
             Style ListStackPanel = Application.Current.FindResource("ListStackPanel") as Style;
             Style ButtonsStyle = Application.Current.FindResource("Buttons_X") as Style;
@@ -56,12 +56,17 @@ namespace Yacht_club.UsingControls
                     Info.Content = "Lezárt!";
                     Info.Style = MessageStackLabel;
                 }
-                Info.Width = 100;
+                if (Messages[i].NEWbl && Messages[i].felado_id == Globals.User.member_id && !Messages[i].BlVissza)
+                {
+                    Info.Content = "Foglalási kérelem!";
+                    Info.Style = MessageStackLabel;
+                }
+                Info.Width = 120;
 
                 Label Felado = new Label();
                 Felado.Content = "Feladó: " + Messages[i].felado_nev;
                 Felado.Style = MessageStackLabel;
-                Felado.Width = 267;
+                Felado.Width = 247;
 
                 Label Targy = new Label();
                 if (Messages[i].device_id != 0)
@@ -115,7 +120,8 @@ namespace Yacht_club.UsingControls
         private void dpMouse_Click(object sender, MouseButtonEventArgs e)
         {
             Globals.selectedMessage = Messages[int.Parse(((StackPanel)sender).Uid)];
-            data.MysqlMessageNewUpdate(Globals.selectedMessage.uzenet_id);
+            if (!(!Globals.selectedMessage.BlVissza && Globals.selectedMessage.felado_id == Globals.User.member_id))
+                data.MysqlMessageNewUpdate(Globals.selectedMessage.uzenet_id);
             Globals.Main.ccWindow_Main.Content = new ucUzenet();
         }
 

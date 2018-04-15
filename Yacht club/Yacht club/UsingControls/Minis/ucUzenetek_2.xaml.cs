@@ -32,7 +32,7 @@ namespace Yacht_club.UsingControls.Minis
         private void Loading()
         {
             data = new Database.MysqlMessage();
-            Messages = data.MysqlUserNewMessages(Globals.User.member_id);
+            Messages = data.MysqlUserNewMessages();
             Style MessageStackMiniLabel = Application.Current.FindResource("MessageStackMiniLabel") as Style;
             Style ListStackPanel = Application.Current.FindResource("ListStackPanel") as Style;
 
@@ -49,7 +49,7 @@ namespace Yacht_club.UsingControls.Minis
                 Label Felado = new Label();
                 Felado.Content = "Feladó: " + Messages[i].felado_nev;
                 Felado.Style = MessageStackMiniLabel;
-                Felado.Width = 226.5;
+                Felado.Width = 206.5;
 
                 Label Targy = new Label();
                 if (Messages[i].device_id != 0)
@@ -57,10 +57,19 @@ namespace Yacht_club.UsingControls.Minis
                 else if (Messages[i].yacht_id != 0)
                     Targy.Content = "Tárgy: Yacht bérlés";
                 Targy.Style = MessageStackMiniLabel;
-                Targy.Width = 180;
+                Targy.Width = 110;
+
+                Label Vissza = new Label();
+                if (Messages[i].BlVissza)
+                {
+                    Vissza.Content = "Visszajelzés!";
+                }
+                Vissza.Style = MessageStackMiniLabel;
+                Vissza.Width = 70;
 
                 panel.Children.Add(Felado);
                 panel.Children.Add(Targy);
+                panel.Children.Add(Vissza);
 
                 panel.Style = ListStackPanel;
 

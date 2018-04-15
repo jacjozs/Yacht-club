@@ -89,7 +89,7 @@ namespace Yacht_club.Database
                             user.varos = read["city"].ToString();
                             user.szuletesdt = DateTime.Parse(read["birthday"].ToString());
                             try
-                            { user.kep = ByteToImage((byte[])read["image"]); }
+                            { user.kep = MysqlGeneral.ByteToImage((byte[])read["image"]); }
                             catch (Exception)
                             { user.kep = null; }
                         }
@@ -106,21 +106,6 @@ namespace Yacht_club.Database
                 Globals.connect.Close();
             }
             return user;
-        }
-
-        /// <summary>
-        /// Az átvett byte tömböt képé alakitja
-        /// </summary>
-        /// <param name="imageByte"></param>
-        /// <returns></returns>
-        private BitmapImage ByteToImage(byte[] imageByte)
-        {
-            MemoryStream stream = new MemoryStream(imageByte);
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.StreamSource = stream;
-            image.EndInit();
-            return image;
         }
     }
 }

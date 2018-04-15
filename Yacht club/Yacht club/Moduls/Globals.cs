@@ -60,6 +60,10 @@ namespace Yacht_club
         /// </summary>
         internal static Message selectedMessage;
         /// <summary>
+        /// Aktuális utazás
+        /// </summary>
+        internal static Travel selectedTravel;
+        /// <summary>
         /// A vissza lépéshez szükséges elöző ablak eltárolása
         /// </summary>
         public static void UpdateHistory()

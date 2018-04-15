@@ -54,11 +54,13 @@ namespace Yacht_club
             switch (Globals.Login_Hiba_Code)
             {
                 case 1:
-                        MessageBox.Show("Hibás felhasználónév", "Hiba!", MessageBoxButton.OK);
+                    MessageBox.Show("Hibás felhasználónév", "Hiba!", MessageBoxButton.OK);
+                    Globals.Login_Hiba_Code = 0;
                         break;
                 case 2:
-                        MessageBox.Show("Hibás jelszó", "Hiba!", MessageBoxButton.OK);
-                        break;
+                    MessageBox.Show("Hibás jelszó", "Hiba!", MessageBoxButton.OK);
+                    Globals.Login_Hiba_Code = 0;
+                    break;
             }
         }
         /// <summary>

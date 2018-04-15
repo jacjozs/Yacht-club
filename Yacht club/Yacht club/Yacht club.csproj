@@ -67,12 +67,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Database\MysqlBerles.cs" />
     <Compile Include="Database\MysqlDevice.cs" />
+    <Compile Include="Database\MysqlGeneral.cs" />
     <Compile Include="Database\MysqlLogin.cs" />
     <Compile Include="Database\MysqlMessage.cs" />
     <Compile Include="Database\MysqlRegistration.cs" />
     <Compile Include="Database\MysqlSetting.cs" />
+    <Compile Include="Database\MysqlTravel.cs" />
     <Compile Include="Database\MysqlYacht.cs" />
     <Compile Include="Moduls\AutoCompleteEntry.cs" />
     <Compile Include="Moduls\Device.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Moduls\AutoTextBoxScroll.xaml.cs">
       <DependentUpon>AutoTextBoxScroll.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Moduls\Travel.cs" />
     <Compile Include="UsingControls\Admin\ucSzallitok_all.xaml.cs">
       <DependentUpon>ucSzallitok_all.xaml</DependentUpon>
     </Compile>

@@ -16,7 +16,7 @@ namespace Yacht_club.Database
             {
                 string query = "INSERT INTO enLogin(login_id, login_name, password, email, admin) VALUES (?login_id, ?login_name,?password,?email, ?admin);";
                 Globals.connect.Open();
-                int id = MysqlNextId("enLogin", "login_id");
+                int id = MysqlGeneral.MysqlNextId("enLogin", "login_id");
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
                     cmd.Parameters.Add("?login_id", MySqlDbType.Int16).Value = id;
@@ -49,7 +49,7 @@ namespace Yacht_club.Database
                 string query = "INSERT INTO enYacht_Club_Tag(member_id, login_id, nickname, last_name, first_name, birthday, zip_code, address, country) VALUES (?member_id, ?login_id, ?nickname, ?last_name, ?first_name, ?birthday, ?zip_code, ?address, ?country);";
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
-                    cmd.Parameters.Add("?member_id", MySqlDbType.Int16).Value = MysqlNextId("enYacht_Club_Tag", "member_id");
+                    cmd.Parameters.Add("?member_id", MySqlDbType.Int16).Value = MysqlGeneral.MysqlNextId("enYacht_Club_Tag", "member_id");
                     cmd.Parameters.Add("?login_id", MySqlDbType.Int16).Value = id;
                     cmd.Parameters.Add("?nickname", MySqlDbType.VarChar).Value = regisztration.nickname;
                     cmd.Parameters.Add("?last_name", MySqlDbType.VarChar).Value = regisztration.kereszt_nev;
@@ -65,59 +65,6 @@ namespace Yacht_club.Database
             {
                 MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
             }
-        }
-
-        public Dictionary<int, string> MysqlZipCodeName()
-        {
-            Dictionary<int, string> ZipCode = new Dictionary<int, string>();
-            try
-            {
-                string query = "SELECT zip_code, city FROM enZipcode;";
-                Globals.connect.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
-                {
-                    cmd.ExecuteNonQuery();
-                    MySqlDataReader read = cmd.ExecuteReader();
-                    while (read.Read())
-                    {
-                        ZipCode.Add((int)read["zip_code"], read["city"].ToString());
-                    }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
-            }
-            finally
-            {
-                Globals.connect.Close();
-            }
-            return ZipCode;
-        }
-
-        /// <summary>
-        /// Megkeresi a legnagyobb értéket a megatod mezöben és táblában és megnöveli egyel
-        /// </summary>
-        /// <param name="tabla">A tábla neve</param>
-        /// <param name="mezo">A mező neve</param>
-        /// <returns>A megnövelt szám</returns>
-        private int MysqlNextId(string tabla, string mezo)
-        {
-            int szam = 1;
-            try
-            {
-                string query = "SELECT MAX(" + mezo + ") FROM " + tabla + ";";
-                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
-                {
-                    cmd.Parameters.Add("?tabla", MySqlDbType.VarChar).Value = tabla;
-                    szam += (int)cmd.ExecuteScalar();
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
-            }
-            return szam;
         }
     }
 }

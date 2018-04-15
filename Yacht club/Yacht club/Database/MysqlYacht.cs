@@ -24,7 +24,7 @@ namespace Yacht_club.Database
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
-                    cmd.Parameters.Add("?yacht_id", MySqlDbType.Int16).Value = MysqlNextId("enYacht", "yacht_id");
+                    cmd.Parameters.Add("?yacht_id", MySqlDbType.Int16).Value = MysqlGeneral.MysqlNextId("enYacht", "yacht_id");
                     cmd.Parameters.Add("?name", MySqlDbType.VarChar).Value = yacht.nev;
                     cmd.Parameters.Add("?producer", MySqlDbType.VarChar).Value = yacht.gyarto;
                     cmd.Parameters.Add("?ower", MySqlDbType.Int16).Value = yacht.member_id;
@@ -83,38 +83,6 @@ namespace Yacht_club.Database
             }
             return login;
         }
-        /// <summary>
-        /// kikötök "map"-ba kigyüjti hogy a name lesz a kulcs
-        /// </summary>
-        /// <returns></returns>
-        public Dictionary<int, string> MysqlYachtPortName()
-        {
-            Dictionary<int, string> ports = new Dictionary<int, string>();
-            try
-            {
-                string query = "SELECT name, port_id FROM enPort;";
-                Globals.connect.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
-                {
-                    cmd.ExecuteNonQuery();
-                    MySqlDataReader read = cmd.ExecuteReader();
-                    while (read.Read())
-                    {
-                        ports.Add((int)read["port_id"], read["name"].ToString());
-                    }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
-            }
-            finally
-            {
-                Globals.connect.Close();
-            }
-            return ports;
-        }
-
         /// <summary>
         /// Yacht törlés yacht_id alapján
         /// </summary>
@@ -401,7 +369,7 @@ namespace Yacht_club.Database
                 {
                     cmd.Parameters.Add("?yacht_id", MySqlDbType.Int16).Value = id;
                     try
-                    { image = ByteToImage((byte[])cmd.ExecuteScalar()); }
+                    { image = MysqlGeneral.ByteToImage((byte[])cmd.ExecuteScalar()); }
                     catch (Exception)
                     { image = null; }
                 }
@@ -432,7 +400,7 @@ namespace Yacht_club.Database
                     cmd.Parameters.Add("?name", MySqlDbType.VarChar).Value = UpdateYacht.nev;
                     cmd.Parameters.Add("?producer", MySqlDbType.VarChar).Value = UpdateYacht.gyarto;
                     if (UpdateYacht.kep != null)
-                        cmd.Parameters.Add("?image", MySqlDbType.LongBlob).Value = ImageToByte(UpdateYacht.kep);
+                        cmd.Parameters.Add("?image", MySqlDbType.LongBlob).Value = MysqlGeneral.ImageToByte(UpdateYacht.kep);
                     else cmd.Parameters.Add("?image", MySqlDbType.LongBlob).Value = DBNull.Value;
                     cmd.Parameters.Add("?seats", MySqlDbType.Int16).Value = UpdateYacht.ferohely;
                     cmd.Parameters.Add("?hire", MySqlDbType.Bit).Value = UpdateYacht.berelheto;
@@ -521,60 +489,6 @@ namespace Yacht_club.Database
                 Globals.connect.Close();
             }
             return yacht;
-        }
-
-        /// <summary>
-        /// Megkeresi a legnagyobb értéket a megatod mezöben és táblában és megnöveli egyel
-        /// </summary>
-        /// <param name="tabla">A tábla neve</param>
-        /// <param name="mezo">A mező neve</param>
-        /// <returns>A megnövelt szám</returns>
-        private int MysqlNextId(string tabla, string mezo)
-        {
-            int szam = 1;
-            try
-            {
-                string query = "SELECT MAX(" + mezo + ") FROM " + tabla + ";";
-                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
-                {
-                    cmd.Parameters.Add("?tabla", MySqlDbType.VarChar).Value = tabla;
-                    szam += (int)cmd.ExecuteScalar();
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
-            }
-            return szam;
-        }
-        /// <summary>
-        /// Az átvett Image-t byte tömbre alakitja
-        /// </summary>
-        /// <param name="Image"></param>
-        /// <returns></returns>
-        private byte[] ImageToByte(BitmapImage Image)
-        {
-            var ms = new MemoryStream();
-            var pngEncoder = new PngBitmapEncoder();
-            pngEncoder.Frames.Add(BitmapFrame.Create(Image));
-            pngEncoder.Save(ms);
-
-            return ms.GetBuffer();
-        }
-
-        /// <summary>
-        /// Az átvett byte tömböt képé alakitja
-        /// </summary>
-        /// <param name="imageByte"></param>
-        /// <returns></returns>
-        private BitmapImage ByteToImage(byte[] imageByte)
-        {
-            MemoryStream stream = new MemoryStream(imageByte);
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.StreamSource = stream;
-            image.EndInit();
-            return image;
         }
     }
 }

@@ -8,6 +8,7 @@ using System;
 using Microsoft.Win32;
 using System.Collections.Generic;
 using Yacht_club.Moduls;
+using Yacht_club.Database;
 
 namespace Yacht_club.UsingControls
 {
@@ -19,7 +20,7 @@ namespace Yacht_club.UsingControls
         private Label[] lbAdatok;
         private TextBox[] tbAdatok;
         private Yacht Yacht;
-        private Database.MysqlYacht data;
+        private MysqlYacht data;
         private Dictionary<int, string> ports;
 
         public ucYacht(int id)
@@ -27,7 +28,7 @@ namespace Yacht_club.UsingControls
             // label tömb létrehozása, adatokkal való feltöltése
 
             InitializeComponent();
-            data = new Database.MysqlYacht();
+            data = new MysqlYacht();
             if (Globals.selectedYacht != null && id == Globals.selectedYacht.id)
             {
                 Yacht = Globals.selectedYacht;
@@ -224,7 +225,7 @@ namespace Yacht_club.UsingControls
         /// </summary>
         public void Port_name()
         {
-            ports = data.MysqlYachtPortName();
+            ports = MysqlGeneral.MysqlPortName();
             foreach (var entry in ports)
             {
                 TbKikotok.AddItem(new AutoCompleteEntry(entry.Key, entry.Value, Globals.cut(entry.Value)));
