@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls.Admin"
+             xmlns:modul="clr-namespace:Yacht_club.Moduls"
              mc:Ignorable="d" 
              d:DesignHeight="404" d:DesignWidth="833" Background="{Binding uc_hatter}">
     <Grid>
@@ -20,38 +21,38 @@
         <StackPanel x:Name="stYacht_add" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,2,0,0" Grid.Row="1" Grid.Column="0" Width="406.5" Height="367">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="370" Height="40">
                 <Label Content="Név:" Width="110" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                <TextBox x:Name="tbYacht_nev" Width="150" Height="22" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,6,0,7"/>
+                <TextBox x:Name="tbYacht_nev" Width="150" Height="22" Style="{StaticResource TextBoxStyle}" Margin="10,6,0,7"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="370" Height="40">
                 <Label  Content="Tulajdonos:" Width="110" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                <ComboBox x:Name="cbYacht_tulaj" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                <modul:AutoTextBoxScroll Height="22" Width="150" x:Name="TbYacht_tulaj" DelayTime="10" Threshold="1" Margin="10,6,0,7"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="370" Height="40">
                 <Label  Content="Gyártó:" Width="110" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                <TextBox x:Name="tbYacht_gyarto" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                <TextBox x:Name="tbYacht_gyarto" Width="150" Style="{StaticResource TextBoxStyle}" Height="22" Margin="10,6,0,7"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="370" Height="40">
                 <Label Content="Férőhely(fő):" Width="110" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                <TextBox x:Name="tbYacht_ferohely" Width="150" Height="22" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,6,0,7"/>
+                <TextBox x:Name="tbYacht_ferohely" Width="150" Height="22" Style="{StaticResource TextBoxStyle}" Margin="10,6,0,7"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="370" Height="40">
                 <Label  Content="Sebesség(csomó):" Width="110" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                <TextBox x:Name="tbYacht_sebesseg" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                <TextBox x:Name="tbYacht_sebesseg" Width="150" Style="{StaticResource TextBoxStyle}" Height="22" Margin="10,6,0,7"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="370" Height="120" Margin="10,0,10,0">
                 <Label  Content="Méretek:" Width="60" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,22"/>
                 <StackPanel Width="182">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Width="185" Height="40">
                         <Label  Content="Szélesség(m):" Width="90" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5" Padding="5,0,0,0"/>
-                        <TextBox x:Name="tbYacht_szeles" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                        <TextBox x:Name="tbYacht_szeles" Width="75" Style="{StaticResource TextBoxStyle}" Height="22" Margin="10,6,0,7"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="185" Height="40">
                         <Label  Content="Hosszúság(m):" Width="90" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,5,0,5" Padding="5,0,0,0"/>
-                        <TextBox x:Name="tbYacht_hossz" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                        <TextBox x:Name="tbYacht_hossz" Width="75" Style="{StaticResource TextBoxStyle}" Height="22" Margin="10,6,0,7"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="185" Height="40">
                         <Label  Content="Merülés(m):" Width="90" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,5,0,5" Padding="5,0,0,0"/>
-                        <TextBox x:Name="tbYacht_merules" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                        <TextBox x:Name="tbYacht_merules" Width="75" Style="{StaticResource TextBoxStyle}" Height="22" Margin="10,6,0,7"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

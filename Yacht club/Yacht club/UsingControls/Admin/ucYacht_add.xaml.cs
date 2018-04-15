@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using Yacht_club.Moduls;
 
 namespace Yacht_club.UsingControls
 {
@@ -18,7 +19,7 @@ namespace Yacht_club.UsingControls
         /// Egy "map" a member_id és teljesnévnek
         /// A teljesnév a kulcs!
         /// </summary>
-        private Dictionary<string, int> list;
+        private Dictionary<int, string> list;
         /// <summary>
         /// Adatbázis példány az adatbázis használatához
         /// </summary>
@@ -41,7 +42,7 @@ namespace Yacht_club.UsingControls
                 newYacht = new Yacht();
                 newYacht.nev = tbYacht_nev.Text;
                 newYacht.gyarto = tbYacht_gyarto.Text;
-                newYacht.member_id = int.Parse(list[cbYacht_tulaj.Text].ToString());
+                newYacht.member_id = TbYacht_tulaj.ID;
                 newYacht.ferohely = int.Parse(tbYacht_ferohely.Text);
                 newYacht.sebesseg = int.Parse(tbYacht_sebesseg.Text);
                 newYacht.szeles = (float)Convert.ToDouble(tbYacht_szeles.Text);
@@ -79,7 +80,10 @@ namespace Yacht_club.UsingControls
         {
             data = new Database.MysqlYacht();
             list = data.MysqlYachtLoginName();
-            cbYacht_tulaj.ItemsSource = list.Keys;
+            foreach (var entry in list)
+            {
+                TbYacht_tulaj.AddItem(new AutoCompleteEntry(entry.Key, entry.Value, Globals.cut(entry.Value)));
+            }
         }
         /// <summary>
         /// Sikeres hozzáadás bejegyzése a hozzáadások ablakhoz

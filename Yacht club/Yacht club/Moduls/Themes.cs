@@ -10,9 +10,12 @@ namespace Yacht_club.Moduls
         public Brush menu_betu_szin { get; set; }
         public Brush menu_hatter { get; set; }
         public Brush uc_hatter { get; set; }
-        public Brush csuszka { get; set; }
+        //public Brush csuszka;
         public bool icon_black { get; set; }
-
+        /// <summary>
+        /// Téma létrehozása
+        /// </summary>
+        /// <param name="num">téma id</param>
         public Themes(int num)
         {
             switch (num)
@@ -24,7 +27,6 @@ namespace Yacht_club.Moduls
                     menu_betu_szin = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFFFF"));
                     menu_hatter = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF007ACC"));
                     uc_hatter = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF1D212C"));
-                    icon_black = false;
                     break;
                 case 2:
                     id = 2;
@@ -33,7 +35,6 @@ namespace Yacht_club.Moduls
                     menu_betu_szin = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF173542"));
                     menu_hatter = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF007ACC"));
                     uc_hatter = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0A91CC"));
-                    icon_black = false;
                     break;
                 case 3:
                     id = 3;
@@ -42,7 +43,6 @@ namespace Yacht_club.Moduls
                     menu_betu_szin = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF173542"));
                     menu_hatter = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF69C4EC"));
                     uc_hatter = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF363E54"));
-                    icon_black = false;
                     break;
                     ///Pink
                 case 4:

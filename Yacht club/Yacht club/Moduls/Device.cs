@@ -24,10 +24,8 @@
         /// bérlő teljes neve
         /// </summary>
         public string berlo_full_name { get; set; }
-        public int max_hossz { get; set; }
-        public int max_magas { get; set; }
+        public string max_hossz { get; set; }
         public int max_suly { get; set; }
-        public int max_szeles { get; set; }
         /// <summary>
         /// foglalt bool érték a programnak
         /// </summary>

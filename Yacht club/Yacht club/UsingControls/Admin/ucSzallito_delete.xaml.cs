@@ -74,27 +74,17 @@ namespace Yacht_club.UsingControls
                 Teherbiras.Content = "Max teherbirás(t): " + Devices[i].max_suly;
                 Teherbiras.Style = MenuStackLabel;
 
-                Label Magas = new Label();
-                Magas.Content = "Max magasság(m): " + Devices[i].max_magas;
-                Magas.Style = MenuStackLabel;
-
                 panel4.Children.Add(Teherbiras);
-                panel4.Children.Add(Magas);
 
                 StackPanel panel5 = new StackPanel();
                 panel5.Width = 194;
                 panel5.Height = 55;
                 panel5.HorizontalAlignment = HorizontalAlignment.Left;
 
-                Label Szeles = new Label();
-                Szeles.Content = "Max szélesség(m): " + Devices[i].max_szeles;
-                Szeles.Style = MenuStackLabel;
-
                 Label Hosszu = new Label();
                 Hosszu.Content = "Max hosszúság(m): " + Devices[i].max_hossz;
                 Hosszu.Style = MenuStackLabel;
 
-                panel5.Children.Add(Szeles);
                 panel5.Children.Add(Hosszu);
 
                 panel.Children.Add(panel2);

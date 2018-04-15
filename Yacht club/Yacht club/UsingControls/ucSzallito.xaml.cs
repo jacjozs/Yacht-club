@@ -11,54 +11,57 @@ namespace Yacht_club.UsingControls
     public partial class ucSzallito : UserControl
     {
         private Database.MysqlDevice data;
+        private Device Device;
 
-        public ucSzallito()
+        public ucSzallito(int id)
         {
             InitializeComponent();
+            data = new Database.MysqlDevice();
+            if (Globals.selectedDevice != null && id == Globals.selectedDevice.id)
+            {
+                Device = Globals.selectedDevice;
+            }
+            else
+            {
+                Device = data.MysqlDeviceSelect(id);
+                data = null;
+            }
             Loading();
             Globals.UpdateHistory();
         }
 
         public void Loading()
         {
-            if (Globals.selectedDevice.tipus != null)
-                lbTipus.Content = Globals.selectedDevice.tipus;
+            if (Device.tipus != null)
+                lbTipus.Content = Device.tipus;
             else lbTipus.Content = "Nincs kitöltve";
 
-            if (Globals.selectedDevice.napi_ar != 0)
-                lbNapiAr.Content = Globals.selectedDevice.napi_ar;
+            if (Device.napi_ar != 0)
+                lbNapiAr.Content = Device.napi_ar;
             else lbNapiAr.Content = "Nincs kitöltve";
 
-            if (Globals.selectedDevice.full_name != null)
-                lbTulajNev.Content = Globals.selectedDevice.full_name;
+            if (Device.full_name != null)
+                lbTulajNev.Content = Device.full_name;
             else lbTulajNev.Content = "Nincs kitöltve";
 
-            if (Globals.selectedDevice.berlo_full_name != null)
-                lbBerloNev.Content = Globals.selectedDevice.berlo_full_name;
+            if (Device.berlo_full_name != null)
+                lbBerloNev.Content = Device.berlo_full_name;
             else lbBerloNev.Content = "Nincs kitöltve";
 
-            if (Globals.selectedDevice.max_hossz != 0)
-                lbMaxHossz.Content = Globals.selectedDevice.max_hossz;
+            if (Device.max_hossz != "")
+                lbMaxHossz.Content = Device.max_hossz;
             else lbMaxHossz.Content = "Nincs kitöltve";
 
-            if (Globals.selectedDevice.max_magas != 0)
-                lbMaxMagas.Content = Globals.selectedDevice.max_magas;
-            else lbMaxMagas.Content = "Nincs kitöltve";
-
-            if (Globals.selectedDevice.max_suly != 0)
-                lbMaxSuly.Content = Globals.selectedDevice.max_suly;
+            if (Device.max_suly != 0)
+                lbMaxSuly.Content = Device.max_suly;
             else lbMaxSuly.Content = "Nincs kitöltve";
 
-            if (Globals.selectedDevice.max_szeles != 0)
-                lbMaxSzeles.Content = Globals.selectedDevice.max_szeles;
-            else lbMaxSzeles.Content = "Nincs kitöltve";
-
-            if (Globals.selectedDevice.strfoglalt != null)
-                lbFoglalt.Content = Globals.selectedDevice.strfoglalt;
+            if (Device.strfoglalt != null)
+                lbFoglalt.Content = Device.strfoglalt;
             else lbFoglalt.Content = "Nincs kitöltve";
 
 
-            if (Globals.selectedDevice.member_id == Globals.User.member_id || Globals.User.login.admin)
+            if (Device.member_id == Globals.User.member_id || Globals.User.login.admin)
             {
                 btModosit.Visibility = Visibility.Visible;
             }
@@ -81,26 +84,20 @@ namespace Yacht_club.UsingControls
 
             lbNapiAr.Visibility = System.Windows.Visibility.Hidden;
             lbMaxHossz.Visibility = System.Windows.Visibility.Hidden;
-            lbMaxMagas.Visibility = System.Windows.Visibility.Hidden;
             lbMaxSuly.Visibility = System.Windows.Visibility.Hidden;
-            lbMaxSzeles.Visibility = System.Windows.Visibility.Hidden;
             lbFoglalt.Visibility = System.Windows.Visibility.Hidden;
 
 
             tbNapiAr.Visibility = System.Windows.Visibility.Visible;
             tbMaxHossz.Visibility = System.Windows.Visibility.Visible;
-            tbMaxMagas.Visibility = System.Windows.Visibility.Visible;
             tbMaxSuly.Visibility = System.Windows.Visibility.Visible;
-            tbMaxSzeles.Visibility = System.Windows.Visibility.Visible;
             cbBerelheto.Visibility = System.Windows.Visibility.Visible;
 
-            tbNapiAr.Text = Convert.ToString(Globals.selectedDevice.napi_ar);
-            tbMaxHossz.Text = Convert.ToString(Globals.selectedDevice.max_hossz);
-            tbMaxMagas.Text = Convert.ToString(Globals.selectedDevice.max_magas);
-            tbMaxSuly.Text = Convert.ToString(Globals.selectedDevice.max_suly);
-            tbMaxSzeles.Text = Convert.ToString(Globals.selectedDevice.max_szeles);
+            tbNapiAr.Text = Convert.ToString(Device.napi_ar);
+            tbMaxHossz.Text = Convert.ToString(Device.max_hossz);
+            tbMaxSuly.Text = Convert.ToString(Device.max_suly);
 
-            if (Globals.selectedDevice.blfoglalt == false)
+            if (Device.blfoglalt == false)
             {
                 cbBerelheto.IsChecked = false;
             }
@@ -113,9 +110,9 @@ namespace Yacht_club.UsingControls
 
 
 
-        private void btRendel_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btRendel_Click(object sender, RoutedEventArgs e)
         {
-            Globals.Main.ccWindow_Main.Content = new ucBerles();
+            Globals.Main.ccWindow_Main.Content = new ucBerles(2);
         }
 
         private void btMegse_Click(object sender, RoutedEventArgs e)
@@ -128,17 +125,13 @@ namespace Yacht_club.UsingControls
 
             lbNapiAr.Visibility = System.Windows.Visibility.Visible;
             lbMaxHossz.Visibility = System.Windows.Visibility.Visible;
-            lbMaxMagas.Visibility = System.Windows.Visibility.Visible;
             lbMaxSuly.Visibility = System.Windows.Visibility.Visible;
-            lbMaxSzeles.Visibility = System.Windows.Visibility.Visible;
             lbFoglalt.Visibility = System.Windows.Visibility.Visible;
 
 
             tbNapiAr.Visibility = System.Windows.Visibility.Hidden;
             tbMaxHossz.Visibility = System.Windows.Visibility.Hidden;
-            tbMaxMagas.Visibility = System.Windows.Visibility.Hidden;
             tbMaxSuly.Visibility = System.Windows.Visibility.Hidden;
-            tbMaxSzeles.Visibility = System.Windows.Visibility.Hidden;
             cbBerelheto.Visibility = System.Windows.Visibility.Hidden;
 
         }
@@ -147,14 +140,12 @@ namespace Yacht_club.UsingControls
         {
             try
             {
-                if (cbBerelheto.IsChecked == true) Globals.selectedDevice.berelheto = true;
-                else Globals.selectedDevice.berelheto = false;
-                if (tbMaxSzeles.Text != "") Globals.selectedDevice.max_szeles = int.Parse(tbMaxSzeles.Text);
-                if (tbMaxHossz.Text != "") Globals.selectedDevice.max_hossz = int.Parse(tbMaxHossz.Text);
-                if (tbMaxMagas.Text != "") Globals.selectedDevice.max_magas = int.Parse(tbMaxMagas.Text);
-                if (tbMaxSuly.Text != "") Globals.selectedDevice.max_suly = int.Parse(tbMaxSuly.Text);
-                if (tbNapiAr.Text != "") Globals.selectedDevice.napi_ar = int.Parse(tbNapiAr.Text);
-                data.MysqlUpdateDevicet(Globals.selectedDevice);
+                if (cbBerelheto.IsChecked == true) Device.berelheto = true;
+                else Device.berelheto = false;
+                if (tbMaxHossz.Text != "") Device.max_hossz = tbMaxHossz.Text;
+                if (tbMaxSuly.Text != "") Device.max_suly = int.Parse(tbMaxSuly.Text);
+                if (tbNapiAr.Text != "") Device.napi_ar = int.Parse(tbNapiAr.Text);
+                data.MysqlUpdateDevicet(Device);
 
             }
             catch (Exception)
@@ -167,27 +158,20 @@ namespace Yacht_club.UsingControls
             btAlkalmaz.Visibility = System.Windows.Visibility.Hidden;
             btMegse.Visibility = System.Windows.Visibility.Hidden;
 
-            //még1x
             lbNapiAr.Content = tbNapiAr.Text;
             lbMaxHossz.Content = tbMaxHossz.Text;
-            lbMaxMagas.Content = tbMaxMagas.Text;
-            lbMaxSuly.Content = tbMaxMagas.Text;
-            lbMaxSzeles.Content = tbMaxSzeles.Text;
+            lbMaxSuly.Content = tbMaxSuly.Text;
             lbFoglalt.Content = strCheckboxErtek();
 
             lbNapiAr.Visibility = System.Windows.Visibility.Visible;
             lbMaxHossz.Visibility = System.Windows.Visibility.Visible;
-            lbMaxMagas.Visibility = System.Windows.Visibility.Visible;
             lbMaxSuly.Visibility = System.Windows.Visibility.Visible;
-            lbMaxSzeles.Visibility = System.Windows.Visibility.Visible;
             lbFoglalt.Visibility = System.Windows.Visibility.Visible;
 
 
             tbNapiAr.Visibility = System.Windows.Visibility.Hidden;
             tbMaxHossz.Visibility = System.Windows.Visibility.Hidden;
-            tbMaxMagas.Visibility = System.Windows.Visibility.Hidden;
             tbMaxSuly.Visibility = System.Windows.Visibility.Hidden;
-            tbMaxSzeles.Visibility = System.Windows.Visibility.Hidden;
             cbBerelheto.Visibility = System.Windows.Visibility.Hidden;
 
             Globals.log = "Módosítás Sikeres! <Szállitóeszköz>";
@@ -197,17 +181,13 @@ namespace Yacht_club.UsingControls
         private string strCheckboxErtek()
         {
             if (cbBerelheto.IsChecked == true)
-            {
                 return "Foglalt";
-            }
             else return "Szabad";
         }
         private int checkboxErtek()
         {
             if (cbBerelheto.IsChecked == true)
-            {
                 return 1;
-            }
             else return 0;
         }
     }

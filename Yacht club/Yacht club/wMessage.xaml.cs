@@ -25,7 +25,11 @@ namespace Yacht_club
         {
             DataContext = Globals.MainTheme;
         }
-
+        /// <summary>
+        /// Az akció id-je és a folyamathoz szükséged id eltárolása
+        /// </summary>
+        /// <param name="action">ablak akció id</param>
+        /// <param name="id">folyamat id</param>
         public wMessage(int action, int id)
         {
             InitializeComponent();

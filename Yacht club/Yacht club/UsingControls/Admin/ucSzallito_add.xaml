@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls.Admin"
+             xmlns:modul="clr-namespace:Yacht_club.Moduls"
              mc:Ignorable="d" 
              d:DesignHeight="404" d:DesignWidth="833" Background="{Binding uc_hatter}">
     <Grid>
@@ -20,30 +21,22 @@
         <StackPanel x:Name="stSzallito_add" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,2,0,0" Grid.Row="1" Grid.Column="0" Width="406.5" Height="379">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" Height="40">
                 <Label  Content="Tulajdonos:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                <ComboBox x:Name="cbDevice_tulaj" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                <modul:AutoTextBoxScroll Height="22" Width="150" x:Name="TbDevice_tulaj" DelayTime="10" Threshold="1" Margin="10,6,0,7"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" Height="40">
                 <Label  Content="Típus:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                <TextBox x:Name="tbSzallito_tipus" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                <TextBox x:Name="tbSzallito_tipus" Width="150" Style="{StaticResource TextBoxStyle}" Height="22" Margin="10,6,0,7"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" Height="40">
                 <Label  Content="Max teherbírás(t):" Width="120" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                <TextBox x:Name="tbSzallito_teherb" Width="130" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="8,6,0,7"/>
+                <TextBox x:Name="tbSzallito_teherb" Width="130" Style="{StaticResource TextBoxStyle}" Height="22" Margin="8,6,0,7"/>
             </StackPanel>
-            <StackPanel Width="300" Margin="8,0,7,0">
-                <Label  Content="Méretek:" Width="60" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0" Padding="5,0"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Width="255" Height="40">
-                    <Label  Content="Max szélesség(m):" Width="110" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,6,0,8" Padding="3,0,0,0"/>
-                    <TextBox x:Name="tbSzallito_szeles" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="15,4,0,4"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" Height="40">
+                <StackPanel Margin="0,5,0,5">
+                    <Label  Content="Max hosszúság(m):" Width="115" FontSize="12" VerticalAlignment="Center" Padding="0" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="5,0,0,0"/>
+                    <Label  Content="(pl. 2-5)" Width="115" FontSize="10" VerticalAlignment="Center" Padding="0" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="5,0,0,0"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Width="255" Height="40">
-                    <Label  Content="Max hosszúság(m):" Width="115" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,6,0,8" Padding="3,0,0,0"/>
-                    <TextBox x:Name="tbSzallito_hossz" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,4,0,4"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="255" Height="40">
-                    <Label  Content="Max magasság(m):" Width="110" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,6,0,8" Padding="3,0,0,0"/>
-                    <TextBox x:Name="tbSzallito_magas" Width="80" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="15,4,0,4"/>
-                </StackPanel>
+                <TextBox x:Name="tbSzallito_hossz" Width="130" Style="{StaticResource TextBoxStyle}" Height="22" Margin="8,6,0,7"/>
             </StackPanel>
         </StackPanel>
         <ListBox x:Name="lbDeviceLog" Grid.Column="1" Width="396" Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top" Foreground="{Binding betu_szin}" Padding="15" FontWeight="Bold" SelectionMode="Extended" IsHitTestVisible="True" Background="{Binding hatter}" Height="310" IsTextSearchCaseSensitive="True" BorderThickness="0" BorderBrush="{Binding hatter}"/>

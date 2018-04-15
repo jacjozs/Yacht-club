@@ -92,7 +92,7 @@ namespace Yacht_club
                     cs_Menu_2.Visibility = Visibility.Hidden;
                     if (ccWindow_Main.Content == null || !(ccWindow_Main.Content is ucFelhasznalo))
                     {
-                        ccWindow_Main.Content = new ucFelhasznalo();
+                        ccWindow_Main.Content = new ucFelhasznalo(0);
                         /*if (ccWindow_Main.Uid.Length > 2)
                         {
                             ccWindow_Main.Uid = ccWindow_Main.Uid.Substring(0,1);

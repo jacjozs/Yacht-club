@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
+             xmlns:modul="clr-namespace:Yacht_club.Moduls"
              mc:Ignorable="d" 
              d:DesignHeight="404" d:DesignWidth="833" Background="{Binding uc_hatter}">
     <Grid>
@@ -16,27 +17,30 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="379"/>
         </Grid.RowDefinitions>
-        <Label Style="{DynamicResource MenuDecLabel}" Content="Bérlés:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Margin="0,3"/>
-        <StackPanel x:Name="stBerles" Grid.Row="1" Grid.Column="0" Width="416.5" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+        <Label Style="{DynamicResource MenuDecLabel}" Content="Bérlés:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Margin="0,4,0,2"/>
+        <StackPanel x:Name="stYachtDeviceData" Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+            
+        </StackPanel>
+        <StackPanel x:Name="stBerles" Grid.Column="1" Width="417" Grid.Row="1">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="406.5" Height="290">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="400" Height="35">
                     <Label  Content="Mettöl:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                    <DatePicker x:Name="dpStartDate" Width="135" FirstDayOfWeek="Monday" Cursor="Hand" SelectedDate="{x:Static sys:DateTime.Now}" Foreground="#FF1D212C" Margin="5,5,0,5" Background="{Binding uc_hatter}" BorderBrush="{Binding uc_hatter}"/>
+                    <DatePicker x:Name="dpStartDate" Width="209" FirstDayOfWeek="Monday" Cursor="Hand" SelectedDate="{x:Static sys:DateTime.Now}" Foreground="#FF1D212C" Margin="5,5,0,5" Background="{Binding uc_hatter}" BorderBrush="{Binding uc_hatter}"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="400" Height="35">
                     <Label Content="Meddig:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                    <DatePicker x:Name="dpEndDate" Width="135" FirstDayOfWeek="Monday" Cursor="Hand" SelectedDate="{x:Static sys:DateTime.Now}" Margin="5,5,0,5" Background="{Binding uc_hatter}" BorderBrush="{Binding uc_hatter}"/>
+                    <DatePicker x:Name="dpEndDate" Width="209" FirstDayOfWeek="Monday" Cursor="Hand" SelectedDate="{x:Static sys:DateTime.Now}" Margin="5,5,0,5" Background="{Binding uc_hatter}" BorderBrush="{Binding uc_hatter}"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <Label Content="Honnan:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                    <ComboBox x:Name="cbBerlesFrom" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="7,6,0,7"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="400" Height="35">
+                    <Label Name="lbhonnan" Content="Honnan:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
+                    <modul:AutoTextBoxScroll x:Name="TbBerlesFrom" Width="200" Height="22" DelayTime="10" Threshold="1" Margin="7,6,0,7"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
-                    <Label  Content="Hova:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                    <ComboBox x:Name="cbBerlesTo" Width="125" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="7,6,0,7"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="400" Height="35">
+                    <Label Name="lbhova" Content="Hova:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
+                    <modul:AutoTextBoxScroll x:Name="TbBerlesTo" Width="200" Height="22" DelayTime="10" Threshold="1" Margin="7,6,0,7"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <Button Style="{DynamicResource Buttons}" Content="Küldés" Foreground="{Binding betu_szin}" Background="{Binding uc_hatter}" FontWeight="Bold" Grid.Column="1" Grid.Row="1" Height="40" Width="255" VerticalAlignment="Bottom" Margin="0,0,0,14"/>
+        <Button Style="{DynamicResource Buttons}" Content="Küldés" Foreground="{Binding betu_szin}" Background="{Binding uc_hatter}" FontWeight="Bold" Grid.Column="1" Grid.Row="1" Height="40" Width="255" VerticalAlignment="Bottom" Margin="81,-28,80,12" Click="Button_Click"/>
     </Grid>
 </UserControl>

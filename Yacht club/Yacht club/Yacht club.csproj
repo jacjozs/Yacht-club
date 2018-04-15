@@ -74,12 +74,16 @@
     <Compile Include="Database\MysqlRegistration.cs" />
     <Compile Include="Database\MysqlSetting.cs" />
     <Compile Include="Database\MysqlYacht.cs" />
+    <Compile Include="Moduls\AutoCompleteEntry.cs" />
     <Compile Include="Moduls\Device.cs" />
     <Compile Include="Moduls\Felhasznalo.cs" />
     <Compile Include="Moduls\Globals.cs" />
     <Compile Include="Moduls\Login.cs" />
     <Compile Include="Moduls\Message.cs" />
     <Compile Include="Moduls\Themes.cs" />
+    <Compile Include="Moduls\AutoTextBoxScroll.xaml.cs">
+      <DependentUpon>AutoTextBoxScroll.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsingControls\Admin\ucSzallitok_all.xaml.cs">
       <DependentUpon>ucSzallitok_all.xaml</DependentUpon>
     </Compile>
@@ -208,6 +212,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Moduls\Style\Control.Radiobutton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Moduls\AutoTextBoxScroll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Moduls\Style\Control.Texts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -420,7 +432,9 @@
   <ItemGroup>
     <Resource Include="images\white\color_5.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images\white\error.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="images\black\back.png" />
     <Resource Include="images\black\email.png" />

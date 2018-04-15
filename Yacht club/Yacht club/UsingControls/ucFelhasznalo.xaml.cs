@@ -11,9 +11,18 @@ namespace Yacht_club.UsingControls
     public partial class ucFelhasznalo : UserControl
     {
         private Label[] lbAdatok;
-        public ucFelhasznalo()
+        private Database.MysqlMessage data;
+        private Felhasznalo User;
+        public ucFelhasznalo(int id)
         {
             InitializeComponent();
+            if (id != 0)
+            {
+                data = new Database.MysqlMessage();
+                User = data.MysqlFelhasznaloData(id);
+                data = null;
+            }
+            else User = Globals.User;
             Loading();
             Globals.UpdateHistory();
         }
@@ -28,23 +37,23 @@ namespace Yacht_club.UsingControls
             };
 
             // label feltöltése adatokkal
-            if (Globals.User.nickname != null) lbFNev.Content = Globals.User.nickname; else lbFNev.Content = "Nincs kitöltve";
-            if (Globals.User.veztek_nev != null) lbVNev.Content = Globals.User.veztek_nev; else lbVNev.Content = "Nincs kitöltve";
-            if (Globals.User.kereszt_nev != null) lbKNev.Content = Globals.User.kereszt_nev; else lbKNev.Content = "Nincs kitöltve";
-            if (Globals.User.szuletesdt != null) lbSzEv.Content = Globals.User.szuletesdt.ToLongDateString(); else lbSzEv.Content = "Nincs kitöltve";
-            if (Globals.User.orszag != null) lbOrszag.Content = Globals.User.orszag; else lbOrszag.Content = "Nincs kitöltve";
-            if (Globals.User.iranyitoszm != 0) lbIrszam.Content = Globals.User.iranyitoszm; else lbIrszam.Content = "Nincs kitöltve";
-            if (Globals.User.varos != null) lbVaros.Content = Globals.User.varos; else lbVaros.Content = "Nincs kitöltve";
-            if (Globals.User.lakcim != null) lbLakcim.Content = Globals.User.lakcim; else lbLakcim.Content = "Nincs kitöltve";
+            if (User.nickname != null) lbFNev.Content = User.nickname; else lbFNev.Content = "Nincs kitöltve";
+            if (User.veztek_nev != null) lbVNev.Content = User.veztek_nev; else lbVNev.Content = "Nincs kitöltve";
+            if (User.kereszt_nev != null) lbKNev.Content = User.kereszt_nev; else lbKNev.Content = "Nincs kitöltve";
+            if (User.szuletesdt != null) lbSzEv.Content = User.szuletesdt.ToLongDateString(); else lbSzEv.Content = "Nincs kitöltve";
+            if (User.orszag != null) lbOrszag.Content = User.orszag; else lbOrszag.Content = "Nincs kitöltve";
+            if (User.iranyitoszm != 0) lbIrszam.Content = User.iranyitoszm; else lbIrszam.Content = "Nincs kitöltve";
+            if (User.varos != null) lbVaros.Content = User.varos; else lbVaros.Content = "Nincs kitöltve";
+            if (User.lakcim != null) lbLakcim.Content = User.lakcim; else lbLakcim.Content = "Nincs kitöltve";
         }
         /// <summary>
         /// profil kép konvertálása és betöltése a imgProfil helyre
         /// </summary>
         public void ProfilImgLoad()
         {
-            if (Globals.User.kep != null)
+            if (User.kep != null)
             {
-                imgProfil.Source = Globals.User.kep;
+                imgProfil.Source = User.kep;
             }
         }
     }

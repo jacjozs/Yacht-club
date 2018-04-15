@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using Yacht_club.Moduls;
 
 namespace Yacht_club.UsingControls
 {
@@ -18,7 +20,7 @@ namespace Yacht_club.UsingControls
         /// "map" a felhasználók teljes nevével és member_id-jével
         /// a teljesnév a kulcs!s
         /// </summary>
-        private Dictionary<string, int> list;
+        private Dictionary<int, string> list;
         /// <summary>
         /// Adatbázis béldány az adatbázis eléréséhez
         /// </summary>
@@ -40,15 +42,16 @@ namespace Yacht_club.UsingControls
             {
                 newDevice = new Device(); ;
                 newDevice.tipus = tbSzallito_tipus.Text;
-                newDevice.member_id = int.Parse(list[cbDevice_tulaj.Text].ToString());
+                newDevice.member_id = TbDevice_tulaj.ID;
                 newDevice.max_suly = int.Parse(tbSzallito_teherb.Text);
-                newDevice.max_szeles = int.Parse(tbSzallito_szeles.Text);
-                newDevice.max_hossz = int.Parse(tbSzallito_hossz.Text);
-                newDevice.max_magas = int.Parse(tbSzallito_magas.Text);
+                newDevice.max_hossz = tbSzallito_hossz.Text;
                 newDevice.id = data.MysqlAddDevice(newDevice);
                 if (newDevice.id != 0)
+                {
                     ///Visszajelzés ha sikeres volt a hozzáadás
                     AddYachtLog("ID: " + newDevice.id + "  Szállitóeszköz Hozzáadva!");
+                    Globals.log = "Hozzáadás Sikeres! <Szállitóeszköz>";
+                }
                 else Globals.log = "Hozzáadás Sikertelen! <Szállitóeszköz>";
             }
             catch (Exception)
@@ -57,10 +60,9 @@ namespace Yacht_club.UsingControls
             }
             finally
             {
-                Globals.log = "Hozzáadás Sikeres! <Szállitóeszköz>";
+                ///Az egyes usercontrolhoz való log hozzáadás
+                Globals.Main.logAdd(true);
             }
-            ///Az egyes usercontrolhoz caló log hozzáadás
-            Globals.Main.logAdd(true);
         }
         /// <summary>
         /// Teljes nevek és member_id kigyüjtése és hozzá adása a legördülő sávhoz
@@ -69,7 +71,10 @@ namespace Yacht_club.UsingControls
         {
             data = new Database.MysqlDevice();
             list = data.MysqlDeviceLoginName();
-            cbDevice_tulaj.ItemsSource = list.Keys;
+            foreach (var entry in list)
+            {
+                TbDevice_tulaj.AddItem(new AutoCompleteEntry(entry.Key, entry.Value, Globals.cut(entry.Value)));
+            }
         }
         /// <summary>
         /// sikeres yacht hozzáadás visszajelzése

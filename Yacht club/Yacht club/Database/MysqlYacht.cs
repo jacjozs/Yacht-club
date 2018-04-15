@@ -52,10 +52,10 @@ namespace Yacht_club.Database
         /// teljesnév a kulcs!
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, int> MysqlYachtLoginName()
+        public Dictionary<int, string> MysqlYachtLoginName()
         {
             string full_name;
-            Dictionary<string, int> login = new Dictionary<string, int>();
+            Dictionary<int, string> login = new Dictionary<int, string>();
             try
             {
                 string query = "SELECT first_name, last_name, member_id FROM enYacht_Club_Tag;";
@@ -69,7 +69,7 @@ namespace Yacht_club.Database
                         full_name = "";
                         full_name += read["first_name"].ToString();
                         full_name += " " + read["last_name"].ToString();
-                        login.Add(full_name, (int)read["member_id"]);
+                        login.Add((int)read["member_id"], full_name);
                     }
                 }
             }
@@ -83,10 +83,13 @@ namespace Yacht_club.Database
             }
             return login;
         }
-
-        public Dictionary<string, int> MysqlYachtPortName()
+        /// <summary>
+        /// kikötök "map"-ba kigyüjti hogy a name lesz a kulcs
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<int, string> MysqlYachtPortName()
         {
-            Dictionary<string, int> ports = new Dictionary<string, int>();
+            Dictionary<int, string> ports = new Dictionary<int, string>();
             try
             {
                 string query = "SELECT name, port_id FROM enPort;";
@@ -97,7 +100,7 @@ namespace Yacht_club.Database
                     MySqlDataReader read = cmd.ExecuteReader();
                     while (read.Read())
                     {
-                        ports.Add(read["name"].ToString(), (int)read["port_id"]);
+                        ports.Add((int)read["port_id"], read["name"].ToString());
                     }
                 }
             }
@@ -380,6 +383,11 @@ namespace Yacht_club.Database
             return full_name;
         }
 
+        /// <summary>
+        /// Kikeresi az adatbázisból egy yachtnak a képét
+        /// </summary>
+        /// <param name="id">yacht id</param>
+        /// <returns>yacht kép</returns>
         public BitmapImage MysqlYachtImage(int id)
         {
             BitmapImage image = null;
@@ -406,7 +414,10 @@ namespace Yacht_club.Database
             }
             return image;
         }
-
+        /// <summary>
+        /// Yacht adatok frissitése az adatbázisba
+        /// </summary>
+        /// <param name="UpdateYacht"></param>
         public void MysqlUpdateYacht(Yacht UpdateYacht)
         {
             try
@@ -443,6 +454,71 @@ namespace Yacht_club.Database
             {
                 Globals.connect.Close();
             }
+        }
+
+        public Yacht MysqlYachtSelect(int id)
+        {
+            string full_name;
+            Yacht yacht = new Yacht();
+            try
+            {
+                string query = "SELECT enPort.name AS port_name, enYacht.*, enYacht_Club_Tag.* FROM enYacht INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enYacht.ower INNER JOIN enPort USING(port_id) WHERE yacht_id = ?yacht_id;";
+                Globals.connect.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.Parameters.Add("?yacht_id", MySqlDbType.Int16).Value = id;
+                    MySqlDataReader read = cmd.ExecuteReader();
+                    while (read.Read())
+                    {
+                        yacht.member_id = id;
+                        yacht.berelheto = false;
+                        yacht.blfoglalt = false;
+                        yacht.strfoglalt = "Szabad";
+                        yacht.id = (int)read["yacht_id"];
+                        yacht.nev = read["name"].ToString();
+                        yacht.gyarto = read["producer"].ToString();
+                        full_name = read["first_name"].ToString();
+                        full_name += " " + read["last_name"].ToString();
+                        yacht.full_name = full_name;
+                        if (read["renter"].ToString() == "")
+                        {
+                            yacht.berlo_full_name = "Nincs bérbe adva";
+                            yacht.berlo_id = 0;
+                        }
+                        else
+                        {
+                            yacht.berlo_id = (int)read["renter"];
+                            yacht.berlo_full_name = MysqlMemberFullname(yacht.berlo_id);
+                        }
+                        yacht.ferohely = (int)read["seats"];
+                        if ((int)read["hire"] == 1)
+                            yacht.berelheto = true;
+                        if ((int)read["busy"] == 1)
+                        {
+                            yacht.blfoglalt = true;
+                            yacht.strfoglalt = "Foglalt";
+                        }
+                        if (read["daly_price"].ToString() == "")
+                            yacht.napi_ar = 0;
+                        else yacht.napi_ar = (int)read["daly_price"];
+                        yacht.szeles = (float)read["width"];
+                        yacht.hossz = (float)read["lenght"];
+                        yacht.merules = (float)read["dive"];
+                        yacht.sebesseg = (int)read["speed"];
+                        yacht.kikoto = read["port_name"].ToString();
+                        yacht.kikoto_id = (int)read["port_id"];
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+            return yacht;
         }
 
         /// <summary>

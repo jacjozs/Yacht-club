@@ -17,7 +17,7 @@ namespace Yacht_club.Database
             int id = 0;
             try
             {
-                string query = "INSERT INTO enDevice(device_id, type, ower, max_width, max_lenght, max_height, max_weight) VALUES (?device_id, ?type, ?ower, ?max_width, ?max_lenght, ?max_height, ?max_weight);";
+                string query = "INSERT INTO enDevice(device_id, type, ower, max_lenght, max_weight) VALUES (?device_id, ?type, ?ower, ?max_lenght, ?max_weight);";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
@@ -25,9 +25,7 @@ namespace Yacht_club.Database
                     cmd.Parameters.Add("?device_id", MySqlDbType.Int16).Value = id;
                     cmd.Parameters.Add("?type", MySqlDbType.VarChar).Value = device.tipus;
                     cmd.Parameters.Add("?ower", MySqlDbType.Int16).Value = device.member_id;
-                    cmd.Parameters.Add("?max_width", MySqlDbType.Int16).Value = device.max_szeles;
                     cmd.Parameters.Add("?max_lenght", MySqlDbType.Int16).Value = device.max_hossz;
-                    cmd.Parameters.Add("?max_height", MySqlDbType.Int16).Value = device.max_magas;
                     cmd.Parameters.Add("?max_weight", MySqlDbType.Int16).Value = device.max_suly;
                     cmd.ExecuteNonQuery();
                 }
@@ -47,10 +45,10 @@ namespace Yacht_club.Database
         /// teljesnév a kulcs!
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, int> MysqlDeviceLoginName()
+        public Dictionary<int, string> MysqlDeviceLoginName()
         {
             string full_name;
-            Dictionary<string, int> login = new Dictionary<string, int>();
+            Dictionary<int, string> login = new Dictionary<int, string>();
             try
             {
                 string query = "SELECT first_name, last_name, member_id FROM enYacht_Club_Tag;";
@@ -64,7 +62,7 @@ namespace Yacht_club.Database
                         full_name = "";
                         full_name += read["first_name"].ToString();
                         full_name += " " + read["last_name"].ToString();
-                        login.Add(full_name, (int)read["member_id"]);
+                        login.Add((int)read["member_id"], full_name);
                     }
                 }
             }
@@ -153,9 +151,7 @@ namespace Yacht_club.Database
                         if (read["daly_price"].ToString() == "")
                             device.napi_ar = 0;
                         else device.napi_ar = (int)read["daly_price"];
-                        device.max_szeles = (int)read["max_width"];
-                        device.max_hossz = (int)read["max_lenght"];
-                        device.max_magas = (int)read["max_height"];
+                        device.max_hossz = read["max_lenght"].ToString();
                         device.max_suly = (int)read["max_weight"];
                         Devices.Add(device);
                     }
@@ -220,9 +216,7 @@ namespace Yacht_club.Database
                         if (read["daly_price"].ToString() == "")
                             device.napi_ar = 0;
                         else device.napi_ar = (int)read["daly_price"];
-                        device.max_szeles = (int)read["max_width"];
-                        device.max_hossz = (int)read["max_lenght"];
-                        device.max_magas = (int)read["max_height"];
+                        device.max_hossz = read["max_lenght"].ToString();
                         device.max_suly = (int)read["max_weight"];
                         Devices.Add(device);
                     }
@@ -286,9 +280,7 @@ namespace Yacht_club.Database
                         if (read["daly_price"].ToString() == "")
                             device.napi_ar = 0;
                         else device.napi_ar = (int)read["daly_price"];
-                        device.max_szeles = (int)read["max_width"];
-                        device.max_hossz = (int)read["max_lenght"];
-                        device.max_magas = (int)read["max_height"];
+                        device.max_hossz = read["max_lenght"].ToString();
                         device.max_suly = (int)read["max_weight"];
                         Devices.Add(device);
                     }
@@ -304,19 +296,20 @@ namespace Yacht_club.Database
             }
             return Devices;
         }
-
+        /// <summary>
+        /// Szállitóeszköz adatainak modósítása
+        /// </summary>
+        /// <param name="UpdateDevice"></param>
         public void MysqlUpdateDevicet(Device UpdateDevice)
         {
             try
             {
-                string query = "UPDATE enDevice SET daly_price = ?daly_price, max_width = ?max_width, max_lenght=?max_lenght, max_height=?max_height, max_weight=?max_weight, hire=?hire WHERE device_id=?device_id;";
+                string query = "UPDATE enDevice SET daly_price = ?daly_price, max_lenght=?max_lenght, max_weight=?max_weight, hire=?hire WHERE device_id=?device_id;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
                     cmd.Parameters.Add("?daly_price", MySqlDbType.Int16).Value = UpdateDevice.napi_ar;
-                    cmd.Parameters.Add("?max_width", MySqlDbType.Int16).Value = UpdateDevice.max_szeles;
                     cmd.Parameters.Add("?max_lenght", MySqlDbType.Int16).Value = UpdateDevice.max_hossz;
-                    cmd.Parameters.Add("?max_height", MySqlDbType.Int16).Value = UpdateDevice.max_magas;
                     cmd.Parameters.Add("?max_weight", MySqlDbType.Int16).Value = UpdateDevice.max_suly;
                     cmd.Parameters.Add("?hire", MySqlDbType.Bit).Value = UpdateDevice.blfoglalt;
                     cmd.Parameters.Add("?device_id", MySqlDbType.Int16).Value = Globals.selectedDevice.id;
@@ -361,6 +354,65 @@ namespace Yacht_club.Database
                 Globals.connect.Close();
             }
             return full_name;
+        }
+
+        public Device MysqlDeviceSelect(int id)
+        {
+            string full_name;
+            Device device = new Device();
+            try
+            {
+                string query = "SELECT enDevice.*, enYacht_Club_Tag.* FROM enDevice INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enDevice.ower WHERE device_id = ?device_id;";
+                Globals.connect.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.Parameters.Add("?device_id", MySqlDbType.Int16).Value = id;
+                    MySqlDataReader read = cmd.ExecuteReader();
+                    while (read.Read())
+                    {
+                        device.member_id = id;
+                        device.berelheto = false;
+                        device.blfoglalt = false;
+                        device.strfoglalt = "Szabad";
+                        device.id = int.Parse(read["device_id"].ToString());
+                        device.tipus = read["type"].ToString();
+                        full_name = read["first_name"].ToString();
+                        full_name += " " + read["last_name"].ToString();
+                        device.full_name = full_name;
+                        if (read["renter"].ToString() == "")
+                        {
+                            device.berlo_full_name = "Nincs bérbe adva";
+                            device.berlo_id = 0;
+                        }
+                        else
+                        {
+                            device.berlo_id = (int)read["renter"];
+                            device.berlo_full_name = MysqlMemberFullname(device.berlo_id);
+                        }
+                        if ((int)read["hire"] == 1)
+                            device.berelheto = true;
+                        if ((int)read["busy"] == 1)
+                        {
+                            device.blfoglalt = true;
+                            device.strfoglalt = "Foglalt";
+                        }
+                        if (read["daly_price"].ToString() == "")
+                            device.napi_ar = 0;
+                        else device.napi_ar = (int)read["daly_price"];
+                        device.max_hossz = read["max_lenght"].ToString();
+                        device.max_suly = (int)read["max_weight"];
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+            return device;
         }
 
         /// <summary>

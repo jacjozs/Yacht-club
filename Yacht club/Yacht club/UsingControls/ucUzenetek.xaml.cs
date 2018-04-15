@@ -40,13 +40,23 @@ namespace Yacht_club.UsingControls
                 panel.MouseDown += new MouseButtonEventHandler(dpMouse_Click);
                 panel.Uid = i.ToString();
 
-                Label IsNew = new Label();
+                Label Info = new Label();
                 if (Messages[i].NEWbl)
                 {
-                    IsNew.Content = "Új üzenet! ";
-                    IsNew.Style = MessageStackLabel;
+                    Info.Content = Messages[i].NEWstr;
+                    Info.Style = MessageStackLabel;
                 }
-                IsNew.Width = 100;
+                if (Messages[i].BlVissza)
+                {
+                    Info.Content = Messages[i].StrVissza;
+                    Info.Style = MessageStackLabel;
+                }
+                if (!Messages[i].NEWbl && !Messages[i].BlVissza)
+                {
+                    Info.Content = "Lezárt!";
+                    Info.Style = MessageStackLabel;
+                }
+                Info.Width = 100;
 
                 Label Felado = new Label();
                 Felado.Content = "Feladó: " + Messages[i].felado_nev;
@@ -74,7 +84,7 @@ namespace Yacht_club.UsingControls
                 X.Style = ButtonsStyle;
                 X.Click += new RoutedEventHandler(Delete_Click);
 
-                panel.Children.Add(IsNew);
+                panel.Children.Add(Info);
                 panel.Children.Add(Felado);
                 panel.Children.Add(Targy);
                 panel.Children.Add(Kelte);
@@ -105,6 +115,7 @@ namespace Yacht_club.UsingControls
         private void dpMouse_Click(object sender, MouseButtonEventArgs e)
         {
             Globals.selectedMessage = Messages[int.Parse(((StackPanel)sender).Uid)];
+            data.MysqlMessageNewUpdate(Globals.selectedMessage.uzenet_id);
             Globals.Main.ccWindow_Main.Content = new ucUzenet();
         }
 

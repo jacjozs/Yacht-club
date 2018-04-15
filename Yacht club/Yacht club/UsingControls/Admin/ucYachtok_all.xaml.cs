@@ -104,7 +104,7 @@ namespace Yacht_club.UsingControls.Admin
         private void dpMouse_Click(object sender, MouseButtonEventArgs e)
         {
             Globals.selectedYacht = Yachts[int.Parse(((StackPanel)sender).Uid)];
-            Globals.Main.ccWindow_Main.Content = new ucYacht();
+            Globals.Main.ccWindow_Main.Content = new ucYacht(Globals.selectedYacht.id);
         }
     }
 }

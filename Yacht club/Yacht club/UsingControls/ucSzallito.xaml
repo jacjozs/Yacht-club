@@ -36,10 +36,8 @@
             <Label Content="Tulajdonos neve:" FontWeight="Bold" HorizontalAlignment="Left" Grid.Row="2" Foreground="{Binding betu_szin}" Margin="10,0,0,0"/>
             <Label Content="Bérlő neve:" FontWeight="Bold" HorizontalAlignment="Left" Grid.Row="3" Foreground="{Binding betu_szin}" Margin="10,0,0,0"/>
             <Label Content="Max. hosszúság:" FontWeight="Bold" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="0" Foreground="{Binding betu_szin}" Margin="10,0,0,0"  />
-            <Label Content="Max. magasság:" FontWeight="Bold" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="2" Foreground="{Binding betu_szin}" Margin="10,0,0,0"  />
-            <Label Content="Max. súly:" FontWeight="Bold" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="2" Foreground="{Binding betu_szin}" Margin="10,0,0,0"  />
-            <Label Content="Max. szélesség:" FontWeight="Bold" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="2" Foreground="{Binding betu_szin}" Margin="10,0,0,0"  />
-            <Label Content="Bérelhető?" FontWeight="Bold" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2" Foreground="{Binding betu_szin}" Margin="10,0,0,0"  />
+            <Label Content="Max. súly:" FontWeight="Bold" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="0" Foreground="{Binding betu_szin}" Margin="10,0,0,0"  />
+            <Label Content="Bérelhető?" FontWeight="Bold" HorizontalAlignment="Left" Grid.Row="6" Grid.Column="0" Foreground="{Binding betu_szin}" Margin="10,0,0,0"  />
 
 
             <Label x:Name="lbTipus"  HorizontalAlignment="Left"  BorderThickness="0" Height="30" Foreground="{Binding betu_szin}" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="0"/>
@@ -47,24 +45,20 @@
             <Label x:Name="lbTulajNev"  HorizontalAlignment="Left" BorderThickness="0" Height="30" Foreground="{Binding betu_szin}" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="2"/>
             <Label x:Name="lbBerloNev"  HorizontalAlignment="Left" BorderThickness="0" Height="30" Foreground="{Binding betu_szin}" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="3"/>
             <Label x:Name="lbMaxHossz"  HorizontalAlignment="Left" BorderThickness="0" Height="30" Foreground="{Binding betu_szin}"  VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="4"/>
-            <Label x:Name="lbMaxMagas"  HorizontalAlignment="Left" BorderThickness="0" Height="30" Foreground="{Binding betu_szin}"  VerticalAlignment="Center" Width="150" Grid.Column="3" Grid.Row="0"/>
-            <Label x:Name="lbMaxSuly"  HorizontalAlignment="Left" BorderThickness="0" Height="30" Foreground="{Binding betu_szin}"  VerticalAlignment="Center" Width="150" Grid.Column="3" Grid.Row="1"/>
-            <Label x:Name="lbMaxSzeles"  HorizontalAlignment="Left" BorderThickness="0" Height="30" Foreground="{Binding betu_szin}"  VerticalAlignment="Center" Width="150" Grid.Column="3" Grid.Row="2"/>
-            <Label x:Name="lbFoglalt"  HorizontalAlignment="Left" BorderThickness="0" Height="30" Foreground="{Binding betu_szin}"  VerticalAlignment="Center" Width="150" Grid.Column="3" Grid.Row="3"/>
+            <Label x:Name="lbMaxSuly"  HorizontalAlignment="Left" BorderThickness="0" Height="30" Foreground="{Binding betu_szin}"  VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="5"/>
+            <Label x:Name="lbFoglalt"  HorizontalAlignment="Left" BorderThickness="0" Height="30" Foreground="{Binding betu_szin}"  VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="6"/>
 
 
-            <Button x:Name="btRendel" Content="Rendelés" FontWeight="Bold" Grid.Row="7" Grid.Column="0" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{Binding betu_szin}" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" Visibility="Hidden" Click="btRendel_Click"></Button>
-            <Button x:Name="btModosit" Content="Módosítás" FontWeight="Bold" Grid.Row="7" Grid.Column="1" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{Binding betu_szin}" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" Visibility="Hidden" Click="btModosit_Click"></Button>
-            <Button x:Name="btAlkalmaz" Content="Alkalmaz" FontWeight="Bold" Grid.Row="7" Grid.Column="2" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{Binding betu_szin}" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" Visibility="Hidden" Click="btAlkalmaz_Click"></Button>
-            <Button x:Name="btMegse" Content="Mégse" FontWeight="Bold" Grid.Row="7" Grid.Column="1" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{Binding betu_szin}" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" Visibility="Hidden" Click="btMegse_Click"></Button>
+            <Button x:Name="btRendel" Content="Foglalás" FontWeight="Bold" Grid.Row="8" Grid.Column="0" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{Binding betu_szin}" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" Visibility="Hidden" Click="btRendel_Click"></Button>
+            <Button x:Name="btModosit" Content="Módosítás" FontWeight="Bold" Grid.Row="8" Grid.Column="1" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{Binding betu_szin}" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" Visibility="Hidden" Click="btModosit_Click"></Button>
+            <Button x:Name="btAlkalmaz" Content="Alkalmaz" FontWeight="Bold" Grid.Row="8" Grid.Column="2" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{Binding betu_szin}" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" Visibility="Hidden" Click="btAlkalmaz_Click"></Button>
+            <Button x:Name="btMegse" Content="Mégse" FontWeight="Bold" Grid.Row="8" Grid.Column="1" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{Binding betu_szin}" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" Visibility="Hidden" Click="btMegse_Click"></Button>
 
 
-            <TextBox x:Name="tbNapiAr" HorizontalAlignment="Left" Padding="0 4 0 0" BorderThickness="0" Height="25" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="1" Visibility="Hidden"></TextBox>
-            <TextBox x:Name="tbMaxHossz" HorizontalAlignment="Left" Padding="0 4 0 0" BorderThickness="0" Height="25" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="4" Visibility="Hidden"></TextBox>
-            <TextBox x:Name="tbMaxMagas" HorizontalAlignment="Left" Padding="0 4 0 0" BorderThickness="0" Height="25" VerticalAlignment="Center" Width="150" Grid.Column="3" Grid.Row="0" Visibility="Hidden"></TextBox>
-            <TextBox x:Name="tbMaxSuly" HorizontalAlignment="Left" Padding="0 4 0 0" BorderThickness="0" Height="25" VerticalAlignment="Center" Width="150" Grid.Column="3" Grid.Row="1" Visibility="Hidden"></TextBox>
-            <TextBox x:Name="tbMaxSzeles" HorizontalAlignment="Left" Padding="0 4 0 0" BorderThickness="0" Height="25" VerticalAlignment="Center" Width="150" Grid.Column="3" Grid.Row="2" Visibility="Hidden"></TextBox>
-            <CheckBox x:Name="cbBerelheto" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="3" Grid.Row="3" Visibility="Hidden"/>
+            <TextBox x:Name="tbNapiAr" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" Height="25" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="1" Visibility="Hidden"></TextBox>
+            <TextBox x:Name="tbMaxHossz" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" Height="25" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="4" Visibility="Hidden"></TextBox>
+            <TextBox x:Name="tbMaxSuly" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" Height="25" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="5" Visibility="Hidden"></TextBox>
+            <CheckBox x:Name="cbBerelheto" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="6" Visibility="Hidden"/>
         </Grid>
     </Grid>
 </UserControl>

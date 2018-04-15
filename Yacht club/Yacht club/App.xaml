@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Moduls\Style\Control.List.xaml"/>
                 <ResourceDictionary Source="Moduls\Style\Control.Error.xaml"/>
                 <ResourceDictionary Source="Moduls\Style\Control.Icons.xaml"/>
+                <ResourceDictionary Source="Moduls\Style\Control.Texts.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

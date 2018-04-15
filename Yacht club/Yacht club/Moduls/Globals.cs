@@ -12,18 +12,56 @@ namespace Yacht_club
     /// </summary>
     public static class Globals
     {
+        /// <summary>
+        /// Beillesztendó log adat
+        /// </summary>
         public static string log = "";
+        /// <summary>
+        /// Log ablak
+        /// </summary>
         public static UsingControls.ucLog log_windows = new UsingControls.ucLog();
+        /// <summary>
+        /// Adatbázis kapcsolodás
+        /// </summary>
         public static MySqlConnection connect = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=gamfyachtclub");
+        /// <summary>
+        /// Fő ablak
+        /// </summary>
         public static Main_Yacht_Window Main;
+        /// <summary>
+        /// elözmény ablak
+        /// </summary>
         public static UserControl History;
+        /// <summary>
+        /// Bejelentkezési hiba azonosító kódja
+        /// 1 = hibás felhasználónév
+        /// 2 = hibás jelszó
+        /// </summary>
         public static int Login_Hiba_Code;
+        /// <summary>
+        /// A felhasználó témája az UI-ra
+        /// </summary>
         internal static Themes MainTheme;
+        /// <summary>
+        /// Az éppen aktuálisan használt felhasználói fiók
+        /// (a bejelentkezett felhasználó)
+        /// </summary>
         internal static Felhasznalo User;
+        /// <summary>
+        /// A kiválasztott Yacht adatai
+        /// </summary>
         internal static Yacht selectedYacht;
+        /// <summary>
+        /// A kiválasztot szállitóeszköz adatai
+        /// </summary>
         internal static Device selectedDevice;
+        /// <summary>
+        /// A kiválasztot üenet adatai
+        /// </summary>
         internal static Message selectedMessage;
-
+        /// <summary>
+        /// A vissza lépéshez szükséges elöző ablak eltárolása
+        /// </summary>
         public static void UpdateHistory()
         {
             if (Main != null)
@@ -81,6 +119,42 @@ namespace Yacht_club
                     rsa.PersistKeyInCsp = false;
                 }
             }
+        }
+        /// <summary>
+        /// Legördülő menükhöz a keresendő szavakat, szó töredékeket késziti el
+        /// </summary>
+        /// <param name="data">törlendő szó (név, helység)</param>
+        /// <returns>feldaraból darabok</returns>
+        public static string[] cut(string data)
+        {
+            string[] tmp = data.Split(' ');
+            int number = 0;
+            for (int i = 1; i < tmp.Length; i++)
+            {
+                number += tmp[i].Length;
+            }
+            string[] dataCut = new string[data.Length + number];
+            int a = 0;
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (i == 0)
+                    dataCut[i] = data.Substring(i, 1);
+                else
+                    dataCut[i] = dataCut[i - 1] + data.Substring(i, 1);
+                a = i;
+            }
+            for (int i = 1; i < tmp.Length; i++)
+            {
+                for (int j = 0; j < tmp[i].Length; j++)
+                {
+                    a++;
+                    if (j == 0)
+                        dataCut[a] = tmp[i].Substring(j, 1);
+                    else
+                        dataCut[a] = dataCut[a - 1] + tmp[i].Substring(j, 1);
+                }
+            }
+            return dataCut;
         }
     }
 }

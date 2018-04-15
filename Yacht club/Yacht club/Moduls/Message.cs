@@ -24,5 +24,7 @@ namespace Yacht_club.Moduls
         public string elfogadvastr { get; set; }
         public bool NEWbl { get; set; }
         public string NEWstr { get; set; }
+        public bool BlVissza { get; set; }
+        public string StrVissza { get; set; }
     }
 }

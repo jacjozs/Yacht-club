@@ -14,11 +14,11 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0" Width="252" Height="112">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <Label  Content="Felhasználónév:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#FFACB5B9" Margin="0,4,0,5"/>
-                    <TextBox x:Name="tbLoginName" Width="140" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="22" Margin="10,6,0,7"/>
+                    <TextBox x:Name="tbLoginName" Width="140" Height="22" Style="{StaticResource TextBoxLogStyle}" Margin="10,6,0,7" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="252" Height="35">
                     <Label Content="Jelszó:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold"  Foreground="#FFACB5B9" Margin="0,4,0,5"/>
-                    <PasswordBox x:Name="pbPasswd" Width="140" Height="22" PasswordChar="*" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,6,0,7"/>
+                    <PasswordBox x:Name="pbPasswd" Width="140" Height="22" BorderThickness="0" PasswordChar="*" Style="{StaticResource PassBoxLogStyle}" Margin="10,6,0,7"/>
                 </StackPanel>
                 <StackPanel Width="200" Height="40" HorizontalAlignment="Center">
                     <Button Style="{DynamicResource Buttons_log}" x:Name="btBelepes" Content="Bejelentkezés" Width="150" Height="23" FontSize="12" FontWeight="Bold" Background="#2D3446" Foreground="#FFACB5B9" Margin="0,8" Click="btBelepes_Click"/>
@@ -26,6 +26,6 @@
             </StackPanel>
         </StackPanel>
         <!-- Login Ablak! -->
-        <Button Style="{DynamicResource Buttons_X_log}" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Margin="262,10,0,0" Click="Button_Click"/>
+        <Button Style="{DynamicResource Buttons_X_log}" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Margin="270,10,0,0" Click="Button_Click"/>
     </Grid>
 </Window>

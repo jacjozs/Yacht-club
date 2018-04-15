@@ -70,7 +70,11 @@ namespace Yacht_club
         {
             Application.Current.Shutdown();
         }
-
+        /// <summary>
+        /// Enter lenyomása akció
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Login_Window_Enter_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -81,7 +85,11 @@ namespace Yacht_club
                     Login();
             }
         }
-
+        /// <summary>
+        /// ablak mozgatása
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Moveing_Click(object sender, MouseButtonEventArgs e)
         {
             DragMove();

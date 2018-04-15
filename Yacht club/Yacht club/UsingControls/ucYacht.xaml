@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yacht_club.UsingControls"
+             xmlns:modul="clr-namespace:Yacht_club.Moduls"
              mc:Ignorable="d" 
              d:DesignHeight="404" d:DesignWidth="833" Background="{Binding uc_hatter}">
     <Grid>
@@ -54,16 +55,16 @@
         <Label x:Name="lbHely"      Grid.Column="1" Grid.Row="10" Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
         <Label x:Name="lbAr"        Grid.Column="1" Grid.Row="11" Foreground="{Binding betu_szin}" BorderThickness="0" Height="25" Background="{Binding uc_hatter}"/>
 
-        <TextBox x:Name="tbNev"    Grid.Row="1"  Grid.Column="1" Height="25" Padding="0 4 0 0" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
-        <TextBox x:Name="tbGyarto"  Grid.Row="2"  Grid.Column="1" Height="25" Padding="0 4 0 0" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
-        <TextBox x:Name="tbÜlesek" Grid.Row="3"  Grid.Column="1" Height="25" Padding="0 4 0 0" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
-        <TextBox x:Name="tbSzel"   Grid.Row="4"  Grid.Column="1" Height="25" Padding="0 4 0 0" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
-        <TextBox x:Name="tbHossz"  Grid.Row="5"  Grid.Column="1" Height="25" Padding="0 4 0 0" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
-        <TextBox x:Name="tbMerul"    Grid.Row="6"  Grid.Column="1" Height="25" Padding="0 4 0 0" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
-        <TextBox x:Name="tbSeb"   Grid.Row="7"  Grid.Column="1" Height="25" Padding="0 4 0 0" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
-        <TextBox x:Name="tbAr"     Grid.Row="11" Grid.Column="1" Height="25" Padding="0 4 0 0" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
-        <TextBox x:Name="tbJHely"  Grid.Row="10" Grid.Column="1" Height="25" Padding="0 4 0 0" IsEnabled="False" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
-        <ComboBox x:Name="cbJHely" Grid.Row="10" Grid.Column="1" Height="25" Padding="0 4 0 0" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
+        <TextBox x:Name="tbNev"   Style="{StaticResource TextBoxStyle}"  Grid.Row="1"  Grid.Column="1" Height="25" IsEnabled="False" VerticalAlignment="Center" Visibility="Hidden"/>
+        <TextBox x:Name="tbGyarto" Style="{StaticResource TextBoxStyle}"  Grid.Row="2"  Grid.Column="1" Height="25" IsEnabled="False" VerticalAlignment="Center" Visibility="Hidden"/>
+        <TextBox x:Name="tbÜlesek" Style="{StaticResource TextBoxStyle}" Grid.Row="3"  Grid.Column="1" Height="25" IsEnabled="False" VerticalAlignment="Center" Visibility="Hidden"/>
+        <TextBox x:Name="tbSzel"  Style="{StaticResource TextBoxStyle}" Grid.Row="4"  Grid.Column="1" Height="25" IsEnabled="False" VerticalAlignment="Center" Visibility="Hidden"/>
+        <TextBox x:Name="tbHossz" Style="{StaticResource TextBoxStyle}" Grid.Row="5"  Grid.Column="1" Height="25" IsEnabled="False" VerticalAlignment="Center" Visibility="Hidden"/>
+        <TextBox x:Name="tbMerul"  Style="{StaticResource TextBoxStyle}"   Grid.Row="6"  Grid.Column="1" Height="25" IsEnabled="False" VerticalAlignment="Center" Visibility="Hidden"/>
+        <TextBox x:Name="tbSeb"   Style="{StaticResource TextBoxStyle}" Grid.Row="7"  Grid.Column="1" Height="25" IsEnabled="False" VerticalAlignment="Center" Visibility="Hidden"/>
+        <TextBox x:Name="tbAr"   Style="{StaticResource TextBoxStyle}"   Grid.Row="11" Grid.Column="1" Height="25" IsEnabled="False" VerticalAlignment="Center" Visibility="Hidden"/>
+        <TextBox x:Name="tbJHely" Style="{StaticResource TextBoxStyle}"  Grid.Row="10" Grid.Column="1" Height="25" IsEnabled="False" VerticalAlignment="Center" Visibility="Hidden"/>
+        <modul:AutoTextBoxScroll x:Name="TbKikotok" Grid.Row="10" Grid.Column="1" Height="25" DelayTime="10" Threshold="1" Visibility="Hidden"/>
 
         <Image    x:Name="imgYacht"    Grid.Column="3" Grid.Row="1" Grid.RowSpan="8" Margin="15 0 15 0"/>
         <CheckBox x:Name="cbBerelheto" Grid.Row="8"    Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden"/>
@@ -73,7 +74,7 @@
         <Button x:Name="btModosit"  Content="Módosítás" Grid.Column="3" Grid.Row="11" Visibility="Hidden" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" Width="140" Click="clkModosit" Margin="5,0,0,0"/>
         <Button x:Name="btMegse"    Content="Mégse"     Grid.Column="3" Grid.Row="11" Visibility="Hidden" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" Width="140" Click="clkMegse" Margin="5,0,0,0"/>
 
-        <TextBox x:Name="tbjImage"  Grid.Row="9" Width="250" Height="30" Padding="0 4 0 0" Grid.RowSpan="2" Grid.Column="2" VerticalAlignment="Center" BorderThickness="0" HorizontalAlignment="Right" Visibility="Hidden" Margin="0,0,180,0"/>
+        <TextBox x:Name="tbjImage"  Grid.Row="9" Width="250" Height="30" Style="{StaticResource TextBoxStyle}" Grid.RowSpan="2" Grid.Column="2" HorizontalAlignment="Right" Visibility="Hidden" Margin="0,0,180,0"/>
         <Button x:Name="btImage"    Content="Tallozás"  Height="30"   Grid.Column="3" Grid.Row="9" Grid.RowSpan="2" Visibility="Hidden" Background="{Binding uc_hatter}" Style="{StaticResource Buttons}" FontWeight="Bold" Foreground="{Binding betu_szin}" HorizontalAlignment="Right" Width="140" Click="clkImage" Margin="0,0,30,0"/>
     </Grid>
 </UserControl>

@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using Microsoft.Win32;
 using Yacht_club.Moduls;
 using System.Windows.Media.Imaging;
+using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace Yacht_club.UsingControls
 {
@@ -15,12 +17,13 @@ namespace Yacht_club.UsingControls
         private string filepath = "";
         private Felhasznalo user;
         private Themes tema;
+        private Dictionary<int, string> zipCodes;
 
         private Database.MysqlSetting data;
         public ucBeallitasok()
         {
             InitializeComponent();
-            logining();
+            Loading();
             Globals.UpdateHistory();
         }
         /// <summary>
@@ -70,7 +73,6 @@ namespace Yacht_club.UsingControls
                 if (tbEmail.Text != "") user.login.email = tbEmail.Text;
                 if (filepath != "") user.kep = new BitmapImage(new Uri(filepath));
                 ///Fontos a sorrend!
-                data = new Database.MysqlSetting();
                 data.MysqlUpdateUser(user);
                 if (tema != null && tema.id != Globals.MainTheme.id)
                 {
@@ -104,7 +106,7 @@ namespace Yacht_club.UsingControls
         /// <summary>
         /// Textboxokba a meglévő adatok beírása
         /// </summary>
-        public void logining()
+        public void Loading()
         {
             tbNickName.Text = Globals.User.nickname;
             tbFirstName.Text = Globals.User.veztek_nev;
@@ -114,6 +116,8 @@ namespace Yacht_club.UsingControls
             tbLakcim.Text = Globals.User.lakcim;
             tbOrszag.Text = Globals.User.orszag;
             tbEmail.Text = Globals.User.login.email;
+            data = new Database.MysqlSetting();
+            zipCodes = data.MysqlZipCodeName();
         }
         /// <summary>
         /// Radio gombok ellenörzése és tema elkészitése
@@ -130,6 +134,18 @@ namespace Yacht_club.UsingControls
                 tema = new Themes(4);
             else if (rbCheckImage5.IsChecked == true && Globals.MainTheme.id != 5)
                 tema = new Themes(5);
+        }
+
+        private void tbIranyitoszm_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (zipCodes.ContainsKey(int.Parse(tbIranyitoszm.Text)))
+            {
+                tbVaros.Text = zipCodes[int.Parse(tbIranyitoszm.Text)];
+            }
+            else
+            {
+                imgerror.Visibility = Visibility.Visible;
+            }
         }
     }
 }

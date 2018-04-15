@@ -68,11 +68,24 @@ namespace Yacht_club.UsingControls.Minis
             }
 
             if (Messages.Count == 0)
-                lbNincs.Visibility = Visibility.Visible;
+            {
+                Label nincs = new Label();
+                nincs.Content = "Nincs új üzenet";
+                nincs.Width = 100;
+                nincs.Height = 20;
+                nincs.HorizontalContentAlignment = HorizontalAlignment.Center;
+                nincs.VerticalContentAlignment = VerticalAlignment.Center;
+                nincs.Margin = new Thickness(143, 66, 153, 0);
+                nincs.Padding = new Thickness(0);
+                nincs.Style = MessageStackMiniLabel;
+
+                spList.Children.Add(nincs);
+            }
         }
         private void dpMouse_Click(object sender, MouseButtonEventArgs e)
         {
             Globals.selectedMessage = Messages[int.Parse(((StackPanel)sender).Uid)];
+            data.MysqlMessageNewUpdate(Globals.selectedMessage.uzenet_id);
             Globals.Main.ccWindow_Main.Content = new ucUzenet();
         }
     }
