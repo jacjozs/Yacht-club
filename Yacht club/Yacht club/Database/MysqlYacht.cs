@@ -54,7 +54,7 @@ namespace Yacht_club.Database
         /// <returns></returns>
         public Dictionary<int, string> MysqlYachtLoginName()
         {
-            string full_name;
+            string full_name = "";
             Dictionary<int, string> login = new Dictionary<int, string>();
             try
             {
@@ -62,13 +62,10 @@ namespace Yacht_club.Database
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
-                    cmd.ExecuteNonQuery();
                     MySqlDataReader read = cmd.ExecuteReader();
                     while (read.Read())
                     {
-                        full_name = "";
-                        full_name += read["first_name"].ToString();
-                        full_name += " " + read["last_name"].ToString();
+                        full_name += read["first_name"].ToString() + " " + read["last_name"].ToString();
                         login.Add((int)read["member_id"], full_name);
                     }
                 }
@@ -145,12 +142,9 @@ namespace Yacht_club.Database
                             yacht.berlo_id = 0;
                         }
                         else
-                        {
                             yacht.berlo_id = (int)read["renter"];
-                            yacht.berlo_full_name = MysqlMemberFullname(yacht.berlo_id);
-                        }
                         yacht.ferohely = (int)read["seats"];
-                        if((int)read["hire"] == 1)
+                        if ((int)read["hire"] == 1)
                             yacht.berelheto = true;
                         if ((int)read["busy"] == 1)
                         {
@@ -169,6 +163,7 @@ namespace Yacht_club.Database
                         Yachts.Add(yacht);
                     }
                 }
+                Yachts = MysqlMemberFullname(Yachts);
             }
             catch (MySqlException ex)
             {
@@ -217,10 +212,7 @@ namespace Yacht_club.Database
                             yacht.berlo_id = 0;
                         }
                         else
-                        {
                             yacht.berlo_id = (int)read["renter"];
-                            yacht.berlo_full_name = MysqlMemberFullname(yacht.berlo_id);
-                        }
                         yacht.ferohely = (int)read["seats"];
                         if ((int)read["hire"] == 1)
                             yacht.berelheto = true;
@@ -241,6 +233,7 @@ namespace Yacht_club.Database
                         Yachts.Add(yacht);
                     }
                 }
+                Yachts = MysqlMemberFullname(Yachts);
             }
             catch (MySqlException ex)
             {
@@ -288,10 +281,7 @@ namespace Yacht_club.Database
                             yacht.berlo_id = 0;
                         }
                         else
-                        {
                             yacht.berlo_id = (int)read["renter"];
-                            yacht.berlo_full_name = MysqlMemberFullname(yacht.berlo_id);
-                        }
                         yacht.ferohely = (int)read["seats"];
                         if ((int)read["hire"] == 1)
                             yacht.berelheto = true;
@@ -312,6 +302,8 @@ namespace Yacht_club.Database
                         Yachts.Add(yacht);
                     }
                 }
+
+                Yachts = MysqlMemberFullname(Yachts);
             }
             catch (MySqlException ex)
             {
@@ -328,29 +320,31 @@ namespace Yacht_club.Database
         /// </summary>
         /// <param name="id">member_id</param>
         /// <returns></returns>
-        private string MysqlMemberFullname(int id)
+        private List<Yacht> MysqlMemberFullname(List<Yacht> yachts)
         {
             string full_name = "";
             try
             {
                 string query = "SELECT first_name, last_name FROM enYacht_Club_Tag WHERE member_id = ?member_id;";
-                Globals.connect.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                for (int i = 0; i < yachts.Count; i++)
                 {
-                    cmd.Parameters.Add("?member_id", MySqlDbType.Int16).Value = id;
-                    cmd.ExecuteNonQuery();
-                    full_name += cmd.ExecuteReader()["first_name"].ToString() + " " + cmd.ExecuteReader()["last_name"].ToString();
+                    if (yachts[i].berlo_id == 0) continue;
+                    using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                    {
+                        cmd.Parameters.Add("?member_id", MySqlDbType.Int16).Value = yachts[i].member_id;
+                        cmd.ExecuteNonQuery();
+                        MySqlDataReader read = cmd.ExecuteReader();
+                        while (read.Read())
+                            full_name += read["first_name"].ToString() + " " + read["last_name"].ToString();
+                        yachts[i].berlo_full_name = full_name;
+                    }
                 }
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
             }
-            finally
-            {
-                Globals.connect.Close();
-            }
-            return full_name;
+            return yachts;
         }
 
         /// <summary>
@@ -456,10 +450,7 @@ namespace Yacht_club.Database
                             yacht.berlo_id = 0;
                         }
                         else
-                        {
                             yacht.berlo_id = (int)read["renter"];
-                            yacht.berlo_full_name = MysqlMemberFullname(yacht.berlo_id);
-                        }
                         yacht.ferohely = (int)read["seats"];
                         if ((int)read["hire"] == 1)
                             yacht.berelheto = true;
@@ -478,6 +469,8 @@ namespace Yacht_club.Database
                         yacht.kikoto = read["port_name"].ToString();
                         yacht.kikoto_id = (int)read["port_id"];
                     }
+
+                    yacht.berlo_full_name = MysqlMemberSelectFullname(yacht.berlo_id);
                 }
             }
             catch (MySqlException ex)
@@ -489,6 +482,28 @@ namespace Yacht_club.Database
                 Globals.connect.Close();
             }
             return yacht;
+        }
+
+        private string MysqlMemberSelectFullname(int id)
+        {
+            string full_name = "";
+            try
+            {
+                string query = "SELECT first_name, last_name FROM enYacht_Club_Tag WHERE member_id = ?member_id;";
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.Parameters.Add("?member_id", MySqlDbType.Int16).Value = id;
+                    cmd.ExecuteNonQuery();
+                    MySqlDataReader read = cmd.ExecuteReader();
+                    while (read.Read())
+                        full_name += read["first_name"].ToString() + " " + read["last_name"].ToString();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+            }
+            return full_name;
         }
     }
 }
