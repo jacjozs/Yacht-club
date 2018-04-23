@@ -29,7 +29,6 @@ namespace Yacht_club.UsingControls
             zipCodes = MysqlGeneral.MysqlZipCodeName();
             loginNames = MysqlGeneral.MysqlLoginNames();
             emails = MysqlGeneral.MysqlEmails();
-            btAlkalmaz.IsEnabled = false;
             Loading();
             Globals.UpdateHistory();
         }
@@ -77,7 +76,8 @@ namespace Yacht_club.UsingControls
                 if (tbIranyitoszm.Text != "") user.iranyitoszm = int.Parse(tbIranyitoszm.Text);
                 if (tbLakcim.Text != "") user.lakcim = tbLakcim.Text;
                 if (tbOrszag.Text != "") user.orszag = tbOrszag.Text;
-                if (pbPasswd.Password != "" && passwdEllenorzes(pbOldPasswd.Password, pbPasswd.Password, pbRePasswd.Password)) user.login.jelszo = pbPasswd.Password;
+                if (pbPasswd.Password != ""
+                    && passwdEllenorzes(pbOldPasswd.Password, pbPasswd.Password, pbRePasswd.Password)) user.login.jelszo = pbPasswd.Password;
                 if (tbEmail.Text != "") user.login.email = tbEmail.Text;
                 if (filepath != "") user.kep = new BitmapImage(new Uri(filepath));
                 ///Fontos a sorrend!
@@ -108,7 +108,7 @@ namespace Yacht_club.UsingControls
         /// <returns></returns>
         private bool passwdEllenorzes(string regi, string uj, string reUj)
         {
-            if (Globals.Decryption(regi) == Globals.User.login.jelszo && uj == reUj) return true;
+            if (regi == Globals.User.login.jelszo && uj == reUj) return true;
             return false;
         }
         /// <summary>
@@ -172,7 +172,7 @@ namespace Yacht_club.UsingControls
 
         private void pbRePasswd_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (pbPasswd.Password != pbRePasswd.Password)
+            if (pbPasswd.Password != pbRePasswd.Password && pbPasswd.Password!= "" && pbRePasswd.Password != "")
             {
                 imgPassError.Visibility = Visibility.Visible;
                 btAlkalmaz.IsEnabled = false;
@@ -188,7 +188,7 @@ namespace Yacht_club.UsingControls
 
         private void pbOldPasswd_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (pbOldPasswd.Password != Globals.User.login.jelszo)
+            if (pbOldPasswd.Password != Globals.User.login.jelszo && pbOldPasswd.Password != "")
             {
                 imgOldsPassError.Visibility = Visibility.Visible;
                 btAlkalmaz.IsEnabled = false;
