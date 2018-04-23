@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -49,7 +50,7 @@ namespace Yacht_club.Database
         {
             try
             {
-                string query = "DELETE FROM enDevice WHERE device_id = ?device_id;";
+                string query = "UPDATE enDevice SET hide = 1 WHERE device_id = ?device_id;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
@@ -78,7 +79,7 @@ namespace Yacht_club.Database
             List<Device> Devices = new List<Device>();
             try
             {
-                string query = "SELECT enDevice.*, enYacht_Club_Tag.* FROM enDevice INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enDevice.ower;";
+                string query = "SELECT enDevice.*, enYacht_Club_Tag.* FROM enDevice INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enDevice.ower WHERE hide = 0;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
@@ -140,7 +141,7 @@ namespace Yacht_club.Database
             List<Device> Devices = new List<Device>();
             try
             {
-                string query = "SELECT enDevice.*, enYacht_Club_Tag.* FROM enDevice INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enDevice.ower WHERE ower = ?ower;";
+                string query = "SELECT enDevice.*, enYacht_Club_Tag.* FROM enDevice INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enDevice.ower WHERE ower = ?ower AND hide = 0;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
@@ -203,7 +204,7 @@ namespace Yacht_club.Database
             List<Device> Devices = new List<Device>();
             try
             {
-                string query = "SELECT enDevice.*, enYacht_Club_Tag.* FROM enDevice INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enDevice.ower WHERE ower != ?ower AND busy = 0 AND hire = 1;";
+                string query = "SELECT enDevice.*, enYacht_Club_Tag.* FROM enDevice INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enDevice.ower WHERE ower != ?ower AND busy = 0 AND hire = 1 AND hide = 0;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
@@ -319,7 +320,7 @@ namespace Yacht_club.Database
             Device device = new Device();
             try
             {
-                string query = "SELECT enDevice.*, enYacht_Club_Tag.* FROM enDevice INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enDevice.ower WHERE device_id = ?device_id;";
+                string query = "SELECT enDevice.*, enYacht_Club_Tag.* FROM enDevice INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enDevice.ower WHERE device_id = ?device_id AND hide = 0;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {

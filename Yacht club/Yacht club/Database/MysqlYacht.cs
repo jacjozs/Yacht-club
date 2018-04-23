@@ -89,7 +89,7 @@ namespace Yacht_club.Database
         {
             try
             {
-                string query = "DELETE FROM enYacht WHERE yacht_id = ?yacht_id;";
+                string query = "UPDATE enYacht SET hide = 1 WHERE yacht_id = ?yacht_id;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
@@ -118,7 +118,7 @@ namespace Yacht_club.Database
             List<Yacht> Yachts = new List<Yacht>();
             try
             {
-                string query = "SELECT enPort.name AS port_name, enYacht.*, enYacht_Club_Tag.*  FROM enYacht INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enYacht.ower INNER JOIN enPort USING(port_id);";
+                string query = "SELECT enPort.name AS port_name, enYacht.*, enYacht_Club_Tag.*  FROM enYacht INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enYacht.ower INNER JOIN enPort USING(port_id) WHERE hide = 0;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
@@ -186,7 +186,7 @@ namespace Yacht_club.Database
             List<Yacht> Yachts = new List<Yacht>();
             try
             {
-                string query = "SELECT enPort.name AS port_name, enYacht.*, enYacht_Club_Tag.* FROM enYacht INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enYacht.ower INNER JOIN enPort USING(port_id) WHERE ower = ?ower;";
+                string query = "SELECT enPort.name AS port_name, enYacht.*, enYacht_Club_Tag.* FROM enYacht INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enYacht.ower INNER JOIN enPort USING(port_id) WHERE ower = ?ower AND hide = 0;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
@@ -256,7 +256,7 @@ namespace Yacht_club.Database
             List<Yacht> Yachts = new List<Yacht>();
             try
             {
-                string query = "SELECT enPort.name AS port_name, enYacht.*, enYacht_Club_Tag.* FROM enYacht INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enYacht.ower INNER JOIN enPort USING(port_id) WHERE ower != ?ower AND busy = 0 AND hire = 1;";
+                string query = "SELECT enPort.name AS port_name, enYacht.*, enYacht_Club_Tag.* FROM enYacht INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enYacht.ower INNER JOIN enPort USING(port_id) WHERE ower != ?ower AND busy = 0 AND hire = 1 AND hide = 0;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
@@ -426,7 +426,7 @@ namespace Yacht_club.Database
             Yacht yacht = new Yacht();
             try
             {
-                string query = "SELECT enPort.name AS port_name, enYacht.*, enYacht_Club_Tag.* FROM enYacht INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enYacht.ower INNER JOIN enPort USING(port_id) WHERE yacht_id = ?yacht_id;";
+                string query = "SELECT enPort.name AS port_name, enYacht.*, enYacht_Club_Tag.* FROM enYacht INNER JOIN enYacht_Club_Tag ON enYacht_Club_Tag.member_id = enYacht.ower INNER JOIN enPort USING(port_id) WHERE yacht_id = ?yacht_id AND hide = 0;";
                 Globals.connect.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
