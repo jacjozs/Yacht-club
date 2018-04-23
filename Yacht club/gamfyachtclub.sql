@@ -1,20 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.4.14
--- http://www.phpmyadmin.net
---
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2018. Ápr 23. 08:33
--- Kiszolgáló verziója: 5.6.26
--- PHP verzió: 5.6.12
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Adatbázis: `gamfyachtclub`
@@ -389,7 +372,3 @@ ALTER TABLE `enyacht`
 ALTER TABLE `enyacht_club_tag`
   ADD CONSTRAINT `enYacht_Club_Tag_ibfk_1` FOREIGN KEY (`zip_code`) REFERENCES `enzipcode` (`zip_code`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `enYacht_Club_Tag_ibfk_2` FOREIGN KEY (`login_id`) REFERENCES `enlogin` (`login_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
