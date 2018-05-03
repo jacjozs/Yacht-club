@@ -68,6 +68,27 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="DiagramLabel" TargetType="Label">
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard >
+                        <DoubleAnimation Duration="0:0:0.2" To="0.4" Storyboard.TargetProperty="Opacity"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard >
+                        <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetProperty="Opacity"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="MessageOverLabel" TargetType="Label">
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>

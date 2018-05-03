@@ -207,6 +207,7 @@ namespace Yacht_club.UsingControls
                         uzenet.cimzett_id = Globals.selectedYacht.member_id;
                         uzenet.yacht_id = Globals.selectedYacht.id;
                         uzenet.device_id = -1;
+                        uzenet.price = dpEndDate.SelectedDate.Value.Subtract(dpStartDate.SelectedDate.Value).Days * Globals.selectedYacht.napi_ar;
                         uzenet.kezdete = dpStartDate.DisplayDate;
                         uzenet.vege = dpEndDate.DisplayDate;
                         uzenet.honnan_id = TbBerlesFrom.ID;
@@ -216,6 +217,7 @@ namespace Yacht_club.UsingControls
                         uzenet.cimzett_id = Globals.selectedDevice.member_id;
                         uzenet.device_id = Globals.selectedDevice.id;
                         uzenet.yacht_id = -1;
+                        uzenet.price = dpEndDate.SelectedDate.Value.Subtract(dpStartDate.SelectedDate.Value).Days * Globals.selectedDevice.napi_ar;
                         uzenet.kezdete = dpStartDate.DisplayDate;
                         uzenet.vege = dpEndDate.DisplayDate;
                         uzenet.honnan_id = -1;
@@ -230,6 +232,19 @@ namespace Yacht_club.UsingControls
                 Globals.log = "Sikertelen bérlési kérelem! <Bérlések>";
             }
             Globals.Main.logAdd(true);
+        }
+
+        private void dpEndDate_LostFocus(object sender, RoutedEventArgs e)
+        {
+            switch (DevYacht)
+            {
+                case 1:
+                    lbcalkulPrice.Content = dpEndDate.SelectedDate.Value.Subtract(dpStartDate.SelectedDate.Value).Days * Globals.selectedYacht.napi_ar;
+                    break;
+                case 2:
+                    lbcalkulPrice.Content = dpEndDate.SelectedDate.Value.Subtract(dpStartDate.SelectedDate.Value).Days * Globals.selectedDevice.napi_ar;
+                    break;
+            }
         }
     }
 }

@@ -18,12 +18,13 @@ namespace Yacht_club.Database
         {
             try
             {
-                string query = "INSERT INTO enMessage(message_id, sender, addressee, yacht_id, device_id, start_date, end_date, from_port, to_port) VALUES (?message_id, ?sender, ?addressee, ?yacht_id, ?device_id, ?start_date, ?end_date, ?from_port, ?to_port);";
+                string query = "INSERT INTO enMessage(message_id, price, sender, addressee, yacht_id, device_id, start_date, end_date, from_port, to_port) VALUES (?message_id, ?price, ?sender, ?addressee, ?yacht_id, ?device_id, ?start_date, ?end_date, ?from_port, ?to_port);";
                 Globals.connect.Open();
                 int id = MysqlGeneral.MysqlNextId("enMessage", "message_id");
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
                     cmd.Parameters.Add("?message_id", MySqlDbType.Int16).Value = id;
+                    cmd.Parameters.Add("?price", MySqlDbType.Int16).Value = uzenet.price;
                     cmd.Parameters.Add("?sender", MySqlDbType.Int16).Value = Globals.User.member_id;
                     cmd.Parameters.Add("?addressee", MySqlDbType.Int16).Value = uzenet.cimzett_id;
                     if (uzenet.yacht_id != -1)
@@ -124,6 +125,7 @@ namespace Yacht_club.Database
                         }
                         else
                             uzenet.BlVissza = false;
+                        uzenet.price = (int)read["price"];
                         uzenetek.Add(uzenet);
                     }
                 }
@@ -203,6 +205,7 @@ namespace Yacht_club.Database
                         }
                         else
                             uzenet.BlVissza = false;
+                        uzenet.price = (int)read["price"];
                         uzenetek.Add(uzenet);
                     }
                 }
@@ -285,6 +288,7 @@ namespace Yacht_club.Database
                         }
                         else
                             uzenet.BlVissza = false;
+                        uzenet.price = (int)read["price"];
                         uzenetek.Add(uzenet);
                     }
                 }
@@ -365,11 +369,11 @@ namespace Yacht_club.Database
                 {
                     if (Globals.selectedMessage.yacht_id != 0)
                     {
-                        MysqlFoglalt(Globals.selectedMessage.yacht_id, 1);
+                        MysqlFoglal(Globals.selectedMessage.yacht_id, 1);
                     }
                     else if (Globals.selectedMessage.device_id != 0)
                     {
-                        MysqlFoglalt(Globals.selectedMessage.device_id, 2);
+                        MysqlFoglal(Globals.selectedMessage.device_id, 2);
                     }
                 }
             }
@@ -383,7 +387,7 @@ namespace Yacht_club.Database
             }
         }
 
-        private void MysqlFoglalt(int id, int YacDev)
+        private void MysqlFoglal(int id, int YacDev)
         {
             string query = "";
             try

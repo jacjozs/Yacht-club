@@ -16,6 +16,7 @@ namespace Yacht_club.Moduls
         public int yacht_id = 0;
         public string yacht_nev { get; set; }
         public int device_id = 0;
+        public int price { get; set; }
         public DateTime kezdete { get; set; }
         public DateTime vege { get; set; }
         public int honnan_id { get; set; }

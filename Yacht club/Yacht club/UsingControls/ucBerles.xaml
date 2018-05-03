@@ -29,7 +29,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="400" Height="35">
                     <Label Content="Meddig:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
-                    <DatePicker x:Name="dpEndDate" Width="209" FirstDayOfWeek="Monday" Cursor="Hand" SelectedDate="{x:Static sys:DateTime.Now}" Margin="5,5,0,5" Background="{Binding uc_hatter}" BorderBrush="{Binding uc_hatter}"/>
+                    <DatePicker x:Name="dpEndDate" Width="209" FirstDayOfWeek="Monday" Cursor="Hand" SelectedDate="{x:Static sys:DateTime.Now}" Margin="5,5,0,5" Background="{Binding uc_hatter}" BorderBrush="{Binding uc_hatter}" LostFocus="dpEndDate_LostFocus"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="400" Height="35">
                     <Label Name="lbhonnan" Content="Honnan:" Width="98" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
@@ -38,6 +38,10 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="400" Height="35">
                     <Label Name="lbhova" Content="Hova:" Width="98" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="0,4,0,5"/>
                     <modul:AutoTextBoxScroll x:Name="TbBerlesTo" Width="200" Height="22" DelayTime="10" Threshold="1" Margin="7,6,0,7"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="400" Height="35">
+                    <Label Content="Ár kalkulátor:" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}"/>
+                    <Label x:Name="lbcalkulPrice" Content="" FontSize="12" HorizontalAlignment="left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{Binding betu_szin}" Margin="20 0 0 0"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
