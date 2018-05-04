@@ -33,7 +33,7 @@ namespace Yacht_club.UsingControls
                 panel.Height = 53;
                 panel.Width = 793;
                 panel.Uid = i.ToString();
-                panel.MouseDown += new MouseButtonEventHandler(dpMouse_Click);
+                panel.MouseDown += dpMouse_Click;
 
                 StackPanel panel2 = new StackPanel();
                 panel2.Width = 165;

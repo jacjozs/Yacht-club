@@ -43,7 +43,7 @@ namespace Yacht_club.UsingControls.Minis
                 panel.Margin = new Thickness(0, 0, 0, 1);
                 panel.Height = 29;
                 panel.Width = 396.5;
-                panel.MouseDown += new MouseButtonEventHandler(dpMouse_Click);
+                panel.MouseDown += dpMouse_Click;
                 panel.Uid = i.ToString();
 
                 Label Felado = new Label();

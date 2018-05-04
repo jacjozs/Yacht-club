@@ -43,6 +43,7 @@ namespace Yacht_club.UsingControls
             Port_name();
             YachtImgLoad(false);
             LabelFeltolt();
+            lbId.Content = Yacht.id.ToString();
 
             //Felhasználó id és yacht id összehasonlítása
 

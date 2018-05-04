@@ -7,6 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="202" d:DesignWidth="416.5" Background="{Binding uc_hatter}">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="182"/>
+        </Grid.RowDefinitions>
+        <Label Style="{DynamicResource MenuDecLabel}" Content="Heti bérlések:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" Padding="15 2 0 0" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+        <StackPanel x:Name="stDiagram" Orientation="Horizontal" Height="157" Width="416.5" Grid.Row="1" VerticalAlignment="Top"/>
+        <StackPanel x:Name="stNames" Orientation="Horizontal" Width="416.5" Height="25" Grid.Row="1" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

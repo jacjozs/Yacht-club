@@ -1,12 +1,12 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Shapes;
 using System.Collections.Generic;
 using Yacht_club.Moduls;
 using Yacht_club.Database;
 using System.Linq;
 using System;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Yacht_club.UsingControls
 {
@@ -20,6 +20,7 @@ namespace Yacht_club.UsingControls
         private Diagram diagram;
         private bool bevet = false;
         private int honap;
+        private int index;
 
         public ucKimutatasok()
         {
@@ -29,23 +30,30 @@ namespace Yacht_club.UsingControls
         private void Loading()
         {
             data = new MysqlMessage();
-            if(!Globals.User.login.admin)
-                Messages = data.MysqlUserMessages();
-            else
-                Messages = data.MysqlAllMessages();
+            Messages = data.MysqlAllMessages();
             diagram = new Diagram();
             diagram.yachts = new List<List<int>>();
-            diagram.devices = new List<int>();
+            diagram.devices = new List<List<int>>();
             Diagrams(0);
         }
-
+        /// <summary>
+        /// belső ablak választása
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int index = int.Parse(((Button)e.Source).Uid);
-            GridCursor.Margin = new Thickness(10 + (135.5 * index), 45, 0, 329);
-            Diagrams(index);
+            if (index != int.Parse(((Button)e.Source).Uid) || int.Parse(((Button)e.Source).Uid) == 2 || int.Parse(((Button)e.Source).Uid) == 3)
+            {
+                index = int.Parse(((Button)e.Source).Uid);
+                GridCursor.Margin = new Thickness(10 + (135.5 * index), 45, 0, 329);
+                Diagrams(index);
+            }
         }
-
+        /// <summary>
+        /// Diagram paraméterek beállitásai és az adatok kikeresése
+        /// </summary>
+        /// <param name="index">ablak index</param>
         private void Diagrams(int index)
         {
             switch (index)
@@ -60,7 +68,12 @@ namespace Yacht_club.UsingControls
                     {
                         months months = (months)i;
                         string month = months.ToString().ToUpper();
-                        diagram.oszlopY[i] = Messages.Where(x => string.Format("{0:yyyy,MMMM}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now)) + "," + month).Select(x => x.price).Sum();
+                        if (Globals.User.login.admin)
+                            diagram.oszlopY[i] = Messages.Where(x => string.Format("{0:yyyy,MMMM}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now)) + "," + 
+                            month && x.elfogadvabl).Select(x => x.price).Sum();
+                        else
+                            diagram.oszlopY[i] = Messages.Where(x => string.Format("{0:yyyy,MMMM}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now)) + "," +
+                            month && x.elfogadvabl && x.cimzett_id == Globals.User.member_id).Select(x => x.price).Sum();
                     }
                     bevetel(false);
                     break;
@@ -76,8 +89,24 @@ namespace Yacht_club.UsingControls
                     {
                         months months = (months)i;
                         string month = months.ToString().ToUpper();
-                        diagram.oszlopY[i] = Messages.Count(x => string.Format("{0:yyyy,MMMM}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now)) + "," + month);
-                        diagram.yachts.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now)) + "," + month).Select(x => x.yacht_id).ToList());
+                        if (Globals.User.login.admin)
+                        {
+                            diagram.oszlopY[i] = Messages.Count(x => string.Format("{0:yyyy,MMMM}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now)) + "," +
+                            month && x.elfogadvabl);
+                            diagram.yachts.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now)) + "," +
+                            month && x.yacht_id != 0 && x.elfogadvabl).Select(x => x.yacht_id).ToList());
+                            diagram.devices.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now)) + "," +
+                            month && x.device_id != 0 && x.elfogadvabl).Select(x => x.device_id).ToList());
+                        }
+                        else
+                        {
+                            diagram.oszlopY[i] = Messages.Count(x => string.Format("{0:yyyy,MMMM}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now)) + "," +
+                            month && x.elfogadvabl && x.cimzett_id == Globals.User.member_id);
+                            diagram.yachts.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now)) + "," +
+                            month && x.yacht_id != 0 && x.elfogadvabl && x.cimzett_id == Globals.User.member_id).Select(x => x.yacht_id).ToList());
+                            diagram.devices.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now)) + "," +
+                            month && x.device_id != 0 && x.elfogadvabl && x.cimzett_id == Globals.User.member_id).Select(x => x.device_id).ToList());
+                        }
                     }
                     berles(false);
                     break;
@@ -106,7 +135,12 @@ namespace Yacht_club.UsingControls
                         days days = (days)i;
                         diagram.sorN[i] = days.ToString();
                         string day = diagram.sorN[i].ToUpper();
-                        diagram.oszlopY[i] = Messages.Where(x => string.Format("{0:yyyy,MMMM,dddd}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy,MMMM}", DateTime.Now).ToUpper()) + "," + day).Select(x => x.price).Sum();
+                        if (Globals.User.login.admin)
+                            diagram.oszlopY[i] = Messages.Where(x => string.Format("{0:yyyy,MMMM,dddd}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy,MMMM}", DateTime.Now).ToUpper()) + "," + 
+                            day && x.elfogadvabl).Select(x => x.price).Sum();
+                        else
+                            diagram.oszlopY[i] = Messages.Where(x => string.Format("{0:yyyy,MMMM,dddd}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy,MMMM}", DateTime.Now).ToUpper()) + "," +
+                            day && x.elfogadvabl && x.cimzett_id == Globals.User.member_id).Select(x => x.price).Sum();
                     }
                     bevetel(false);
                     break;
@@ -116,7 +150,6 @@ namespace Yacht_club.UsingControls
                     diagram.oszlopX = (813 / 7) - 10;
                     diagram.oszlopY = new double[7];
                     diagram.sorN = new string[7];
-                    diagram.oszlopY = new double[7];
                     diagram.yachts.Clear();
                     diagram.devices.Clear();
                     for (int i = 0; i < 7; i++)
@@ -124,14 +157,34 @@ namespace Yacht_club.UsingControls
                         days days = (days)i;
                         diagram.sorN[i] = days.ToString();
                         string day = diagram.sorN[i].ToUpper();
-                        diagram.oszlopY[i] = Messages.Count(x => string.Format("{0:yyyy,MMMM,dddd}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy,MMMM}", DateTime.Now).ToUpper()) + "," + day);
-                        diagram.yachts.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM,dddd}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy,MMMM}", DateTime.Now).ToUpper()) + "," + day).Select(x => x.yacht_id).ToList());
+                        if (Globals.User.login.admin)
+                        {
+                            diagram.oszlopY[i] = Messages.Count(x => string.Format("{0:yyyy,MMMM,dddd}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy,MMMM}", DateTime.Now).ToUpper()) + "," +
+                            day && x.elfogadvabl);
+                            diagram.yachts.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM,dddd}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy,MMMM}", DateTime.Now).ToUpper()) + "," +
+                            day && x.yacht_id != 0 && x.elfogadvabl).Select(x => x.yacht_id).ToList());
+                            diagram.devices.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM,dddd}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy,MMMM}", DateTime.Now).ToUpper()) + "," +
+                            day && x.device_id != 0 && x.elfogadvabl).Select(x => x.device_id).ToList());
+                        }
+                        else
+                        {
+                            diagram.oszlopY[i] = Messages.Count(x => string.Format("{0:yyyy,MMMM,dddd}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy,MMMM}", DateTime.Now).ToUpper()) + "," +
+                            day && x.elfogadvabl && x.cimzett_id == Globals.User.member_id);
+                            diagram.yachts.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM,dddd}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy,MMMM}", DateTime.Now).ToUpper()) + "," +
+                            day && x.yacht_id != 0 && x.elfogadvabl && x.cimzett_id == Globals.User.member_id).Select(x => x.yacht_id).ToList());
+                            diagram.devices.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM,dddd}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy,MMMM}", DateTime.Now).ToUpper()) + "," +
+                            day && x.device_id != 0 && x.elfogadvabl && x.cimzett_id == Globals.User.member_id).Select(x => x.device_id).ToList());
+                        }
                     }
                     berles(false);
                     break;
             }
         }
-
+        /// <summary>
+        /// Diagram ablak generálás
+        /// Bevételek ablak
+        /// </summary>
+        /// <param name="tabla">Kell e hónap tábla(havi egységek)</param>
         private void bevetel(bool tabla)
         {
             stDiagram.Children.Clear();
@@ -142,23 +195,37 @@ namespace Yacht_club.UsingControls
                 if (diagram.oszlopC == 0) diagram.oszlopC = honap;
                 for (int i = 0; i < diagram.oszlopC; i++)
                 {
-                    Rectangle oszlop = new Rectangle();
+                    StackPanel oszlop = new StackPanel();
                     oszlop.Width = diagram.oszlopX;
                     if (oszlop.Width < 25) oszlop.Width = 25;
-                    try
-                    {
-                        oszlop.Height = diagram.oszlopY[i] * (270 / diagram.oszlopY.Max());
-                    }
-                    catch (Exception)
-                    {
-                        oszlop.Height = 0;
-                    }
-                    oszlop.Fill = Globals.MainTheme.hatter;
+                    oszlop.Height = diagram.oszlopY[i] * (270 / diagram.oszlopY.Max());
+                    if (oszlop.Height != 0 && !(oszlop.Height > 0) || oszlop.Height == 0)
+                        oszlop.Height = 10;
+                    oszlop.Background = Globals.MainTheme.hatter;
                     oszlop.Margin = new Thickness(10, 0, 0, 0);
                     if (honap == 28) oszlop.Margin = new Thickness(4, 0, 0, 0);
                     if (honap == 30) oszlop.Margin = new Thickness(2, 0, 0, 0);
                     if (honap == 31) oszlop.Margin = new Thickness(1, 0, 0, 0);
                     oszlop.VerticalAlignment = VerticalAlignment.Bottom;
+                    Label price = new Label();
+                    if (diagram.oszlopY[i] > 0)
+                        if (diagram.oszlopY[i].ToString().Length >= 3)
+                            price.Content = splitCut(int.Parse(diagram.oszlopY[i].ToString()));
+                        else
+                            price.Content = diagram.oszlopY[i].ToString();
+                    if (diagram.oszlopC == 12)
+                    {
+                        price.RenderTransform = new RotateTransform(-90, 0, 0);
+                        price.Margin = new Thickness(15, 10 + (diagram.oszlopY[i].ToString().Length * 10), diagram.oszlopY[i].ToString().Length * (-10) + 25, 0);
+                    }
+                    if (diagram.oszlopC > 12 && diagram.oszlopY[i] > 0)
+                    {
+                        price.RenderTransform = new RotateTransform(-90, 0, 0);
+                        price.Margin = new Thickness(0, 10 + (diagram.oszlopY[i].ToString().Length * 10), diagram.oszlopY[i].ToString().Length * (-10) + 25, 0);
+                    }
+                    price.Foreground = Globals.MainTheme.betu_szin;
+                    price.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    oszlop.Children.Add(price);
                     stDiagram.Children.Add(oszlop);
                     Label name = new Label();
                     name.Content = diagram.sorN[i];
@@ -174,7 +241,11 @@ namespace Yacht_club.UsingControls
                 }
             }
         }
-
+        /// <summary>
+        /// Diagram ablak generálás
+        /// Bérlések ablak
+        /// </summary>
+        /// <param name="tabla">Kell e hónap tábla(havi egységek)</param>
         private void berles(bool tabla)
         {
             Style DiagramLabel = Application.Current.FindResource("DiagramLabel") as Style;
@@ -189,14 +260,9 @@ namespace Yacht_club.UsingControls
                     StackPanel oszlop = new StackPanel();
                     oszlop.Width = diagram.oszlopX;
                     if (oszlop.Width < 25) oszlop.Width = 25;
-                    try
-                    {
-                        oszlop.Height = diagram.oszlopY[i] * (270 / diagram.oszlopY.Max());
-                    }
-                    catch (Exception)
-                    {
-                        oszlop.Height = 0;
-                    }
+                    oszlop.Height = diagram.oszlopY[i] * (270 / diagram.oszlopY.Max());
+                    if (oszlop.Height != 0 && !(oszlop.Height > 0) || oszlop.Height == 0)
+                        oszlop.Height = 10;
                     oszlop.Background = Globals.MainTheme.hatter;
                     oszlop.Margin = new Thickness(10, 0, 0, 0);
                     if (honap == 28) oszlop.Margin = new Thickness(4, 0, 0, 0);
@@ -206,37 +272,65 @@ namespace Yacht_club.UsingControls
                     StackPanel list = new StackPanel();
                     list.Background = null;
                     list.VerticalAlignment = VerticalAlignment.Top;
+                    string devOrYac;
                     try
                     {
                         for (int j = 0; j < diagram.yachts[i].Count; j++)
                         {
+                            devOrYac = "Yach.";
                             if (diagram.yachts[i][j] != 0)
                             {
                                 Label devyac = new Label();
                                 devyac.Style = DiagramLabel;
-                                devyac.Height = oszlop.Height / diagram.yachts[i].Where(x => x != 0).Count() - 10;
-                                if (devyac.Height <= 20)
-                                    devyac.Height = 25;
+                                if (devOrYac == "Yach.")
+                                    devyac.Uid = diagram.yachts[i][j].ToString() + ":" + devOrYac;
+                                devyac.Height = oszlop.Height / diagram.oszlopY[i] - 5;
+                                if (devyac.Height < 20)
+                                    devyac.Height = 23;
                                 devyac.Background = Globals.MainTheme.uc_hatter;
-                                if (oszlop.Width < 25)
-                                {
-                                    devyac.Margin = new Thickness(0);
+                                if (diagram.oszlopC > 12)
                                     devyac.FontSize = 10;
-                                }
-                                else devyac.Margin = new Thickness(5, 2.5, 5, 0);
+                                devyac.Margin = new Thickness(2.5, 2.5, 2.5, 0);
+                                devyac.Foreground = Globals.MainTheme.betu_szin;
                                 devyac.HorizontalContentAlignment = HorizontalAlignment.Center;
                                 devyac.VerticalContentAlignment = VerticalAlignment.Center;
-                                if (diagram.yachts[i].Count != 0)
+                                if (diagram.yachts[i].Count != 0 && diagram.oszlopC <= 12)
+                                    devyac.Content = diagram.yachts[i][j].ToString() + ":" + devOrYac;
+                                else
                                     devyac.Content = diagram.yachts[i][j].ToString();
-                                list.Children.Add(devyac);
+                                devyac.MouseLeftButtonDown += Label_MouseLeftButtonDown;
+                                if (devyac.Content != null)
+                                    list.Children.Add(devyac);
                             }
                         }
-                        if (diagram.oszlopY[i] == 0)
-                            list.Height = 0;
-                        else
-                            list.Height = (oszlop.Height * diagram.yachts[i].Count) - 10;
-                        if (list.Height <= 20)
-                            list.Height = 25;
+                        for (int j = 0; j < diagram.devices[i].Count; j++)
+                        {
+                            devOrYac = "Száll.";
+                            if (diagram.devices[i][j] != 0)
+                            {
+                                Label devyac = new Label();
+                                devyac.Style = DiagramLabel;
+                                if (devOrYac == "Száll.")
+                                    devyac.Uid = diagram.devices[i][j].ToString() + ":" + devOrYac;
+                                devyac.Height = oszlop.Height / diagram.oszlopY[i] - 5;
+                                if (devyac.Height < 20)
+                                    devyac.Height = 23;
+                                devyac.Background = Globals.MainTheme.uc_hatter;
+                                if (diagram.oszlopC > 12)
+                                    devyac.FontSize = 10;
+                                devyac.Margin = new Thickness(2.5, 2.5, 2.5, 0);
+                                devyac.Foreground = Globals.MainTheme.betu_szin;
+                                devyac.HorizontalContentAlignment = HorizontalAlignment.Center;
+                                devyac.VerticalContentAlignment = VerticalAlignment.Center;
+                                if (diagram.devices[i].Count != 0 && diagram.oszlopC <= 12)
+                                    devyac.Content = diagram.devices[i][j].ToString() + ":" + devOrYac;
+                                else
+                                    devyac.Content = diagram.devices[i][j].ToString();
+                                devyac.MouseLeftButtonDown += Label_MouseLeftButtonDown;
+                                if (devyac.Content != null)
+                                    list.Children.Add(devyac);
+                            }
+                        }
                     }
                     catch (Exception)
                     { }
@@ -257,7 +351,9 @@ namespace Yacht_club.UsingControls
                 }
             }
         }
-
+        /// <summary>
+        /// Táblázat generálás
+        /// </summary>
         private void Tablazat()
         {
             Style Buttons = Application.Current.FindResource("Buttons") as Style;
@@ -314,7 +410,12 @@ namespace Yacht_club.UsingControls
             stDiagram.Children.Add(harmadik);
             stDiagram.Children.Add(negyedik);
         }
-
+        /// <summary>
+        /// A kiválasztot táblázat id alapján elkésziteni a diagram paramétereit
+        /// és az adatok kigyüjtése
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UcKimutatasok_Click(object sender, RoutedEventArgs e)
         {
             switch (int.Parse(((Button)sender).Uid))
@@ -338,19 +439,94 @@ namespace Yacht_club.UsingControls
             diagram.sorN = new string[honap];
             diagram.oszlopX = (813 / honap) - 10;
             diagram.oszlopY = new double[honap];
+            diagram.yachts.Clear();
+            diagram.devices.Clear();
             for (int i = 0; i < honap; i++)
             {
                 diagram.sorN[i] = (i + 1).ToString();
                 months months = (months)int.Parse(((Button)sender).Uid);
                 string month = months.ToString().ToUpper();
-                diagram.oszlopY[i] = Messages.Count(x => string.Format("{0:MMMM,d}", x.keletkezett).ToUpper() == month + "," + diagram.sorN[i]);
+                if (!bevet)
+                {
+                    if (Globals.User.login.admin)
+                    {
+                        diagram.oszlopY[i] = Messages.Count(x => string.Format("{0:yyyy,MMMM,d}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now).ToUpper()) + "," +
+                        month + "," + diagram.sorN[i] && x.elfogadvabl);
+                        diagram.yachts.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM,d}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now).ToUpper()) + "," +
+                        month + "," + diagram.sorN[i] && x.yacht_id != 0 && x.elfogadvabl).Select(x => x.yacht_id).ToList());
+                        diagram.devices.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM,d}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now).ToUpper()) + "," +
+                        month + "," + diagram.sorN[i] && x.device_id != 0 && x.elfogadvabl).Select(x => x.device_id).ToList());
+                    }
+                    else
+                    {
+                        diagram.oszlopY[i] = Messages.Count(x => string.Format("{0:yyyy,MMMM,d}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now).ToUpper()) + "," +
+                        month + "," + diagram.sorN[i] && x.elfogadvabl && x.cimzett_id == Globals.User.member_id);
+                        diagram.yachts.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM,d}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now).ToUpper()) + "," +
+                        month + "," + diagram.sorN[i] && x.yacht_id != 0 && x.elfogadvabl && x.cimzett_id == Globals.User.member_id).Select(x => x.yacht_id).ToList());
+                        diagram.devices.Add(Messages.Where(x => string.Format("{0:yyyy,MMMM,d}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now).ToUpper()) + "," +
+                        month + "," + diagram.sorN[i] && x.device_id != 0 && x.elfogadvabl && x.cimzett_id == Globals.User.member_id).Select(x => x.device_id).ToList());
+                    }
+                } else
+                    if (Globals.User.login.admin)
+                        diagram.oszlopY[i] = Messages.Where(x => string.Format("{0:yyyy,MMMM,d}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now).ToUpper()) + "," + 
+                        month + "," + diagram.sorN[i] && x.elfogadvabl).Select(x => x.price).Sum();
+                    else
+                        diagram.oszlopY[i] = Messages.Where(x => string.Format("{0:yyyy,MMMM,d}", x.keletkezett).ToUpper() == (string.Format("{0:yyyy}", DateTime.Now).ToUpper()) + "," +
+                        month + "," + diagram.sorN[i] && x.elfogadvabl && x.cimzett_id == Globals.User.member_id).Select(x => x.price).Sum();
             }
             if (bevet)
                 bevetel(false);
             else
                 berles(false);
         }
-
+        /// <summary>
+        /// A kijelölt bérelt eszköz megjelenitése
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            int id = int.Parse(((Label)sender).Uid.Split(':')[0]);
+            string name = ((Label)sender).Uid.Split(':')[1];
+            switch (name)
+            {
+                case "Yach.":
+                    MysqlYacht yachtDat = new MysqlYacht();
+                    Globals.selectedYacht = yachtDat.MysqlYachtSelect(id);
+                    Globals.Main.ccWindow_Main.Content = new ucYacht(id);
+                    yachtDat = null;
+                    break;
+                case "Száll.":
+                    MysqlDevice deviceDat = new MysqlDevice();
+                    Globals.selectedDevice = deviceDat.MysqlDeviceSelect(id);
+                    Globals.Main.ccWindow_Main.Content = new ucSzallito(id);
+                    deviceDat = null;
+                    break;
+            }
+        }
+        /// <summary>
+        /// Pénzöszegek darbolása
+        /// 1000000 => 1.000.000
+        /// </summary>
+        /// <param name="number">Darabolandó szám</param>
+        /// <returns>Darabolt szám</returns>
+        private string splitCut(int number)
+        {
+            string returnString = "";
+            for (int j = 0; j <= number.ToString().Length / 3; j++)
+            {
+                if (j == 0)
+                    returnString = number.ToString().Substring(number.ToString().Length - 3, 3) + returnString;
+                else if (j == number.ToString().Length / 3)
+                    returnString = number.ToString().Substring(0, number.ToString().Length % 3) + "." + returnString;
+                else
+                    returnString = number.ToString().Substring(number.ToString().Length - (3 * (j + 1)), 3) + "." + returnString;
+            }
+            return returnString;
+        }
+        /// <summary>
+        /// Diagram paraméter structura
+        /// </summary>
         private struct Diagram
         {
             public int oszlopC;
@@ -358,7 +534,7 @@ namespace Yacht_club.UsingControls
             public double[] oszlopY;
             public string[] sorN;
             public List<List<int>> yachts;
-            public List<int> devices;
+            public List<List<int>> devices;
         }
 
         private enum days

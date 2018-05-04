@@ -19,14 +19,15 @@ namespace Yacht_club.UsingControls
 
         private void Loading()
         {
+            data = new MysqlMessage();
             lbFelado.Content = Globals.selectedMessage.felado_nev;
             lbDatum.Content = Globals.selectedMessage.keletkezett.ToString();
             if (Globals.selectedMessage.yacht_id != 0)
             {
                 lbYNev.Content = Globals.selectedMessage.yacht_nev;
                 lbYachtName.Visibility = Visibility.Visible;
-                lbIndul.Content = Globals.selectedMessage.honnan_id;
-                lbErkez.Content = Globals.selectedMessage.hova_id;
+                lbIndul.Content = data.MysqlPortName(Globals.selectedMessage.honnan_id);
+                lbErkez.Content = data.MysqlPortName(Globals.selectedMessage.hova_id);
             }
             else
             {
@@ -76,7 +77,6 @@ namespace Yacht_club.UsingControls
 
         private void btElfofad_Click(object sender, RoutedEventArgs e)
         {
-            data = new Database.MysqlMessage();
             data.MysqlMessageAcceptUpdate(1);
             Globals.selectedMessage.BlVissza = true;
             Globals.selectedMessage.elfogadvabl = true;
@@ -90,7 +90,6 @@ namespace Yacht_club.UsingControls
 
         private void btElutasit_Click(object sender, RoutedEventArgs e)
         {
-            data = new Database.MysqlMessage();
             data.MysqlMessageAcceptUpdate(0);
             Globals.selectedMessage.BlVissza = true;
             Globals.selectedMessage.elfogadvabl = false;

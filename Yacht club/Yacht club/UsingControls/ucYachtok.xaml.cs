@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Yacht_club.Database;
 
 namespace Yacht_club.UsingControls
 {
@@ -11,7 +12,7 @@ namespace Yacht_club.UsingControls
     public partial class ucYachtok : UserControl
     {
         List<Yacht> Yachts;
-        Database.MysqlYacht data;
+        MysqlYacht data;
         public ucYachtok()
         {
             InitializeComponent();

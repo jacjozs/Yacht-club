@@ -12,6 +12,7 @@
             <RowDefinition Height="379"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Szállitóeszköz:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+        <Label x:Name="lbId" Style="{DynamicResource MenuDecLabel}" Content="" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="115 0 0 0" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
 
         <Grid HorizontalAlignment="Left" Height="299" VerticalAlignment="Top" Width="540" Grid.Row="1" Margin="0,10,0,0">
             <Grid.ColumnDefinitions>

@@ -332,7 +332,6 @@ namespace Yacht_club.Database
                     using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                     {
                         cmd.Parameters.Add("?member_id", MySqlDbType.Int16).Value = yachts[i].member_id;
-                        cmd.ExecuteNonQuery();
                         MySqlDataReader read = cmd.ExecuteReader();
                         while (read.Read())
                             full_name += read["first_name"].ToString() + " " + read["last_name"].ToString();
@@ -469,9 +468,8 @@ namespace Yacht_club.Database
                         yacht.kikoto = read["port_name"].ToString();
                         yacht.kikoto_id = (int)read["port_id"];
                     }
-
-                    yacht.berlo_full_name = MysqlMemberSelectFullname(yacht.berlo_id);
                 }
+                yacht.berlo_full_name = MysqlMemberSelectFullname(yacht.berlo_id);
             }
             catch (MySqlException ex)
             {
@@ -483,7 +481,7 @@ namespace Yacht_club.Database
             }
             return yacht;
         }
-
+        
         private string MysqlMemberSelectFullname(int id)
         {
             string full_name = "";
@@ -493,7 +491,6 @@ namespace Yacht_club.Database
                 using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
                 {
                     cmd.Parameters.Add("?member_id", MySqlDbType.Int16).Value = id;
-                    cmd.ExecuteNonQuery();
                     MySqlDataReader read = cmd.ExecuteReader();
                     while (read.Read())
                         full_name += read["first_name"].ToString() + " " + read["last_name"].ToString();

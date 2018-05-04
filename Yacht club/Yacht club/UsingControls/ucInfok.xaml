@@ -12,9 +12,15 @@
             <RowDefinition Height="379"/>
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Információk:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-        <StackPanel HorizontalAlignment="Left" Height="379" VerticalAlignment="Top" Width="833" Grid.Row="1" Grid.Column="0">
-            <Label Style="{DynamicResource MenuDecLabel}" Content="Elerhetőség: " Foreground="{Binding betu_szin}"/>
-            <Label Style="{DynamicResource MenuDecLabel}" Content="Készítők: " Foreground="{Binding betu_szin}"/>
+        <StackPanel HorizontalAlignment="Left" Height="379" VerticalAlignment="Top" Margin="30 0 0 0" Grid.Row="1" Grid.Column="0">
+            <Label Style="{DynamicResource MenuDecLabel}" Content="Elerhetőség:" Margin="0 10 0 0" FontWeight="Medium" Foreground="{Binding betu_szin}"/>
+            <Label Style="{DynamicResource MenuDecLabel}" Content="Cím: Budapest, Kossuth Lajos tér 1-3, 1055" Margin="20 10 0 0" Foreground="{Binding betu_szin}"/>
+            <Label Style="{DynamicResource MenuDecLabel}" Content="Telefon: (70) 700 7557" Margin="20 10 0 0" Foreground="{Binding betu_szin}"/>
+            <Label Style="{DynamicResource MenuDecLabel}" Content="Készítők: " Margin="0 10 0 0" FontWeight="Medium" Foreground="{Binding betu_szin}"/>
+            <Label Style="{DynamicResource MenuDecLabel}" Content="Jaczina József (FGYJR3)" Margin="20 10 0 0" Foreground="{Binding betu_szin}"/>
+            <Label Style="{DynamicResource MenuDecLabel}" Content="Kiss József Benjamin (WD3TMY)" Margin="20 10 0 0" Foreground="{Binding betu_szin}"/>
+            <Label Style="{DynamicResource MenuDecLabel}" Content="Kugelman Zoltán (XCE51B)" Margin="20 10 0 0" Foreground="{Binding betu_szin}"/>
+            <Label Style="{DynamicResource MenuDecLabel}" Content="Makkos András (L3LASH)" Margin="20 10 0 0" Foreground="{Binding betu_szin}"/>
         </StackPanel>
 
     </Grid>

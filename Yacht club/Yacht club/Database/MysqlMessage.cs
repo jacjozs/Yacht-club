@@ -82,14 +82,12 @@ namespace Yacht_club.Database
                     {
                         Message uzenet = new Message();
                         uzenet.uzenet_id = (int)read["message_id"];
-                        uzenet.cimzett_id = Globals.User.member_id;
-                        uzenet.cimzett_nev = Globals.User.teljes_nev;
+                        uzenet.cimzett_id = (int)read["addressee"];
                         uzenet.felado_id = (int)read["sender"];
-                        uzenet.felado_nev = read["first_name"].ToString() + " " + read["last_name"].ToString();
                         if (!Convert.IsDBNull(read["from_port"]))
                             uzenet.honnan_id = (int)read["from_port"];
                         if (!Convert.IsDBNull(read["to_port"]))
-                            uzenet.honnan_id = (int)read["to_port"];
+                            uzenet.hova_id = (int)read["to_port"];
                         uzenet.kezdete = (DateTime)read["start_date"];
                         uzenet.vege = (DateTime)read["end_date"];
                         if (!Convert.IsDBNull(read["yacht_id"]))
@@ -130,6 +128,7 @@ namespace Yacht_club.Database
                     }
                 }
                 YachtName(uzenetek);
+                MysqlFelhasznaloName(uzenetek);
             }
             catch (MySqlException ex)
             {
@@ -163,14 +162,12 @@ namespace Yacht_club.Database
                     {
                         Message uzenet = new Message();
                         uzenet.uzenet_id = (int)read["message_id"];
-                        uzenet.cimzett_id = Globals.User.member_id;
-                        uzenet.cimzett_nev = Globals.User.teljes_nev;
+                        uzenet.cimzett_id = (int)read["addressee"];
                         uzenet.felado_id = (int)read["sender"];
-                        uzenet.felado_nev = read["first_name"].ToString() + " " + read["last_name"].ToString();
                         if (!Convert.IsDBNull(read["from_port"]))
                             uzenet.honnan_id = (int)read["from_port"];
                         if (!Convert.IsDBNull(read["to_port"]))
-                            uzenet.honnan_id = (int)read["to_port"];
+                            uzenet.hova_id = (int)read["to_port"];
                         uzenet.kezdete = (DateTime)read["start_date"];
                         uzenet.vege = (DateTime)read["end_date"];
                         if (!Convert.IsDBNull(read["yacht_id"]))
@@ -210,6 +207,7 @@ namespace Yacht_club.Database
                     }
                 }
                 YachtName(uzenetek);
+                MysqlFelhasznaloName(uzenetek);
             }
             catch (MySqlException ex)
             {
@@ -243,14 +241,12 @@ namespace Yacht_club.Database
                     {
                         Message uzenet = new Message();
                         uzenet.uzenet_id = (int)read["message_id"];
-                        uzenet.cimzett_id = Globals.User.member_id;
-                        uzenet.cimzett_nev = Globals.User.teljes_nev;
+                        uzenet.cimzett_id = (int)read["addressee"];
                         uzenet.felado_id = (int)read["sender"];
-                        uzenet.felado_nev = read["first_name"].ToString() + " " + read["last_name"].ToString();
                         if (!Convert.IsDBNull(read["from_port"]))
                             uzenet.honnan_id = (int)read["from_port"];
                         if (!Convert.IsDBNull(read["to_port"]))
-                            uzenet.honnan_id = (int)read["to_port"];
+                            uzenet.hova_id = (int)read["to_port"];
                         uzenet.kezdete = (DateTime)read["start_date"];
                         uzenet.vege = (DateTime)read["end_date"];
                         if (!Convert.IsDBNull(read["yacht_id"]))
@@ -293,6 +289,7 @@ namespace Yacht_club.Database
                     }
                 }
                 YachtName(uzenetek);
+                MysqlFelhasznaloName(uzenetek);
             }
             catch (MySqlException ex)
             {
@@ -482,6 +479,58 @@ namespace Yacht_club.Database
                 Globals.connect.Close();
             }
             return user;
+        }
+
+        private void MysqlFelhasznaloName(List<Message> list)
+        {
+            try
+            {
+                string query = "SELECT first_name, last_name FROM enYacht_Club_Tag WHERE member_id = ?member_id;";
+                for (int i = 0; i < list.Count; i++)
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                    {
+                        cmd.Parameters.Add("?member_id", MySqlDbType.Int16).Value = list[i].cimzett_id;
+                        MySqlDataReader read = cmd.ExecuteReader();
+                        while (read.Read())
+                            list[i].cimzett_nev = read["first_name"].ToString() + " " + read["last_name"].ToString();
+                    }
+                    using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                    {
+                        cmd.Parameters.Add("?member_id", MySqlDbType.Int16).Value = list[i].felado_id;
+                        MySqlDataReader read = cmd.ExecuteReader();
+                        while (read.Read())
+                            list[i].felado_nev = read["first_name"].ToString() + " " + read["last_name"].ToString();
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+            }
+        }
+
+        public string MysqlPortName(int id)
+        {
+            try
+            {
+                string query = "SELECT name FROM enPort WHERE port_id = ?port_id;";
+                Globals.connect.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, Globals.connect))
+                {
+                    cmd.Parameters.Add("?port_id", MySqlDbType.Int16).Value = id;
+                    return cmd.ExecuteScalar().ToString();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error in adding mysql row. Error: " + ex.Message);
+            }
+            finally
+            {
+                Globals.connect.Close();
+            }
+            return "Nincs!";
         }
     }
 }

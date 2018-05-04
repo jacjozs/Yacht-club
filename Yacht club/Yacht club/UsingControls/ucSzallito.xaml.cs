@@ -32,6 +32,7 @@ namespace Yacht_club.UsingControls
 
         public void Loading()
         {
+            lbId.Content = Device.id.ToString();
             if (Device.tipus != null)
                 lbTipus.Content = Device.tipus;
             else lbTipus.Content = "Nincs kitöltve";

@@ -30,7 +30,8 @@
 
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Yacht:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-
+        <Label x:Name="lbId" Style="{DynamicResource MenuDecLabel}" Content="" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="65 0 0 0" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+        
         <Label Content="Név:"             Grid.Row="1"  Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
         <Label Content="Gyártó:"           Grid.Row="2"  Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>
         <Label Content="Ülések száma:"    Grid.Row="3"  Grid.Column="0" FontWeight="Bold" Foreground="{Binding betu_szin}" Height="25" Margin="15,0,0,0"/>

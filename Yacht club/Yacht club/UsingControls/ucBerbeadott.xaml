@@ -14,16 +14,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="379"/>
+            <RowDefinition Height="354"/>
 
         </Grid.RowDefinitions>
         <Label Style="{DynamicResource MenuDecLabel}" Content="Bérbe adott járművek:" Foreground="{Binding betu_szin}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-        <StackPanel x:Name="stPanel1" Grid.Row="2" Grid.Column="0" Margin="0,0,0,25" ></StackPanel>
-        <StackPanel x:Name="stPanel2" Grid.Row="2" Grid.Column="1" Margin="0,0,0,25" ></StackPanel>
-
-        <Label Content="Bérbeadott Jachtok:" Grid.Row="1" Grid.Column="0" Foreground="{Binding betu_szin}" Margin="20,0,0,0" FontWeight="Medium" ></Label>
+        <Label Content="Bérbeadott Jachtok:" Grid.Row="1" Grid.Column="0" Foreground="{Binding betu_szin}" Margin="20,0,0,0" FontWeight="Medium"></Label>
         <Label Content="Bérbeadott Szállítóeszközök:" Grid.Row="1" Grid.Column="1" Foreground="{Binding betu_szin}" Margin="20,0,0,0" FontWeight="Medium"></Label>
-
-
+        <ScrollViewer Name="Scrollwiewr1" Margin="10" VerticalScrollBarVisibility="Auto" Width="390.5" Height="334" Grid.Column="0" Grid.Row="2">
+            <StackPanel Name="stPanel1" Width="390.5"/>
+        </ScrollViewer>
+        <ScrollViewer Name="Scrollwiewr2" Margin="10" VerticalScrollBarVisibility="Auto" Width="390.5" Height="334" Grid.Column="1" Grid.Row="2">
+            <StackPanel Name="stPanel2" Width="390.5"/>
+        </ScrollViewer>
     </Grid>
 </UserControl>
