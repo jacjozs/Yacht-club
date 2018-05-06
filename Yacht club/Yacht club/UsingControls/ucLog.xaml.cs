@@ -31,8 +31,6 @@ namespace Yacht_club.UsingControls
         {
             if (Globals.log != "")
             {
-                Style LogStackLabel = Application.Current.FindResource("LogStackLabel") as Style;
-
                 panel = new StackPanel();
                 panel.Orientation = Orientation.Horizontal;
                 panel.Height = 15;
@@ -41,7 +39,7 @@ namespace Yacht_club.UsingControls
 
                 Label log = new Label();
                 log.Content = Globals.log;
-                log.Style = LogStackLabel;
+                log.Style = Application.Current.FindResource("LogStackLabel") as Style;
 
                 panel.Children.Add(log);
 
